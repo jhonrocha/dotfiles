@@ -1,0 +1,15 @@
+#!/bin/sh
+#     _  ____               _
+#    | ||  _ \  ___    ___ | |__    __ _
+# _  | || |_) |/ _ \  / __|| '_ \  / _` |
+#| |_| ||  _ <| (_) || (__ | | | || (_| |
+# \___/ |_| \_\\___/  \___||_| |_| \__,_|
+
+if [ -f "${HOME}"/.config/bookmarks.txt ]; then
+  choice=$(rofi -dmenu < "${HOME}"/.config/bookmarks.txt)
+  if [ "$choice" ]; then
+    $BROWSER "${choice##*- }"
+  fi
+else
+  notify-send "Error" "Bookmarks.txt not found"
+fi

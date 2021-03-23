@@ -1,0 +1,2 @@
+#!/bin/bash
+if [ $(bspc query -N -d | wc -l) != "1" ]; then echo "split_dir=south"; fi

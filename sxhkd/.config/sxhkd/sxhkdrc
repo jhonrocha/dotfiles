@@ -1,0 +1,99 @@
+#      _  _      ____               _
+#     | || |__  |  _ \  ___    ___ | |__    __ _
+#  _  | || '_ \ | |_) |/ _ \  / __|| '_ \  / _` |
+# | |_| || | | ||  _ <| (_) || (__ | | | || (_| |
+#  \___/ |_| |_||_| \_\\___/  \___||_| |_| \__,_|
+#--------------------
+#  BASIC Keybindings
+#--------------------
+# Terminal
+super + Return
+  alacritty --title myTerm
+# # Terminal focus or open
+super + s
+  xdo activate -a myTerm || alacritty --title myTerm
+# EMACS
+super + a
+  xdo activate -n emacs || emacs
+# Zoom
+super + z
+  xdo activate -n zoom
+# Rofi DMenu Applications
+super + d
+  rofi -show drun -columns 2
+# Rofi Run
+super + e ; r
+  rofi -show run
+# Browser
+super + f
+  xdo activate -n $BROWSER_NAME || $BROWSER
+# Favorite Browser
+super + shift + f
+  jhbrowser
+# Exlpore File Manager
+super + e ; f
+  $TERMINALD -e $FILE
+# GUI File Manager
+super + e ; e
+  thunar
+# View Applications
+super + e ; c
+  $TERMINALD -e htop
+# Lock screen
+super + shift + Delete
+  slock
+# Print Screen
+super + shift + s
+  flameshot gui
+# Print Screen focus
+super + alt + s
+  import -frame -window "$(xdo id)" ~/Pictures/screenshot/$(date +%s).png
+# Open Passmenu
+super + e ; p
+  passmenu -l 30 -c -bw 3
+# Open on Dotfiles
+# super + shift + period
+#   jhvimdot
+# Cloud Syncing
+super + e ; c
+  jhsync
+
+#--------------------
+# Wall
+#--------------------
+# Next Wallpaper (Keep Things Fixed)
+super + e ; n
+  feh --bg-fill --randomize ~/.config/wallpapers/
+
+#--------------------
+#  xbacklight
+#--------------------
+# dec
+super + F1
+  xbacklight -dec 10
+# inc
+super + F2
+  xbacklight -inc 10
+
+#--------------------
+#  MEDIA Keybindings
+#--------------------
+# playerctl
+super + F7
+  playerctl play-pause
+super + F6
+  playerctl previous
+super + F8
+  playerctl next
+super + F9
+  pavucontrol
+
+# volume
+super + {F11, shift + F11}
+  amixer sset Master {5,15}%-
+super + {F12, shift + F12}
+  amixer sset Master {5,15}%+
+
+# make sxhkd reload its configuration files:
+super + alt + z
+  pkill -USR1 -x sxhkd

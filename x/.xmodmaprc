@@ -1,0 +1,8 @@
+!
+! make ç as Control_R
+clear control
+keycode 47 = Control_R ccedilla
+keycode 54 = c C c C ccedilla
+keycode 94 = Control_L
+keycode 37 = backslash bar
+add control = Control_L Control_R

@@ -1,0 +1,15 @@
+# Don't print a new line at the start of the prompt
+# add_newline = false
+
+[character]
+# success_symbol = "[](bold green)"
+# error_symbol = "[](bold red)"
+# vicmd_symbol = "[](bold purple)"
+
+# Disable the package module, hiding it from the prompt completely
+[aws]
+disabled = true
+[package]
+disabled = true
+[nodejs]
+disabled = true

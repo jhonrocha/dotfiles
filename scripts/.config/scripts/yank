@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+if [ "$(uname)" == "Darwin" ]; then
+  pbcopy
+elif [ "$WM" == "sway" ] || [ "$XDG_SESSION_TYPE" == "wayland" ]; then
+  wl-copy
+else
+  xclip -in -selection clipboard
+fi

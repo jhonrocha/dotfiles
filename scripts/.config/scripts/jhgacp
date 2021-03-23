@@ -1,0 +1,15 @@
+#!/bin/sh
+git status
+branch=$(git branch | grep '^\*' | cut -d' ' -f2 | tr -d '\n')
+printf "\n\nAdding all to $branch\n"
+git add --all
+printf "Please add you message\n"
+read -p "Commit: " userInput
+git commit -m "$userInput"
+echo "Do you wish to push to origin $branch?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) git push origin $branch; break;;
+        No ) exit;;
+    esac
+done

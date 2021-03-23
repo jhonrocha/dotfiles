@@ -1,0 +1,13 @@
+#!/bin/sh
+temp (){
+  acpi -t | cut -d' ' -f4
+}
+
+mem() {
+  info=$(grep Mem /proc/meminfo)
+  total=$(echo $info | cut -d' ' -f2)
+  available=$(echo $info | cut -d' ' -f8)
+  used=`expr $total - $available`
+  echo "scale=2; ($total - $available) / (1024 * 1024)" | bc
+}
+printf " $(coronaCheck) | $(date +"%A, %d %b - %H:%M") | $(mem)G | $(temp)ºC "

@@ -1,0 +1,9 @@
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+  include "br(thinkpad)"
+  name[Group1] = "br";
+  key <LSGT> { [ Control_L ] };
+  key <LCTL> { [ backslash, bar ] };
+  key <AB03> { [ c, C, ccedilla, Ccedilla ]};
+  key <AC10> { [ Control_R, ccedilla ] };
+};

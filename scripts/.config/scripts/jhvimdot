@@ -1,0 +1,18 @@
+#!/bin/bash
+#     _  ____               _
+#    | ||  _ \  ___    ___ | |__    __ _
+# _  | || |_) |/ _ \  / __|| '_ \  / _` |
+#| |_| ||  _ <| (_) || (__ | | | || (_| |
+# \___/ |_| \_\\___/  \___||_| |_| \__,_|
+
+
+declare -A options=(
+  ["dotfiles"]="cd $HOME/dotfiles && $EDITOR ."
+  ["privatedotiles"]="cd $HOME/privatedotfiles && $EDITOR ."
+  ["onedrive"]="cd $HOME/oneDrive && $EDITOR ."
+)
+choice=$(echo "${!options[@]}" | tr " " "\n" | rofi -dmenu -p 'Vim Open')
+if [ "$choice" ]; then
+  $TERMINALD -e bash -c "${options[$choice]}"
+fi
+

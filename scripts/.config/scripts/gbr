@@ -1,0 +1,2 @@
+#!/bin/sh
+git branch -r | awk '{split($0,a,/origin\//); print a[2]}' | fzf | xargs -I % git checkout %

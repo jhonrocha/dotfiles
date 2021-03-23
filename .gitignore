@@ -1,0 +1,6 @@
+# Logs
+vim/.config/nvim/autoload
+vim/.config/nvim/.netrwhist
+ranger/.config/ranger/plugins/__pycache__
+xmonad/.xmonad
+fish_variables

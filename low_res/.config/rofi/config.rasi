@@ -1,0 +1,15 @@
+configuration {
+  modi: "drun,window,run,ssh";
+  font: "UbuntuMono Nerd Font 14";
+  show-icons: true;
+  theme: "Arc-Dark.rasi";
+  matching: "fuzzy";
+  kb-remove-to-eol: "";
+  kb-accept-entry: "Control+m,Return,KP_Enter";
+  kb-remove-char-back: "BackSpace,Shift+BackSpace";
+  kb-row-left: "Control+h";
+  kb-row-right: "Control+l";
+  kb-row-up: "Up,Control+k";
+  kb-row-down: "Down,Control+j";
+}
+@import "/usr/share/rofi/themes/Arc-Dark.rasi"

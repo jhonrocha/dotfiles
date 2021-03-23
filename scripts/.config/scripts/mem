@@ -1,0 +1,2 @@
+#!/bin/sh
+pmap $(pgrep $1) | awk '/total/ { a=strtonum($2); b=(a/1024); printf b "Mb\n"};'
