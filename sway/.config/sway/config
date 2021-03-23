@@ -262,3 +262,6 @@ bar {
     }
 }
 include /etc/sway/config.d/*
+
+# Initializing
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

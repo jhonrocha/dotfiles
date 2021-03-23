@@ -40,7 +40,6 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 (setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'\\|^\\..+$")
-(setq message-truncate-lines t)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -64,9 +63,9 @@
 ;; RESTCLIENT
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 (add-to-list 'auto-mode-alist '("\\.props\\'" . sql-mode))
-
-(setq-default word-wrap t)
-(toggle-truncate-lines 1)
+(toggle-truncate-lines nil)
+(setq message-truncate-lines nil)
+(set-default 'truncate-lines t)
 
 (setq-default tab-width 2)
 (setq c-basic-offset 2)

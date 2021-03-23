@@ -125,3 +125,4 @@ fm ()
 }
  
 [ -f ~/.config/.rauxa_envs ] && . ~/.config/.rauxa_envs
+[ -x "$(command -v rustc)" ] && export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library;
