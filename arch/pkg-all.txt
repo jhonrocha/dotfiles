@@ -71,6 +71,6 @@ openssh
 adobe-source-han-sans-otc-fonts
 adobe-source-han-serif-otc-fonts
 ttf-font-awesome
-ttf-font-icons
 ttf-ionicons
-materia-gtk-them
+materia-gtk-theme
+polkit-gnome

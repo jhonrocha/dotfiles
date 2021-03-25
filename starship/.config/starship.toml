@@ -4,7 +4,7 @@
 [character]
 # success_symbol = "[](bold green)"
 # error_symbol = "[](bold red)"
-# vicmd_symbol = "[](bold purple)"
+vicmd_symbol = "[<](bold purple)"
 
 # Disable the package module, hiding it from the prompt completely
 [aws]

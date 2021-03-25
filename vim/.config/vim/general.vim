@@ -26,12 +26,12 @@ else
 endif
 
 " Theme Setting
-function! s:patch_theme_colors()
-  hi! Normal ctermbg=NONE guibg=NONE
-  hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-  set background=dark
-endfunction
-autocmd! ColorScheme * call s:patch_theme_colors()
+" function! s:patch_theme_colors()
+"   hi! Normal ctermbg=NONE guibg=NONE
+"   hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+"   set background=dark
+" endfunction
+" autocmd! ColorScheme * call s:patch_theme_colors()
 
 colorscheme dracula
 
