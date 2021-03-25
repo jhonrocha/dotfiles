@@ -316,14 +316,14 @@ nnoremap <silent> <leader>ff :Rgrep<CR>
 
 "" Git
 noremap <Leader>gg :tab Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gf :tab Git pull<CR>
+noremap <Leader>gp :tab Git push<CR>
+noremap <Leader>gc :tab Git commit<CR>
+noremap <Leader>gb :tab Git checkout<CR>
+noremap <Leader>gB :Gblame<CR>
 noremap <Leader>gd :Gvdiffsplit!<CR>
-noremap <Leader>gj :call CommitQF()<CR>
 noremap <Leader>gh :call diffget //2<CR>
 noremap <Leader>gl :call diffget //3<CR>
-"" Open current line on GitHub
-nnoremap <Leader>go :.Gbrowse<CR>
-nnoremap <Leader>gx :!gx<CR><CR>
 
 "" Set working directory
 " nnoremap <leader>. :lcd %:p:h<CR>
@@ -364,6 +364,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Mapping Shortcupts
+nnoremap <silent> <C-q> :qa<CR>
 nnoremap <silent> ZA :qa<CR>
 nnoremap <silent> ZS :wqa<CR>
 nnoremap <silent> ZT :tabclose<CR>
@@ -479,3 +480,4 @@ noremap <silent> <leader>d :NERDTreeToggle<CR>
 "Recovery commands from history through FZF
 nmap <leader>R :History:<CR>
 nmap <A-x> :Commands<CR>
+nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>
