@@ -1,26 +1,10 @@
-"" Include user's extra bundle
-" if filereadable(expand("~/.vimrc"))
-  " source ~/.vimrc
-" endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Plug For Managing Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has('nvim')
-  let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-else
-  let vimplug_exists=expand('~/.vim/autoload/plug.vim')
-endif
-
+let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 if !filereadable(vimplug_exists)
-  if !executable("curl")
-    echoerr "You have to install curl or first install vim-plug yourself!"
-    execute "q!"
-  endif
   echo "Installing Vim-Plug..."
-  echo ""
   silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  let g:not_finish_vimplug = "yes"
   autocmd VimEnter * PlugInstall
 endif
 
@@ -36,37 +20,29 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 " Git Integration
 Plug 'tpope/vim-fugitive'
-" Use RipGrep and others
-Plug 'vim-scripts/grep.vim'
-" Snippets
-Plug 'honza/vim-snippets'
-" Languages Support
-Plug 'sheerun/vim-polyglot'
-" Show Marks
-Plug 'kshenoy/vim-signature'
 " Completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+" Completion
+Plug 'hrsh7th/nvim-compe'
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Distraction Free
-Plug 'junegunn/goyo.vim'
-" Vimwiki
-Plug 'vimwiki/vimwiki'
 " Themes
 Plug 'dracula/vim', { 'name': 'dracula' }
 Plug 'joshdick/onedark.vim'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'tomasr/molokai'
 " Line
 Plug 'itchyny/lightline.vim'
 call plug#end()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"# Basic Setup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove mapped space
 nnoremap <Space> <Nop>
 " Set space as leader
 let mapleader=" "
-
 " Syntax highlight
 syntax on
 " Relative and global linenumbers
@@ -81,63 +57,25 @@ set hidden
 set updatetime=1000
 " Merge signcolumn and number column into one
 set signcolumn=yes
-
+" Completion
+set completeopt=menuone,noinsert,noselect
 " Theme Setting
 " function! s:patch_theme_colors()
-"   hi! Normal ctermbg=NONE guibg=NONE
-"   hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-"   set background=dark
 " endfunction
 " autocmd! ColorScheme * call s:patch_theme_colors()
-colorscheme molokai
+colorscheme gruvbox
+set background=dark
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 let g:lightline = { 'colorscheme': 'wombat' }
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File Types
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown syntax=markdown
-autocmd BufNewFile,BufFilePre,BufRead *.props set filetype=sql syntax=sql
-
-" Extensions
-let g:coc_global_extensions = [
-      \'coc-eslint',
-      \'coc-json',
-      \'coc-markdownlint',
-      \'coc-pairs',
-      \'coc-python',
-      \'coc-rls',
-      \'coc-snippets',
-      \'coc-tsserver', 
-      \'coc-vimlsp',
-      \]
-
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-" 				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" " Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" " Symbol renaming.
-" nmap <leader>rn <Plug>(coc-rename)
-
-" " Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
-" NERDTree Configs
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeWinSize = 50
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# Basic Setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn on for plugin management
 filetype plugin indent on
 " Encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
-
 " Fast scrool
 set ttyfast
 " Wrapping
@@ -145,35 +83,24 @@ set wrap
 set linebreak
 set nolist
 set path+=**
-
 " Fix backspace indent
 set backspace=indent,eol,start
-
 " No Backup
 set nobackup
 set nowritebackup
 set undodir=~/.cache/.vimdid
 set undofile
-
-
 " Tabs. May be overridden by autocmd rules
-" On pressing tab, insert 2 spaces
 set expandtab
-" show existing tab with 2 spaces width
 set tabstop=2
 set softtabstop=2
-" when indenting with '>', use 2 spaces width
 set shiftwidth=2
-
-" Enable hidden buffers
-set hidden
-
 " Searching
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
+" Shell setting
 if exists('$SHELL')
     set shell=$SHELL
 else
@@ -189,30 +116,20 @@ set sessionoptions=blank,buffers,curdir,folds,help,options,tabpages,winsize
 
 " Disable visualbell
 set noerrorbells visualbell t_vb=
-if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
-endif
 
 "" Copy/Paste/Cut
 if has('unnamedplus')
   set clipboard=unnamedplus
 endif
 
-"" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
-augroup vimrc-sync-fromstart
-  autocmd!
-  autocmd BufEnter * :syntax sync maxlines=20
-augroup END
-
 " Setting directory for swap files
 set directory^=$HOME/.vim/tmp//
-
 " Highlight Cursor Position
 set cursorline
-"set cursorcolumn
-
 " Stop Adding Comments
 set formatoptions-=r formatoptions-=c formatoptions-=o formatoptions+=t 
+" Wildignore
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Visual Settings
@@ -242,7 +159,54 @@ set modelineexpr
 set title
 set titleold="Terminal"
 set titlestring=%F
+" Lua Configs
+lua require("config")
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autocmd
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd GUIEnter * set visualbell t_vb=
+autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown syntax=markdown
+autocmd BufNewFile,BufFilePre,BufRead *.props set filetype=sql syntax=sql
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LSP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap gD :lua vim.lsp.buf.declaration()<CR>
+nnoremap gd :lua vim.lsp.buf.definition()<CR>
+nnoremap gr :lua vim.lsp.buf.references()<CR>
+nnoremap gi :lua vim.lsp.buf.implementation()<CR>
+nnoremap K :lua vim.lsp.buf.hover()<CR>
+nnoremap <C-k> :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>wa :lua vim.lsp.buf.add_workspace_folder()<CR>
+nnoremap <leader>wr :lua vim.lsp.buf.remove_workspace_folder()<CR>
+nnoremap <leader>wl :lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
+nnoremap <leader>D :lua vim.lsp.buf.type_definition()<CR>
+nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap [e :lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap ]e :lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <leader>q :lua vim.lsp.diagnostic.set_loclist()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COMPE
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTREE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:NERDTreeWinSize = 50
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+
+" NERDTree
+noremap <silent> <leader>D :NERDTreeFind<CR>
+noremap <silent> <leader>d :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Abbreviations
@@ -262,16 +226,10 @@ cnoreabbrev Qall qall
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Grep
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Wildignore
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-
 " grep.vim
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
 let Grep_Skip_Dirs = '.git node_modules'
-
-" Tagbar
-let g:tagbar_autofocus = 1
 
 "" fzf.vim
 let g:fzf_layout = { 'down': '50%' }
@@ -288,6 +246,10 @@ if executable('rg')
   nnoremap <Leader>fw :Rg<space>
 endif
 
+" FZF
+"Recovery commands from history through FZF
+nmap <leader>R :History:<CR>
+nmap <A-x> :Commands<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -313,9 +275,6 @@ noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " Expand location
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" Tagbar
-nmap <silent> <Leader>tg :TagbarToggle<CR>
 
 " Copying on mac
 if has('macunix')
@@ -414,50 +373,5 @@ function! ToggleHiddenBar()
 endfunction
 nnoremap <leader>bb :call ToggleHiddenBar()<CR>
 
-" ------------------------------
-" PLUGIN'S MAPS
-" ------------------------------
-" COC
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [e <Plug>(coc-diagnostic-prev)
-nmap <silent> ]e <Plug>(coc-diagnostic-next)
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
-nnoremap <silent> <space>ca  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>ce  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <space>cc  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>co  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <space>cs  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>cj  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>ck  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>cp  :<C-u>CocListResume<CR>
-
-" NERDTree
-noremap <silent> <leader>e :NERDTreeFind<CR>
-noremap <silent> <leader>d :NERDTreeToggle<CR>
-
-" FZF
-"Recovery commands from history through FZF
-nmap <leader>R :History:<CR>
-nmap <A-x> :Commands<CR>
 nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>
