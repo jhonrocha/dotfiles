@@ -111,19 +111,17 @@ let g:coc_global_extensions = [
       \'coc-vimlsp',
       \]
 
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+" 				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" " Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+" " Symbol renaming.
+" nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [{'path': '~/org/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" " Formatting selected code.
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 " NERDTree Configs
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
@@ -291,24 +289,6 @@ if executable('rg')
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# Plugin: ALE
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ALE Configuration
-let g:ale_fixers = {
- \ 'javascript': ['eslint']
- \ }
-
-let g:ale_linters = {
-\   'javascript': ['eslint']
-\}
-
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
-let g:ale_fix_on_save = 0
-let g:ale_completion_enabled = 1
-" set completeopt=menu,menuone,preview,noselect,noinsert
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
@@ -316,10 +296,10 @@ nnoremap <silent> <leader>ff :Rgrep<CR>
 
 "" Git
 noremap <Leader>gg :tab Gstatus<CR>
-noremap <Leader>gf :tab Git pull<CR>
-noremap <Leader>gp :tab Git push<CR>
-noremap <Leader>gc :tab Git commit<CR>
-noremap <Leader>gb :tab Git checkout<CR>
+noremap <Leader>gf :Git pull<CR>
+noremap <Leader>gp :Git push<CR>
+noremap <Leader>gc :Git commit<CR>
+noremap <Leader>gb :Git checkout<CR>
 noremap <Leader>gB :Gblame<CR>
 noremap <Leader>gd :Gvdiffsplit!<CR>
 noremap <Leader>gh :call diffget //2<CR>
@@ -439,8 +419,8 @@ nnoremap <leader>bb :call ToggleHiddenBar()<CR>
 " ------------------------------
 " COC
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
