@@ -24,9 +24,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'neovim/nvim-lspconfig'
 " Completion
 Plug 'hrsh7th/nvim-compe'
-" FZF
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Themes
 Plug 'dracula/vim', { 'name': 'dracula' }
 Plug 'joshdick/onedark.vim'
@@ -224,38 +226,21 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# Grep
+"# TELESCOPE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" grep.vim
-let Grep_Default_Options = '-IR'
-let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules'
-
-"" fzf.vim
-let g:fzf_layout = { 'down': '50%' }
-" ripgrep
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-  "command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-  command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-  " Rg
-	nnoremap <Leader>fa :Find<CR> 
-  " Rg current word
-  nnoremap <Leader>fw :Rg<space>
-endif
-
-" FZF
-"Recovery commands from history through FZF
-nmap <leader>R :History:<CR>
-nmap <A-x> :Commands<CR>
+" " List cwd files
+" nnoremap <silent> <leader><Space> :FZF -m --no-preview<CR>
+nnoremap <leader>pg :lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader><space> :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+" nnoremap <silent> <Leader><space> :lua require('telescope.builtin').find_files({ find_command = {"rg","--hidden","--color=never","--no-heading","--with-filename","--ignore","--files"}})<CR><CR>
+" nnoremap <silent> <Leader><space> :lua require('telescope.builtin').find_files({ find_command = {"fd"} })<CR>
+nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
+nnoremap <leader>, :lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>pt :lua require('telescope.builtin').help_tags()<CR>
+nnoremap <leader>pb :lua require('telescope.builtin').git_branches()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Searching
-nnoremap <silent> <leader>ff :Rgrep<CR>
-
 "" Git
 noremap <Leader>gg :tab Gstatus<CR>
 noremap <Leader>gf :Git pull<CR>
@@ -267,11 +252,8 @@ noremap <Leader>gd :Gvdiffsplit!<CR>
 noremap <Leader>gh :call diffget //2<CR>
 noremap <Leader>gl :call diffget //3<CR>
 
-"" Set working directory
-" nnoremap <leader>. :lcd %:p:h<CR>
-
 "" Opens a tab edit command with the path of the currently edited file filled
-noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+" noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " Expand location
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
@@ -307,10 +289,6 @@ nnoremap <silent> <C-q> :qa<CR>
 nnoremap <silent> ZA :qa<CR>
 nnoremap <silent> ZS :wqa<CR>
 nnoremap <silent> ZT :tabclose<CR>
-
-" Copy filename
-noremap <leader>mv :vimgrep<space>
-
 " Moving deletions to register 'a'
 nnoremap d "vd
 nnoremap D "vD
@@ -320,8 +298,8 @@ nnoremap c "vc
 nnoremap C "vC
 nnoremap s "vs
 nnoremap S "vS
-noremap <leader>p "vp
-noremap <leader>P "vP
+noremap <leader>vp "vp
+noremap <leader>vP "vP
 
 " Search and Replace global
 nnoremap <leader>rr :%s//gc<left><left><left>
@@ -336,16 +314,9 @@ noremap <leader>qc :ccl<CR>
 
 " Easier search
 noremap <leader>s /
-" List cwd files
-nnoremap <silent> <leader><Space> :FZF -m --no-preview<CR>
 " Last buffer
 nnoremap <leader><TAB> <C-^>
 nnoremap <A-TAB> <C-^>
-" List open buffers
-nnoremap <silent> <leader>, :Buffers<CR>
-" List locals files
-noremap <silent> <Leader>. :FZF <C-R>=expand("%:p:h") . "/"<CR><CR>
-
 " Close the current buffer and move to the previous one
 noremap <leader>xk :bd<CR>
 noremap <leader>fq :bp <BAR> bd #<CR>
