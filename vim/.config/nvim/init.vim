@@ -230,10 +230,10 @@ cnoreabbrev Qall qall
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " List cwd files
 " nnoremap <silent> <leader><Space> :FZF -m --no-preview<CR>
-nnoremap <leader>pg :lua require('telescope.builtin').git_files()<CR>
-nnoremap <leader><space> :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <leader><space> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>pf :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 " nnoremap <silent> <Leader><space> :lua require('telescope.builtin').find_files({ find_command = {"rg","--hidden","--color=never","--no-heading","--with-filename","--ignore","--files"}})<CR><CR>
-" nnoremap <silent> <Leader><space> :lua require('telescope.builtin').find_files({ find_command = {"fd"} })<CR>
+nnoremap <silent> <Leader>pf :lua require('telescope.builtin').find_files({ find_command = {"fd"} })<CR>
 nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
 nnoremap <leader>, :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>pt :lua require('telescope.builtin').help_tags()<CR>
