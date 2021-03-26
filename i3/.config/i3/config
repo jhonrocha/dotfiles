@@ -118,7 +118,7 @@ mode "resize" {
     bindsym $mod+i exec "i3-msg [class=\\"termpad\\"] scratchpad show || $term --class termpad"
     # Kill focused window
     bindsym $mod+F4 kill
-    bindsym $mod+c kill
+    bindsym $mod+q kill
     # Start your launcher
     bindsym $mod+d exec $menu
     # Start your cmd launcher

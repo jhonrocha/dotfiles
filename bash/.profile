@@ -23,7 +23,7 @@ export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
 export LC_ALL=en_US.UTF-8
 export FZF_DEFAULT_OPTS="--layout=reverse --border"
 export XDG_CONFIG_HOME="$HOME/.config"
-export GTK_THEME=Adwaita:Dark
+export GTK_THEME=Materia-compact
 
 ## Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
@@ -51,7 +51,7 @@ alias .....="cd ../../../.."
 alias gw="cd ~/workspace"
 alias gj="cd ~/jhworkspace"
 alias g.="cd ~/dotfiles"
-alias g.p="cd ~/privatedotfiles"
+alias g,="cd ~/privatedotfiles"
 alias g1="cd ~/oneDrive"
 alias gd="cd ~/Downloads"
 alias gD="cd ~/Documents"
