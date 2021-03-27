@@ -78,3 +78,40 @@ require'compe'.setup {
   };
 }
 
+-- TELESCOPE
+local actions = require('telescope.actions')
+require('telescope').setup {
+    defaults = {
+        vimgrep_arguments = {
+            'rg',
+            '--hidden',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case'
+        },
+        prompt_position = "top",
+        sorting_strategy = "ascending",
+        -- file_ignore_patterns = {"%.ttf","%.otf"},
+        file_sorter = require('telescope.sorters').get_fzy_sorter,
+        mappings = {
+            i = {
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-q>"] = actions.send_to_qflist,
+                ["<esc>"] = actions.close
+            },
+        }
+    },
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        }
+    }
+}
+
+require('telescope').load_extension('fzy_native')
+

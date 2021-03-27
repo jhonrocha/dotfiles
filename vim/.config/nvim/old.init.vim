@@ -24,9 +24,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'neovim/nvim-lspconfig'
 " Completion
 Plug 'hrsh7th/nvim-compe'
-" Fuzzy Finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Themes
 Plug 'dracula/vim', { 'name': 'dracula' }
 Plug 'joshdick/onedark.vim'
@@ -226,16 +228,18 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# FUZZY FINDER
+"# TELESCOPE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <leader><space> :Files<cr>
-nnoremap <silent> <leader>. :Files<c-r>=expand("%:p:h") . "/"<cr><cr>
-nnoremap <silent> <leader>, :Buffers<cr>
-nnoremap <silent> <leader>: :Commands<cr>
-nnoremap <silent> <A-x> :Commands<cr>
-nnoremap <silent> <leader>fc :Commits<cr>
-nnoremap <silent> <leader>fh :History<cr>
-nnoremap <silent> <leader>ff :Rg<cr>
+" " List cwd files
+" nnoremap <silent> <leader><Space> :FZF -m --no-preview<CR>
+nnoremap <leader><space> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>pf :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+" nnoremap <silent> <Leader><space> :lua require('telescope.builtin').find_files({ find_command = {"rg","--hidden","--color=never","--no-heading","--with-filename","--ignore","--files"}})<CR><CR>
+nnoremap <silent> <Leader>pf :lua require('telescope.builtin').find_files({ find_command = {"fd","--type","f","--hidden","--follow","--exclude",".git"} })<CR>
+nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
+nnoremap <leader>, :lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>pt :lua require('telescope.builtin').help_tags()<CR>
+nnoremap <leader>pb :lua require('telescope.builtin').git_branches()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "# Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
