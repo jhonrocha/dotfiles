@@ -34,7 +34,7 @@ cpu_usage {
 
 battery all {
   # format = "%status %percentage %remaining"
-  format = "<span foreground='#ff6c6b' weight='bold'><span background='#ff6c6b' foreground='#000000'> %percentage </span></span> "
+  format = "<span foreground='#ff6c6b' weight='bold'><span background='#ff6c6b' foreground='#000000'>  %percentage </span></span> "
 }
 
 cpu_temperature 0 {

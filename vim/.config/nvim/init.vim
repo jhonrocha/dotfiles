@@ -228,6 +228,7 @@ nnoremap <silent> <A-x> :Commands<cr>
 nnoremap <silent> <leader>fc :Commits<cr>
 nnoremap <silent> <leader>fh :History<cr>
 nnoremap <silent> <leader>ff :Rg<cr>
+noremap <Leader>of :e <C-R>=expand("%:p:h") . "/" <CR>
 " }}}
 
 ">>>....................Mappings.................... {{{
@@ -243,7 +244,6 @@ noremap <Leader>gh :call diffget //2<CR>
 noremap <Leader>gl :call diffget //3<CR>
 
 "" Opens a tab edit command with the path of the currently edited file filled
-" noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " Expand location
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
