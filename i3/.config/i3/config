@@ -37,7 +37,7 @@ for_window [class="termpad"] move scratchpad
 for_window [class="termpad"] scratchpad show
 
 # Font
-font pango:Cantarell 12
+font pango:Cantarell 8
 # Gaps
 gaps inner $gIn
 gaps outer $gOut
@@ -57,7 +57,7 @@ mode "apps" {
     bindsym p exec grim -g "$(slurp)" - | wl-copy; mode "default"
     # Return to default mode
     bindsym Return mode "default"
-    bindsym Esape mode "default"
+    bindsym Escape mode "default"
 }
     bindsym $mod+space mode "apps"
 
@@ -126,7 +126,7 @@ mode "resize" {
     # Drag floating windows by holding down $mod and left mouse button.
     floating_modifier $mod
     # Reload the configuration file
-    bindsym $mod+z reload
+    bindsym $mod+z restart
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -212,9 +212,9 @@ mode "resize" {
 # Status Bar:
 bar {
     position top
-    font pango:Iosevka Nerd Font 10
+    font pango:Iosevka Nerd Font 12
     status_command i3status
-    separator_symbol "|"
+    separator_symbol " "
     tray_padding 4px
     colors {
         statusline #ffffff

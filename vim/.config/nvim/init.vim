@@ -1,15 +1,15 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# Plug For Managing Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim:fileencoding=utf-8:foldmethod=marker
+
+">>>....................Plug For Managing Plugins.................... {{{
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 if !filereadable(vimplug_exists)
   echo "Installing Vim-Plug..."
   silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   autocmd VimEnter * PlugInstall
 endif
+" }}}
 
-"# Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>....................Plugins.................... {{{
 call plug#begin(expand('~/.vim/plugged'))
 " NERDTree
 Plug 'scrooloose/nerdtree'
@@ -35,10 +35,9 @@ Plug 'tomasr/molokai'
 " Line
 Plug 'itchyny/lightline.vim'
 call plug#end()
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# Basic Setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>....................Basic Setup.................... {{{
 " Remove mapped space
 nnoremap <Space> <Nop>
 " Set space as leader
@@ -56,17 +55,19 @@ set hidden
 " Updating swap file interval
 set updatetime=1000
 " Merge signcolumn and number column into one
-set signcolumn=yes
+set signcolumn=number
 " Completion
 set completeopt=menuone,noinsert,noselect
 " Theme Setting
-" function! s:patch_theme_colors()
-" endfunction
-" autocmd! ColorScheme * call s:patch_theme_colors()
+function! s:patch_theme_colors()
+  hi! Normal ctermbg=NONE guibg=NONE
+  hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+  hi! SignColor ctermbg=NONE guibg=NONE 
+  hi! LineNr ctermbg=NONE guibg=NONE
+endfunction
+autocmd! ColorScheme * call s:patch_theme_colors()
 set background=dark
 colorscheme molokai
-" hi! Normal ctermbg=NONE guibg=NONE
-" hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 let g:lightline = { 'colorscheme': 'wombat' }
 
 " Turn on for plugin management
@@ -130,11 +131,9 @@ set cursorline
 set formatoptions-=r formatoptions-=c formatoptions-=o formatoptions+=t 
 " Wildignore
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# Visual Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+">>>....................Visual Settings.................... {{{
 if &term =~ '256color'
   set t_ut=
 endif
@@ -161,17 +160,15 @@ set titleold="Terminal"
 set titlestring=%F
 " Lua Configs
 lua require("config")
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Autocmd
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>....................Autocmd.................... {{{
 autocmd GUIEnter * set visualbell t_vb=
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown syntax=markdown
 autocmd BufNewFile,BufFilePre,BufRead *.props set filetype=sql syntax=sql
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" LSP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>....................LSP.................... {{{
 nnoremap gD :lua vim.lsp.buf.declaration()<CR>
 nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gr :lua vim.lsp.buf.references()<CR>
@@ -187,32 +184,28 @@ nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap [e :lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap ]e :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <leader>q :lua vim.lsp.diagnostic.set_loclist()<CR>
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COMPE
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>....................COMPE.................... {{{
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTREE
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>....................NERDTREE.................... {{{
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeWinSize = 50
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
-
 " NERDTree
 noremap <silent> <leader>D :NERDTreeFind<CR>
 noremap <silent> <leader>d :NERDTreeToggle<CR>
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# Abbreviations
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>....................Abbreviations.................... {{{
 "" no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
@@ -224,10 +217,9 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# FUZZY FINDER
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+">>>....................FUZZY FINDER.................... {{{
 nnoremap <silent> <leader><space> :Files<cr>
 nnoremap <silent> <leader>. :Files<c-r>=expand("%:p:h") . "/"<cr><cr>
 nnoremap <silent> <leader>, :Buffers<cr>
@@ -236,9 +228,9 @@ nnoremap <silent> <A-x> :Commands<cr>
 nnoremap <silent> <leader>fc :Commits<cr>
 nnoremap <silent> <leader>fh :History<cr>
 nnoremap <silent> <leader>ff :Rg<cr>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"# Mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+">>>....................Mappings.................... {{{
 "" Git
 noremap <Leader>gg :tab Gstatus<CR>
 noremap <Leader>gf :Git pull<CR>
@@ -344,3 +336,4 @@ nnoremap <leader>bb :call ToggleHiddenBar()<CR>
 
 
 nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>
+" }}}

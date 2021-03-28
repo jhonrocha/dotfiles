@@ -7,47 +7,51 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
+        output_format = "i3bar"
         colors = true
         interval = 5
+        markup = "pango"
 }
 
-order += "ipv6"
-order += "wireless _first_"
-order += "ethernet _first_"
-order += "battery all"
-order += "disk /"
-order += "load"
+order += "volume master"
 order += "memory"
+order += "battery all"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "tztime us"
 order += "tztime local"
 
-wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
+volume master {
+        format = "<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> 奔 %volume </span></span> "
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
 }
 
-ethernet _first_ {
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+cpu_usage {
+        format = "<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> %usage </span></span> "
 }
 
 battery all {
-        format = "%status %percentage %remaining"
+  # format = "%status %percentage %remaining"
+  format = "<span foreground='#ff6c6b' weight='bold'><span background='#ff6c6b' foreground='#000000'> %percentage </span></span> "
 }
 
-disk "/" {
-        format = "%avail"
-}
-
-load {
-        format = "%1min"
+cpu_temperature 0 {
+  format = "<span foreground='#ff6c6b' weight='bold'><span background='#ff6c6b' foreground='#000000'> %degrees °C</span></span> "
 }
 
 memory {
-        format = "%used | %available"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+  format = "<span foreground='#ff69b4' weight='bold'><span background='#ff69b4' foreground='#000000'> %used </span></span> "
+}
+
+tztime us {
+  format = "<span foreground='#f5c02c' weight='bold'><span background='#f5c02c' foreground='#000000'> %time </span></span> "
+  format_time = "%H:%M %Z"
+  timezone = "America/Los_Angeles"
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+  format = "<span foreground='#46d9ff' weight='bold'><span background='#46d9ff' foreground='#000000'> %time </span></span> "
+  format_time = "%b %d, %H:%M"
 }
