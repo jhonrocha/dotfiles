@@ -182,10 +182,10 @@ mode "resize" {
     bindsym $mod+Shift+q layout stacking
     bindsym $mod+Shift+w layout tabbed
     bindsym $mod+Shift+e layout toggle split
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+t floating toggle
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+f focus mode_toggle
+    bindsym $mod+t focus mode_toggle
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+f floating toggle
     # Make the current focus fullscreen
     bindsym $mod+Shift+f fullscreen
     bindsym $mod+b bar mode hide
@@ -211,9 +211,10 @@ mode "resize" {
 #
 # Status Bar:
 bar {
+    i3bar_command i3bar --transparency
+    status_command i3status
     position top
     font pango:Iosevka Nerd Font 12
-    status_command i3status
     separator_symbol " "
     tray_padding 4px
     colors {
