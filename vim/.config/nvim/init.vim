@@ -229,20 +229,27 @@ nnoremap <silent> <leader>fc :Commits<cr>
 nnoremap <silent> <leader>fh :History<cr>
 nnoremap <silent> <leader>ff :Rg<cr>
 noremap <Leader>of :e <C-R>=expand("%:p:h") . "/" <CR>
+
+function! JH_checkout(line)
+  exec 'Git checkout' a:line
+endfunction
+noremap <Leader>gb :call fzf#run(fzf#wrap({'source': 'git branch -a', 'sink': function('JH_checkout') }))<CR>
+" noremap <Leader>gb :call fzf#run(fzf#wrap({'source': 'git branch -a', 'sink': {line -> execute ('Git checkout ' . line) } }))<CR>
 " }}}
 
-">>>....................Mappings.................... {{{
+">>>....................Git.................... {{{
 "" Git
 noremap <Leader>gg :tab Gstatus<CR>
 noremap <Leader>gf :Git pull<CR>
 noremap <Leader>gp :Git push<CR>
 noremap <Leader>gc :Git commit<CR>
-noremap <Leader>gb :Git checkout<CR>
 noremap <Leader>gB :Gblame<CR>
 noremap <Leader>gd :Gvdiffsplit!<CR>
 noremap <Leader>gh :call diffget //2<CR>
 noremap <Leader>gl :call diffget //3<CR>
+" }}}
 
+">>>....................Mappings.................... {{{
 "" Opens a tab edit command with the path of the currently edited file filled
 
 " Expand location

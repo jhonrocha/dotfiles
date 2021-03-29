@@ -92,7 +92,7 @@ alias n='nvim'
 # Vim
 alias v='vim'
 # Tree
-alias t='tree -a -I ".git|node_modules"'
+# alias t='tree -a -I ".git|node_modules"'
 # BRoot
 alias b='br -h'
 # Rofi replace dmenu
@@ -104,26 +104,5 @@ alias nvm-init=". /usr/share/nvm/init-nvm.sh"
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
-# Functions
-fm ()
-{
-  # Block nesting of nnn in subshells
-  if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-      echo "nnn is already running"
-      return
-  fi
-  # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-  # stty start undef
-  # stty stop undef
-  # stty lwrap undef
-  # stty lnext undef
-  NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-  nnn "$@"
-  if [ -f "$NNN_TMPFILE" ]; then
-          . "$NNN_TMPFILE"
-          rm -f "$NNN_TMPFILE" > /dev/null
-  fi
-}
- 
 [ -f ~/.config/.rauxa_envs ] && . ~/.config/.rauxa_envs
 [ -x "$(command -v rustc)" ] && export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library;

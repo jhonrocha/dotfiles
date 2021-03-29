@@ -188,7 +188,7 @@ mode "resize" {
     bindsym $mod+f floating toggle
     # Make the current focus fullscreen
     bindsym $mod+Shift+f fullscreen
-    bindsym $mod+b bar mode hide
+    bindsym $mod+b bar mode invisible
     bindsym $mod+Shift+b bar mode dock
     # Move focus to the parent container
     bindsym $mod+a focus parent
