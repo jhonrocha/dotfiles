@@ -74,3 +74,4 @@ ttf-ionicons
 materia-gtk-theme
 polkit-gnome
 bat
+tree-sitter
