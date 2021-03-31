@@ -7,13 +7,14 @@ lspconfig.diagnosticls.setup{
   filetypes = {"javascript", "typescript"},
   root_dir = function(fname)
     return lspconfig.util.root_pattern("tsconfig.json")(fname) or
+    lspconfig.util.root_pattern(".eslintrc")(fname) or
     lspconfig.util.root_pattern(".eslintrc.js")(fname);
   end,
   init_options = {
     linters = {
       eslint = {
         command = "./node_modules/.bin/eslint",
-        rootPatterns = {".eslintrc.js", ".git"},
+        rootPatterns = {".eslintrc.js", ".eslintrc", ".git"},
         debounce = 100,
         args = {
           "--stdin",
@@ -52,6 +53,16 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         virtual_text = false
     }
 )
+
+-- Treesitter
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    -- disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+}
 
 -- COMPE
 require'compe'.setup {

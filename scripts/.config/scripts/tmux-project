@@ -5,6 +5,8 @@ launcher_cmd() {
 }
 
 # Choose Project
-launcher_cmd < "$HOME/.config/tmux-project.config" | { read -r path name
-  tmux switch-client -t $name || tmux new-session -d -c $path -s $name -n $name 'nvim . -c :Files ; bash' && tmux switch-client -t $name
+launcher_cmd < "$HOME/.config/tmux-projects.config" | { read -r path name
+  if [[ -n $path ]]; then
+    ((tmux switch-client -t code:$name) || (tmux new-window -c $path -t code: -n $name 'nvim . -c :Files ; bash' && tmux switch-client -t code:$name))
+  fi
 }

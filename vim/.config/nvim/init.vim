@@ -11,25 +11,26 @@ endif
 
 ">>>....................Plugins.................... {{{
 call plug#begin(expand('~/.vim/plugged'))
-" NERDTree
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
+"File Drawer
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 " Vim Surround
 Plug 'tpope/vim-surround'
 " GCC to Comment
 Plug 'tpope/vim-commentary'
 " Git Integration
 Plug 'tpope/vim-fugitive'
-" Completion
+" LSP
 Plug 'neovim/nvim-lspconfig'
 " Completion
 Plug 'hrsh7th/nvim-compe'
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Fuzzy Finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Themes
 Plug 'dracula/vim', { 'name': 'dracula' }
-Plug 'joshdick/onedark.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'tomasr/molokai'
 " Line
@@ -42,8 +43,6 @@ call plug#end()
 nnoremap <Space> <Nop>
 " Set space as leader
 let mapleader=" "
-" Syntax highlight
-syntax on
 " Relative and global linenumbers
 set number relativenumber
 " True Colors
@@ -66,9 +65,12 @@ function! s:patch_theme_colors()
   hi! LineNr ctermbg=NONE guibg=NONE
 endfunction
 autocmd! ColorScheme * call s:patch_theme_colors()
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
+" Syntax highlight
+syntax on
 colorscheme molokai
-let g:lightline = { 'colorscheme': 'wombat' }
+let g:lightline = { 'colorscheme': 'molokai' }
 
 " Turn on for plugin management
 filetype plugin indent on
@@ -166,6 +168,7 @@ lua require("config")
 autocmd GUIEnter * set visualbell t_vb=
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown syntax=markdown
 autocmd BufNewFile,BufFilePre,BufRead *.props set filetype=sql syntax=sql
+autocmd BufNewFile,BufFilePre,BufRead *.handlebars,*.hbs set filetype=html syntax=handlebars
 " }}}
 
 ">>>....................LSP.................... {{{
@@ -194,15 +197,12 @@ inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 " }}}
 
-">>>....................NERDTREE.................... {{{
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeWinSize = 50
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-" NERDTree
-noremap <silent> <leader>D :NERDTreeFind<CR>
-noremap <silent> <leader>d :NERDTreeToggle<CR>
+">>>....................Tree.................... {{{
+noremap <silent> <leader>D :NvimTreeFindFile<CR>
+noremap <silent> <leader>d :NvimTreeToggle<CR>
+hi NvimTreeFolderIcon guifg=#61afef
+hi NvimTreeFolderName guifg=#61afef
+hi NvimTreeIndentMarker guifg=#545862
 " }}}
 
 ">>>....................Abbreviations.................... {{{
@@ -220,6 +220,7 @@ cnoreabbrev Qall qall
 " }}}
 
 ">>>....................FUZZY FINDER.................... {{{
+let g:fzf_buffers_jump = 1
 nnoremap <silent> <leader><space> :Files<cr>
 nnoremap <silent> <leader>. :Files<c-r>=expand("%:p:h") . "/"<cr><cr>
 nnoremap <silent> <leader>, :Buffers<cr>
@@ -227,13 +228,14 @@ nnoremap <silent> <leader>: :Commands<cr>
 nnoremap <silent> <A-x> :Commands<cr>
 nnoremap <silent> <leader>fc :Commits<cr>
 nnoremap <silent> <leader>fh :History<cr>
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 nnoremap <silent> <leader>ff :Rg<cr>
 noremap <Leader>of :e <C-R>=expand("%:p:h") . "/" <CR>
 
-function! JH_checkout(line)
-  exec 'Git checkout' a:line
+function! Git_checkout(line)
+  exec 'Git checkout ' . a:line
 endfunction
-noremap <Leader>gb :call fzf#run(fzf#wrap({'source': 'git branch -a', 'sink': function('JH_checkout') }))<CR>
+noremap <Leader>gb :call fzf#run(fzf#wrap({'source': 'git branch -r \| awk ''{split($0,a,"origin/"); print a[2]}''', 'sink': function('Git_checkout') }))<CR><CR>
 " noremap <Leader>gb :call fzf#run(fzf#wrap({'source': 'git branch -a', 'sink': {line -> execute ('Git checkout ' . line) } }))<CR>
 " }}}
 
@@ -247,6 +249,7 @@ noremap <Leader>gB :Gblame<CR>
 noremap <Leader>gd :Gvdiffsplit!<CR>
 noremap <Leader>gh :call diffget //2<CR>
 noremap <Leader>gl :call diffget //3<CR>
+noremap <Leader>gx :!gx<CR><CR>
 " }}}
 
 ">>>....................Mappings.................... {{{

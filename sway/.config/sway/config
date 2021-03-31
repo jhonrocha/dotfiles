@@ -104,7 +104,7 @@ mode "gaps" {
     bindsym Shift+p gaps outer current plus  10
 
     bindsym 0 gaps outer current set 0; gaps inner current set 0
-    bindsym 9 gaps horizontal current set 500; gaps vertical current set 100
+    bindsym 9 gaps horizontal current set 500; gaps vertical current set 100; gaps inner current set $gIn
     bindsym equal gaps outer current set $gOut; gaps inner current set $gIn
 
     # Return to default mode
