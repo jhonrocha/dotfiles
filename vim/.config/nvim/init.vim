@@ -34,7 +34,7 @@ Plug 'dracula/vim', { 'name': 'dracula' }
 Plug 'gruvbox-community/gruvbox'
 Plug 'tomasr/molokai'
 " Line
-Plug 'itchyny/lightline.vim'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 call plug#end()
 " }}}
 
@@ -70,7 +70,7 @@ set background=dark
 " Syntax highlight
 syntax on
 colorscheme molokai
-let g:lightline = { 'colorscheme': 'molokai' }
+" let g:lightline = { 'colorscheme': 'molokai' }
 
 " Turn on for plugin management
 filetype plugin indent on
@@ -198,11 +198,10 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 " }}}
 
 ">>>....................Tree.................... {{{
-noremap <silent> <leader>D :NvimTreeFindFile<CR>
-noremap <silent> <leader>d :NvimTreeToggle<CR>
+let g:nvim_tree_indent_markers = 1
+noremap <silent> <leader>d :NvimTreeFindFile<CR>
 hi NvimTreeFolderIcon guifg=#61afef
 hi NvimTreeFolderName guifg=#61afef
-hi NvimTreeIndentMarker guifg=#545862
 " }}}
 
 ">>>....................Abbreviations.................... {{{
@@ -221,6 +220,18 @@ cnoreabbrev Qall qall
 
 ">>>....................FUZZY FINDER.................... {{{
 let g:fzf_buffers_jump = 1
+" This is the default extra key bindings
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 nnoremap <silent> <leader><space> :Files<cr>
 nnoremap <silent> <leader>. :Files<c-r>=expand("%:p:h") . "/"<cr><cr>
 nnoremap <silent> <leader>, :Buffers<cr>
@@ -245,10 +256,12 @@ noremap <Leader>gg :tab Gstatus<CR>
 noremap <Leader>gf :Git pull<CR>
 noremap <Leader>gp :Git push<CR>
 noremap <Leader>gc :Git commit<CR>
+noremap <Leader>gh :Git checkout
 noremap <Leader>gB :Gblame<CR>
-noremap <Leader>gd :Gvdiffsplit!<CR>
-noremap <Leader>gh :call diffget //2<CR>
-noremap <Leader>gl :call diffget //3<CR>
+noremap <Leader>gc :Git commit<CR>
+noremap <Leader>gds :Gvdiffsplit!<CR>
+noremap <Leader>gdh :call diffget //2<CR>
+noremap <Leader>gdl :call diffget //3<CR>
 noremap <Leader>gx :!gx<CR><CR>
 " }}}
 
@@ -285,7 +298,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Mapping Shortcupts
-nnoremap <silent> <C-q> :qa<CR>
+nnoremap <silent> <C-x><C-q> :qa<CR>
 nnoremap <silent> ZA :qa<CR>
 nnoremap <silent> ZS :wqa<CR>
 nnoremap <silent> ZT :tabclose<CR>

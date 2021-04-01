@@ -89,3 +89,6 @@ require'compe'.setup {
   };
 }
 
+-- Galaxyline
+require("plug-galaxyline")
+

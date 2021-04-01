@@ -21,10 +21,11 @@ export SXHKD_SHELL="/bin/sh"
 # CONFIGS
 export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
 export LC_ALL=en_US.UTF-8
-export FZF_DEFAULT_OPTS="--layout=reverse --border"
+export FZF_DEFAULT_OPTS="--layout=reverse --border --cycle --multi --bind ctrl-a:select-all,ctrl-p:preview-up,ctrl-n:preview-down,ctrl-s:toggle-preview"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export XDG_CONFIG_HOME="$HOME/.config"
 export GTK_THEME=Materia-compact
+export BAT_THEME="Monokai Extended"
 
 ## Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
