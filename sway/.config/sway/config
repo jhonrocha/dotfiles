@@ -44,7 +44,8 @@ for_window [app_id="termpad"] scratchpad show
 font Cantarell 12
 # Gaps
 gaps inner $gIn
-gaps outer $gOut
+gaps horizontal 500
+gaps vertical 100
 # smart_gaps off
 
 #

@@ -26,12 +26,16 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Fuzzy Finder
+" FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" Telescope
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 " Themes
-Plug 'dracula/vim', { 'name': 'dracula' }
 Plug 'gruvbox-community/gruvbox'
+Plug 'joshdick/onedark.vim'
 Plug 'tomasr/molokai'
 " Line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
@@ -69,7 +73,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " Syntax highlight
 syntax on
-colorscheme molokai
+colorscheme gruvbox
 " let g:lightline = { 'colorscheme': 'molokai' }
 
 " Turn on for plugin management
@@ -186,7 +190,7 @@ nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap [e :lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap ]e :lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <leader>q :lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <leader>ll :lua vim.lsp.diagnostic.set_loclist()<CR>
 " }}}
 
 ">>>....................COMPE.................... {{{
@@ -218,7 +222,16 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 " }}}
 
-">>>....................FUZZY FINDER.................... {{{
+">>>....................Telescope.................... {{{
+" " Find files using Telescope command-line sugar.
+" nnoremap <leader><space> <cmd>lua jh_fd()<cr>
+" nnoremap <leader>ff <cmd>Telescope live_grep<cr>
+" nnoremap <leader>, <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
+" }}}
+
+">>>....................FZF.................... {{{
 let g:fzf_buffers_jump = 1
 " This is the default extra key bindings
 " An action can be a reference to a function that processes selected lines
@@ -232,6 +245,7 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 nnoremap <silent> <leader><space> :Files<cr>
 nnoremap <silent> <leader>. :Files<c-r>=expand("%:p:h") . "/"<cr><cr>
 nnoremap <silent> <leader>, :Buffers<cr>
@@ -239,30 +253,22 @@ nnoremap <silent> <leader>: :Commands<cr>
 nnoremap <silent> <A-x> :Commands<cr>
 nnoremap <silent> <leader>fc :Commits<cr>
 nnoremap <silent> <leader>fh :History<cr>
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 nnoremap <silent> <leader>ff :Rg<cr>
-noremap <Leader>of :e <C-R>=expand("%:p:h") . "/" <CR>
-
-function! Git_checkout(line)
-  exec 'Git checkout ' . a:line
-endfunction
-noremap <Leader>gb :call fzf#run(fzf#wrap({'source': 'git branch -r \| awk ''{split($0,a,"origin/"); print a[2]}''', 'sink': function('Git_checkout') }))<CR><CR>
-" noremap <Leader>gb :call fzf#run(fzf#wrap({'source': 'git branch -a', 'sink': {line -> execute ('Git checkout ' . line) } }))<CR>
 " }}}
 
 ">>>....................Git.................... {{{
 "" Git
-noremap <Leader>gg :tab Gstatus<CR>
-noremap <Leader>gf :Git pull<CR>
-noremap <Leader>gp :Git push<CR>
-noremap <Leader>gc :Git commit<CR>
-noremap <Leader>gh :Git checkout
-noremap <Leader>gB :Gblame<CR>
-noremap <Leader>gc :Git commit<CR>
-noremap <Leader>gds :Gvdiffsplit!<CR>
-noremap <Leader>gdh :call diffget //2<CR>
-noremap <Leader>gdl :call diffget //3<CR>
-noremap <Leader>gx :!gx<CR><CR>
+noremap <Leader>gg <cmd>tab Gstatus<CR>
+noremap <Leader>gf <cmd>Git pull<CR>
+noremap <Leader>gp <cmd>Git push<CR>
+noremap <Leader>gc <cmd>Git commit<CR>
+noremap <Leader>gh <cmd>Git checkout
+noremap <Leader>gB <cmd>Gblame<CR>
+noremap <Leader>gc <cmd>Git commit<CR>
+noremap <Leader>gds <cmd>Gvdiffsplit!<CR>
+noremap <Leader>gdh <cmd>call diffget //2<CR>
+noremap <Leader>gdl <cmd>call diffget //3<CR>
+noremap <Leader>gy <cmd>!gy<CR><CR>
 " }}}
 
 ">>>....................Mappings.................... {{{
@@ -270,24 +276,14 @@ noremap <Leader>gx :!gx<CR><CR>
 
 " Expand location
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" Copying on mac
-if has('macunix')
-  " pbcopy for OSX copy/paste
-  vmap <C-x> :!pbcopy<CR>
-  vmap <C-c> :w !pbcopy<CR><CR>
-endif
+noremap <Leader>E :e <C-R>=expand("%:p:h") . "/" <CR>
 
 "" Buffer nav
-noremap <leader>u :bp<CR>
-noremap <leader>i :bn<CR>
+noremap <leader>bp :bp<CR>
+noremap <leader>bn :bn<CR>
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><Esc> :noh<cr>
-
-" Zooming
-noremap ZI <c-w>_ \| <c-w>\|
-noremap ZO <c-w>=
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -296,13 +292,17 @@ vmap > >gv
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-
-" Mapping Shortcupts
+" Closing
 nnoremap <silent> <C-x><C-q> :qa<CR>
-nnoremap <silent> ZA :qa<CR>
-nnoremap <silent> ZS :wqa<CR>
-nnoremap <silent> ZT :tabclose<CR>
-" Moving deletions to register 'a'
+" Close the current buffer and move to the previous one
+noremap <leader>xk :bd<CR>
+noremap <leader>bk :bp <BAR> bd #<CR>
+nmap <C-x><C-s> :update<CR>
+
+" Copy Path
+noremap <silent><leader>cp :let @+=@%<CR>
+
+" Moving deletions to register 'v'
 nnoremap d "vd
 nnoremap D "vD
 nnoremap x "vx
@@ -320,25 +320,19 @@ nnoremap <leader>rb :.,$s//gc<left><left><left>
 
 " Quicklist
 noremap <leader>qo :copen<CR>
-noremap <leader>qn :cn<CR>
-noremap <leader>qp :cp<CR>
-noremap <leader>qc :ccl<CR>
-
+noremap <leader>qc :cclose<CR>
+noremap <leader>j :cn<CR>
+noremap <leader>k :cp<CR>
+" Locallist
+noremap <leader>lo :lopen<CR>
+noremap <leader>lc :lclose<CR>
+noremap <leader>u :lprevious<CR>
+noremap <leader>i :lnext<CR>
 
 " Easier search
 noremap <leader>s /
 " Last buffer
-nnoremap <leader><TAB> <C-^>
 nnoremap <A-TAB> <C-^>
-" Close the current buffer and move to the previous one
-noremap <leader>xk :bd<CR>
-noremap <leader>fq :bp <BAR> bd #<CR>
-nmap <C-x><C-s> :update<CR>
-
-" File path copy
-noremap <silent><leader>fp :let @+=@%<CR>
-" Theme Binding
-map <F11> :Goyo<CR>
 
 " Functions
 let s:hidden_bar = 0
@@ -356,7 +350,7 @@ function! ToggleHiddenBar()
     endif
 endfunction
 nnoremap <leader>bb :call ToggleHiddenBar()<CR>
-
-
+" Integration
+" TMUX: Ranger
 nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>
 " }}}

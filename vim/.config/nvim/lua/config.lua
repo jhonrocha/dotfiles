@@ -1,3 +1,6 @@
+-- Galaxyline
+require("plug-galaxyline")
+-- require("plug-telescope")
 -- LSP
 local lspconfig = require'lspconfig'
 -- TS-JS
@@ -88,7 +91,3 @@ require'compe'.setup {
     vsnip = true;
   };
 }
-
--- Galaxyline
-require("plug-galaxyline")
-
