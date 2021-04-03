@@ -40,7 +40,7 @@ git config --global credential.helper store
 git config --global core.excludesFile '~/.config/.git-ignore'
 
 #### Copy Fonts
-sudo cp fonts/* /usr/share/fonts/
+# sudo cp fonts/* /usr/share/fonts/
 
 #### Installing yay
 if ! command -v yay &> /dev/null
