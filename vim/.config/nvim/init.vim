@@ -33,6 +33,8 @@ Plug 'junegunn/fzf.vim'
 " Plug 'nvim-lua/popup.nvim'
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'nvim-telescope/telescope.nvim'
+" Completion
+Plug 'hrsh7th/nvim-compe'
 " Themes
 Plug 'gruvbox-community/gruvbox'
 Plug 'joshdick/onedark.vim'
@@ -247,7 +249,7 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 nnoremap <silent> <leader><space> :Files<cr>
-nnoremap <silent> <leader>. :Files<c-r>=expand("%:p:h") . "/"<cr><cr>
+nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
 nnoremap <silent> <leader>, :Buffers<cr>
 nnoremap <silent> <leader>: :Commands<cr>
 nnoremap <silent> <A-x> :Commands<cr>
@@ -260,7 +262,7 @@ nnoremap <silent> <leader>ff :Rg<cr>
 "" Git
 noremap <Leader>gg <cmd>tab Gstatus<CR>
 noremap <Leader>gf <cmd>Git pull<CR>
-noremap <Leader>gp <cmd>Git push<CR>
+noremap <Leader>gp :Git push origin <c-r>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR>
 noremap <Leader>gc <cmd>Git commit<CR>
 noremap <Leader>gh <cmd>Git checkout
 noremap <Leader>gB <cmd>Gblame<CR>
