@@ -46,7 +46,7 @@ gaps outer $gOut
 mode "apps" {
     bindsym a exec "i3-msg [class=\\"Emacs\\"] focus || emacs --with-profile=doom"; mode "default"
     bindsym s exec "i3-msg [class=\\"$term\\"] focus || $term"; mode "default"
-    bindsym f exec "i3-msg [class=\\"firefox\\"] focus || firefox"; mode "default"
+    bindsym f exec "i3-msg [class=\\"Brave-browser\\"] focus || brave"; mode "default"
     bindsym g exec jhbrowser; mode "default"
     bindsym e exec "$term ranger"; mode "default"
     bindsym i exec "$term htop"; mode "default"

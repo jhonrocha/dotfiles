@@ -18,8 +18,12 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'tpope/vim-surround'
 " GCC to Comment
 Plug 'tpope/vim-commentary'
+" Auto Pairs
+Plug 'jiangmiao/auto-pairs'
 " Git Integration
 Plug 'tpope/vim-fugitive'
+" Indent Line
+" Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua'}
 " LSP
 Plug 'neovim/nvim-lspconfig'
 " Completion
@@ -27,12 +31,12 @@ Plug 'hrsh7th/nvim-compe'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " FZF
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 " Telescope
-" Plug 'nvim-lua/popup.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 " Completion
 Plug 'hrsh7th/nvim-compe'
 " Themes
@@ -210,6 +214,11 @@ hi NvimTreeFolderIcon guifg=#61afef
 hi NvimTreeFolderName guifg=#61afef
 " }}}
 
+">>>....................IndentLine.................... {{{
+" hi IndentBlanklineChar guifg=#373b43
+" let g:indentLine_char = '┊'
+" }}}
+
 ">>>....................Abbreviations.................... {{{
 "" no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
@@ -226,11 +235,11 @@ cnoreabbrev Qall qall
 
 ">>>....................Telescope.................... {{{
 " " Find files using Telescope command-line sugar.
-" nnoremap <leader><space> <cmd>lua jh_fd()<cr>
-" nnoremap <leader>ff <cmd>Telescope live_grep<cr>
-" nnoremap <leader>, <cmd>Telescope buffers<cr>
-" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-" nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
+nnoremap <leader><space> <cmd>lua my_find_files()<cr>
+nnoremap <leader>ff <cmd>Telescope live_grep<cr>
+nnoremap <leader>, <cmd>lua my_buffers()<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
 " }}}
 
 ">>>....................FZF.................... {{{
@@ -248,14 +257,14 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-nnoremap <silent> <leader><space> :Files<cr>
-nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
-nnoremap <silent> <leader>, :Buffers<cr>
-nnoremap <silent> <leader>: :Commands<cr>
-nnoremap <silent> <A-x> :Commands<cr>
-nnoremap <silent> <leader>fc :Commits<cr>
-nnoremap <silent> <leader>fh :History<cr>
-nnoremap <silent> <leader>ff :Rg<cr>
+" nnoremap <silent> <leader><space> :Files<cr>
+" nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
+" nnoremap <silent> <leader>, :Buffers<cr>
+" nnoremap <silent> <leader>: :Commands<cr>
+" nnoremap <silent> <A-x> :Commands<cr>
+" nnoremap <silent> <leader>fc :Commits<cr>
+" nnoremap <silent> <leader>fh :History<cr>
+" nnoremap <silent> <leader>ff :Rg<cr>
 " }}}
 
 ">>>....................Git.................... {{{

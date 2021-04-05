@@ -14,8 +14,8 @@ export TERM="kitty"
 export XTERM="kitty"
 export TERMCMD="kitty"
 export FILE="ranger"
-export BROWSER="firefox"
-export BROWSER_NAME="Navigator"
+export BROWSER="brave"
+export BROWSER_NAME="Brave-broser"
 export SXHKD_SHELL="/bin/sh"
 
 # CONFIGS

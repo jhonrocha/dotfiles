@@ -17,5 +17,8 @@ fi
 ##### INSTALLATIONS
 yay vpn-slice
 yay spotify
-yay font-manager
-yay vivaldi
+yay brave
+yay nerd-fonts-fira-code
+yay nerd-fonts-fira-mono
+yay nerd-fonts-iosevka
+yay nerd-fonts-hack

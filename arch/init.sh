@@ -24,9 +24,9 @@ stow bash
 [ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #### Setup Defaults
-xdg-mime default firefox.desktop x-scheme-handler/http
-xdg-mime default firefox.desktop x-scheme-handler/https
-xdg-settings set default-web-browser firefox.desktop
+xdg-mime default brave-broswer.desktop  x-scheme-handler/http
+xdg-mime default brave-browser.desktop x-scheme-handler/https
+xdg-settings set default-web-browser brave-browser.desktop
 
 
 #### EMACS

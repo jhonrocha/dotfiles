@@ -70,7 +70,7 @@ input type:keyboard {
 mode "apps" {
     bindsym a exec 'swaymsg [class="Emacs"] focus || emacs --with-profile=doom'; mode "default"
     bindsym s exec 'swaymsg [app_id="$term"] focus || $term'; mode "default"
-    bindsym f exec 'swaymsg [app_id="firefox"] focus || firefox'; mode "default"
+    bindsym f exec 'swaymsg [app_id="brave"] focus || brave'; mode "default"
     bindsym g exec jhbrowser; mode "default"
     bindsym e exec '$term ranger'; mode "default"
     bindsym i exec '$term htop'; mode "default"

@@ -1,4 +1,5 @@
 local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
 require("telescope").setup {
     defaults = {
         vimgrep_arguments = {
@@ -16,13 +17,12 @@ require("telescope").setup {
         layout_defaults = {
             horizontal = {
                 mirror = false,
-                preview_width = 0.6
+                preview_width = 0.5
             },
             vertical = {
                 mirror = false
             }
         },
-        shorten_path = true,
         winblend = 0,
         width = 0.75,
         preview_cutoff = 60,
@@ -33,13 +33,31 @@ require("telescope").setup {
           i = {
             ["<esc>"] = actions.close,
             ["<c-j>"] = actions.move_selection_next,
-            ["<c-k>"] = actions.move_selection_previous
+            ["<c-k>"] = actions.move_selection_previous,
+            ["<tab>"] = actions.add_selection + actions.move_selection_next,
+            ["<s-tab>"] = actions.remove_selection + actions.move_selection_previous
           }
         }
     }
 }
-function jh_fd()
+
+function my_find_files()
   require('telescope.builtin').find_files {
     find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git'}
   }
+end
+
+function my_buffers(opts)
+  opts = opts or {}
+  opts.attach_mappings = function(prompt_bufnr, map)
+    local delete_buf = function()
+      local selection = action_state.get_selected_entry()
+      actions.close(prompt_bufnr)
+      vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+    end
+    map('i', '<c-d>', delete_buf)
+    return true
+  end
+  -- opts.previewer = false
+  require('telescope.builtin').buffers(opts)
 end
