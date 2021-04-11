@@ -360,7 +360,7 @@ function! ToggleHiddenBar()
         set showcmd
     endif
 endfunction
-nnoremap <leader>bb :call ToggleHiddenBar()<CR>
+nnoremap <silent><leader>bb :call ToggleHiddenBar()<CR>
 " Integration
 " TMUX: Ranger
 nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>

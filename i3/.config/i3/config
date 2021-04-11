@@ -54,7 +54,7 @@ mode "apps" {
     # Change Wallpaper
     bindsym w exec "feh --bg-fill --randomize ~/.config/wallpapers/"; mode "default"
     # Screenshot
-    bindsym p exec grim -g "$(slurp)" - | wl-copy; mode "default"
+    bindsym p exec flameshot gui; mode "default"
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
