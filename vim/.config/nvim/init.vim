@@ -184,8 +184,7 @@ autocmd BufNewFile,BufFilePre,BufRead *.handlebars,*.hbs set filetype=html synta
 " }}}
 
 ">>>....................Which Key.................... {{{
-call which_key#register('<Space>', "g:which_key_map")
-
+" call which_key#register('<Space>', "g:which_key_map")
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 " Define prefix dictionary
@@ -259,15 +258,15 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number
 "" Opens a tab edit command with the path of the currently edited file filled
 
 nnoremap <silent> <leader><Esc> :noh<cr>
-let g:which_key_map[' '] = [ ':Files' , 'files' ]
-let g:which_key_map[','] = [ ':Buffers' , 'buffers' ]
+let g:which_key_map[' '] = [ 'Files' , 'files' ]
+let g:which_key_map[','] = [ 'Buffers' , 'buffers' ]
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
-      \ 'd' : [':bd', 'delete'],
-      \ 'k' : [':bp | bd #', 'close'],
-      \ 'n' : [':bn' , 'next'],
-      \ 'p' : [':bp' , 'prev'],
+      \ 'd' : ['bd', 'delete'],
+      \ 'k' : ['bp | bd #', 'close'],
+      \ 'n' : ['bn' , 'next'],
+      \ 'p' : ['bp' , 'prev'],
       \ }
 
 let g:which_key_map.B = [':call ToggleHiddenBar()', 'bar']
@@ -292,17 +291,18 @@ let g:which_key_map.c = {
       \ 'wr' : [':lua vim.lsp.buf.remove_workspace_folder()', 'work rm'],
       \ }
 
-let g:which_key_map.d = [':NvimTreeFindFile', 'tree']
+let g:which_key_map.d = ['NvimTreeFindFile', 'tree']
 
-let g:which_key_map.E = [':e <C-R>=expand("%:p:h") . "/"', 'edit']
+nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/"<CR>
+let g:which_key_map.e = 'open file'
 
 let g:which_key_map.f = {
       \ 'name' : '+Fuzzy' ,
         \ ',' : [':call v:lua.my_buffers()', 'T buffers'],
-        \ '?' : [':Telescope help_tags', 'T Help'],
         \ 'c' : [':Commits', 'commits'],
         \ 'f' : [':Rg', 'find word'],
-        \ 'h' : [':History', 'history'],
+        \ 'h' : [':Telescope help_tags', 'T Help'],
+        \ 'H' : [':History', 'history'],
         \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'T oldfiles'],
         \ 't' : [':call v:lua.my_find_files()', 'T files'],
         \ 'w' : [':Telescope live_grep', 'T live grep'],
@@ -319,9 +319,11 @@ let g:which_key_map.g = {
         \ 'h' : [':call diffget //2', 'diff h'],
         \ 'k' : [':Git checkout', 'checkout'],
         \ 'l' : [':call diffget //3', 'diff v'],
-        \ 'p' : [':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))', 'push'],
         \ 'y' : [':!gy', 'yank branch'],
       \ }
+
+nnoremap <leader>gp :Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>
+let g:which_key_map.g.p = "push"
 
 let g:which_key_map.l = {
       \ 'name' : '+loclist' ,
@@ -331,6 +333,11 @@ let g:which_key_map.l = {
 let g:which_key_map.i = [':lnext', 'loc next']
 let g:which_key_map.u = [':lprevious', 'loc prev']
 
+nnoremap <leader>p "vp
+let g:which_key_map.p = "p bellow"
+
+nnoremap <leader>P "vP
+let g:which_key_map.P = "p above"
 
 let g:which_key_map.q = {
       \ 'name' : '+quicklist' ,
@@ -340,19 +347,16 @@ let g:which_key_map.q = {
 let g:which_key_map.j = [':cn', 'quick next']
 let g:which_key_map.k = [':cp', 'quick prev']
 
-let g:which_key_map.r = {
-      \ 'name' : '+replace' ,
-      \ 'r' : [':%s//gc<left><left><left>', 'all'],
-      \ 'b' : [':.,$s//gc<left><left><left>', 'bellow'],
-      \ }
+let g:which_key_map.r = { 'name' : '+replace' }
+
+nnoremap <leader>rr :%s//gc<left><left><left>
+let g:which_key_map.r.r = 'all'
+
+nnoremap <leader>rb :.,$s//gc<left><left><left>
+let g:which_key_map.r.b = 'bellow'
 
 let g:which_key_map.s = ['/', '/']
 
-let g:which_key_map.v = {
-      \ 'name' : '+reg_v' ,
-      \ 'P' : ['"vP', 'p above'],
-      \ 'p' : ['"vp', 'p bellow'],
-      \ }
 
 
 " Expand location
@@ -409,4 +413,6 @@ endfunction
 " Integration
 " TMUX: Ranger
 nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>
+
+call which_key#register('<Space>', "g:which_key_map")
 " }}}
