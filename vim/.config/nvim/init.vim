@@ -198,10 +198,12 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
 
-
 ">>>....................Floaterm.................... {{{
 let g:floaterm_autoclose = 1
 let g:floaterm_keymap_toggle = '<C-s>'
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
+let g:floaterm_opener = 'edit'
 hi FloatermBorder guibg=NONE guifg=cyan
 " }}}
 
