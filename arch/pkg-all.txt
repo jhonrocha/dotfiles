@@ -51,11 +51,7 @@ sxiv
 tmux
 transmission-gtk
 tree
-ttf-dejavu
 ttf-joypixels
-ttf-liberation
-ttf-roboto
-ttf-ubuntu-font-family
 unrar
 unzip
 vi

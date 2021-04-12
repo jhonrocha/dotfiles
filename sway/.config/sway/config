@@ -226,8 +226,8 @@ bindsym $mod+Shift+f fullscreen
 bindsym $mod+b bar mode hide
 bindsym $mod+Shift+b bar mode dock
 # Move focus to the parent container
-bindsym $mod+a focus parent
-bindsym $mod+s focus child
+bindsym $mod+comma focus parent
+bindsym $mod+period focus child
 
 # Media Control
 bindsym $mod+F1 exec xbacklight -dec 10

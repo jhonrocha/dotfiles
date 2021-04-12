@@ -18,11 +18,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'tpope/vim-surround'
 " GCC to Comment
 Plug 'tpope/vim-commentary'
-" Auto Pairs
-Plug 'jiangmiao/auto-pairs'
 " Git Integration
 Plug 'tpope/vim-fugitive'
-" Indent Line
 " Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua'}
 " LSP
 Plug 'neovim/nvim-lspconfig'
@@ -43,6 +40,10 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'gruvbox-community/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'tomasr/molokai'
+" WhichKey
+Plug 'liuchengxu/vim-which-key'
+" Terminal
+Plug 'voldikss/vim-floaterm'
 " Line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 call plug#end()
@@ -73,6 +74,7 @@ function! s:patch_theme_colors()
   hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
   hi! SignColor ctermbg=NONE guibg=NONE 
   hi! LineNr ctermbg=NONE guibg=NONE
+  let g:fzf_colors = { 'bg': ['bg', 'Normal'] }
 endfunction
 autocmd! ColorScheme * call s:patch_theme_colors()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -181,23 +183,22 @@ autocmd BufNewFile,BufFilePre,BufRead *.props set filetype=sql syntax=sql
 autocmd BufNewFile,BufFilePre,BufRead *.handlebars,*.hbs set filetype=html syntax=handlebars
 " }}}
 
-">>>....................LSP.................... {{{
-nnoremap gD :lua vim.lsp.buf.declaration()<CR>
-nnoremap gd :lua vim.lsp.buf.definition()<CR>
-nnoremap gr :lua vim.lsp.buf.references()<CR>
-nnoremap gi :lua vim.lsp.buf.implementation()<CR>
-nnoremap K :lua vim.lsp.buf.hover()<CR>
-nnoremap <C-k> :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <leader>wa :lua vim.lsp.buf.add_workspace_folder()<CR>
-nnoremap <leader>wr :lua vim.lsp.buf.remove_workspace_folder()<CR>
-nnoremap <leader>wl :lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
-nnoremap <leader>D :lua vim.lsp.buf.type_definition()<CR>
-nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-nnoremap [e :lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap ]e :lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <leader>ll :lua vim.lsp.diagnostic.set_loclist()<CR>
+">>>....................Which Key.................... {{{
+call which_key#register('<Space>', "g:which_key_map")
+
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+" Define prefix dictionary
+let g:which_key_map =  {}
+" Not a fan of floating windows for this
+let g:which_key_use_floating_win = 0
+
+" Hide status line
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
+
 
 ">>>....................COMPE.................... {{{
 inoremap <silent><expr> <C-Space> compe#complete()
@@ -209,15 +210,13 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 ">>>....................Tree.................... {{{
 let g:nvim_tree_indent_markers = 1
-noremap <silent> <leader>d :NvimTreeFindFile<CR>
 hi NvimTreeFolderIcon guifg=#61afef
 hi NvimTreeFolderName guifg=#61afef
+let g:nvim_tree_hijack_netrw = 1
+let g:nvim_tree_disable_netrw = 0
+let g:nvim_tree_quit_on_open = 1
 " }}}
 
-">>>....................IndentLine.................... {{{
-" hi IndentBlanklineChar guifg=#373b43
-" let g:indentLine_char = '┊'
-" }}}
 
 ">>>....................Abbreviations.................... {{{
 "" no one is really happy until you have this shortcuts
@@ -231,15 +230,6 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
-" }}}
-
-">>>....................Telescope.................... {{{
-" " Find files using Telescope command-line sugar.
-nnoremap <leader>tt <cmd>lua my_find_files()<cr>
-nnoremap <leader>tf <cmd>Telescope live_grep<cr>
-nnoremap <leader>t, <cmd>lua my_buffers()<cr>
-nnoremap <leader>th <cmd>Telescope help_tags<cr>
-nnoremap <leader>to <cmd>lua require('telescope.builtin').oldfiles()<cr>
 " }}}
 
 ">>>....................FZF.................... {{{
@@ -259,44 +249,117 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-nnoremap <silent> <leader><space> :Files<cr>
-nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
-nnoremap <silent> <leader>, :Buffers<cr>
-nnoremap <silent> <leader>: :Commands<cr>
-nnoremap <silent> <A-x> :Commands<cr>
-nnoremap <silent> <leader>fc :Commits<cr>
-nnoremap <silent> <leader>fh :History<cr>
-nnoremap <silent> <leader>ff :Rg<cr>
 " }}}
 
 ">>>....................Git.................... {{{
 "" Git
-noremap <Leader>gg <cmd>tab Gstatus<CR>
-noremap <Leader>gf <cmd>Git pull<CR>
-noremap <Leader>gp :Git push origin <c-r>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR>
-noremap <Leader>gc <cmd>Git commit<CR>
-noremap <Leader>gh <cmd>Git checkout
-noremap <Leader>gB <cmd>Gblame<CR>
-noremap <Leader>gc <cmd>Git commit<CR>
-noremap <Leader>gds <cmd>Gvdiffsplit!<CR>
-noremap <Leader>gdh <cmd>call diffget //2<CR>
-noremap <Leader>gdl <cmd>call diffget //3<CR>
-noremap <Leader>gy <cmd>!gy<CR><CR>
 " }}}
 
 ">>>....................Mappings.................... {{{
 "" Opens a tab edit command with the path of the currently edited file filled
 
+nnoremap <silent> <leader><Esc> :noh<cr>
+let g:which_key_map[' '] = [ ':Files' , 'files' ]
+let g:which_key_map[','] = [ ':Buffers' , 'buffers' ]
+
+let g:which_key_map.b = {
+      \ 'name' : '+buffer' ,
+      \ 'd' : [':bd', 'delete'],
+      \ 'k' : [':bp | bd #', 'close'],
+      \ 'n' : [':bn' , 'next'],
+      \ 'p' : [':bp' , 'prev'],
+      \ }
+
+let g:which_key_map.B = [':call ToggleHiddenBar()', 'bar']
+
+let g:which_key_map.c = {
+      \ 'name' : '+code' ,
+      \ 'D' : [':lua vim.lsp.buf.declaration()', 'declaration'],
+      \ '[' : [':lua vim.lsp.diagnostic.goto_prev()', 'prev error'],
+      \ ']' : [':lua vim.lsp.diagnostic.goto_next()', 'next error'],
+      \ 'c' : [':lua vim.lsp.buf.rename()', 'rename'],
+      \ 'd' : [':lua vim.lsp.buf.definition()', 'definition'],
+      \ 'e' : [':lua vim.lsp.diagnostic.show_line_diagnostics()', 'show'],
+      \ 'i' : [':lua vim.lsp.buf.implementation()', 'implementation'],
+      \ 'k' : [':lua vim.lsp.buf.hover()', 'hover'],
+      \ 'l' : [':lua vim.lsp.diagnostic.set_loclist()', 'loclist'],
+      \ 'p' : [':let @+=@%', 'cp path'],
+      \ 'r' : [':lua vim.lsp.buf.references()', 'reference'],
+      \ 's' : [':lua vim.lsp.buf.signature_help()', 'help'],
+      \ 't' : [':lua vim.lsp.buf.type_definition()', 'type def'],
+      \ 'wa' : [':lua vim.lsp.buf.add_workspace_folder()', 'work add'],
+      \ 'wl' : [':lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))', 'work list'],
+      \ 'wr' : [':lua vim.lsp.buf.remove_workspace_folder()', 'work rm'],
+      \ }
+
+let g:which_key_map.d = [':NvimTreeFindFile', 'tree']
+
+let g:which_key_map.E = [':e <C-R>=expand("%:p:h") . "/"', 'edit']
+
+let g:which_key_map.f = {
+      \ 'name' : '+Fuzzy' ,
+        \ ',' : [':call v:lua.my_buffers()', 'T buffers'],
+        \ '?' : [':Telescope help_tags', 'T Help'],
+        \ 'c' : [':Commits', 'commits'],
+        \ 'f' : [':Rg', 'find word'],
+        \ 'h' : [':History', 'history'],
+        \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'T oldfiles'],
+        \ 't' : [':call v:lua.my_find_files()', 'T files'],
+        \ 'w' : [':Telescope live_grep', 'T live grep'],
+        \ 'x' : [':Commands', 'commands'],
+      \ }
+
+let g:which_key_map.g = {
+      \ 'name' : '+Git' ,
+        \ 'b' : [':Gblame', 'blame'],
+        \ 'c' : [':Git commit', 'commit'],
+        \ 'd' : [':Gvdiffsplit!', 'diff'],
+        \ 'f' : [':Git pull', 'pull'],
+        \ 'g' : [':tab Gstatus', 'status'],
+        \ 'h' : [':call diffget //2', 'diff h'],
+        \ 'k' : [':Git checkout', 'checkout'],
+        \ 'l' : [':call diffget //3', 'diff v'],
+        \ 'p' : [':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))', 'push'],
+        \ 'y' : [':!gy', 'yank branch'],
+      \ }
+
+let g:which_key_map.l = {
+      \ 'name' : '+loclist' ,
+      \ 'c' : [':lclose', 'close'],
+      \ 'o' : [':lopen', 'open'],
+      \ }
+let g:which_key_map.i = [':lnext', 'loc next']
+let g:which_key_map.u = [':lprevious', 'loc prev']
+
+
+let g:which_key_map.q = {
+      \ 'name' : '+quicklist' ,
+      \ 'c' : [':cclose', 'close'],
+      \ 'o' : [':copen', 'open'],
+      \ }
+let g:which_key_map.j = [':cn', 'quick next']
+let g:which_key_map.k = [':cp', 'quick prev']
+
+let g:which_key_map.r = {
+      \ 'name' : '+replace' ,
+      \ 'r' : [':%s//gc<left><left><left>', 'all'],
+      \ 'b' : [':.,$s//gc<left><left><left>', 'bellow'],
+      \ }
+
+let g:which_key_map.s = ['/', '/']
+
+let g:which_key_map.v = {
+      \ 'name' : '+reg_v' ,
+      \ 'P' : ['"vP', 'p above'],
+      \ 'p' : ['"vp', 'p bellow'],
+      \ }
+
+
 " Expand location
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-noremap <Leader>E :e <C-R>=expand("%:p:h") . "/" <CR>
 
 "" Buffer nav
-noremap <leader>bp :bp<CR>
-noremap <leader>bn :bn<CR>
 
-"" Clean search (highlight)
-nnoremap <silent> <leader><Esc> :noh<cr>
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -308,12 +371,9 @@ vnoremap K :m '<-2<CR>gv=gv
 " Closing
 nnoremap <silent> <C-x><C-q> :qa<CR>
 " Close the current buffer and move to the previous one
-noremap <leader>xk :bd<CR>
-noremap <leader>bk :bp <BAR> bd #<CR>
 nmap <C-x><C-s> :update<CR>
 
 " Copy Path
-noremap <silent><leader>cp :let @+=@%<CR>
 
 " Moving deletions to register 'v'
 nnoremap d "vd
@@ -324,26 +384,10 @@ nnoremap c "vc
 nnoremap C "vC
 nnoremap s "vs
 nnoremap S "vS
-noremap <leader>vp "vp
-noremap <leader>vP "vP
 
 " Search and Replace global
-nnoremap <leader>rr :%s//gc<left><left><left>
-nnoremap <leader>rb :.,$s//gc<left><left><left>
 
 " Quicklist
-noremap <leader>qo :copen<CR>
-noremap <leader>qc :cclose<CR>
-noremap <leader>j :cn<CR>
-noremap <leader>k :cp<CR>
-" Locallist
-noremap <leader>lo :lopen<CR>
-noremap <leader>lc :lclose<CR>
-noremap <leader>u :lprevious<CR>
-noremap <leader>i :lnext<CR>
-
-" Easier search
-noremap <leader>s /
 " Last buffer
 nnoremap <A-TAB> <C-^>
 
@@ -362,7 +406,6 @@ function! ToggleHiddenBar()
         set showcmd
     endif
 endfunction
-nnoremap <leader>bb :call ToggleHiddenBar()<CR>
 " Integration
 " TMUX: Ranger
 nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>

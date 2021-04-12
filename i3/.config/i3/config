@@ -54,7 +54,7 @@ mode "apps" {
     # Change Wallpaper
     bindsym w exec "feh --bg-fill --randomize ~/.config/wallpapers/"; mode "default"
     # Screenshot
-    bindsym p exec grim -g "$(slurp)" - | wl-copy; mode "default"
+    bindsym p exec flameshot gui; mode "default"
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -191,8 +191,8 @@ mode "resize" {
     bindsym $mod+b bar mode invisible
     bindsym $mod+Shift+b bar mode dock
     # Move focus to the parent container
-    bindsym $mod+a focus parent
-    bindsym $mod+Shift+a focus child
+    bindsym $mod+comma focus parent
+    bindsym $mod+period focus child
 
 # Media Control
     bindsym $mod+F1 exec xbacklight -dec 10
