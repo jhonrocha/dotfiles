@@ -4,6 +4,7 @@ PATH="$HOME/.config/scripts:$PATH"
 PATH="$HOME/.config/.privateScripts:$PATH"
 PATH="$HOME/.config/npm-global/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/node@8/lib"
@@ -21,7 +22,7 @@ export SXHKD_SHELL="/bin/sh"
 # CONFIGS
 export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
 export LC_ALL=en_US.UTF-8
-export FZF_DEFAULT_OPTS="--layout=reverse --border --cycle --multi --bind ctrl-a:select-all,ctrl-u:preview-up,ctrl-d:preview-down,ctrl-s:toggle-preview"
+export FZF_DEFAULT_OPTS="--layout=reverse --border --cycle --multi --bind ctrl-a:toggle-all,ctrl-u:preview-up,ctrl-d:preview-down,ctrl-s:toggle-preview"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export XDG_CONFIG_HOME="$HOME/.config"
 export GTK_THEME=Materia-compact

@@ -31,8 +31,8 @@ Plug 'hrsh7th/nvim-compe'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " FZF
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -235,15 +235,17 @@ cnoreabbrev Qall qall
 
 ">>>....................Telescope.................... {{{
 " " Find files using Telescope command-line sugar.
-nnoremap <leader><space> <cmd>lua my_find_files()<cr>
-nnoremap <leader>ff <cmd>Telescope live_grep<cr>
-nnoremap <leader>, <cmd>lua my_buffers()<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
+nnoremap <leader>tt <cmd>lua my_find_files()<cr>
+nnoremap <leader>tf <cmd>Telescope live_grep<cr>
+nnoremap <leader>t, <cmd>lua my_buffers()<cr>
+nnoremap <leader>th <cmd>Telescope help_tags<cr>
+nnoremap <leader>to <cmd>lua require('telescope.builtin').oldfiles()<cr>
 " }}}
 
 ">>>....................FZF.................... {{{
 let g:fzf_buffers_jump = 1
+let g:fzf_colors = { 'bg': ['bg', 'Normal'] }
+
 " This is the default extra key bindings
 " An action can be a reference to a function that processes selected lines
 function! s:build_quickfix_list(lines)
@@ -257,14 +259,14 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-" nnoremap <silent> <leader><space> :Files<cr>
-" nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
-" nnoremap <silent> <leader>, :Buffers<cr>
-" nnoremap <silent> <leader>: :Commands<cr>
-" nnoremap <silent> <A-x> :Commands<cr>
-" nnoremap <silent> <leader>fc :Commits<cr>
-" nnoremap <silent> <leader>fh :History<cr>
-" nnoremap <silent> <leader>ff :Rg<cr>
+nnoremap <silent> <leader><space> :Files<cr>
+nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
+nnoremap <silent> <leader>, :Buffers<cr>
+nnoremap <silent> <leader>: :Commands<cr>
+nnoremap <silent> <A-x> :Commands<cr>
+nnoremap <silent> <leader>fc :Commits<cr>
+nnoremap <silent> <leader>fh :History<cr>
+nnoremap <silent> <leader>ff :Rg<cr>
 " }}}
 
 ">>>....................Git.................... {{{
