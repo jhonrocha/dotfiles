@@ -2,6 +2,6 @@
 vim/.config/nvim/autoload
 vim/.config/nvim/plugged
 vim/.config/nvim/.netrwhist
-ranger/.config/ranger/plugins/__pycache__
+ranger/.config/ranger/plugins
 xmonad/.xmonad
 fish_variables

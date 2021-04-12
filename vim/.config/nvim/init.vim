@@ -199,6 +199,12 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 " }}}
 
 
+">>>....................Floaterm.................... {{{
+let g:floaterm_autoclose = 1
+let g:floaterm_keymap_toggle = '<C-s>'
+hi FloatermBorder guibg=NONE guifg=cyan
+" }}}
+
 ">>>....................COMPE.................... {{{
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
@@ -215,7 +221,6 @@ let g:nvim_tree_hijack_netrw = 1
 let g:nvim_tree_disable_netrw = 0
 let g:nvim_tree_quit_on_open = 1
 " }}}
-
 
 ">>>....................Abbreviations.................... {{{
 "" no one is really happy until you have this shortcuts
@@ -293,8 +298,14 @@ let g:which_key_map.c = {
 
 let g:which_key_map.d = ['NvimTreeFindFile', 'tree']
 
-nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/"<CR>
-let g:which_key_map.e = 'open file'
+nnoremap <leader>E :e <C-R>=expand("%:p:h") . "/"<CR>
+let g:which_key_map.E = 'open file'
+
+let g:which_key_map.e = {
+      \ 'name' : '+Extra' ,
+      \ 'e' : [':FloatermNew ranger', 'explore'],
+      \ 'x' : [':FloatermNew xplr', 'xplr'],
+    \ }
 
 let g:which_key_map.f = {
       \ 'name' : '+Fuzzy' ,
@@ -412,7 +423,7 @@ function! ToggleHiddenBar()
 endfunction
 " Integration
 " TMUX: Ranger
-nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>
+" nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>
 
 call which_key#register('<Space>', "g:which_key_map")
 " }}}
