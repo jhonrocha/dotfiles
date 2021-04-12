@@ -18,8 +18,6 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'tpope/vim-surround'
 " GCC to Comment
 Plug 'tpope/vim-commentary'
-" Auto Pairs
-Plug 'jiangmiao/auto-pairs'
 " Git Integration
 Plug 'tpope/vim-fugitive'
 " Indent Line
@@ -31,8 +29,8 @@ Plug 'hrsh7th/nvim-compe'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " FZF
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -43,6 +41,10 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'gruvbox-community/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'tomasr/molokai'
+" WhichKey
+Plug 'liuchengxu/vim-which-key'
+" Terminal
+Plug 'voldikss/vim-floaterm'
 " Line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 call plug#end()
@@ -73,6 +75,7 @@ function! s:patch_theme_colors()
   hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
   hi! SignColor ctermbg=NONE guibg=NONE 
   hi! LineNr ctermbg=NONE guibg=NONE
+  let g:fzf_colors = { 'bg': ['bg', 'Normal'] }
 endfunction
 autocmd! ColorScheme * call s:patch_theme_colors()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -181,23 +184,29 @@ autocmd BufNewFile,BufFilePre,BufRead *.props set filetype=sql syntax=sql
 autocmd BufNewFile,BufFilePre,BufRead *.handlebars,*.hbs set filetype=html syntax=handlebars
 " }}}
 
-">>>....................LSP.................... {{{
-nnoremap gD :lua vim.lsp.buf.declaration()<CR>
-nnoremap gd :lua vim.lsp.buf.definition()<CR>
-nnoremap gr :lua vim.lsp.buf.references()<CR>
-nnoremap gi :lua vim.lsp.buf.implementation()<CR>
-nnoremap K :lua vim.lsp.buf.hover()<CR>
-nnoremap <C-k> :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <leader>wa :lua vim.lsp.buf.add_workspace_folder()<CR>
-nnoremap <leader>wr :lua vim.lsp.buf.remove_workspace_folder()<CR>
-nnoremap <leader>wl :lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
-nnoremap <leader>D :lua vim.lsp.buf.type_definition()<CR>
-nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-nnoremap [e :lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap ]e :lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <leader>ll :lua vim.lsp.diagnostic.set_loclist()<CR>
+">>>....................Which Key.................... {{{
+call which_key#register('<Space>', "g:which_key_map")
+
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+" Define prefix dictionary
+let g:which_key_map =  {}
+" Define a separator
+let g:which_key_sep = '→'
+" Not a fan of floating windows for this
+let g:which_key_use_floating_win = 0
+" Change the colors if you want
+highlight default link WhichKey          Operator
+highlight default link WhichKeySeperator DiffAdded
+highlight default link WhichKeyGroup     Identifier
+highlight default link WhichKeyDesc      Function
+
+" Hide status line
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
+
 
 ">>>....................COMPE.................... {{{
 inoremap <silent><expr> <C-Space> compe#complete()
@@ -209,15 +218,10 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 ">>>....................Tree.................... {{{
 let g:nvim_tree_indent_markers = 1
-noremap <silent> <leader>d :NvimTreeFindFile<CR>
 hi NvimTreeFolderIcon guifg=#61afef
 hi NvimTreeFolderName guifg=#61afef
 " }}}
 
-">>>....................IndentLine.................... {{{
-" hi IndentBlanklineChar guifg=#373b43
-" let g:indentLine_char = '┊'
-" }}}
 
 ">>>....................Abbreviations.................... {{{
 "" no one is really happy until you have this shortcuts
@@ -233,14 +237,6 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 " }}}
 
-">>>....................Telescope.................... {{{
-" " Find files using Telescope command-line sugar.
-nnoremap <leader><space> <cmd>lua my_find_files()<cr>
-nnoremap <leader>ff <cmd>Telescope live_grep<cr>
-nnoremap <leader>, <cmd>lua my_buffers()<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
-" }}}
 
 ">>>....................FZF.................... {{{
 let g:fzf_buffers_jump = 1
@@ -257,14 +253,6 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-" nnoremap <silent> <leader><space> :Files<cr>
-" nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
-" nnoremap <silent> <leader>, :Buffers<cr>
-" nnoremap <silent> <leader>: :Commands<cr>
-" nnoremap <silent> <A-x> :Commands<cr>
-" nnoremap <silent> <leader>fc :Commits<cr>
-" nnoremap <silent> <leader>fh :History<cr>
-" nnoremap <silent> <leader>ff :Rg<cr>
 " }}}
 
 ">>>....................Git.................... {{{
@@ -284,6 +272,40 @@ noremap <Leader>gy <cmd>!gy<CR><CR>
 
 ">>>....................Mappings.................... {{{
 "" Opens a tab edit command with the path of the currently edited file filled
+
+let g:which_key_map[' '] = [ ':Files' , 'files' ]
+let g:which_key_map[','] = [ ':Buffers' , 'buffers' ]
+let g:which_key_map.d = [':NvimTreeFindFile', 'tree']
+let g:which_key_map.f = {
+      \ 'name' : '+Fuzzy' ,
+        \ ',' : [':call v:lua.my_buffers()', 'xxxxx'],
+        \ '?' : [':telescope help_tags', 'xxxxx'],
+        \ 'c' : [':commits', 'xxxxx'],
+        \ 'f' : [':rg', 'xxxxx'],
+        \ 'h' : [':history', 'xxxxx'],
+        \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'xxxxx'],
+        \ 't' : [':call v:lua.my_find_files()', 'xxxxx'],
+        \ 'w' : [':telescope live_grep', 'xxxxx'],
+        \ 'x' : [':commands', 'xxxxx'],
+      \ }
+let g:which_key_map.l = {
+      \ 'name' : '+lsp' ,
+      \ 'D' : [':lua vim.lsp.buf.declaration()', 'declaration'],
+      \ 'd' : [':lua vim.lsp.buf.definition()', 'definition'],
+      \ 'r' : [':lua vim.lsp.buf.references()', 'reference'],
+      \ 'i' : [':lua vim.lsp.buf.implementation()', 'implementation'],
+      \ 'k' : [':lua vim.lsp.buf.hover()', 'hover'],
+      \ 's' : [':lua vim.lsp.buf.signature_help()', 'help'],
+      \ 't' : [':lua vim.lsp.buf.type_definition()', 'type def'],
+      \ 'c' : [':lua vim.lsp.buf.rename()', 'rename'],
+      \ 'e' : [':lua vim.lsp.diagnostic.show_line_diagnostics()', 'show'],
+      \ '[' : [':lua vim.lsp.diagnostic.goto_prev()', 'prev error'],
+      \ ']' : [':lua vim.lsp.diagnostic.goto_next()', 'next error'],
+      \ 'l' : [':lua vim.lsp.diagnostic.set_loclist()', 'loclist'],
+      \ 'wa' : [':lua vim.lsp.buf.add_workspace_folder()', 'work add'],
+      \ 'wr' : [':lua vim.lsp.buf.remove_workspace_folder()', 'work rm'],
+      \ 'wl' : [':lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))', 'work list'],
+      \ }
 
 " Expand location
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
