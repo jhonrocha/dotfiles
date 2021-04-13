@@ -59,7 +59,7 @@ set number relativenumber
 " True Colors
 set termguicolors
 " Time to wait mapped input
-set timeoutlen=1000
+set timeoutlen=500
 " Enable hidden buffers
 set hidden
 " Updating swap file interval
@@ -200,7 +200,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 ">>>....................Floaterm.................... {{{
 let g:floaterm_autoclose = 1
-let g:floaterm_keymap_toggle = '<C-s>'
+let g:floaterm_keymap_toggle = '<C-t>'
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
 let g:floaterm_opener = 'edit'
@@ -257,9 +257,6 @@ let g:fzf_action = {
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " }}}
 
-">>>....................Git.................... {{{
-"" Git
-" }}}
 
 ">>>....................Mappings.................... {{{
 "" Opens a tab edit command with the path of the currently edited file filled
@@ -268,34 +265,39 @@ nnoremap <silent> <leader><Esc> :noh<cr>
 let g:which_key_map[' '] = [ 'Files' , 'files' ]
 let g:which_key_map[','] = [ 'Buffers' , 'buffers' ]
 
+nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
+let g:which_key_map['.'] = '. files'
+
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
       \ 'd' : ['bd', 'delete'],
-      \ 'k' : ['bp | bd #', 'close'],
+      \ 'k' : [':bp | bd #', 'close'],
       \ 'n' : ['bn' , 'next'],
       \ 'p' : ['bp' , 'prev'],
       \ }
 
 let g:which_key_map.B = [':call ToggleHiddenBar()', 'bar']
 
+nnoremap ]j :lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap ]k :lua vim.lsp.diagnostic.goto_prev()<CR>
 let g:which_key_map.c = {
       \ 'name' : '+code' ,
-      \ 'D' : [':lua vim.lsp.buf.declaration()', 'declaration'],
-      \ '[' : [':lua vim.lsp.diagnostic.goto_prev()', 'prev error'],
-      \ ']' : [':lua vim.lsp.diagnostic.goto_next()', 'next error'],
-      \ 'c' : [':lua vim.lsp.buf.rename()', 'rename'],
-      \ 'd' : [':lua vim.lsp.buf.definition()', 'definition'],
-      \ 'e' : [':lua vim.lsp.diagnostic.show_line_diagnostics()', 'show'],
-      \ 'i' : [':lua vim.lsp.buf.implementation()', 'implementation'],
-      \ 'k' : [':lua vim.lsp.buf.hover()', 'hover'],
-      \ 'l' : [':lua vim.lsp.diagnostic.set_loclist()', 'loclist'],
+      \ 'D' : [':call v:lua.vim.lsp.buf.declaration()', 'declaration'],
+      \ '[' : [':call v:lua.vim.lsp.diagnostic.goto_prev()', 'prev error'],
+      \ ']' : [':call v:lua.vim.lsp.diagnostic.goto_next()', 'next error'],
+      \ 'c' : [':call v:lua.vim.lsp.buf.rename()', 'rename'],
+      \ 'd' : [':call v:lua.vim.lsp.buf.definition()', 'definition'],
+      \ 'e' : [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'show'],
+      \ 'i' : [':call v:lua.vim.lsp.buf.implementation()', 'implementation'],
+      \ 'k' : [':call v:lua.vim.lsp.buf.hover()', 'hover'],
+      \ 'l' : [':call v:lua.vim.lsp.diagnostic.set_loclist()', 'loclist'],
       \ 'p' : [':let @+=@%', 'cp path'],
-      \ 'r' : [':lua vim.lsp.buf.references()', 'reference'],
-      \ 's' : [':lua vim.lsp.buf.signature_help()', 'help'],
-      \ 't' : [':lua vim.lsp.buf.type_definition()', 'type def'],
-      \ 'wa' : [':lua vim.lsp.buf.add_workspace_folder()', 'work add'],
-      \ 'wl' : [':lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))', 'work list'],
-      \ 'wr' : [':lua vim.lsp.buf.remove_workspace_folder()', 'work rm'],
+      \ 'r' : [':call v:lua.vim.lsp.buf.references()', 'reference'],
+      \ 's' : [':call v:lua.vim.lsp.buf.signature_help()', 'help'],
+      \ 't' : [':call v:lua.vim.lsp.buf.type_definition()', 'type def'],
+      \ 'wa' : [':call v:lua.vim.lsp.buf.add_workspace_folder()', 'work add'],
+      \ 'wl' : [':call v:lua.print(vim.inspect(vim.lsp.buf.list_workspace_folders()))', 'work list'],
+      \ 'wr' : [':call v:lua.vim.lsp.buf.remove_workspace_folder()', 'work rm'],
       \ }
 
 let g:which_key_map.d = ['NvimTreeFindFile', 'tree']
@@ -313,26 +315,28 @@ let g:which_key_map.f = {
       \ 'name' : '+Fuzzy' ,
         \ ',' : [':call v:lua.my_buffers()', 'T buffers'],
         \ 'c' : [':Commits', 'commits'],
-        \ 'f' : [':Rg', 'find word'],
+        \ 'f' : [':Rg', 'grep'],
         \ 'h' : [':Telescope help_tags', 'T Help'],
         \ 'H' : [':History', 'history'],
         \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'T oldfiles'],
         \ 't' : [':call v:lua.my_find_files()', 'T files'],
-        \ 'w' : [':Telescope live_grep', 'T live grep'],
+        \ 'w' : [':Telescope live_grep', 'T grep'],
         \ 'x' : [':Commands', 'commands'],
       \ }
 
+nnoremap <leader>gy :!gy<CR><CR>
 let g:which_key_map.g = {
       \ 'name' : '+Git' ,
-        \ 'b' : [':Gblame', 'blame'],
-        \ 'c' : [':Git commit', 'commit'],
-        \ 'd' : [':Gvdiffsplit!', 'diff'],
-        \ 'f' : [':Git pull', 'pull'],
+        \ 'b' : ['Gblame', 'blame'],
+        \ 'c' : ['Git commit', 'commit'],
+        \ 'd' : ['Gvdiffsplit!', 'diff'],
+        \ 'f' : ['Git pull', 'pull'],
         \ 'g' : [':tab Gstatus', 'status'],
         \ 'h' : [':call diffget //2', 'diff h'],
-        \ 'k' : [':Git checkout', 'checkout'],
-        \ 'l' : [':call diffget //3', 'diff v'],
-        \ 'y' : [':!gy', 'yank branch'],
+        \ 'k' : ['Git checkout', 'checkout'],
+        \ 'l' : [':FloatermNew lazygit', 'lazygit'],
+        \ 'v' : [':call diffget //3', 'diff v'],
+        \ 'y' : 'yank branch',
       \ }
 
 nnoremap <leader>gp :Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>
@@ -340,11 +344,11 @@ let g:which_key_map.g.p = "push"
 
 let g:which_key_map.l = {
       \ 'name' : '+loclist' ,
-      \ 'c' : [':lclose', 'close'],
-      \ 'o' : [':lopen', 'open'],
+      \ 'c' : ['lclose', 'close'],
+      \ 'o' : ['lopen', 'open'],
       \ }
-let g:which_key_map.i = [':lnext', 'loc next']
-let g:which_key_map.u = [':lprevious', 'loc prev']
+let g:which_key_map.i = ['lnext', 'loc next']
+let g:which_key_map.u = ['lprevious', 'loc prev']
 
 nnoremap <leader>p "vp
 let g:which_key_map.p = "p bellow"

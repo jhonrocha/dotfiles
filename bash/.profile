@@ -11,13 +11,13 @@ export LDFLAGS="-L/usr/local/opt/node@8/lib"
 export CPPFLAGS="-I/usr/local/opt/node@8/include"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export EDITOR="nvim"
-export TERM="kitty"
-export XTERM="kitty"
-export TERMCMD="kitty"
-export FILE="ranger"
-export BROWSER="brave"
-export BROWSER_NAME="Brave-broser"
-export SXHKD_SHELL="/bin/sh"
+export TERM=xterm-256color
+export XTERM=xterm-256color
+export TERMCMD=kitty
+export FILE=ranger
+export BROWSER=brave
+export BROWSER_NAME=Brave-broser
+export SXHKD_SHELL=/bin/sh
 
 # CONFIGS
 export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
