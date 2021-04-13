@@ -76,26 +76,17 @@ alias p=pwd
 alias t='tmux new-session -A -s code "tmux-project ; bash"'
 alias ta='tmux attach'
 alias tls='tmux ls'
-alias tat='tmux attach -t'
-alias tns='tmux new-session -s'
 alias t1='tmux new-session -A -s 1'
 alias t2='tmux new-session -A -s 2'
 alias t3='tmux new-session -A -s 3'
-alias t4='tmux new-session -A -s 4'
-alias t5='tmux new-session -A -s 5'
-alias t6='tmux new-session -A -s 6'
-alias t7='tmux new-session -A -s 7'
-alias t8='tmux new-session -A -s 8'
-alias t9='tmux new-session -A -s 9'
-alias t0='tmux new-session -A -s 0'
 # Ranger
-alias lf='ranger'
+alias fm='ranger'
 # Neovim
 alias n='nvim'
 # Vim
 alias v='vim'
 # Tree
-# alias t='tree -a -I ".git|node_modules"'
+alias tre='tree -a -I ".git|node_modules"'
 # BRoot
 alias b='br -h'
 # Rofi replace dmenu

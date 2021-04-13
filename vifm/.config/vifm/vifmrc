@@ -246,10 +246,10 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
 " fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
 "          \ identify %f
 
- fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
-        \ vifmimg draw %px %py %pw %ph %c
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ kitty +icat --place %pwx%ph@%pxx%py  --silent %c
         \ %pc
-        \ vifmimg clear
+        \ kitty icat --clear --silent %pd
 
 " OpenRaster
 filextype *.ora

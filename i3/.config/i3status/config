@@ -29,7 +29,7 @@ volume master {
 }
 
 cpu_usage {
-        format = "<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> %usage </span></span> "
+        format = "<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> ﬙ %usage </span></span> "
 }
 
 battery all {
