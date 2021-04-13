@@ -309,34 +309,34 @@ let g:which_key_map.e = {
       \ 'name' : '+Extra' ,
       \ 'e' : [':FloatermNew ranger', 'explore'],
       \ 'x' : [':FloatermNew xplr', 'xplr'],
+      \ 'l' : [':FloatermNew lazygit', 'lazygit'],
     \ }
 
 let g:which_key_map.f = {
       \ 'name' : '+Fuzzy' ,
-        \ ',' : [':call v:lua.my_buffers()', 'T buffers'],
-        \ 'c' : [':Commits', 'commits'],
-        \ 'f' : [':Rg', 'grep'],
-        \ 'h' : [':Telescope help_tags', 'T Help'],
-        \ 'H' : [':History', 'history'],
-        \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'T oldfiles'],
-        \ 't' : [':call v:lua.my_find_files()', 'T files'],
-        \ 'w' : [':Telescope live_grep', 'T grep'],
-        \ 'x' : [':Commands', 'commands'],
+      \ ',' : [':call v:lua.my_buffers()', 'T buffers'],
+      \ 'c' : [':Commits', 'commits'],
+      \ 'f' : [':Rg', 'grep'],
+      \ 'h' : [':Telescope help_tags', 'T Help'],
+      \ 'H' : [':History', 'history'],
+      \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'T oldfiles'],
+      \ 't' : [':call v:lua.my_find_files()', 'T files'],
+      \ 'w' : [':Telescope live_grep', 'T grep'],
+      \ 'x' : [':Commands', 'commands'],
       \ }
 
 nnoremap <leader>gy :!gy<CR><CR>
 let g:which_key_map.g = {
       \ 'name' : '+Git' ,
-        \ 'b' : ['Gblame', 'blame'],
-        \ 'c' : ['Git commit', 'commit'],
-        \ 'd' : ['Gvdiffsplit!', 'diff'],
-        \ 'f' : ['Git pull', 'pull'],
-        \ 'g' : [':tab Gstatus', 'status'],
-        \ 'h' : [':call diffget //2', 'diff h'],
-        \ 'k' : ['Git checkout', 'checkout'],
-        \ 'l' : [':FloatermNew lazygit', 'lazygit'],
-        \ 'v' : [':call diffget //3', 'diff v'],
-        \ 'y' : 'yank branch',
+      \ 'b' : ['Gblame', 'blame'],
+      \ 'c' : ['Git commit', 'commit'],
+      \ 'd' : ['Gvdiffsplit!', 'diff'],
+      \ 'f' : ['Git pull', 'pull'],
+      \ 'g' : [':tab Gstatus', 'status'],
+      \ 'h' : [':call diffget //2', 'diff h'],
+      \ 'k' : ['Git checkout', 'checkout'],
+      \ 'v' : [':call diffget //3', 'diff v'],
+      \ 'y' : 'yank branch',
       \ }
 
 nnoremap <leader>gp :Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>
