@@ -305,7 +305,8 @@ let g:which_key_map.d = ['NvimTreeFindFile', 'tree']
 nnoremap <leader>E :e <C-R>=expand("%:p:h") . "/"<CR>
 let g:which_key_map.E = 'open file'
 
-let g:which_key_map.e = {
+let g:which_key_map.e = [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'lsp_line']
+let g:which_key_map.x = {
       \ 'name' : '+Extra' ,
       \ 'e' : [':FloatermNew ranger', 'explore'],
       \ 'x' : [':FloatermNew xplr', 'xplr'],
