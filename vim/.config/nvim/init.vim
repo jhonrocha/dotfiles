@@ -38,7 +38,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'hrsh7th/nvim-compe'
 " Themes
 Plug 'gruvbox-community/gruvbox'
-Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'tomasr/molokai'
 " WhichKey
 Plug 'liuchengxu/vim-which-key'
@@ -81,9 +81,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " Syntax highlight
 syntax on
-colorscheme gruvbox
-" let g:lightline = { 'colorscheme': 'molokai' }
-
+colorscheme one
 " Turn on for plugin management
 filetype plugin indent on
 " Encoding
@@ -274,6 +272,7 @@ let g:which_key_map.b = {
       \ 'k' : [':bp | bd #', 'close'],
       \ 'n' : ['bn' , 'next'],
       \ 'p' : ['bp' , 'prev'],
+      \ 's' : ['update', 'save'],
       \ }
 
 let g:which_key_map.B = [':call ToggleHiddenBar()', 'bar']
@@ -306,12 +305,6 @@ nnoremap <leader>E :e <C-R>=expand("%:p:h") . "/"<CR>
 let g:which_key_map.E = 'open file'
 
 let g:which_key_map.e = [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'lsp_line']
-let g:which_key_map.x = {
-      \ 'name' : '+Extra' ,
-      \ 'e' : [':FloatermNew ranger', 'explore'],
-      \ 'x' : [':FloatermNew xplr', 'xplr'],
-      \ 'l' : [':FloatermNew lazygit', 'lazygit'],
-    \ }
 
 let g:which_key_map.f = {
       \ 'name' : '+Fuzzy' ,
@@ -346,7 +339,7 @@ let g:which_key_map.g.p = "push"
 let g:which_key_map.l = {
       \ 'name' : '+loclist' ,
       \ 'c' : ['lclose', 'close'],
-      \ 'o' : ['lopen', 'open'],
+      \ 'l' : ['lopen', 'open'],
       \ }
 let g:which_key_map.i = ['lnext', 'loc next']
 let g:which_key_map.u = ['lprevious', 'loc prev']
@@ -360,7 +353,7 @@ let g:which_key_map.P = "p above"
 let g:which_key_map.q = {
       \ 'name' : '+quicklist' ,
       \ 'c' : [':cclose', 'close'],
-      \ 'o' : [':copen', 'open'],
+      \ 'q' : [':copen', 'open'],
       \ }
 let g:which_key_map.j = [':cn', 'quick next']
 let g:which_key_map.k = [':cp', 'quick prev']
@@ -375,7 +368,13 @@ let g:which_key_map.r.b = 'bellow'
 
 let g:which_key_map.s = ['/', '/']
 
-
+let g:which_key_map.x = {
+      \ 'name' : '+Extra' ,
+      \ 'e' : [':FloatermNew ranger', 'explore'],
+      \ 'x' : [':FloatermNew xplr', 'xplr'],
+      \ 'l' : [':FloatermNew lazygit', 'lazygit'],
+      \ 's' : ['update', 'save'],
+    \ }
 
 " Expand location
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
@@ -391,9 +390,9 @@ vmap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 " Closing
-nnoremap <silent> <C-x><C-q> :qa<CR>
+" nnoremap <silent> <C-x><C-q> :qa<CR>
 " Close the current buffer and move to the previous one
-nmap <C-x><C-s> :update<CR>
+" nmap <C-x><C-s> :update<CR>
 
 " Copy Path
 
