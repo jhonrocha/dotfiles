@@ -265,15 +265,6 @@ let g:which_key_map[','] = [ 'Buffers' , 'buffers' ]
 nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
 let g:which_key_map['.'] = '. files'
 
-let g:which_key_map.b = {
-      \ 'name' : '+buffer' ,
-      \ 'd' : ['bd', 'delete'],
-      \ 'k' : [':bp | bd #', 'close'],
-      \ 'n' : ['bn' , 'next'],
-      \ 'p' : ['bp' , 'prev'],
-      \ 's' : ['update', 'save'],
-      \ }
-
 let g:which_key_map.B = [':call ToggleHiddenBar()', 'bar']
 
 nnoremap ]j :lua vim.lsp.diagnostic.goto_next()<CR>
@@ -306,16 +297,13 @@ let g:which_key_map.E = 'open file'
 let g:which_key_map.e = [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'lsp_line']
 
 let g:which_key_map.f = {
-      \ 'name' : '+Fuzzy' ,
-      \ ',' : [':call v:lua.my_buffers()', 'T buffers'],
-      \ 'c' : [':Commits', 'commits'],
-      \ 'f' : [':Rg', 'grep'],
-      \ 'h' : [':Telescope help_tags', 'T Help'],
-      \ 'H' : [':History', 'history'],
-      \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'T oldfiles'],
-      \ 't' : [':call v:lua.my_find_files()', 'T files'],
-      \ 'w' : [':Telescope live_grep', 'T grep'],
-      \ 'x' : [':Commands', 'commands'],
+      \ 'name' : '+files' ,
+      \ 'd' : ['bd', 'delete'],
+      \ 'f' : ['Vifm', 'Vifm'],
+      \ 'k' : [':bp | bd #', 'close'],
+      \ 'n' : ['bn' , 'next'],
+      \ 'p' : ['bp' , 'prev'],
+      \ 's' : ['update', 'save'],
       \ }
 
 nnoremap <leader>gy :!gy<CR><CR>
@@ -365,9 +353,19 @@ let g:which_key_map.r.r = 'all'
 nnoremap <leader>rb :.,$s//gc<left><left><left>
 let g:which_key_map.r.b = 'bellow'
 
-let g:which_key_map.s = ['/', '/']
-
-let g:which_key_map.v = ['Vifm', 'Vifm']
+let g:which_key_map.s = {
+      \ 'name' : '+Fuzzy' ,
+      \ ',' : [':call v:lua.my_buffers()', 'T buffers'],
+      \ 'c' : [':Commits', 'commits'],
+      \ 'f' : [':Rg', 'grep'],
+      \ 'h' : [':Telescope help_tags', 'T Help'],
+      \ 'H' : [':History', 'history'],
+      \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'T oldfiles'],
+      \ 's' : ['/', '/'],
+      \ 't' : [':call v:lua.my_find_files()', 'T files'],
+      \ 'w' : [':Telescope live_grep', 'T grep'],
+      \ 'x' : [':Commands', 'commands'],
+      \ }
 
 let g:which_key_map.x = {
       \ 'name' : '+Extra' ,
