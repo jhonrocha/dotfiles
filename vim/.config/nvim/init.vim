@@ -14,13 +14,16 @@ call plug#begin(expand('~/.vim/plugged'))
 "File Drawer
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
+" ViFM
+Plug 'vifm/vifm.vim'
+" Terminal
+Plug 'voldikss/vim-floaterm'
 " Vim Surround
 Plug 'tpope/vim-surround'
 " GCC to Comment
 Plug 'tpope/vim-commentary'
 " Git Integration
 Plug 'tpope/vim-fugitive'
-" Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua'}
 " LSP
 Plug 'neovim/nvim-lspconfig'
 " Completion
@@ -39,11 +42,8 @@ Plug 'hrsh7th/nvim-compe'
 " Themes
 Plug 'gruvbox-community/gruvbox'
 Plug 'rakr/vim-one'
-Plug 'tomasr/molokai'
 " WhichKey
 Plug 'liuchengxu/vim-which-key'
-" Terminal
-Plug 'voldikss/vim-floaterm'
 " Line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 call plug#end()
@@ -255,7 +255,6 @@ let g:fzf_action = {
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " }}}
 
-
 ">>>....................Mappings.................... {{{
 "" Opens a tab edit command with the path of the currently edited file filled
 
@@ -367,6 +366,8 @@ nnoremap <leader>rb :.,$s//gc<left><left><left>
 let g:which_key_map.r.b = 'bellow'
 
 let g:which_key_map.s = ['/', '/']
+
+let g:which_key_map.v = ['Vifm', 'Vifm']
 
 let g:which_key_map.x = {
       \ 'name' : '+Extra' ,

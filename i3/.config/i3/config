@@ -35,7 +35,7 @@ for_window [class="Rambox"] move scratchpad
 for_window [class="Rambox"] scratchpad show
 for_window [class="termpad"] move scratchpad
 for_window [class="termpad"] scratchpad show
-
+for_window [floating] resize set width 70 ppt height 90 ppt, move position center
 # Font
 font pango:Cantarell 8
 # Gaps

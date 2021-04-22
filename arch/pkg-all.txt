@@ -39,7 +39,6 @@ pulseaudio-alsa
 pulseaudio-bluetooth
 python-pip
 python-pynvim
-ranger
 rclone
 ripgrep
 rofi
@@ -71,3 +70,4 @@ materia-gtk-theme
 polkit-gnome
 bat
 tree-sitter
+vifm

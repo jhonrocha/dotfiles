@@ -1,5 +1,5 @@
-" vim: filetype=vifm :
-" Sample configuration file for vifm (last updated: 13 December, 2020)
+" vim: filetype=vim :
+" Sample configuration file for vifm (last updated: 9 September, 2020)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
 " Blank lines are ignored.
@@ -7,6 +7,8 @@
 
 " ------------------------------------------------------------------------------
 
+" Personal Stuff
+set dotfiles
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
@@ -39,6 +41,11 @@ set history=100
 
 set nofollowlinks
 
+" With this option turned on you can run partially entered commands with
+" unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
+
+" set fastrun
+
 " Natural sort of (version) numbers within text.
 
 set sortnumbers
@@ -59,7 +66,7 @@ set norunexec
 
 " List of color schemes to try (picks the first one supported by the terminal)
 
-colorscheme Default-256 Default
+colorscheme gruvbox
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
@@ -136,7 +143,11 @@ command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! vgrep vim "+grep %a"
 command! reload :write | restart full
-
+command! FZFfind : set noquickview
+                \| let $FZF_PICK = term('$FZF_DEFAULT_COMMAND | fzf 2>/dev/tty')
+                \| if $FZF_PICK != ''
+                \|     execute 'goto' fnameescape($FZF_PICK)
+                \| endif
 " ------------------------------------------------------------------------------
 
 " The file type is for the default programs to be used with
@@ -383,7 +394,7 @@ filextype */
 
 " What should be saved automatically between vifm sessions.  Drop "savedirs"
 " value if you don't want vifm to remember last visited directories for you.
-set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+set vifminfo=dhistory,chistory,state,tui,shistory,
     \phistory,fhistory,dirstack,registers,bookmarks,bmarks
 
 " ------------------------------------------------------------------------------
