@@ -1,10 +1,4 @@
 " vim: filetype=vim :
-" Sample configuration file for vifm (last updated: 9 September, 2020)
-" You can edit this file by hand.
-" The " character at the beginning of a line comments out the line.
-" Blank lines are ignored.
-" The basic format for each item is shown with an example.
-
 " ------------------------------------------------------------------------------
 
 " Personal Stuff
@@ -13,7 +7,7 @@ set dotfiles
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
-set vicmd=vim
+set vicmd=nvim
 " set vicmd=elvis\ -G\ termcap
 " set vicmd=vile
 
@@ -143,6 +137,7 @@ command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! vgrep vim "+grep %a"
 command! reload :write | restart full
+
 command! FZFfind : set noquickview
                 \| let $FZF_PICK = term('$FZF_DEFAULT_COMMAND | fzf 2>/dev/tty')
                 \| if $FZF_PICK != ''
@@ -413,7 +408,10 @@ set vifminfo=dhistory,chistory,state,tui,shistory,
 
 " Sample mappings
 nnoremap <space> <nop>
+nnoremap <space><space> :FZFfind<cr>
 nnoremap <space>fk :q<cr>
+nnoremap <space>g :bmarks<cr>
+nnoremap <c-t> :tabnew<cr>
 " Start shell in current directory
 nnoremap s :shell<cr>
 
@@ -485,26 +483,69 @@ nnoremap <a-o> :sync %c<cr>
 nnoremap <c-u> <c-w>x
 
 " ------------------------------------------------------------------------------
+" Filetypes/directories
+set classify=' :dir:/, :exe:, :reg:, :link:,? :?:, ::../::'
+" Specific files
+set classify+=' ::.Xdefaults,,.Xresources,,.bashprofile,,.bash_profile,,.bashrc,,.dmrc,,.d_store,,.fasd,,.gitconfig,,.gitignore,,.jack-settings,,.mime.types,,.nvidia-settings-rc,,.pam_environment,,.profile,,.recently-used,,.selected_editor,,.xinitpurc,,.zprofile,,.yarnc,,.snclirc,,.tmux.conf,,.urlview,,.config,,.ini,,.user-dirs.dirs,,.mimeapps.list,,.offlineimaprc,,.msmtprc,,.Xauthority,,config::'
+set classify+=' ::dropbox::'
+set classify+=' ::favicon.*,,README,,readme::'
+set classify+=' ::.vim,,.vimrc,,.gvimrc,,.vifm::'
+set classify+=' ::gruntfile.coffee,,gruntfile.js,,gruntfile.ls::'
+set classify+=' ::gulpfile.coffee,,gulpfile.js,,gulpfile.ls::'
+set classify+=' ::ledger::'
+set classify+=' ::license,,copyright,,copying,,LICENSE,,COPYRIGHT,,COPYING::'
+set classify+=' ::node_modules::'
+set classify+=' ::react.jsx::'
 
-" Various customization examples
-
-" Use ag (the silver searcher) instead of grep
-"
-" set grepprg='ag --line-numbers %i %a %s'
-
-" Add additional place to look for executables
-"
-" let $PATH = $HOME.'/bin/fuse:'.$PATH
-
-" Block particular shortcut
-"
-" nnoremap <left> <nop>
-
-" Export IPC name of current instance as environment variable and use it to
-" communicate with the instance later.
-"
-" It can be used in some shell script that gets run from inside vifm, for
-" example, like this:
-"     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
-"
-" let $VIFM_SERVER_NAME = v:servername
+" File extensions
+set classify+='λ ::*.ml,,*.mli::'
+set classify+=' ::*.styl::'
+set classify+=' ::*.scss::'
+set classify+=' ::*.py,,*.pyc,,*.pyd,,*.pyo::'
+set classify+=' ::*.php::'
+set classify+=' ::*.markdown,,*.md::'
+set classify+=' ::*.json::'
+set classify+=' ::*.js::'
+set classify+=' ::*.bmp,,*.gif,,*.ico,,*.jpeg,,*.jpg,,*.png,,*.svg,,*.svgz,,*.tga,,*.tiff,,*.xmb,,*.xcf,,*.xpm,,*.xspf,,*.xwd,,*.cr2,,*.dng,,*.3fr,,*.ari,,*.arw,,*.bay,,*.crw,,*.cr3,,*.cap,,*.data,,*.dcs,,*.dcr,,*drf,,*.eip,,*.erf,,*.fff,,*.gpr,,*.iiq,,*.k25,,*.kdc,,*.mdc,,.*mef,,*.mos,,.*.mrw,,.*.obm,,*.orf,,*.pef,,*.ptx,,*.pxn,,*.r3d,,*.raf,,*.raw,,*.rwl,,*.rw2,,*.rwz,,*.sr2,,*.srf,,*.srf,,*.srw,,*.tif,,*.x3f::'
+set classify+=' ::*.ejs,,*.htm,,*.html,,*.slim,,*.xml::'
+set classify+=' ::*.mustasche::'
+set classify+=' ::*.css,,*.less,,*.bat,,*.conf,,*.ini,,*.rc,,*.yml,,*.cfg,,*.rc::'
+set classify+=' ::*.rss::'
+set classify+=' ::*.coffee::'
+set classify+=' ::*.twig::'
+set classify+=' ::*.c++,,*.cpp,,*.cxx,,*.h::'
+set classify+=' ::*.cc,,*.c::'
+set classify+=' ::*.hs,,*.lhs::'
+set classify+=' ::*.lua::'
+set classify+=' ::*.jl::'
+set classify+=' ::*.go::'
+set classify+=' ::*.ts::'
+set classify+=' ::*.db,,*.dump,,*.sql::'
+set classify+=' ::*.sln,,*.suo::'
+set classify+=' ::*.exe::'
+set classify+=' ::*.diff,,*.sum,,*.md5,,*.sha512::'
+set classify+=' ::*.scala::'
+set classify+=' ::*.java,,*.jar::'
+set classify+=' ::*.xul::'
+set classify+=' ::*.clj,,*.cljc::'
+set classify+=' ::*.pl,,*.pm,,*.t::'
+set classify+=' ::*.cljs,,*.edn::'
+set classify+=' ::*.rb::'
+set classify+=' ::*.fish,,*.sh,,*.bash::'
+set classify+=' ::*.dart::'
+set classify+=' ::*.f#,,*.fs,,*.fsi,,*.fsscript,,*.fsx::'
+set classify+=' ::*.rlib,,*.rs::'
+set classify+=' ::*.d::'
+set classify+=' ::*.erl,,*.hrl::'
+set classify+=' ::*.ai::'
+set classify+=' ::*.psb,,*.psd::'
+set classify+=' ::*.jsx::'
+set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+set classify+=' ::*.avi,,*.flv,,*.mkv,,*.mov,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm::'
+set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
+set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.cpio,,*.deb,,*.gem,,*.gz,,*.gzip,,*.lh,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xz,,*.zip::'
+set classify+=' ::*.cbr,,*.cbz::'
+set classify+=' ::*.log::'
+set classify+=' ::*.doc,,*.docx,,*.adoc::'
+set classify+=' ::*.xls,,*.xls,,*.xlsmx::'
+set classify+=' ::*.pptx,,*.ppt::'

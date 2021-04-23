@@ -71,3 +71,4 @@ polkit-gnome
 bat
 tree-sitter
 vifm
+yarn

@@ -73,7 +73,7 @@ alias ec="emacsclient -n"
 # pwd
 alias p=pwd
 # tmux aliases
-alias t='tmux new-session -A -s code "tmux-project ; bash"'
+alias t='tmux new-session -A -s code "tmux-project 2>/dev/null; bash"'
 alias ta='tmux attach'
 alias tls='tmux ls'
 alias t1='tmux new-session -A -s 1'
