@@ -17,8 +17,19 @@ stow scripts
 stow starship
 stow tmux
 stow vim
+stow vifm
 stow bash
 
+#### Installing yay
+if ! command -v yay &> /dev/null
+then
+    git clone https://aur.archlinux.org/yay.git ~/yay
+    cd ~/yay
+    makepkg -si
+    exit
+fi
+
+yay brave-broswer
 
 #### Check for TPM
 [ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -39,14 +50,4 @@ fi
 git config --global credential.helper store
 git config --global core.excludesFile '~/.config/.git-ignore'
 
-#### Copy Fonts
-# sudo cp fonts/* /usr/share/fonts/
 
-#### Installing yay
-if ! command -v yay &> /dev/null
-then
-    git clone https://aur.archlinux.org/yay.git ~/yay
-    cd ~/yay
-    makepkg -si
-    exit
-fi
