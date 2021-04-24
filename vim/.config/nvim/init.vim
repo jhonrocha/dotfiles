@@ -81,7 +81,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " Syntax highlight
 syntax on
-colorscheme gruvbox
+colorscheme one
 " Turn on for plugin management
 filetype plugin indent on
 " Encoding
