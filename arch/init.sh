@@ -29,8 +29,6 @@ then
     exit
 fi
 
-yay brave-broswer
-
 #### Check for TPM
 [ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 

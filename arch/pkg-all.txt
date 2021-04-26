@@ -74,3 +74,5 @@ tree-sitter
 vifm
 yarn
 kitty
+linux-headers
+usbutils
