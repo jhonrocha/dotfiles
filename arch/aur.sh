@@ -16,10 +16,9 @@ fi
 
 ##### INSTALLATIONS
 yay vpn-slice
-yay spotify
-yay brave
 yay nerd-fonts-fira-code
 yay nerd-fonts-fira-mono
 yay nerd-fonts-iosevka
 yay nerd-fonts-hack
 yay nerd-fonts-source-code-pro
+yay brave-bin

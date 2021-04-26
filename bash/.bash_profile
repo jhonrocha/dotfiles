@@ -19,7 +19,8 @@ init-sway () {
 machine=$(uname -n)
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   if [ $machine = "tiamat" ]; then
-    init-sway
+    # init-sway
+    init-i3
   elif [ $machine = "think" ]; then
     init-i3
   fi

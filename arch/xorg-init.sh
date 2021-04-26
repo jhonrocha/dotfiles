@@ -2,10 +2,11 @@
 
 ##### INSTALL PKGS
 sudo pacman --noconfirm --needed -S \
-    dunst feh flameshot slock\
+    dunst feh flameshot slock \
     xmonad xmonad-contrib xorg xorg-xinit \
-    xorg-xmessage xterm xclip xdo
+    xorg-xmessage xterm xclip xdo \
+    i3
 
 #### STOW THE PACKAGES
 cd ~/dotfiles
-stow dunst picom x xmonad
+stow dunst picom x i3

@@ -55,6 +55,7 @@ unrar
 unzip
 vi
 vim
+go
 wget
 youtube-dl
 zathura
@@ -72,3 +73,4 @@ bat
 tree-sitter
 vifm
 yarn
+kitty

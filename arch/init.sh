@@ -12,7 +12,7 @@ stow fd
 stow fish
 stow git-config
 stow gtk
-stow ranger
+stow rofi
 stow scripts
 stow starship
 stow tmux
@@ -41,10 +41,10 @@ xdg-settings set default-web-browser brave-browser.desktop
 
 
 #### EMACS
-if [[ ! -d "$HOME/.doom-emacs" ]] ; then
-    git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.doom-emacs
-    ~/.doom-emacs/bin/doom install
-fi
+# if [[ ! -d "$HOME/.doom-emacs" ]] ; then
+#     git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.doom-emacs
+#     ~/.doom-emacs/bin/doom install
+# fi
 
 #### GIT Store
 git config --global credential.helper store

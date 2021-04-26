@@ -213,7 +213,7 @@ bar {
     i3bar_command i3bar --transparency
     status_command i3status
     position top
-    font pango:Iosevka Nerd Font 12
+    font pango:Iosevka Nerd Font 16
     separator_symbol " "
     tray_padding 4px
     colors {

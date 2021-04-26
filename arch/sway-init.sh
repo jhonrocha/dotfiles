@@ -6,3 +6,7 @@ sudo pacman --noconfirm --needed -S \
     mako polkit-gnome \
     gtk3 gtk4 \
     qt5-wayland qt6-wayland
+
+#### STOW THE PACKAGES
+cd ~/dotfiles
+stow sway
