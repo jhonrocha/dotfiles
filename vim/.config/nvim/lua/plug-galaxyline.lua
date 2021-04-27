@@ -146,6 +146,15 @@ gls.right[5] = {
   }
 }
 
+gls.right[6] = {
+  RightEnd = {
+    provider = function() return ' ' end,
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.red,colors.bg,'bold'},
+  }
+}
+
 gls.short_line_left[1] = {
   BufferType = {
     provider = 'FileTypeName',
