@@ -31,10 +31,8 @@ client.unfocused        #000000     #000000     $fg     $id       #000000
 focus_follows_mouse no
 # Window Rules
 for_window [class="zoom"] floating enable
-for_window [class="Rambox"] move scratchpad
-for_window [class="Rambox"] scratchpad show, resize set width 70 ppt height 90 ppt, move position center
-for_window [class="termpad"] move scratchpad
-for_window [class="termpad"] scratchpad show, resize set width 70 ppt height 90 ppt, move position center
+for_window [class="Rambox"] move scratchpad, scratchpad show, resize set width 50 ppt height 70 ppt, move position center
+for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 # Font
 font pango:Cantarell 8
 # Gaps
@@ -51,9 +49,15 @@ mode "apps" {
     bindsym i exec "$term htop"; mode "default"
     bindsym y exec jhsync; mode "default"
     # Change Wallpaper
-    bindsym w exec "feh --bg-fill --randomize ~/.config/wallpapers/"; mode "default"
+    bindsym w exec "feh --bg-fill --randomize ~/.config/wallpapers/"
     # Screenshot
     bindsym p exec flameshot gui; mode "default"
+    # Scratchpads
+    bindsym 1 exec "i3-scratch mark1"; mode "default"
+    bindsym 2 exec "i3-scratch mark2"; mode "default"
+    bindsym 3 exec "i3-scratch mark3"; mode "default"
+    bindsym 4 exec "i3-scratch mark4"; mode "default"
+    bindsym 5 exec "i3-scratch mark5"; mode "default"
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -101,7 +105,7 @@ mode "resize" {
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
     bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
+    bindsym Up resize shrink height 10pxpattern
     bindsym Right resize grow width 10px
     # Return to default mode
     bindsym Return mode "default"
