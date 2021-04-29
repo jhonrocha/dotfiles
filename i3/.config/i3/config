@@ -48,16 +48,11 @@ mode "apps" {
     bindsym e exec "$term vifm"; mode "default"
     bindsym i exec "$term htop"; mode "default"
     bindsym y exec jhsync; mode "default"
+    bindsym u unmark; mode "default"
     # Change Wallpaper
     bindsym w exec "feh --bg-fill --randomize ~/.config/wallpapers/"
     # Screenshot
     bindsym p exec flameshot gui; mode "default"
-    # Scratchpads
-    bindsym 1 exec "i3-scratch mark1"; mode "default"
-    bindsym 2 exec "i3-scratch mark2"; mode "default"
-    bindsym 3 exec "i3-scratch mark3"; mode "default"
-    bindsym 4 exec "i3-scratch mark4"; mode "default"
-    bindsym 5 exec "i3-scratch mark5"; mode "default"
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -210,7 +205,11 @@ mode "resize" {
 # Scratchpad:
     bindsym $mod+Shift+m move scratchpad
     bindsym $mod+m scratchpad show
-
+    bindsym $mod+Control+1 exec "i3-scratch mark1"
+    bindsym $mod+Control+2 exec "i3-scratch mark2"
+    bindsym $mod+Control+3 exec "i3-scratch mark3"
+    bindsym $mod+Control+4 exec "i3-scratch mark4"
+    bindsym $mod+Control+5 exec "i3-scratch mark5"
 #
 # Status Bar:
 bar {

@@ -20,7 +20,7 @@
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
 (let ((fontSize (if (> (display-pixel-width) 2000) 24 20)))
-  (setq doom-font (font-spec :family "FiraMono Nerd Font" :size fontSize :weight 'semi-light)
+  (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size fontSize :weight 'semi-light)
         doom-variable-pitch-font (font-spec :family "sans" :size (+ fontSize 1))))
 ;; (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
 ;; (add-to-list 'default-frame-alist '(alpha . (95 . 95)))

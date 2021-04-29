@@ -7,6 +7,6 @@ launcher_cmd() {
 # Choose Project
 favs c | launcher_cmd | { read -r path name
   if [[ -n $path ]]; then
-    ((tmux switch-client -t code:$name) || (tmux new-window -c $path -t code: -n $name 'nvim -c "lua my_find_files()" ; bash' && tmux switch-client -t code:$name))
+    ((tmux switch-client -t code:$name) || (tmux new-window -c $path -t code: -n $name 'nvim -c "Files" ; bash' && tmux switch-client -t code:$name))
   fi
 }

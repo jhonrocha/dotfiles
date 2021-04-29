@@ -81,7 +81,7 @@ mode "apps" {
     bindsym i exec '$term htop'; mode "default"
     bindsym y exec jhsync; mode "default"
     # Change Wallpaper
-    bindsym w output * bg $(find ~/.config/wallpapers -type f | shuf -n 1) fill; mode "default"
+    bindsym w exec 'feh --bg-fill --randomize ~/.config/wallpapers/'; mode "default"
 
     # Screenshot
     bindsym p exec grim -g "$(slurp)" - | wl-copy; mode "default"
