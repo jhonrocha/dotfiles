@@ -205,6 +205,13 @@ let g:floaterm_opener = 'edit'
 hi FloatermBorder guibg=NONE guifg=cyan
 " }}}
 
+">>>....................LSP.................... {{{
+sign define LspDiagnosticsSignError text=. texthl=LspDiagnosticsSignError linehl= numhl=
+sign define LspDiagnosticsSignWarning text=. texthl=LspDiagnosticsSignWarning linehl= numhl=
+sign define LspDiagnosticsSignInformation text=. texthl=LspDiagnosticsSignInformation linehl= numhl=
+sign define LspDiagnosticsSignHint text=.  texthl=LspDiagnosticsSignHint linehl= numhl=
+" }}}
+
 ">>>....................COMPE.................... {{{
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
