@@ -1,0 +1,13 @@
+xkb_keymap {
+  xkb_keycodes  { include "evdev+aliases(qwerty)" };
+  xkb_types     { include "complete"      };
+  xkb_compat    { include "complete"      };
+  xkb_symbols   {
+    include "pc+br(thinkpad)+inet(evdev)+capslock(swapescape)"
+    key <LSGT> { [ Control_L ] };
+    key <LCTL> { [ backslash, bar ] };
+    key <AB03> { [ c, C, ccedilla, Ccedilla ]};
+    key <AC10> { [ Control_R, ccedilla ] };
+  };
+  xkb_geometry  { include "pc(pc105)"     };
+};

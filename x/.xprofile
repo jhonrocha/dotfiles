@@ -6,9 +6,7 @@
 # \___/|_| |_|_| \_\___/ \___|_| |_|\__,_|
 
 ##### Keyboard Settings
-setxkbmap -layout br -variant thinkpad -option caps:swapescape
-xmodmap ~/.xmodmaprc
-# xcape -e 'Hyper_R=ccedilla'
+xkbcomp ~/.config/xkb/xkbmap $DISPLAY
 
 ##### Xrandr screen
 monitors=$(xrandr | awk '/ connected/ { print "->" $1 }')

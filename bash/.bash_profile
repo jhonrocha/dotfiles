@@ -13,7 +13,7 @@ init-xmonad () {
 init-sway () {
   export WM=sway
   export MOZ_ENABLE_WAYLAND=1
-  exec sway >> ~/.cache/sway.log 2>&1
+  exec sway --my-next-gpu-wont-be-nvidia >> ~/.cache/sway.log 2>&1
 }
 
 machine=$(uname -n)

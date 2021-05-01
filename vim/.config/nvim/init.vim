@@ -42,6 +42,7 @@ Plug 'hrsh7th/nvim-compe'
 " Themes
 Plug 'gruvbox-community/gruvbox'
 Plug 'rakr/vim-one'
+Plug 'phanviet/vim-monokai-pro'
 " WhichKey
 Plug 'liuchengxu/vim-which-key'
 " Line
