@@ -16,8 +16,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 " ViFM
 Plug 'vifm/vifm.vim'
-" Terminal
-Plug 'voldikss/vim-floaterm'
 " Vim Surround
 Plug 'tpope/vim-surround'
 " GCC to Comment
@@ -197,15 +195,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
 
-">>>....................Floaterm.................... {{{
-let g:floaterm_autoclose = 1
-let g:floaterm_keymap_toggle = '<C-t>'
-let g:floaterm_width = 0.8
-let g:floaterm_height = 0.8
-let g:floaterm_opener = 'edit'
-hi FloatermBorder guibg=NONE guifg=cyan
-" }}}
-
 ">>>....................LSP.................... {{{
 sign define LspDiagnosticsSignError text=. texthl=LspDiagnosticsSignError linehl= numhl=
 sign define LspDiagnosticsSignWarning text=. texthl=LspDiagnosticsSignWarning linehl= numhl=
@@ -376,10 +365,7 @@ let g:which_key_map.s = {
       \ }
 
 let g:which_key_map.x = {
-      \ 'name' : '+Extra' ,
-      \ 'e' : [':FloatermNew ranger', 'explore'],
-      \ 'x' : [':FloatermNew xplr', 'xplr'],
-      \ 'l' : [':FloatermNew lazygit', 'lazygit'],
+      \ 'name' : '+M-x' ,
       \ 's' : ['update', 'save'],
     \ }
 

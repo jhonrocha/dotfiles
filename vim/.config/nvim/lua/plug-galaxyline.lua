@@ -18,7 +18,7 @@ gls.left[1] = {
                           rm = colors.cyan, ['r?'] = colors.cyan,
                           ['!']  = colors.red,t = colors.red}
       vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
-      return '   '
+      return '   '
     end,
     highlight = {colors.red,colors.bg,'bold'},
   },
@@ -148,7 +148,7 @@ gls.right[5] = {
 
 gls.right[6] = {
   RightEnd = {
-    provider = function() return '  ' end,
+    provider = function() return ' ' end,
     separator = ' ',
     separator_highlight = {'NONE',colors.bg},
     highlight = {colors.red,colors.bg,'bold'},

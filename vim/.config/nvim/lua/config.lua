@@ -65,6 +65,20 @@ lspconfig.rust_analyzer.setup({
         }
     }
 })
+-- VIM
+lspconfig.vimls.setup{}
+
+-- LUA
+lspconfig.sumneko_lua.setup{
+  cmd = {"/usr/bin/lua-language-server", "-E"};
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {'vim'},
+      },
+    },
+  },
+}
 
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -75,11 +89,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  ensure_installed = "maintained",
   highlight = {
-    enable = true,              -- false will disable the whole extension
-    -- disable = { "c", "rust" },  -- list of language that will be disabled
+    enable = true,
   },
 }
 
