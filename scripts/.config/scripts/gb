@@ -1,2 +1,23 @@
 #!/bin/sh
-git branch | fzf | xargs -I % git checkout %
+fzf-branch() {
+  git branch --color=always --all |
+      grep -v HEAD |
+      fzf --ansi --no-multi --preview-window right:65% \
+          --preview 'git log -n 20 --color=always --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed "s/.* //" <<< {})' |
+      sed "s/.* //"
+}
+
+gb() {
+    git rev-parse HEAD > /dev/null 2>&1 || return
+    local branch
+    branch=$(fzf-branch)
+    if [[ "$branch" = "" ]]; then
+        echo "No branch selected."
+        return
+    fi
+    if [[ "$branch" = 'remotes/'* ]]; then
+        git checkout --track $branch
+    else
+        git checkout $branch;
+    fi
+}

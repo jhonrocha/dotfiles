@@ -233,6 +233,12 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 " }}}
 
+
+">>>....................Terminal.................... {{{
+" Terminal
+autocmd TermOpen term://* startinsert
+" }}}
+
 ">>>....................FZF.................... {{{
 let g:fzf_buffers_jump = 1
 let g:fzf_colors = { 'bg': ['bg', 'Normal'] }
@@ -306,7 +312,8 @@ let g:which_key_map.f = {
 nnoremap <leader>gy :!gy<CR><CR>
 let g:which_key_map.g = {
       \ 'name' : '+Git' ,
-      \ 'b' : ['Gblame', 'blame'],
+      \ 'b' : [':term gb', 'branch'],
+      \ 'B' : ['Gblame', 'blame'],
       \ 'c' : ['Git commit', 'commit'],
       \ 'd' : ['Gvdiffsplit!', 'diff'],
       \ 'f' : ['Git pull', 'pull'],
@@ -420,9 +427,5 @@ function! ToggleHiddenBar()
         set showcmd
     endif
 endfunction
-" Integration
-" TMUX: Ranger
-" nmap <silent> <C-x><C-j> :!tmux new-window -a "ranger" -c <C-R>=expand("%:p:h")<CR><CR><CR>
-
 call which_key#register('<Space>', "g:which_key_map")
 " }}}

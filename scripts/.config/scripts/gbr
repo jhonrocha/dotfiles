@@ -1,9 +1,0 @@
-#!/bin/sh
-launcher_cmd() {
-  if [ $TMUX ]; then
-    fzf-tmux
-  else
-    fzf
-  fi
-}
-git branch -r | awk '{split($0,a,/origin\//); print a[2]}' | launcher_cmd | xargs -I % git checkout %
