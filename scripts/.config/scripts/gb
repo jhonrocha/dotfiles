@@ -1,5 +1,5 @@
 #!/bin/sh
-fzf-branch() {
+fzf_branch() {
   git branch --color=always --all |
       grep -v HEAD |
       fzf --ansi --no-multi --preview-window right:65% \
@@ -10,7 +10,7 @@ fzf-branch() {
 gb() {
     git rev-parse HEAD > /dev/null 2>&1 || return
     local branch
-    branch=$(fzf-branch)
+    branch=$(fzf_branch)
     if [[ "$branch" = "" ]]; then
         echo "No branch selected."
         return
@@ -21,3 +21,4 @@ gb() {
         git checkout $branch;
     fi
 }
+gb
