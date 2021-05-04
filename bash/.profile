@@ -89,8 +89,6 @@ alias v='vim'
 alias tre='tree -a -I ".git|node_modules"'
 # BRoot
 alias b='br -h'
-# Rofi replace dmenu
-alias dmenu="rofi -dmenu"
 # NVM Init
 alias nvm-init=". /usr/share/nvm/init-nvm.sh"
 

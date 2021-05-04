@@ -38,6 +38,7 @@ font pango:Cantarell 8
 # Gaps
 gaps inner $gIn
 gaps outer $gOut
+gaps vertical 200
 ### Key bindings
 # Apps
 mode "apps" {

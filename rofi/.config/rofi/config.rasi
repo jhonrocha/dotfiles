@@ -2,7 +2,7 @@ configuration {
   modi: "drun,window,run,ssh";
   font: "UbuntuMono Nerd Font 22";
   show-icons: true;
-  theme: "Arc-Dark.rasi";
+  theme: "gruvbox-dark.rasi";
   matching: "fuzzy";
   kb-remove-to-eol: "";
   kb-accept-entry: "Control+m,Return,KP_Enter";
@@ -12,4 +12,3 @@ configuration {
   kb-row-up: "Up,Control+k";
   kb-row-down: "Down,Control+j";
 }
-@import "/usr/share/rofi/themes/Arc-Dark.rasi"

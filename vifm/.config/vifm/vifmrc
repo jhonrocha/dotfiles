@@ -482,12 +482,19 @@ command! FZFfind : set noquickview
                 \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
                 \| endif
 nnoremap <space><space> :FZFfind<cr>
+command! GFavs : set noquickview
+              \| let $PICK = system('favs a | rofi -dmenu -p "Bookmarks" 2>/dev/tty')
+              \| if $PICK != ''
+              \|     execute system('[ -f "$PICK" ] && echo goto || echo cd') fnameescape($PICK)
+              \| endif
+
 command! Favs : set noquickview
-              \| let $FZF_PICK = term('favs a | [ -n "$TMUX" ] && fzf-tmux || fzf 2>/dev/tty')
-              \| if $FZF_PICK != ''
-              \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
+              \| let $PICK = term('favs a | fzf --height 30 2>/dev/tty')
+              \| if $PICK != ''
+              \|     execute system('[ -f "$PICK" ] && echo goto || echo cd') fnameescape($PICK)
               \| endif
 nnoremap <space><space> :FZFfind<cr>
+nnoremap <space>G :GFavs<cr>
 nnoremap <space>g :Favs<cr>
 
 " ------------------------------------------------------------------------------
