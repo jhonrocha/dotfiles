@@ -59,6 +59,11 @@ mode "apps" {
 }
     bindsym $mod+space mode "apps"
 
+mode "pwd" {
+    bindsym s exec pss; mode "default"
+    bindsym g exec "pss g"; mode "default"
+}
+    bindsym $mod+s mode "pwd"
 
 # Gaps
 mode "gaps" {
