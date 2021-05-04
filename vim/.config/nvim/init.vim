@@ -197,7 +197,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
 
-
 ">>>....................Floaterm.................... {{{
 let g:floaterm_autoclose = 1
 let g:floaterm_keymap_toggle = '<C-t>'
@@ -327,7 +326,7 @@ let g:which_key_map.g = {
       \ 'B' : ['Gblame', 'blame'],
       \ 'c' : ['Git commit', 'commit'],
       \ 'd' : ['Gvdiffsplit!', 'diff'],
-      \ 'f' : ['Git pull', 'pull'],
+      \ 'f' : [':Git pull', 'pull'],
       \ 'g' : [':tab Gstatus', 'status'],
       \ 'h' : [':call diffget //2', 'diff h'],
       \ 'k' : ['Git checkout', 'checkout'],

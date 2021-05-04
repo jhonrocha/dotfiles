@@ -138,11 +138,6 @@ command! mkcd :mkdir %a | cd %a
 command! vgrep vim "+grep %a"
 command! reload :write | restart full
 
-command! FZFfind : set noquickview
-                \| let $FZF_PICK = term('$FZF_DEFAULT_COMMAND | fzf 2>/dev/tty')
-                \| if $FZF_PICK != ''
-                \|     execute 'goto' fnameescape($FZF_PICK)
-                \| endif
 " ------------------------------------------------------------------------------
 
 " The file type is for the default programs to be used with
@@ -408,9 +403,7 @@ set vifminfo=dhistory,chistory,state,tui,shistory,
 
 " Sample mappings
 nnoremap <space> <nop>
-nnoremap <space><space> :FZFfind<cr>
 nnoremap <space>fk :q<cr>
-nnoremap <space>g :bmarks<cr>
 nnoremap <c-t> :tabnew<cr>
 " Start shell in current directory
 nnoremap s :shell<cr>
@@ -481,6 +474,21 @@ nnoremap <a-i> :sync<cr>
 nnoremap <a-o> :sync %c<cr>
 " Swap panes
 nnoremap <c-u> <c-w>x
+
+" FZF 
+command! FZFfind : set noquickview
+                \| let $FZF_PICK = term('$FZF_DEFAULT_COMMAND | fzf 2>/dev/tty')
+                \| if $FZF_PICK != ''
+                \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
+                \| endif
+nnoremap <space><space> :FZFfind<cr>
+command! Favs : set noquickview
+              \| let $FZF_PICK = term('favs a | [ -n "$TMUX" ] && fzf-tmux || fzf 2>/dev/tty')
+              \| if $FZF_PICK != ''
+              \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
+              \| endif
+nnoremap <space><space> :FZFfind<cr>
+nnoremap <space>g :Favs<cr>
 
 " ------------------------------------------------------------------------------
 " Filetypes/directories

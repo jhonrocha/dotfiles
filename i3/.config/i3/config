@@ -45,6 +45,7 @@ mode "apps" {
     bindsym s exec "i3-msg [class=\\"$term\\"] focus || $term"; mode "default"
     bindsym f exec "i3-msg [class=\\"Brave-browser\\"] focus || brave"; mode "default"
     bindsym g exec jhbrowser; mode "default"
+    # bindsym e exec "$term vifm"; mode "default"
     bindsym e exec "$term vifm"; mode "default"
     bindsym i exec "$term htop"; mode "default"
     bindsym y exec jhsync; mode "default"
