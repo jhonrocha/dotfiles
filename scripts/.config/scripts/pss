@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+  rbw ls | rofi -dmenu | xargs -I{} rbw get {} | tr -d '\n' | yank
+else
+  while (( "$#" )); do
+    case "$1" in
+      g|-g)
+        password=$(rbw generate 12)
+        printf $password | yank
+        echo $password | xargs -0 -I{} notify-send "New Password" {}
+        shift
+        ;;
+      *)
+        rbw ls | rofi -dmenu | xargs -I{} rbw get {} | tr -d '\n' | yank
+        shift
+        ;;
+    esac
+  done
+fi
