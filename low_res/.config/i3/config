@@ -91,7 +91,7 @@ mode "gaps" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-    bindsym $mod+g mode "gaps"
+    bindsym $mod+c mode "gaps"
 
 # Resizing containers:
 mode "resize" {

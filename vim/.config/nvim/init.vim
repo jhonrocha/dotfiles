@@ -280,6 +280,7 @@ let g:which_key_map['.'] = '. files'
 
 let g:which_key_map.B = [':call ToggleHiddenBar()', 'bar']
 
+nnoremap <silent> <leader>cP :let @+=expand('%:t')<CR>
 nnoremap ]j :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap ]k :lua vim.lsp.diagnostic.goto_prev()<CR>
 let g:which_key_map.c = {
@@ -294,6 +295,7 @@ let g:which_key_map.c = {
       \ 'k' : [':call v:lua.vim.lsp.buf.hover()', 'hover'],
       \ 'l' : [':call v:lua.vim.lsp.diagnostic.set_loclist()', 'loclist'],
       \ 'p' : [':let @+=@%', 'cp path'],
+      \ 'P' : 'cp file',
       \ 'r' : [':call v:lua.vim.lsp.buf.references()', 'reference'],
       \ 's' : [':call v:lua.vim.lsp.buf.signature_help()', 'help'],
       \ 't' : [':call v:lua.vim.lsp.buf.type_definition()', 'type def'],
@@ -403,8 +405,6 @@ vnoremap K :m '<-2<CR>gv=gv
 " nnoremap <silent> <C-x><C-q> :qa<CR>
 " Close the current buffer and move to the previous one
 " nmap <C-x><C-s> :update<CR>
-
-" Copy Path
 
 " Moving deletions to register 'v'
 nnoremap d "vd

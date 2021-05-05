@@ -31,6 +31,7 @@ client.unfocused        #000000     #000000     $fg     $id       #000000
 focus_follows_mouse no
 # Window Rules
 for_window [class="zoom"] floating enable
+for_window [class="Pavucontrol"] floating enable
 for_window [class="Rambox"] move scratchpad, scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 # Font
@@ -85,14 +86,18 @@ mode "gaps" {
     bindsym p gaps outer current plus  5
     bindsym Shift+p gaps outer current plus  10
     # Setups
+    bindsym 1 gaps vertical current set 200
+    bindsym Shift+1 gaps vertical current set 0
+    bindsym 2 gaps horizontal current set 400
+    bindsym Shift+2 gaps horizontal current set 0
     bindsym 0 gaps outer current set 0; gaps inner current set 0; mode "default"
-    bindsym 9 gaps horizontal current set 500; gaps vertical current set 100; mode "default"
+    bindsym 9  gaps horizontal current set 400; gaps vertical current set 200; mode "default"
     bindsym equal gaps outer current set $gOut; gaps inner current set $gIn; mode "default"
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-    bindsym $mod+g mode "gaps"
+    bindsym $mod+c mode "gaps"
 
 # Resizing containers:
 mode "resize" {
