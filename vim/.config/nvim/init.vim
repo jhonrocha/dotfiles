@@ -46,6 +46,8 @@ Plug 'phanviet/vim-monokai-pro'
 Plug 'chriskempson/base16-vim'
 " Distraction Free
 Plug 'junegunn/goyo.vim'
+" Marks
+Plug 'kshenoy/vim-signature'
 " WhichKey
 Plug 'liuchengxu/vim-which-key'
 " Line
@@ -300,10 +302,13 @@ nnoremap <silent> <leader><Esc> :noh<cr>
 let g:which_key_map[' '] = [ 'Files' , 'files' ]
 let g:which_key_map[','] = [ 'Buffers' , 'buffers' ]
 
+" Last buffer
+nnoremap <leader><TAB> <C-^>
+let g:which_key_map['TAB'] = 'last buf'
 nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
 let g:which_key_map['.'] = '. files'
 
-let g:which_key_map.B = [':call ToggleHiddenBar()', 'bar']
+let g:which_key_map.b = [':call ToggleHiddenBar()', 'bar']
 
 nnoremap <silent> <leader>cP :let @+=expand('%:t')<CR>
 nnoremap ]j :lua vim.lsp.diagnostic.goto_next()<CR>
@@ -347,6 +352,7 @@ let g:which_key_map.f = {
       \ }
 
 nnoremap <leader>gy :!gy<CR><CR>
+nnoremap <leader>gk :Git checkout
 let g:which_key_map.g = {
       \ 'name' : '+Git' ,
       \ 'b' : [':FloatermNew gb', 'branch'],
@@ -354,9 +360,9 @@ let g:which_key_map.g = {
       \ 'c' : ['Git commit', 'commit'],
       \ 'd' : ['Gvdiffsplit!', 'diff'],
       \ 'f' : [':Git pull', 'pull'],
-      \ 'g' : [':tab Gstatus', 'status'],
+      \ 'g' : [':tab Git', 'status'],
       \ 'h' : [':call diffget //2', 'diff h'],
-      \ 'k' : ['Git checkout', 'checkout'],
+      \ 'k' : 'checkout',
       \ 'v' : [':call diffget //3', 'diff v'],
       \ 'y' : 'yank branch',
       \ }
@@ -441,12 +447,6 @@ nnoremap c "vc
 nnoremap C "vC
 nnoremap s "vs
 nnoremap S "vS
-
-" Search and Replace global
-
-" Quicklist
-" Last buffer
-nnoremap <A-TAB> <C-^>
 
 " Functions
 let s:hidden_bar = 0
