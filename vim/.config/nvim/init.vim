@@ -43,6 +43,9 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'gruvbox-community/gruvbox'
 Plug 'rakr/vim-one'
 Plug 'phanviet/vim-monokai-pro'
+Plug 'chriskempson/base16-vim'
+" Distraction Free
+Plug 'junegunn/goyo.vim'
 " WhichKey
 Plug 'liuchengxu/vim-which-key'
 " Line
@@ -53,6 +56,7 @@ call plug#end()
 ">>>....................Basic Setup.................... {{{
 " Remove mapped space
 nnoremap <Space> <Nop>
+nnoremap <silent> <F11> :Goyo<CR>
 " Set space as leader
 let mapleader=" "
 " Relative and global linenumbers
@@ -66,15 +70,16 @@ set hidden
 " Updating swap file interval
 set updatetime=1000
 " Merge signcolumn and number column into one
-set signcolumn=number
+set signcolumn=auto:1
 " Completion
 set completeopt=menuone,noinsert,noselect
 " Theme Setting
 function! s:patch_theme_colors()
-  hi! Normal ctermbg=NONE guibg=NONE
-  hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-  hi! SignColor ctermbg=NONE guibg=NONE 
-  hi! LineNr ctermbg=NONE guibg=NONE
+  " hi! Normal ctermbg=NONE guibg=NONE
+  " hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+  " hi! SignColor ctermbg=NONE guibg=NONE 
+  " hi! LineNr ctermbg=NONE guibg=NONE
+  hi! statusline guifg=#202328 guibg=#202328 ctermfg=black ctermbg=cyan
   let g:fzf_colors = { 'bg': ['bg', 'Normal'] }
 endfunction
 autocmd! ColorScheme * call s:patch_theme_colors()
@@ -82,7 +87,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " Syntax highlight
 syntax on
-colorscheme gruvbox
+colorscheme one
 " Turn on for plugin management
 filetype plugin indent on
 " Encoding
@@ -211,6 +216,10 @@ sign define LspDiagnosticsSignError text=. texthl=LspDiagnosticsSignError linehl
 sign define LspDiagnosticsSignWarning text=. texthl=LspDiagnosticsSignWarning linehl= numhl=
 sign define LspDiagnosticsSignInformation text=. texthl=LspDiagnosticsSignInformation linehl= numhl=
 sign define LspDiagnosticsSignHint text=.  texthl=LspDiagnosticsSignHint linehl= numhl=
+hi LspDiagnosticsUnderlineError cterm=undercurl gui=undercurl guisp=#fb4934
+hi LspDiagnosticsUnderlineWarning cterm=undercurl gui=undercurl guisp=#fabd2f
+hi LspDiagnosticsUnderlineInformation cterm=undercurl gui=undercurl guisp=#83a598
+hi LspDiagnosticsUnderlineHint cterm=undercurl gui=undercurl guisp=#8ec07c
 " }}}
 
 ">>>....................COMPE.................... {{{
@@ -245,8 +254,25 @@ cnoreabbrev Qall qall
 " }}}
 
 ">>>....................Terminal.................... {{{
-" Terminal
 autocmd TermOpen term://* startinsert
+" }}}
+
+">>>....................Goyo.................... {{{
+let g:goyo_width=70
+let g:goyo_height=70
+" let g:goyo_linenr=70
+lua require('galaxyline').load_galaxyline()
+function! s:goyo_enter()
+  set laststatus=0
+  lua vim.defer_fn(require("galaxyline").disable_galaxyline, 10)
+endfunction
+
+function! s:goyo_leave()
+  lua require('galaxyline').load_galaxyline()
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 
 ">>>....................FZF.................... {{{
@@ -385,7 +411,8 @@ let g:which_key_map.s = {
 
 let g:which_key_map.x = {
       \ 'name' : '+M-x' ,
-      \ 's' : ['update', 'save'],
+      \ 'k' : ['update', 'save'],
+      \ 'g' : ['Goyo', 'Goyo'],
     \ }
 
 " Expand location

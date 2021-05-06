@@ -4,7 +4,6 @@ local condition = require('galaxyline.condition')
 local gls = gl.section
 gl.short_line_list = {'NvimTree','vista','dbui','packer'}
 
-vim.api.nvim_command('hi statusline guibg=' .. colors.bg .. ' guifg=' .. colors.bg)
 gls.left[1] = {
   ViMode = {
     provider = function()
