@@ -1,35 +1,57 @@
 # Load Profile
 [ -f ~/.profile ] && . ~/.profile
-[ -f ~/.config/.rauxa_envs ] && . ~/.config/.rauxa_envs
+[ -f ~/.config/.prvenvs ] && . ~/.config/.prvenvs
 
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  XTERM=$TERMINAL
-  TERMCMD=$TERMINAL
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.cache/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+# History in cache directory:
+setopt SHARE_HISTORY
+setopt autocd notify
+unsetopt beep extendedglob
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+# End of lines configured by zsh-newuser-install
+
+# Functions
+init-i3 () {
+  export WM=i3
+  exec startx >> ~/.cache/xinit.log 2>&1
+}
+# End of lines added by compinstall
+# Functions
+init-i3 () {
+  export WM=i3
+  exec startx >> ~/.cache/xinit.log 2>&1
+}
+init-xmonad () {
   export WM=xmonad
   exec startx >> ~/.cache/xinit.log 2>&1
-fi
+}
+init-sway () {
+  export WM=sway
+  export MOZ_ENABLE_WAYLAND=1
+  exec sway --my-next-gpu-wont-be-nvidia >> ~/.cache/sway.log 2>&1
+}
 
+machine=$(uname -n)
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  if [ $machine = "tiamat" ]; then
+    # init-sway
+    init-i3
+  elif [ $machine = "think" ]; then
+    init-i3
+  fi
+fi
 # Enable colors and change prompt:
-autoload -U colors && colors	# Load colors
-PS1="%B%{$fg[red]%}["
-PS1+="%{$fg[yellow]%}%n"
-PS1+="%{$fg[green]%}@"
-PS1+="%{$fg[blue]%}%M "
-PS1+="%b%{$fg[magenta]%}%2d"
-PS1+="%{$fg[red]%}]"
-PS1+="%{$reset_color%}$ "
-[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
-export PS1
-setopt autocd		# Automatically cd into typed directory.
+autoload -U colors && colors
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
-# History in cache directory:
-HISTSIZE=99999
-SAVEHIST=99999
-HISTFILE=~/.cache/.zsh_history
-setopt SHARE_HISTORY
 
-# Basic auto/tab complete:
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/jh/.zshrc'
 autoload -Uz compinit
 zstyle ':completion:*' menu select 
 zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
@@ -37,10 +59,6 @@ zmodload zsh/complist
 setopt COMPLETE_ALIASES
 compinit
 _comp_options+=(globdots)
-
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -79,14 +97,13 @@ bindkey  "^[[4~"   end-of-line
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 
-
+# Suggestions and Highliting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # fzf support
 [ -f /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && . /usr/share/fzf/completion.zsh
-# Run neofetch
-if [ -z "$TMUX" ]; then
-  [ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
-  neofetch
-fi
-
-source /home/jh/.config/broot/launcher/bash/br
+# RUST
+[ -f ~/.cargo/env ] && . ~/.cargo/env
+# Starship
+eval "$(starship init zsh)"

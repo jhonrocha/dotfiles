@@ -17,4 +17,4 @@ end
 ### END OF VI MODE ###
 
 ### source alias
-source ~/.alias
+# source ~/.alias

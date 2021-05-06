@@ -35,7 +35,7 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Rambox"] move scratchpad, scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 # Font
-font pango:Cantarell 8
+font pango:Cantarell 0
 # Gaps
 gaps inner $gIn
 gaps outer $gOut

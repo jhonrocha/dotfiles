@@ -98,8 +98,7 @@ set fileformats=unix,dos,mac
 " Fast scrool
 set ttyfast
 " Wrapping
-set wrap
-set linebreak
+set wrap linebreak
 set nolist
 set path+=**
 " Fix backspace indent

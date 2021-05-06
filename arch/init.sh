@@ -18,7 +18,7 @@ stow starship
 stow tmux
 stow vim
 stow vifm
-stow bash
+stow zsh
 
 #### Installing yay
 if ! command -v yay &> /dev/null

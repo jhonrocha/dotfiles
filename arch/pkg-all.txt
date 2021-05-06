@@ -78,3 +78,6 @@ zathura
 zathura-pdf-mupdf
 zip
 procs
+zsh
+zsh-syntax-highlighting
+zsh-autosuggestions

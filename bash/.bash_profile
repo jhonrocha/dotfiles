@@ -1,5 +1,5 @@
 [ -f ~/.profile ] && . "$HOME"/.profile
-[ -f ~/.config/.rauxa_envs ] && . ~/.config/.rauxa_envs
+[ -f ~/.config/.prvenvs ] && . ~/.config/.prvenvs
 
 # Functions
 init-i3 () {

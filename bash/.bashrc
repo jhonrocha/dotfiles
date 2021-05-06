@@ -38,6 +38,5 @@ shopt -s checkwinsize
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
 # Check for cargo
 [ -f ~/.cargo/env ] && . ~/.cargo/env
-[ -z "$TMUX" ] && [ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
 
 eval "$(starship init bash)"
