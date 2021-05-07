@@ -42,7 +42,6 @@ os-prober
 p7zip
 pavucontrol
 pcmanfm
-picom
 playerctl
 polkit-gnome
 pulseaudio
