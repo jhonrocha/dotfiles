@@ -100,6 +100,8 @@ bindkey  "^[[F"   end-of-line
 # Suggestions and Highliting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-accept
+
 # fzf support
 [ -f /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && . /usr/share/fzf/completion.zsh

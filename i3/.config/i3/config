@@ -32,7 +32,7 @@ focus_follows_mouse no
 # Window Rules
 for_window [class="zoom"] floating enable
 for_window [class="Pavucontrol"] floating enable
-for_window [class="Rambox"] move scratchpad, scratchpad show, resize set width 50 ppt height 70 ppt, move position center
+for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 # Font
 font pango:Cantarell 0
@@ -127,7 +127,7 @@ mode "resize" {
     # Start a terminal
     bindsym $mod+Return exec $term
     # Rambox ScratchPad
-    bindsym $mod+u exec "i3-msg [class=\\"Rambox\\"] scratchpad show || rambox"
+    bindsym $mod+u exec "i3-msg [class=\\"Ferdi\\"] scratchpad show || ferdi"
     # Terminal ScratchPad
     bindsym $mod+i exec "i3-msg [class=\\"termpad\\"] scratchpad show || $term --class termpad"
     # Kill focused window
