@@ -52,7 +52,6 @@ python-pynvim
 rclone
 ripgrep
 rofi
-shellcheck
 starship
 stow
 sudo

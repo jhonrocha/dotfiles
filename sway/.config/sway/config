@@ -1,4 +1,3 @@
-#
 # Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -22,6 +21,8 @@ set $br #ff69b4
 set $ia #232425
 set $id #FFFFFF
 
+set $primary = HDMI-A-2
+set $secondary = eDP-1
 #
 # Basic
 #
@@ -36,17 +37,15 @@ focus_follows_mouse no
 floating_modifier $mod normal
 # Window Rules
 for_window [app_id="zoom"] floating enable
-for_window [class="Rambox"] move scratchpad
-for_window [class="Rambox"] scratchpad show
-for_window [app_id="termpad"] move scratchpad
-for_window [app_id="termpad"] scratchpad show
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 70 ppt height 70 ppt, move position center
+for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 1300 px height 1000 px, move position center
 # Font
-font Cantarell 12
+font Cantarell 0
 # Gaps
 gaps inner $gIn
 gaps horizontal 500
 gaps vertical 100
-# smart_gaps off
 
 #
 # Output configuration
@@ -67,7 +66,6 @@ input type:mouse {
     pointer_accel 1
 }
 # You can get the names of your inputs by running: swaymsg -t get_inputs
-
 #
 # Key bindings
 #
@@ -81,7 +79,7 @@ mode "apps" {
     bindsym i exec '$term htop'; mode "default"
     bindsym y exec jhsync; mode "default"
     # Change Wallpaper
-    bindsym w exec 'feh --bg-fill --randomize ~/.config/wallpapers/'; mode "default"
+    bindsym w output * bg $(find ~/.config/wallpapers -type f | shuf -n 1) fill
 
     # Screenshot
     bindsym p exec grim -g "$(slurp)" - | wl-copy; mode "default"
@@ -145,8 +143,8 @@ bindsym $mod+x mode "resize"
 # Basics:
 # Start a terminal
 bindsym $mod+Return exec $term
-# Rambox ScratchPad
-bindsym $mod+u exec 'swaymsg [class="Rambox"] scratchpad show || rambox'
+# Ferdi ScratchPad
+bindsym $mod+u exec 'swaymsg [class="Ferdi"] scratchpad show || ferdi'
 # Terminal ScratchPad
 bindsym $mod+i exec 'swaymsg [app_id="termpad"] scratchpad show || $term --class termpad'
 
@@ -187,6 +185,30 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# Monitos
+workspace 1 output $primary
+workspace 2 output $primary
+workspace 3 output $primary
+workspace 4 output $primary
+workspace 5 output $primary
+workspace 6 output $secondary
+workspace 7 output $secondary
+workspace 7 gaps inner $gIn
+workspace 7 gaps outer 0
+workspace 8 output $secondary
+workspace 8 gaps inner $gIn
+workspace 8 gaps outer 0
+workspace 9 output $secondary
+workspace 9 gaps inner $gIn
+workspace 9 gaps outer 0
+workspace 10 ouuput $secondary
+workspace 10 gaps inner $gIn
+workspace 10 gaps outer 0
+bindsym $mod+Mod1+h move workspace to output left
+bindsym $mod+Mod1+l move workspace to output right
+bindsym $mod+bracketleft focus output left
+bindsym $mod+bracketright focus output right
+
 # Switch to workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -209,10 +231,10 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
+
 # Next/Prior
 bindsym $mod+o workspace prev_on_output
 bindsym $mod+p workspace next_on_output
-
 # Layout stuff:
 bindsym $mod+w splith
 bindsym $mod+e splitv
