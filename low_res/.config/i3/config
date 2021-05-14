@@ -21,9 +21,6 @@ set $br #ff69b4
 set $ia #232425
 set $id #FFFFFF
 
-set $primary = HDMI2
-set $secondary = eDP1
-
 # CONFIG
 default_border pixel 3
 default_floating_border pixel 3
@@ -36,8 +33,8 @@ focus_follows_mouse no
 # Window Rules
 for_window [class="zoom"] floating enable
 for_window [class="Pavucontrol"] floating enable
-for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 50 ppt height 70 ppt, move position center
-for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
+for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 70 ppt height 90 ppt, move position center
+for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 # Font
 font pango:Cantarell 0
 # Gaps
@@ -167,27 +164,6 @@ mode "resize" {
     bindsym $mod+Shift+Right move right
 
 # Workspaces:
-    # Monitos
-    workspace 1 output $primary
-    workspace 2 output $primary
-    workspace 3 output $primary
-    workspace 4 output $primary
-    workspace 5 output $primary
-    workspace 6 output $secondary
-    workspace 6 gaps inner $gIn
-    workspace 6 gaps outer 0
-    workspace 7 output $secondary
-    workspace 7 gaps inner $gIn
-    workspace 7 gaps outer 0
-    workspace 8 output $secondary
-    workspace 8 gaps inner $gIn
-    workspace 8 gaps outer 0
-    workspace 9 output $secondary
-    workspace 9 gaps inner $gIn
-    workspace 9 gaps outer 0
-    workspace 10 output $secondary
-    workspace 10 gaps inner $gIn
-    workspace 10 gaps outer 0
     bindsym $mod+Mod1+h move workspace to output left
     bindsym $mod+Mod1+l move workspace to output right
     bindsym $mod+m focus output left
