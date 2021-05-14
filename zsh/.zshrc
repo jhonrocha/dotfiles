@@ -42,7 +42,7 @@ if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]
     # init-sway
     init-i3
   elif [ $machine = "think" ]; then
-    init-sway
+    init-i3
   fi
 fi
 # Enable colors and change prompt:
