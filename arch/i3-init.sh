@@ -9,4 +9,11 @@ sudo pacman --noconfirm --needed -S \
 
 #### STOW THE PACKAGES
 cd ~/dotfiles
-stow dunst picom x i3
+stow dunst
+stow picom
+stow x
+stow i3
+
+#### Wallpaper
+mkdir -p $HOME/.config/wallpapers
+wget https://i.redd.it/u49cjyw80ty61.png --output-document=$HOME/.config/wallpapers/landscape.png
