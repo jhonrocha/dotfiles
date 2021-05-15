@@ -9,7 +9,6 @@ then
     git clone https://aur.archlinux.org/yay.git ~/yay
     cd ~/yay
     makepkg -si
-    exit
 fi
 yay -S --answerclean None --answerdiff None --answeredit None --noprovides --norebuild --needed - < pkg-aur.txt
 
