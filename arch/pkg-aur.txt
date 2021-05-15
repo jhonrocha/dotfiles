@@ -1,0 +1,8 @@
+vpn-slice
+nerd-fonts-fira-code
+nerd-fonts-fira-mono
+nerd-fonts-iosevka
+nerd-fonts-hack
+nerd-fonts-source-code-pro
+brave-bin
+neovim-nightly-bin

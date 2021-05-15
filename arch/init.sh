@@ -3,6 +3,19 @@
 ##### INSTALL PKGS
 sudo pacman --noconfirm --needed -S - < pkg-all.txt
 
+#### Installing yay
+if ! command -v yay &> /dev/null
+then
+    git clone https://aur.archlinux.org/yay.git ~/yay
+    cd ~/yay
+    makepkg -si
+    exit
+fi
+yay -S --answerclean None --answerdiff None --answeredit None --noprovides --norebuild --needed - < pkg-aur.txt
+
+#### Devlopment Stack
+./dev-init.sh
+
 #### STOW THE PACKAGES
 cd ~/dotfiles
 stow doom
@@ -20,15 +33,6 @@ stow vim
 stow vifm
 stow zsh
 
-#### Installing yay
-if ! command -v yay &> /dev/null
-then
-    git clone https://aur.archlinux.org/yay.git ~/yay
-    cd ~/yay
-    makepkg -si
-    exit
-fi
-
 #### Check for TPM
 [ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -37,15 +41,15 @@ xdg-mime default brave-broswer.desktop  x-scheme-handler/http
 xdg-mime default brave-browser.desktop x-scheme-handler/https
 xdg-settings set default-web-browser brave-browser.desktop
 
-
-#### EMACS
-# if [[ ! -d "$HOME/.doom-emacs" ]] ; then
-#     git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.doom-emacs
-#     ~/.doom-emacs/bin/doom install
-# fi
-
 #### GIT Store
 git config --global credential.helper store
 git config --global core.excludesFile '~/.config/.git-ignore'
 
 
+##### PIP Install
+sudo pip3 install dbus-python pygobject
+
+##### Setting audio
+amixer sset Master unmute
+amixer sset Speaker unmute
+amixer sset Headphone unmute

@@ -108,4 +108,5 @@ bindkey '^ ' autosuggest-accept
 # RUST
 [ -f ~/.cargo/env ] && . ~/.cargo/env
 # Starship
+precmd_functions=
 eval "$(starship init zsh)"
