@@ -30,7 +30,9 @@ stow starship
 stow tmux
 stow vim
 stow vifm
+stow bash
 stow zsh
+stow kitty
 
 #### Check for TPM
 [ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
