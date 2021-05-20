@@ -5,3 +5,4 @@ vim/.config/nvim/.netrwhist
 ranger/.config/ranger/plugins
 xmonad/.xmonad
 fish_variables
+vifminfo.json
