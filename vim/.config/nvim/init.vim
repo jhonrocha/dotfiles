@@ -353,6 +353,7 @@ let g:which_key_map.f = {
 
 nnoremap <leader>gy :!gy<CR><CR>
 nnoremap <leader>gk :Git checkout
+nnoremap <leader>gp :Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>
 let g:which_key_map.g = {
       \ 'name' : '+Git' ,
       \ 'b' : [':FloatermNew gb', 'branch'],
@@ -363,12 +364,11 @@ let g:which_key_map.g = {
       \ 'g' : [':tab Git', 'status'],
       \ 'h' : [':call diffget //2', 'diff h'],
       \ 'k' : 'checkout',
+      \ 'p' : 'push',
       \ 'v' : [':call diffget //3', 'diff v'],
       \ 'y' : 'yank branch',
       \ }
 
-nnoremap <leader>gp :Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>
-let g:which_key_map.g.p = "push"
 
 let g:which_key_map.l = {
       \ 'name' : '+loclist' ,
