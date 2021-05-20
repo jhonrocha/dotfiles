@@ -16,4 +16,4 @@ stow i3
 
 #### Wallpaper
 mkdir -p $HOME/.config/wallpapers
-wget https://i.redd.it/u49cjyw80ty61.png --output-document=$HOME/.config/wallpapers/landscape.png
+wget https://i.redd.it/qvvh6cxtvey61.png --output-document=$HOME/.config/wallpapers/landscape.png
