@@ -44,6 +44,7 @@ stow kitty
 xdg-mime default brave-broswer.desktop  x-scheme-handler/http
 xdg-mime default brave-browser.desktop x-scheme-handler/https
 xdg-settings set default-web-browser brave-browser.desktop
+xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 #### GIT Store
 git config --global credential.helper store

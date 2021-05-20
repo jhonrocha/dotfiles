@@ -60,7 +60,7 @@ alias gd="cd ~/Downloads"
 alias gD="cd ~/Documents"
 alias gt="cd ~/Desktop"
 alias gp="cd ~/workspace/pr"
-alias gk="cd ~/keys"
+alias gk="cd ~/prvdots/keys"
 alias gg="cd ~/org"
 alias gl="git log --pretty=format:\"[%h] %ae, %ar: %s\" --stat"
 # List all files

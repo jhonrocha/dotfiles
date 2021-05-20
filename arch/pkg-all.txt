@@ -5,6 +5,7 @@ alsa-utils
 alsa-utils
 android-tools
 arc-gtk-theme
+arc-icon-theme
 atool
 bash-completion
 bat
