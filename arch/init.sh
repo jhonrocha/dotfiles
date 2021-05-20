@@ -50,8 +50,8 @@ git config --global credential.helper store
 git config --global core.excludesFile '~/.config/.git-ignore'
 
 
-##### PIP Install
-sudo pip3 install dbus-python pygobject
+# ##### PIP Install
+sudo pip3 install pygobject
 
 ##### Setting audio
 amixer sset Master unmute
