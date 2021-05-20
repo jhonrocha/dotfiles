@@ -1,5 +1,6 @@
 #!/bin/bash -v
 
+cd ~/dotfiles/arch
 ##### INSTALL PKGS
 sudo pacman --noconfirm --needed -S - < pkg-all.txt
 
@@ -10,6 +11,8 @@ then
     cd ~/yay
     makepkg -si
 fi
+
+cd ~/dotfiles/arch
 yay -S --answerclean None --answerdiff None --answeredit None --noprovides --norebuild --needed - < pkg-aur.txt
 
 #### Devlopment Stack

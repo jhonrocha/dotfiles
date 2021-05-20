@@ -1,5 +1,4 @@
 acpi
-adapta-gtk-theme
 adobe-source-han-sans-otc-fonts
 adobe-source-han-serif-otc-fonts
 alsa-utils
@@ -32,7 +31,6 @@ libnotify
 linux-headers
 man-db
 man-pages
-materia-gtk-theme
 neofetch
 nodejs
 ntfs-3g
@@ -79,3 +77,5 @@ procs
 zsh
 zsh-syntax-highlighting
 zsh-autosuggestions
+materia-gtk-theme
+arc-gtk-theme
