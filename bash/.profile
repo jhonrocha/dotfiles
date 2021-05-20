@@ -1,7 +1,7 @@
 # PATH
 PATH="$HOME/go/bin:$PATH"
-PATH="$HOME/.config/scripts:$PATH"
-PATH="$HOME/.config/.privateScripts:$PATH"
+PATH="$HOME/.config/dotbin:$PATH"
+PATH="$HOME/.config/prvbin:$PATH"
 PATH="$HOME/.config/npm-global/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
