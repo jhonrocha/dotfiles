@@ -33,8 +33,8 @@ focus_follows_mouse no
 # Window Rules
 for_window [class="zoom"] floating enable
 for_window [class="Pavucontrol"] floating enable
-for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 70 ppt height 90 ppt, move position center
-for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
+for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 50 ppt height 70 ppt, move position center
+for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 # Font
 font pango:Cantarell 0
 # Gaps
