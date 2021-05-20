@@ -4,6 +4,7 @@ adobe-source-han-serif-otc-fonts
 alsa-utils
 alsa-utils
 android-tools
+arc-gtk-theme
 atool
 bash-completion
 bat
@@ -42,6 +43,7 @@ pavucontrol
 pcmanfm
 playerctl
 polkit-gnome
+procs
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
@@ -73,9 +75,6 @@ youtube-dl
 zathura
 zathura-pdf-mupdf
 zip
-procs
 zsh
-zsh-syntax-highlighting
 zsh-autosuggestions
-materia-gtk-theme
-arc-gtk-theme
+zsh-syntax-highlighting
