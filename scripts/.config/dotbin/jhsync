@@ -6,13 +6,13 @@
 # \___/ |_| \_\\___/  \___||_| |_| \__,_|
 
 declare -A options=(
-  ["push"]="rclone sync ~/oneDrive/ oneDrive: -vv"
-  ["pull"]="rclone sync oneDrive: ~/oneDrive/ -vv"
+  ["push"]="rclone sync ~/drive/ onedrive: -vv"
+  ["pull"]="rclone sync onedrive: ~/drive/ -vv"
 )
 choice=$(echo "${!options[@]}" | tr " " "\n" | rofi -dmenu -p "Sync Action")
 if [ "$choice" ]; then
   # Execute choiced command
   notify-send "Syncing ~/oneDrive" "Starting Syncing"
-  alacritty -e bash -c "${options[$choice]} && read -p 'Press enter to continue'"
+  kitty -e bash -c "${options[$choice]} && read -p 'Press enter to continue'"
   notify-send "Sync ~/oneDrive" "Done!"
 fi

@@ -66,7 +66,8 @@ alias gk="cd ~/prvdots/keys"
 alias gg="cd ~/org"
 alias gl="git log --pretty=format:\"[%h] %ae, %ar: %s\" --stat"
 # List all files
-alias l="exa -a --group-directories-first"
+alias l="exa --group-directories-first"
+alias la="exa -a --group-directories-first"
 alias ll="exa -la --group-directories-first"
 # Copy to clipboard
 alias clip="yank"
