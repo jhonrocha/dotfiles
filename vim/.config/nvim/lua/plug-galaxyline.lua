@@ -102,23 +102,23 @@ gls.mid[1] = {
   }
 }
 
-gls.right[1] = {
-  GitIcon = {
-    provider = function() return '  ' end,
-    condition = condition.check_git_workspace,
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.violet,colors.bg,'bold'},
-  }
-}
+-- gls.right[1] = {
+--   GitIcon = {
+--     provider = function() return '  ' end,
+--     condition = condition.check_git_workspace,
+--     separator = ' ',
+--     separator_highlight = {'NONE',colors.bg},
+--     highlight = {colors.violet,colors.bg,'bold'},
+--   }
+-- }
 
-gls.right[2] = {
-  GitBranch = {
-    provider = 'GitBranch',
-    condition = condition.check_git_workspace,
-    highlight = {colors.violet,colors.bg,'bold'},
-  }
-}
+-- gls.right[2] = {
+--   GitBranch = {
+--     provider = 'GitBranch',
+--     condition = condition.check_git_workspace,
+--     highlight = {colors.violet,colors.bg,'bold'},
+--   }
+-- }
 
 gls.right[3] = {
   DiffAdd = {
