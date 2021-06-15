@@ -341,10 +341,16 @@ let g:which_key_map.E = 'open file'
 
 let g:which_key_map.e = [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'lsp_line']
 
+function! Vifm_jump()
+  let g:vifm_exec_args = '--select ' . @% . ' -c only'
+  Vifm
+endfunction
+
+nnoremap <leader>ff :call Vifm_jump()<CR>
 let g:which_key_map.f = {
       \ 'name' : '+files' ,
       \ 'd' : ['bd', 'delete'],
-      \ 'f' : ['Vifm', 'Vifm'],
+      \ 'f' : 'Vifm',
       \ 'k' : [':bp | bd #', 'close'],
       \ 'n' : ['bn' , 'next'],
       \ 'p' : ['bp' , 'prev'],
