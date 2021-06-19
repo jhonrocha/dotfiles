@@ -65,6 +65,8 @@ alias gp="cd ~/workspace/pr"
 alias gk="cd ~/prvdots/keys"
 alias gg="cd ~/org"
 alias gl="git log --pretty=format:\"[%h] %ae, %ar: %s\" --stat"
+# Make
+alias m="make"
 # List all files
 alias l="exa --group-directories-first"
 alias la="exa -a --group-directories-first"
