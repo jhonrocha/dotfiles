@@ -14,6 +14,8 @@ set $menu rofi -show drun -columns 2
 # GAPS
 set $gIn 8
 set $gOut 0
+set $gVert 200
+set $gHorz 600
 # UI
 set $bg #171717
 set $fg #eff1f5
@@ -40,8 +42,8 @@ font pango:Cantarell 0
 # Gaps
 gaps inner $gIn
 gaps outer $gOut
-gaps vertical 200
-gaps horizontal 600
+gaps vertical $gVert
+gaps horizontal $gHorz
 ### Key bindings
 # Apps
 mode "apps" {
@@ -91,12 +93,10 @@ mode "gaps" {
     bindsym p gaps outer current plus  5
     bindsym Shift+p gaps outer current plus  10
     # Setups
-    bindsym 1 gaps vertical current set 200
-    bindsym Shift+1 gaps vertical current set 0
-    bindsym 2 gaps horizontal current set 400
-    bindsym Shift+2 gaps horizontal current set 0
+    bindsym 1 gaps vertical current set 0
+    bindsym 2 gaps horizontal current set 0
     bindsym 0 gaps outer current set 0; gaps inner current set 0; mode "default"
-    bindsym 9  gaps horizontal current set 400; gaps vertical current set 200; mode "default"
+    bindsym 9  gaps inner current set $gIn; gaps horizontal current set $gHorz; gaps vertical current set $gVert; mode "default"
     bindsym equal gaps outer current set $gOut; gaps inner current set $gIn; mode "default"
     # Return to default mode
     bindsym Return mode "default"

@@ -342,8 +342,9 @@ let g:which_key_map.E = 'open file'
 let g:which_key_map.e = [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'lsp_line']
 
 function! Vifm_jump()
-  let g:vifm_exec_args = '--select ' . @% . ' -c only'
+  let g:vifm_exec_args = '-c only --select ' . expand('%:p')
   Vifm
+  let g:vifm_exec_args = ''
 endfunction
 
 nnoremap <leader>ff :call Vifm_jump()<CR>
