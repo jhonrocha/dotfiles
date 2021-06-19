@@ -21,7 +21,7 @@ export SXHKD_SHELL=/bin/sh
 export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
 export LC_ALL=en_US.UTF-8
 export FZF_DEFAULT_OPTS="--layout=reverse
---history=$HOME/cache/.fzf_history
+--history=$HOME/.cache/.fzf_history
 --border --cycle --multi
 --bind ctrl-a:toggle-all,ctrl-u:preview-up,ctrl-d:preview-down,ctrl-s:toggle-preview"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
