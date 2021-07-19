@@ -23,6 +23,7 @@ order += "tztime local"
 
 volume master {
         format = "<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> 奔 %volume </span></span> "
+        format_muted = "<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> 奔 %volume </span></span> "
         device = "default"
         mixer = "Master"
         mixer_idx = 0

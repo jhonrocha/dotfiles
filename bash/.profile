@@ -54,7 +54,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 # Shortcuts
 alias gw="cd ~/workspace"
-alias gj="cd ~/jhworkspace"
+alias gj="cd ~/personal"
 alias g.="cd ~/dotfiles"
 alias g,="cd ~/prvdots"
 alias g1="cd ~/oneDrive"

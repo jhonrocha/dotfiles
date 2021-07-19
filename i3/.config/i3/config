@@ -106,6 +106,7 @@ mode "gaps" {
 
 # Resizing containers:
 mode "resize" {
+    bindsym f floating enable; resize set width 1926 px height 1086 px; mode "default"
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
