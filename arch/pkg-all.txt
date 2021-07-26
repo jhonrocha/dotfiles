@@ -80,3 +80,4 @@ zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
 mpv
+network-manager-applet

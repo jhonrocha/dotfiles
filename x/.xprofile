@@ -27,3 +27,6 @@ $HOME/.config/dunst/launch.sh
 
 # Left Pointer
 xsetroot -cursor_name left_ptr
+
+##### Wifi
+nm-applet &
