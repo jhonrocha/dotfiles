@@ -1,6 +1,6 @@
 -- Galaxyline
 require("plug-galaxyline")
-require("plug-telescope")
+-- require("plug-telescope")
 -- LSP
 local lspconfig = require'lspconfig'
 -- TS-JS

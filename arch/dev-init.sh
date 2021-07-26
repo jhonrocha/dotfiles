@@ -19,6 +19,9 @@ sudo usermod -aG docker $USER
 # NeoVIM LSP
 npm install -g typescript typescript-language-server
 yarn global add diagnostic-languageserver
+
+# Python LSP
+pip install 'python-lsp-server[all]'
 # Rust
 if ! command -v rustc &> /dev/null
 then

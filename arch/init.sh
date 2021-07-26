@@ -19,6 +19,7 @@ yay -S --answerclean None --answerdiff None --answeredit None --noprovides --nor
 ./dev-init.sh
 
 #### STOW THE PACKAGES
+rm ~/.bash*
 cd ~/dotfiles
 stow doom
 stow editor
