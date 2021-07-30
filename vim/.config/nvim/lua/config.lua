@@ -81,7 +81,7 @@ lspconfig.sumneko_lua.setup{
 }
 
 -- Python
-lspconfig.pyls.setup{}
+lspconfig.pylsp.setup{}
 
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

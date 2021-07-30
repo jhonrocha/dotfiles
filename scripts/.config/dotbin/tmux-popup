@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Choose Project
+tmux display-message -p '#{session_name} #{window_name} #{pane_current_path}' | { read -r session window path
+  if [[ $session = "debug" ]]; then
+    tmux detach-client
+  else
+    # tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -K -E -R "tmux attach -t popup || tmux new -s popup"
+  fi
+  # ((tmux switch-client -t $target:$window) || (tmux new-window -c $path -t $target: -n $window && tmux switch-client -t $target:$window) || (tmux new-session -c $path -d -s $target -n $window && tmux switch-client -t $target:$window))
+}
