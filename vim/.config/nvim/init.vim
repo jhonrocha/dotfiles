@@ -26,8 +26,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'neovim/nvim-lspconfig'
 " Completion
 Plug 'hrsh7th/nvim-compe'
-" Floaterm
-Plug 'voldikss/vim-floaterm'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " FZF
@@ -203,15 +201,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
 
-">>>....................Floaterm.................... {{{
-let g:floaterm_autoclose = 1
-let g:floaterm_keymap_toggle = '<C-t>'
-let g:floaterm_width = 0.8
-let g:floaterm_height = 0.8
-let g:floaterm_opener = 'edit'
-hi FloatermBorder guibg=NONE guifg=cyan
-" }}}
-
 ">>>....................LSP.................... {{{
 sign define LspDiagnosticsSignError text=. texthl=LspDiagnosticsSignError linehl= numhl=
 sign define LspDiagnosticsSignWarning text=. texthl=LspDiagnosticsSignWarning linehl= numhl=
@@ -363,7 +352,6 @@ nnoremap <leader>gk :Git checkout
 nnoremap <leader>gp :Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>
 let g:which_key_map.g = {
       \ 'name' : '+Git' ,
-      \ 'b' : [':FloatermNew gb', 'branch'],
       \ 'B' : ['Gblame', 'blame'],
       \ 'c' : ['Git commit', 'commit'],
       \ 'd' : ['Gvdiffsplit!', 'diff'],
