@@ -1,6 +1,27 @@
--- Galaxyline
-require("plug-galaxyline")
--- require("plug-telescope")
+-- Line
+-- require("plug-galaxyline")
+require('lualine').setup {
+  options = {
+    theme = 'github',
+    section_separators = {"", ""},
+    component_separators = {"", ""},
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {''},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+}
+-- Theme
+require("github-theme").setup({
+  themeStyle = "dark",
+})
+
+-- Telescope
+require("plug-telescope")
 -- LSP
 local lspconfig = require'lspconfig'
 -- TS-JS
@@ -50,20 +71,20 @@ lspconfig.diagnosticls.setup{
 }
 -- RUST
 lspconfig.rust_analyzer.setup({
-    settings = {
-        ["rust-analyzer"] = {
-            assist = {
-                importMergeBehavior = "last",
-                importPrefix = "by_self",
-            },
-            cargo = {
-                loadOutDirsFromCheck = true
-            },
-            procMacro = {
-                enable = true
-            },
-        }
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importMergeBehavior = "last",
+        importPrefix = "by_self",
+      },
+      cargo = {
+        loadOutDirsFromCheck = true
+      },
+      procMacro = {
+        enable = true
+      },
     }
+  }
 })
 -- VIM
 lspconfig.vimls.setup{}
@@ -85,9 +106,9 @@ lspconfig.pylsp.setup{}
 
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false
-    }
+vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = false
+}
 )
 
 -- Treesitter

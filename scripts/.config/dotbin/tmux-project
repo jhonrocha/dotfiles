@@ -7,6 +7,7 @@ launcher_cmd() {
 # Choose Project
 favs c | launcher_cmd | { read -r path name
   if [[ -n $path ]]; then
-    ((tmux switch-client -t code:$name) || (tmux new-window -c $path -t code: -n $name 'nvim -c "Files"' && tmux switch-client -t code:$name) || (tmux new-session -c $path -d -s code -n $name 'nvim -c "Files"' && tmux switch-client -t code:$name))
+    ((tmux switch-client -t code:$name) || (tmux new-window -c $path -t code: -n $name 'nvim -c ":call v:lua.ff()"' && tmux switch-client -t code:$name) || (tmux new-session -c $path -d -s code -n $name 'nvim -c ":call v:lua.ff()"' && tmux switch-client -t code:$name))
   fi
 }
+    # ((tmux switch-client -t code:$name) || (tmux new-window -c $path -t code: -n $name 'nvim -c "Files"' && tmux switch-client -t code:$name) || (tmux new-session -c $path -d -s code -n $name 'nvim -c "Files"' && tmux switch-client -t code:$name))

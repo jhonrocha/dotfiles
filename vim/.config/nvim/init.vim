@@ -42,6 +42,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'rakr/vim-one'
 Plug 'phanviet/vim-monokai-pro'
 Plug 'chriskempson/base16-vim'
+Plug 'projekt0n/github-nvim-theme'
 " Distraction Free
 Plug 'junegunn/goyo.vim'
 " Marks
@@ -49,7 +50,7 @@ Plug 'kshenoy/vim-signature'
 " WhichKey
 Plug 'liuchengxu/vim-which-key'
 " Line
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'hoob3rt/lualine.nvim'
 call plug#end()
 " }}}
 
@@ -75,19 +76,18 @@ set signcolumn=auto:1
 set completeopt=menuone,noinsert,noselect
 " Theme Setting
 function! s:patch_theme_colors()
-  " hi! Normal ctermbg=NONE guibg=NONE
-  " hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-  " hi! SignColor ctermbg=NONE guibg=NONE 
-  " hi! LineNr ctermbg=NONE guibg=NONE
-  hi! statusline guifg=#202328 guibg=#202328 ctermfg=black ctermbg=cyan
+  hi! Normal ctermbg=NONE guibg=NONE
+  hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+  hi! SignColor ctermbg=NONE guibg=NONE 
+  hi! LineNr ctermbg=NONE guibg=NONE
   let g:fzf_colors = { 'bg': ['bg', 'Normal'] }
 endfunction
-autocmd! ColorScheme * call s:patch_theme_colors()
+" autocmd! ColorScheme * call s:patch_theme_colors()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set background=dark
+set background=light
 " Syntax highlight
 syntax on
-colorscheme one
+" colorscheme one
 " Turn on for plugin management
 filetype plugin indent on
 " Encoding
@@ -157,6 +157,7 @@ endif
 " Mouse Configuration
 set mouse=a
 set mousemodel=popup
+set startofline
 
 set t_Co=256
 set guioptions=egmrti
@@ -250,15 +251,9 @@ autocmd TermOpen term://* startinsert
 ">>>....................Goyo.................... {{{
 let g:goyo_width=70
 let g:goyo_height=70
-" let g:goyo_linenr=70
-lua require('galaxyline').load_galaxyline()
+let g:goyo_linenr=70
 function! s:goyo_enter()
   set laststatus=0
-  lua vim.defer_fn(require("galaxyline").disable_galaxyline, 10)
-endfunction
-
-function! s:goyo_leave()
-  lua require('galaxyline').load_galaxyline()
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -281,21 +276,17 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden  --glob=!.git --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " }}}
 
 ">>>....................Mappings.................... {{{
 "" Opens a tab edit command with the path of the currently edited file filled
 
 nnoremap <silent> <leader><Esc> :noh<cr>
-let g:which_key_map[' '] = [ 'Files' , 'files' ]
-let g:which_key_map[','] = [ 'Buffers' , 'buffers' ]
 
 " Last buffer
 nnoremap <leader><TAB> <C-^>
 let g:which_key_map['TAB'] = 'last buf'
-nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
-let g:which_key_map['.'] = '. files'
 
 let g:which_key_map.b = [':call ToggleHiddenBar()', 'bar']
 
@@ -395,17 +386,26 @@ let g:which_key_map.r.r = 'all'
 nnoremap <leader>rb :.,$s//gc<left><left><left>
 let g:which_key_map.r.b = 'bellow'
 
+" FZF
+" let g:which_key_map[' '] = [ 'Files' , 'files' ]
+" let g:which_key_map[','] = [ 'Buffers' , 'buffers' ]
+" let g:which_key_map['f'] = [ ':Rg' , 'grep' ]
+nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
+let g:which_key_map['.'] = '. files'
+
+" Telescope
+let g:which_key_map[' '] = [':call v:lua.ff()', 'T files']
+let g:which_key_map[','] = [':Telescope buffers', 'T buffers']
 let g:which_key_map.s = {
       \ 'name' : '+Fuzzy' ,
-      \ ',' : [':call v:lua.my_buffers()', 'T buffers'],
+      \ ',' : [':Telescope buffers', 'T buffers'],
       \ 'c' : [':Commits', 'commits'],
-      \ 'f' : [':Rg', 'grep'],
       \ 'h' : [':Telescope help_tags', 'T Help'],
       \ 'H' : [':History', 'history'],
       \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'T oldfiles'],
       \ 's' : ['/', '/'],
-      \ 't' : [':call v:lua.my_find_files()', 'T files'],
-      \ 'w' : [':Telescope live_grep', 'T grep'],
+      \ 't' : [':call v:lua.ff()', 'T files'],
+      \ 'f' : [':Telescope live_grep', 'T grep'],
       \ 'x' : [':Commands', 'commands'],
       \ }
 
@@ -414,12 +414,6 @@ let g:which_key_map.x = {
       \ 'k' : ['update', 'save'],
       \ 'g' : ['Goyo', 'Goyo'],
     \ }
-
-" Expand location
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-"" Buffer nav
-
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
