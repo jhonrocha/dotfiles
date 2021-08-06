@@ -2,7 +2,7 @@
 
 ##### INSTALL PKGS
 sudo pacman --noconfirm --needed -S \
-    dunst feh flameshot slock \
+    dunst feh flameshot slock acpilight
     xorg xorg-xinit xorg-xmessage \
     xterm xclip xdo i3 picom
 
