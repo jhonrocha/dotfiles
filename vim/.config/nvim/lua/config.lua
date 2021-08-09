@@ -17,7 +17,7 @@ require('lualine').setup {
 }
 -- Theme
 require("github-theme").setup({
-  themeStyle = "dark",
+  themeStyle = "light",
 })
 
 -- LSP
