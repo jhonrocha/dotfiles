@@ -8,21 +8,20 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {''},
+    lualine_b = {'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
 }
-
 -- Theme
 require("github-theme").setup({
   themeStyle = "dark",
 })
 
 -- LSP
-local lspconfig = require'lspconfig'
+local lspconfig = require('lspconfig')
 
 -- TS-JS
 lspconfig.tsserver.setup{}
@@ -163,10 +162,12 @@ require("telescope").setup {
     },
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
+    file_previewer = require('telescope.previewers').cat.new,
     layout_config = {
       horizontal = {
+        width = 0.95,
         height = 0.6,
-        preview_width = 0.5,
+        preview_width = 0.4,
         prompt_position = "top",
         preview_cutoff = 60,
       },

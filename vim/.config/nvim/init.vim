@@ -24,13 +24,11 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp-status.nvim'
 " Completion
 Plug 'hrsh7th/nvim-compe'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" FZF
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -80,7 +78,6 @@ function! s:patch_theme_colors()
   hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
   hi! SignColor ctermbg=NONE guibg=NONE 
   hi! LineNr ctermbg=NONE guibg=NONE
-  let g:fzf_colors = { 'bg': ['bg', 'Normal'] }
 endfunction
 " autocmd! ColorScheme * call s:patch_theme_colors()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -260,25 +257,6 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 
-">>>....................FZF.................... {{{
-let g:fzf_buffers_jump = 1
-let g:fzf_colors = { 'bg': ['bg', 'Normal'] }
-
-" This is the default extra key bindings
-" An action can be a reference to a function that processes selected lines
-function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
-endfunction
-let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --hidden  --glob=!.git --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-" }}}
-
 ">>>....................Mappings.................... {{{
 "" Opens a tab edit command with the path of the currently edited file filled
 
@@ -387,9 +365,6 @@ nnoremap <leader>rb :.,$s//gc<left><left><left>
 let g:which_key_map.r.b = 'bellow'
 
 " FZF
-" let g:which_key_map[' '] = [ 'Files' , 'files' ]
-" let g:which_key_map[','] = [ 'Buffers' , 'buffers' ]
-" let g:which_key_map['f'] = [ ':Rg' , 'grep' ]
 nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
 let g:which_key_map['.'] = '. files'
 
@@ -398,15 +373,12 @@ let g:which_key_map[' '] = [':call v:lua.ff()', 'T files']
 let g:which_key_map[','] = [':Telescope buffers', 'T buffers']
 let g:which_key_map.s = {
       \ 'name' : '+Fuzzy' ,
-      \ ',' : [':Telescope buffers', 'T buffers'],
-      \ 'c' : [':Commits', 'commits'],
-      \ 'h' : [':Telescope help_tags', 'T Help'],
-      \ 'H' : [':History', 'history'],
-      \ 'o' : [':call v:lua.require("telescope.builtin").oldfiles()', 'T oldfiles'],
-      \ 's' : ['/', '/'],
-      \ 't' : [':call v:lua.ff()', 'T files'],
-      \ 'f' : [':Telescope live_grep', 'T grep'],
-      \ 'x' : [':Commands', 'commands'],
+      \ 'c' : [':Telescope git_commits', 'commits'],
+      \ 'h' : [':Telescope help_tags', 'help'],
+      \ 'p' : [':Telescope oldfiles', 'prev files'],
+      \ 'g' : [':Telescope live_grep', 'grep'],
+      \ 'x' : [':Telescope commands', 'commands'],
+      \ 'y' : [':Telescope command_history', 'com. history'],
       \ }
 
 let g:which_key_map.x = {
