@@ -146,7 +146,6 @@ require'compe'.setup {
 
 -- Telescope
 local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
 require("telescope").setup {
   defaults = {
     vimgrep_arguments = {

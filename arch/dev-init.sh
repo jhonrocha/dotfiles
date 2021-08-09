@@ -5,7 +5,7 @@ sudo pacman --noconfirm --needed -S \
     docker docker-compose nodejs npm \
     redis mariadb mysql-workbench \
     code openconnect gnome-keyring \
-    seahorse aws-cli
+    seahorse aws-cli lua-language-server
 
 
 # NPM Globals Installs

@@ -24,7 +24,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/lsp-status.nvim'
 " Completion
 Plug 'hrsh7th/nvim-compe'
 " Treesitter
