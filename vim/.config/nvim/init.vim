@@ -270,6 +270,15 @@ let g:which_key_map.b = [':call ToggleHiddenBar()', 'bar']
 nnoremap <silent> <leader>cP :let @+=expand('%:t')<CR>
 nnoremap ]j :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap ]k :lua vim.lsp.diagnostic.goto_prev()<CR>
+" Autofix entire buffer with eslint_d:
+nnoremap <leader>cf :call Formatting()<CR>
+function! Formatting()
+  let s:line=line('.')
+  lua vim.lsp.buf.formatting_sync()
+  execute s:line
+  %!eslint_d --stdin --fix-to-stdout
+  execute s:line
+endfunction
 let g:which_key_map.c = {
       \ 'name' : '+code' ,
       \ 'D' : [':call v:lua.vim.lsp.buf.declaration()', 'declaration'],
@@ -277,8 +286,8 @@ let g:which_key_map.c = {
       \ ']' : [':call v:lua.vim.lsp.diagnostic.goto_next()', 'next error'],
       \ 'c' : [':call v:lua.vim.lsp.buf.rename()', 'rename'],
       \ 'd' : [':call v:lua.vim.lsp.buf.definition()', 'definition'],
-      \ 'e' : [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'show'],
       \ 'i' : [':call v:lua.vim.lsp.buf.implementation()', 'implementation'],
+      \ 'f' : 'formatting',
       \ 'k' : [':call v:lua.vim.lsp.buf.hover()', 'hover'],
       \ 'l' : [':call v:lua.vim.lsp.diagnostic.set_loclist()', 'loclist'],
       \ 'p' : [':let @+=@%', 'cp path'],

@@ -16,15 +16,29 @@ require('lualine').setup {
   },
 }
 -- Theme
+local themeStyle = "dark"
+-- local time = os.date("*t")
+-- if ((time.hour < 8) or (time.hour > 9)) then
+--   themeStyle = "light"
+-- end
 require("github-theme").setup({
-  themeStyle = "light",
+  themeStyle = themeStyle,
 })
 
 -- LSP
 local lspconfig = require('lspconfig')
 
 -- TS-JS
-lspconfig.tsserver.setup{}
+-- lspconfig.tsserver.setup{
+--   on_attach = function(client)
+--       client.resolved_capabilities.document_formatting = false
+--   end
+-- }
+require'lspconfig'.denols.setup{
+  on_attach = function(client)
+      client.resolved_capabilities.document_formatting = false
+  end
+}
 
 -- diagnosticls
 lspconfig.diagnosticls.setup{
@@ -32,13 +46,14 @@ lspconfig.diagnosticls.setup{
   root_dir = function(fname)
     return lspconfig.util.root_pattern("tsconfig.json")(fname) or
     lspconfig.util.root_pattern(".eslintrc")(fname) or
+    lspconfig.util.root_pattern(".eslintrc.json")(fname) or
     lspconfig.util.root_pattern(".eslintrc.js")(fname);
   end,
   init_options = {
     linters = {
       eslint = {
-        command = "./node_modules/.bin/eslint",
-        rootPatterns = {".eslintrc.js", ".eslintrc", ".git"},
+        command = "eslint_d",
+        rootPatterns = {".eslintrc.json",".eslintrc.js", ".eslintrc", ".git"},
         debounce = 100,
         args = {
           "--stdin",
@@ -62,6 +77,14 @@ lspconfig.diagnosticls.setup{
           [1] = "warning"
         }
       },
+    },
+    formatters = {
+      prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
+    },
+    formatFiletypes = {
+      javascript = "prettier",
+      typescript = "prettier",
+      typescriptreact = "prettier"
     },
     filetypes = {
       javascript = "eslint",
@@ -106,10 +129,9 @@ lspconfig.pylsp.setup{}
 
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false
-}
-)
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false
+  })
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
