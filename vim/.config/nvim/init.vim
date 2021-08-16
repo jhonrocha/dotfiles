@@ -287,7 +287,7 @@ let g:which_key_map.c = {
       \ 'c' : [':call v:lua.vim.lsp.buf.rename()', 'rename'],
       \ 'd' : [':call v:lua.vim.lsp.buf.definition()', 'definition'],
       \ 'i' : [':call v:lua.vim.lsp.buf.implementation()', 'implementation'],
-      \ 'f' : 'formatting',
+      \ 'f' : [':call Formatting()', 'formatting'],
       \ 'k' : [':call v:lua.vim.lsp.buf.hover()', 'hover'],
       \ 'l' : [':call v:lua.vim.lsp.diagnostic.set_loclist()', 'loclist'],
       \ 'p' : [':let @+=@%', 'cp path'],

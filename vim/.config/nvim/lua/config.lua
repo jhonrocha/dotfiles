@@ -29,25 +29,21 @@ require("github-theme").setup({
 local lspconfig = require('lspconfig')
 
 -- TS-JS
--- lspconfig.tsserver.setup{
---   on_attach = function(client)
---       client.resolved_capabilities.document_formatting = false
---   end
--- }
 require'lspconfig'.denols.setup{
   on_attach = function(client)
-      client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_formatting = false
   end
 }
 
 -- diagnosticls
 lspconfig.diagnosticls.setup{
-  filetypes = {"javascript", "typescript"},
+  filetypes = {"javascript", "typescript","python"},
   root_dir = function(fname)
     return lspconfig.util.root_pattern("tsconfig.json")(fname) or
     lspconfig.util.root_pattern(".eslintrc")(fname) or
     lspconfig.util.root_pattern(".eslintrc.json")(fname) or
-    lspconfig.util.root_pattern(".eslintrc.js")(fname);
+    lspconfig.util.root_pattern(".eslintrc.js")(fname) or
+    lspconfig.util.root_pattern(".pylintrc")(fname)
   end,
   init_options = {
     linters = {
@@ -75,8 +71,36 @@ lspconfig.diagnosticls.setup{
         securities = {
           [2] = "error",
           [1] = "warning"
-        }
+        },
       },
+      pylint = {
+        sourceName = 'pylint',
+        command = 'pylint',
+        args = {
+          '--output-format',
+          'text',
+          '--score',
+          'no',
+          '--msg-template',
+          [['{line}:{column}:{category}:{msg} ({msg_id}:{symbol})']],
+          '%file',
+        },
+        offsetColumn = 1,
+        formatLines = 1,
+        formatPattern = {
+          [[^(\d+?):(\d+?):([a-z]+?):(.*)$]],
+          {line = 1, column = 2, security = 3, message = {'[pylint] ', 4}},
+        },
+        securities = {
+          informational = 'hint',
+          refactor = 'info',
+          convention = 'info',
+          warning = 'warning',
+          error = 'error',
+          fatal = 'error',
+        },
+        rootPatterns = {'.git', 'pyproject.toml', 'setup.py'},
+      }
     },
     formatters = {
       prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
@@ -88,7 +112,8 @@ lspconfig.diagnosticls.setup{
     },
     filetypes = {
       javascript = "eslint",
-      typescript = "eslint"
+      typescript = "eslint",
+      python = "pylint"
     }
   }
 }
@@ -129,9 +154,9 @@ lspconfig.pylsp.setup{}
 
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false
-  })
+vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = false
+})
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
@@ -219,6 +244,11 @@ require("telescope").setup {
 }
 function ff()
   require('telescope.builtin').find_files {
-    find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git'}
+    find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git','--exclude','node_modules'}
   }
 end
+-- lspconfig.tsserver.setup{
+  --   on_attach = function(client)
+    --       client.resolved_capabilities.document_formatting = false
+    --   end
+    -- }

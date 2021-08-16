@@ -112,3 +112,6 @@ bindkey '^ ' autosuggest-accept
 # Starship
 precmd_functions=
 eval "$(starship init zsh)"
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"
