@@ -22,9 +22,9 @@ cpu_temp=$(sensors | awk '/Package/ {print +$4"ºC"}')
 volume=$(amixer get Master | awk -F"[][]" '/Left:/ { print $2 }')
 
 echo -ne "\
-<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> 奔 $volume </span></span>  \
-<span foreground='#ff69b4' weight='bold'><span background='#ff69b4' foreground='#000000'> $mem_used </span></span>  \
-<span foreground='#ff6c6b' weight='bold'><span background='#ff6c6b' foreground='#000000'> $cpu_temp </span></span>  \
-<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> ﬙ $cpu_usage </span></span>  \
-<span foreground='#f5c02c' weight='bold'><span background='#f5c02c' foreground='#000000'> $us_date </span></span>  \
-<span foreground='#46d9ff' weight='bold'><span background='#46d9ff' foreground='#000000'> $date </span></span>  "
+<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> 奔 $volume </span></span>  \
+<span foreground='#ff69b4' weight='bold'><span background='#ff69b4' foreground='#000000'> $mem_used </span></span>  \
+<span foreground='#ff6c6b' weight='bold'><span background='#ff6c6b' foreground='#000000'> $cpu_temp </span></span>  \
+<span foreground='#c678dd' weight='bold'><span background='#c678dd' foreground='#000000'> ﬙ $cpu_usage </span></span>  \
+<span foreground='#f5c02c' weight='bold'><span background='#f5c02c' foreground='#000000'> $us_date </span></span>  \
+<span foreground='#46d9ff' weight='bold'><span background='#46d9ff' foreground='#000000'> $date </span></span>  "

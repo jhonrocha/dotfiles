@@ -37,8 +37,6 @@ Plug 'hrsh7th/nvim-compe'
 " Themes
 Plug 'gruvbox-community/gruvbox'
 Plug 'rakr/vim-one'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'chriskempson/base16-vim'
 Plug 'projekt0n/github-nvim-theme'
 " Distraction Free
 Plug 'junegunn/goyo.vim'

@@ -240,7 +240,8 @@ bar {
     tray_padding 4px
     colors {
         statusline #ffffff
-        background #32323200
+        # background #32323200
+        background #24292e00
         separator #ffffff
         focused_workspace #000000 #000000 #ff69b4
         inactive_workspace #000000 #000000 #bd93f9

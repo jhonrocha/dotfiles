@@ -22,6 +22,8 @@ yarn global add diagnostic-languageserver
 
 # Python LSP
 pip install 'python-lsp-server[all]'
+pip install pylint
+
 # Rust
 if ! command -v rustc &> /dev/null
 then

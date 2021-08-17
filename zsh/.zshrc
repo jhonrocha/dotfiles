@@ -41,8 +41,8 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   if [ $machine = "tiamat" ]; then
     # init-sway
     init-i3
-  elif [ $machine = "think" ]; then
-    init-i3
+  elif [ $machine = "drogon" ]; then
+    init-sway
   else
     init-i3
   fi

@@ -2,9 +2,7 @@
 -- require("plug-galaxyline")
 require('lualine').setup {
   options = {
-    theme = 'github',
-    -- section_separators = {"", ""},
-    -- component_separators = {"", ""},
+    theme = 'github'
   },
   sections = {
     lualine_a = {'mode'},
@@ -16,13 +14,8 @@ require('lualine').setup {
   },
 }
 -- Theme
-local themeStyle = "dark"
--- local time = os.date("*t")
--- if ((time.hour < 8) or (time.hour > 9)) then
---   themeStyle = "light"
--- end
 require("github-theme").setup({
-  themeStyle = themeStyle,
+  themeStyle = "dark",
 })
 
 -- LSP

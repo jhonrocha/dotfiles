@@ -267,7 +267,7 @@ bindsym $mod+y scratchpad show
 # Status bar
 bar {
     position top
-    font pango:Iosevka Nerd Font 16
+    font pango:Iosevka Nerd Font 13
     status_command while ~/.config/sway/status.sh; do sleep 1; done
     pango_markup enabled
     status_padding 0
