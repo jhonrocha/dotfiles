@@ -199,13 +199,23 @@ require("telescope").setup {
       '--column',
       '--smart-case'
     },
-    sorting_strategy = "ascending",
-    layout_strategy = "horizontal",
+    border = true,
+    borderchars = {
+      prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+      results = { " " },
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
     file_previewer = require('telescope.previewers').cat.new,
+    sorting_strategy = "ascending",
+    -- layout_strategy = "horizontal",
+    layout_strategy = "bottom_pane",
     layout_config = {
+      bottom_pane = {
+        height = 0.4,
+      },
       horizontal = {
         width = 0.95,
-        height = 0.6,
+        height = 0.4,
         preview_width = 0.4,
         prompt_position = "top",
         preview_cutoff = 60,
@@ -235,13 +245,9 @@ require("telescope").setup {
     }
   }
 }
+
 function ff()
   require('telescope.builtin').find_files {
     find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git','--exclude','node_modules'}
   }
 end
--- lspconfig.tsserver.setup{
-  --   on_attach = function(client)
-    --       client.resolved_capabilities.document_formatting = false
-    --   end
-    -- }
