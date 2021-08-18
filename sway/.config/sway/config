@@ -43,11 +43,14 @@ font Cantarell 0
 # Gaps
 gaps inner $gIn
 gaps outer $gOut
+
 #
 # Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $(find ~/.config/wallpapers -type f | shuf -n 1) fill
+output eDP-1 pos 0 0
+output DP-1 res 1400 1050 pos 1920 0
 
 #
 # Input configuration
@@ -78,7 +81,7 @@ mode "apps" {
     bindsym w output * bg $(find ~/.config/wallpapers -type f | shuf -n 1) fill
 
     # Screenshot
-    bindsym p exec grim -g "$(slurp)" - | wl-copy; mode "default"
+    bindsym p exec grim -g "$(slurp)" - | swappy -f -; mode "default"
 
     # Return to default mode
     bindsym Return mode "default"
@@ -243,7 +246,7 @@ bindsym $mod+f floating toggle
 bindsym $mod+t focus mode_toggle
 # Make the current focus fullscreen
 bindsym $mod+Shift+f fullscreen
-bindsym $mod+b bar mode hide
+bindsym $mod+b bar mode invisible
 bindsym $mod+Shift+b bar mode dock
 # Move focus to the parent container
 bindsym $mod+comma focus parent
