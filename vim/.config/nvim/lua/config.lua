@@ -205,6 +205,7 @@ require("telescope").setup {
       results = { " " },
       preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     },
+    dynamic_preview_title = true,
     file_previewer = require('telescope.previewers').cat.new,
     sorting_strategy = "ascending",
     -- layout_strategy = "horizontal",

@@ -223,11 +223,11 @@ mode "resize" {
 # Scratchpad:
     bindsym $mod+Shift+y move scratchpad
     bindsym $mod+y scratchpad show
-    bindsym $mod+Control+1 exec "i3-scratch mark1"
-    bindsym $mod+Control+2 exec "i3-scratch mark2"
-    bindsym $mod+Control+3 exec "i3-scratch mark3"
-    bindsym $mod+Control+4 exec "i3-scratch mark4"
-    bindsym $mod+Control+5 exec "i3-scratch mark5"
+    bindsym $mod+Control+1 exec "wm-scratch mark1"
+    bindsym $mod+Control+2 exec "wm-scratch mark2"
+    bindsym $mod+Control+3 exec "wm-scratch mark3"
+    bindsym $mod+Control+4 exec "wm-scratch mark4"
+    bindsym $mod+Control+5 exec "wm-scratch mark5"
 #
 # Status Bar:
 bar {

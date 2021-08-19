@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ $WM == "sway" ]]; then
+  # Sway
+  if [[ $(swaymsg -t get_marks) == *"$1"* ]]; then
+    swaymsg [con_mark="$1"] scratchpad show 
+  else 
+    swaymsg mark $1, move scratchpad, scratchpad show
+  fi
+else
+  # i3
+  if [[ $(i3-msg -t get_marks) == *"$1"* ]]; then
+    i3-msg [con_mark="$1"] scratchpad show 
+  else 
+    i3-msg mark $1, move scratchpad, scratchpad show
+  fi
+fi

@@ -44,8 +44,8 @@ for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set widt
 font Cantarell 0
 # Gaps
 gaps inner $gIn
-gaps horizontal $gHorz
-gaps vertical $gVert
+gaps outer $gOut
+
 #
 # Output configuration
 #
@@ -261,19 +261,15 @@ bindsym $mod+F9 exec pavucontrol
 bindsym $mod+F11 exec amixer sset Master 5%-
 bindsym $mod+F12 exec amixer sset Master 5%+
 
-# Scratchpad:
-    bindsym $mod+Shift+y move scratchpad
-    bindsym $mod+y scratchpad show
-    bindsym $mod+Control+1 exec "wm-scratch mark1"
-    bindsym $mod+Control+2 exec "wm-scratch mark2"
-    bindsym $mod+Control+3 exec "wm-scratch mark3"
-    bindsym $mod+Control+4 exec "wm-scratch mark4"
-    bindsym $mod+Control+5 exec "wm-scratch mark5"
+# Add to Scratchpad:
+bindsym $mod+Shift+y move scratchpad
+# Cycle through  Scratchpad:
+bindsym $mod+y scratchpad show
 
 # Status bar
 bar {
     position top
-    font pango:Iosevka Nerd Font 18
+    font pango:Iosevka Nerd Font 13
     status_command while ~/.config/sway/status.sh; do sleep 1; done
     pango_markup enabled
     status_padding 0
@@ -294,4 +290,3 @@ include /etc/sway/config.d/*
 exec pipewire
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec mako

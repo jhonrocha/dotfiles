@@ -20,12 +20,6 @@ init-i3 () {
   export WM=i3
   exec startx >> ~/.cache/xinit.log 2>&1
 }
-# End of lines added by compinstall
-# Functions
-init-i3 () {
-  export WM=i3
-  exec startx >> ~/.cache/xinit.log 2>&1
-}
 init-xmonad () {
   export WM=xmonad
   exec startx >> ~/.cache/xinit.log 2>&1
