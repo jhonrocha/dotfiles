@@ -29,6 +29,7 @@ set $id #FFFFFF
 default_border pixel 3
 default_floating_border pixel 3
 smart_borders on
+titlebar_padding 2 2
 # class                 border      backgr.     text    indicator child_border
 client.focused          #c678dd     #c678dd     $fg     $id       $br
 client.unfocused        #000000     #000000     $fg     $id       #000000
