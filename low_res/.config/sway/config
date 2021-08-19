@@ -1,3 +1,4 @@
+
 # Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -22,13 +23,14 @@ set $fg #eff1f5
 set $br #ff69b4
 set $ia #232425
 set $id #FFFFFF
-
+focus_on_window_activation focus
 #
 # Basic
 #
 default_border pixel 3
 default_floating_border pixel 3
 smart_borders on
+titlebar_padding 2 2
 # class                 border      backgr.     text    indicator child_border
 client.focused          #c678dd     #c678dd     $fg     $id       $br
 client.unfocused        #000000     #000000     $fg     $id       #000000
@@ -44,8 +46,8 @@ for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set widt
 font Cantarell 0
 # Gaps
 gaps inner $gIn
-gaps outer $gOut
-
+# gaps horizontal $gHorz
+# gaps vertical $gVert
 #
 # Output configuration
 #
@@ -261,10 +263,14 @@ bindsym $mod+F9 exec pavucontrol
 bindsym $mod+F11 exec amixer sset Master 5%-
 bindsym $mod+F12 exec amixer sset Master 5%+
 
-# Add to Scratchpad:
-bindsym $mod+Shift+y move scratchpad
-# Cycle through  Scratchpad:
-bindsym $mod+y scratchpad show
+# Scratchpad:
+    bindsym $mod+Shift+y move scratchpad
+    bindsym $mod+y scratchpad show
+    bindsym $mod+Control+1 exec "wm-scratch mark1"
+    bindsym $mod+Control+2 exec "wm-scratch mark2"
+    bindsym $mod+Control+3 exec "wm-scratch mark3"
+    bindsym $mod+Control+4 exec "wm-scratch mark4"
+    bindsym $mod+Control+5 exec "wm-scratch mark5"
 
 # Status bar
 bar {
@@ -290,3 +296,4 @@ include /etc/sway/config.d/*
 exec pipewire
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec mako
