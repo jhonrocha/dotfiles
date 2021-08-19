@@ -14,6 +14,8 @@ set $menu rofi -show drun -columns 2
 # GAPS
 set $gIn 8
 set $gOut 0
+set $gVert 200
+set $gHorz 600
 # UI
 set $bg #171717
 set $fg #eff1f5
@@ -34,7 +36,7 @@ client.unfocused        #000000     #000000     $fg     $id       #000000
 focus_follows_mouse no
 floating_modifier $mod normal
 # Window Rules
-for_window [app_id="zoom"] floating enable
+for_window [class="zoom"] floating enable
 for_window [app_id="pavucontrol"] floating enable
 for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
@@ -91,30 +93,27 @@ bindsym $mod+space mode "apps"
 
 # Gaps
 mode "gaps" {
+    # Vertical/Horizontal
     bindsym h gaps horizontal current plus  10
     bindsym l gaps horizontal current minus 10
     bindsym j gaps vertical current plus  10
     bindsym k gaps vertical current minus 10
-
+    # Inner
     bindsym u gaps inner current minus 5
     bindsym Shift+u gaps inner current minus 10
     bindsym i gaps inner current plus  5
     bindsym Shift+i gaps inner current plus  10
-
+    # Outer
     bindsym o gaps outer current minus 5
     bindsym Shift+o gaps outer current minus 10
     bindsym p gaps outer current plus  5
     bindsym Shift+p gaps outer current plus  10
-
     # Setups
-    bindsym 1 gaps vertical current set 200
-    bindsym Shift+1 gaps vertical current set 0
-    bindsym 2 gaps horizontal current set 400
-    bindsym Shift+2 gaps horizontal current set 0
+    bindsym 1 gaps vertical current set 0
+    bindsym 2 gaps horizontal current set 0
     bindsym 0 gaps outer current set 0; gaps inner current set 0; mode "default"
-    bindsym 9  gaps horizontal current set 400; gaps vertical current set 200; mode "default"
+    bindsym 9  gaps inner current set $gIn; gaps horizontal current set $gHorz; gaps vertical current set $gVert; mode "default"
     bindsym equal gaps outer current set $gOut; gaps inner current set $gIn; mode "default"
-
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -288,4 +287,6 @@ bar {
 include /etc/sway/config.d/*
 
 # Initializing
+exec pipewire
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
