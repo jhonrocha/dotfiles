@@ -1,11 +1,25 @@
-default-timeout=10000
-font=DejaVu Sans Mono 11
-background-color=#000000
-text-color=#ffffff
-border-color=#333333
-ignore-timeout=1
-#border-size=10
-#margin=25
+margin=25
+height=200
+padding=10
+anchor=bottom-right
+
+font=Iosevka Nerd Font 13
+markup=1
+
+background-color=#282c34
+text-color=#eeffff
+
+border-color=#3b8eea
+border-size=2
+border-radius=4
+
+ignore-timeout=0
+default-timeout=5000
+
+icons=1
+icon-path=/usr/share/icons/Arc:/usr/share/icons/Adwaita
+
+format=<b><span color="#d670d6">%s</span></b>\n\n<span>%b</span>
 
 [hidden]
 format=(and %h more)
@@ -14,3 +28,4 @@ text-color=#777777
 [urgency=high]
 background-color=#c00000
 border-color=#ff0000
+
