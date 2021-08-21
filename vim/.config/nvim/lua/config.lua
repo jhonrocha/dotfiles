@@ -96,10 +96,11 @@ lspconfig.diagnosticls.setup{
       }
     },
     formatters = {
-      prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
+      prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}},
+      lint = {command = "eslint_d", args = {"--stdin", "--fix-to-stdout"}},
     },
     formatFiletypes = {
-      javascript = "prettier",
+      javascript = {"prettier","lint"},
       typescript = "prettier",
       typescriptreact = "prettier"
     },

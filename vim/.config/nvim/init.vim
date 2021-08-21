@@ -274,8 +274,6 @@ function! Formatting()
   let s:line=line('.')
   lua vim.lsp.buf.formatting_sync()
   execute s:line
-  %!eslint_d --stdin --fix-to-stdout
-  execute s:line
 endfunction
 let g:which_key_map.c = {
       \ 'name' : '+code' ,
