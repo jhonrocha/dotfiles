@@ -1,0 +1,301 @@
+# Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term kitty
+# Your preferred application launcher
+set $menu rofi -show drun -columns 2
+# GAPS
+set $gIn 8
+set $gOut 0
+set $gVert 500
+set $gHorz 950
+# UI
+set $bg #171717
+set $fg #eff1f5
+set $br #ff69b4
+set $ia #232425
+set $id #FFFFFF
+gaps inner $gIn
+gaps horizontal $gHorz
+gaps vertical $gVert
+
+#
+# Basic
+#
+default_border pixel 3
+default_floating_border pixel 3
+smart_borders on
+titlebar_padding 2 2
+# class                 border      backgr.     text    indicator child_border
+client.focused          #c678dd     #c678dd     $fg     $id       $br
+client.unfocused        #000000     #000000     $fg     $id       #000000
+# Mouse follow
+focus_follows_mouse no
+floating_modifier $mod normal
+# Window Rules
+for_window [class="zoom"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 70 ppt height 90 ppt, move position center
+for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
+# Font
+font Cantarell 0
+#
+# Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg $(find ~/.config/wallpapers -type f | shuf -n 1) fill
+output eDP-1 pos 0 0
+output DP-1 res 1400 1050 pos 1920 0
+
+#
+# Input configuration
+#
+input type:keyboard {
+    xkb_layout "br-jh"
+    xkb_options "caps:swapescape"
+}
+
+input type:mouse {
+    accel_profile flat
+    pointer_accel 1
+}
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+#
+# Key bindings
+#
+# Apps
+mode "apps" {
+    bindsym a exec 'swaymsg [class="Emacs"] focus || emacs --with-profile=doom'; mode "default"
+    bindsym s exec 'swaymsg [app_id="$term"] focus || $term'; mode "default"
+    bindsym f exec 'swaymsg [class="Brave-browser"] focus || brave'; mode "default"
+    bindsym g exec jhbrowser; mode "default"
+    bindsym e exec '$term vifm'; mode "default"
+    bindsym i exec '$term htop'; mode "default"
+    bindsym y exec jhsync; mode "default"
+    # Change Wallpaper
+    bindsym w output * bg $(find ~/.config/wallpapers -type f | shuf -n 1) fill
+
+    # Screenshot
+    bindsym p exec grim -g "$(slurp)" - | swappy -f -; mode "default"
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+space mode "apps"
+
+# Gaps
+mode "gaps" {
+    # Vertical/Horizontal
+    bindsym h gaps horizontal current plus  10
+    bindsym l gaps horizontal current minus 10
+    bindsym j gaps vertical current plus  10
+    bindsym k gaps vertical current minus 10
+    bindsym Shift+h gaps horizontal current plus  50
+    bindsym Shift+l gaps horizontal current minus 50
+    bindsym Shift+j gaps vertical current plus  50
+    bindsym Shift+k gaps vertical current minus 50
+    # Inner
+    bindsym u gaps inner current minus 5
+    bindsym i gaps inner current plus  5
+    bindsym Shift+u gaps inner current minus 50
+    bindsym Shift+i gaps inner current plus  50
+    # Outer
+    bindsym o gaps outer current minus 5
+    bindsym p gaps outer current plus  5
+    bindsym Shift+o gaps outer current minus 50
+    bindsym Shift+p gaps outer current plus  50
+    # Setups
+    bindsym 1 gaps vertical current set 0
+    bindsym 2 gaps horizontal current set 0
+    bindsym 0 gaps outer current set 0; gaps inner current set 0; mode "default"
+    bindsym 7  gaps inner current set $gIn; gaps horizontal current set $gHorz; gaps vertical current set 300; mode "default"
+    bindsym 8  gaps inner current set $gIn; gaps horizontal current set 600; gaps vertical current set 300; mode "default"
+    bindsym 9  gaps inner current set $gIn; gaps horizontal current set $gHorz; gaps vertical current set $gVert; mode "default"
+    bindsym equal gaps outer current set $gOut; gaps inner current set $gIn; mode "default"
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+g mode "gaps"
+
+# Resizing containers:
+mode "resize" {
+    bindsym 1 floating enable; resize set width 1926 px height 1086 px; mode "default"
+    bindsym f floating enable; resize set width 1926 px height 1086 px; mode "default"
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+x mode "resize"
+
+
+mode "pwd" {
+    bindsym s exec pss; mode "default"
+    bindsym g exec "pss g"; mode "default"
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+s mode "pwd"
+
+# Basics:
+# Start a terminal
+bindsym $mod+Return exec $term
+# Ferdi ScratchPad
+bindsym $mod+u exec 'swaymsg [class="Ferdi"] scratchpad show || ferdi'
+# Terminal ScratchPad
+bindsym $mod+i exec 'swaymsg [app_id="termpad"] scratchpad show || $term --class termpad'
+
+# Kill focused window
+bindsym $mod+F4 kill
+bindsym $mod+q kill
+
+# Start your launcher
+bindsym $mod+d exec $menu
+bindsym $mod+r exec rofi -show run
+
+# Reload the configuration file
+bindsym $mod+z reload
+
+# Exit sway (logs you out of your Wayland session)
+# bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will
+# end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Monitos
+bindsym $mod+Mod1+h move workspace to output left
+bindsym $mod+Mod1+l move workspace to output right
+bindsym $mod+m focus output left
+bindsym $mod+n focus output right
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Next/Prior
+bindsym $mod+o workspace prev_on_output
+bindsym $mod+p workspace next_on_output
+# Layout stuff:
+bindsym $mod+w splith
+bindsym $mod+e splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+Shift+q layout stacking
+bindsym $mod+Shift+w layout tabbed
+bindsym $mod+Shift+e layout toggle split
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+f floating toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+t focus mode_toggle
+# Make the current focus fullscreen
+bindsym $mod+Shift+f fullscreen
+bindsym $mod+b bar mode invisible
+bindsym $mod+Shift+b bar mode dock
+# Move focus to the parent container
+bindsym $mod+comma focus parent
+bindsym $mod+period focus child
+
+# Media Control
+bindsym $mod+F1 exec xbacklight -dec 10
+bindsym $mod+F2 exec xbacklight -inc 10
+bindsym $mod+F7 exec playerctl play-pause
+bindsym $mod+F6 exec playerctl previous
+bindsym $mod+F8 exec playerctl next
+bindsym $mod+F9 exec pavucontrol
+bindsym $mod+F11 exec amixer sset Master 5%-
+bindsym $mod+F12 exec amixer sset Master 5%+
+
+# Scratchpad:
+    bindsym $mod+Shift+y move scratchpad
+    bindsym $mod+y scratchpad show
+    bindsym $mod+Control+1 exec "wm-scratch mark1"
+    bindsym $mod+Control+2 exec "wm-scratch mark2"
+    bindsym $mod+Control+3 exec "wm-scratch mark3"
+    bindsym $mod+Control+4 exec "wm-scratch mark4"
+    bindsym $mod+Control+5 exec "wm-scratch mark5"
+
+# Status bar
+bar {
+    position top
+    font pango:Iosevka Nerd Font 18
+    status_command while ~/.config/sway/status.sh; do sleep 1; done
+    pango_markup enabled
+    status_padding 0
+    separator_symbol "|"
+    icon_theme Adapta-Nokto
+    tray_padding 4px
+    colors {
+        statusline #ffffff
+        background #32323200
+        separator #ffffff
+        focused_workspace #000000 #000000 #ff69b4
+        inactive_workspace #000000 #000000 #bd93f9
+    }
+}
+include /etc/sway/config.d/*
+
+# Initializing
+exec pipewire
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec mako
