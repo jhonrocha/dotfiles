@@ -96,12 +96,15 @@ lspconfig.diagnosticls.setup{
       }
     },
     formatters = {
-      prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
+      prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}},
+      eslint_fmt = {command = "eslint_d", args = {"--stdin", "--fix-to-stdout"}},
+      rustfmt = {command = "rustfmt", args = {"%filepath"}},
     },
     formatFiletypes = {
-      javascript = "prettier",
+      javascript = {"prettier","eslint_fmt"},
       typescript = "prettier",
-      typescriptreact = "prettier"
+      typescriptreact = "prettier",
+      rust = "rustfmt",
     },
     filetypes = {
       javascript = "eslint",
@@ -123,6 +126,9 @@ lspconfig.rust_analyzer.setup({
       },
       procMacro = {
         enable = true
+      },
+      checkOnSave = {
+        command = "clippy"
       },
     }
   }
@@ -240,7 +246,7 @@ require("telescope").setup {
       sort_lastused = true,
       mappings = {
         i = {
-          ["<c-d>"] = require("telescope.actions").delete_buffer,
+          ["<c-d>"] = "delete_buffer",
         },
       }
     }
