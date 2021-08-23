@@ -110,6 +110,15 @@ mode "gaps" {
     bindsym Shift+o gaps outer current minus 10
     bindsym p gaps outer current plus  5
     bindsym Shift+p gaps outer current plus  10
+    # Lateral
+    bindsym Left gaps left current plus 10
+    bindsym Shift+Left gaps left current minus 10
+    bindsym Right gaps right current plus 10
+    bindsym Shift+Right gaps right current minus 10
+    bindsym Up gaminus top current plus 10
+    bindsym Shift+Up gaminus top current minus 10
+    bindsym Down gaps bottom current plus 10
+    bindsym Shift+Down gaps bottom current minus 10
     # Setups
     bindsym 1 gaps vertical current set 0
     bindsym 2 gaps horizontal current set 0
@@ -293,7 +302,6 @@ bar {
 include /etc/sway/config.d/*
 
 # Initializing
-exec pipewire
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+# exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec mako
