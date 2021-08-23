@@ -1,7 +1,7 @@
-margin=150
+margin=25
 height=200
 padding=10
-anchor=top-center
+anchor=top-right
 
 font=Iosevka Nerd Font 13
 markup=1
