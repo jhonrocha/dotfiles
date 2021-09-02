@@ -25,15 +25,16 @@ Plug 'tpope/vim-fugitive'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 " Completion
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-buffer'
+
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-" Completion
-Plug 'hrsh7th/nvim-compe'
 " Themes
 Plug 'gruvbox-community/gruvbox'
 Plug 'rakr/vim-one'
@@ -205,14 +206,6 @@ hi LspDiagnosticsUnderlineError cterm=undercurl gui=undercurl guisp=#fb4934
 hi LspDiagnosticsUnderlineWarning cterm=undercurl gui=undercurl guisp=#fabd2f
 hi LspDiagnosticsUnderlineInformation cterm=undercurl gui=undercurl guisp=#83a598
 hi LspDiagnosticsUnderlineHint cterm=undercurl gui=undercurl guisp=#8ec07c
-" }}}
-
-">>>....................COMPE.................... {{{
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 " }}}
 
 ">>>....................Tree.................... {{{

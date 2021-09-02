@@ -1,0 +1,67 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+  output_format = "i3bar"
+  colors = true
+  interval = 5
+  markup = "pango"
+}
+
+order += "volume master"
+order += "memory"
+order += "battery all"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "tztime us"
+order += "tztime local"
+
+volume master {
+  format = "<span foreground='#d670d6'></span><span background='#d670d6' foreground='#000000' weight='bold'> 奔 %volume </span>"
+  format_muted = "<span foreground='#d670d6' weight='bold'></span><span background='#d670d6' foreground='#000000' weight='bold'> 奔 %volume </span>"
+  device = "default"
+  mixer = "Master"
+  mixer_idx = 0
+  separator_block_width = 0
+}
+
+memory {
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> %used </span>"
+  separator_block_width = 0
+}
+
+battery all {
+  format ="<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'>  %percentage </span>"
+  format_down=""
+  separator_block_width = 0
+}
+
+cpu_usage {
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> ﬙ %usage </span>"
+  separator_block_width = 0
+}
+
+
+cpu_temperature 0 {
+  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> %degrees °C </span>"
+  separator_block_width = 0
+}
+
+
+tztime us {
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> %time </span>"
+  format_time = "%H:%M %Z"
+  timezone = "America/Los_Angeles"
+  separator_block_width = 0
+}
+
+tztime local {
+  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> %time </span><span foreground='#d670d6'></span>"
+  format_time = "%b %d, %H:%M"
+  separator_block_width = 0
+}

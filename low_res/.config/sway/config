@@ -40,7 +40,7 @@ floating_modifier $mod normal
 # Window Rules
 for_window [class="zoom"] floating enable
 for_window [app_id="pavucontrol"] floating enable
-for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 70 ppt height 90 ppt, move position center
+for_window [class="Ferdi"] floating enable, move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 # Font
 font Cantarell 0
@@ -284,11 +284,12 @@ bindsym $mod+F12 exec amixer sset Master 5%+
 # Status bar
 bar {
     position top
-    font pango:Iosevka Nerd Font 13
-    status_command while ~/.config/sway/status.sh; do sleep 1; done
+    font pango:Iosevka Nerd Font, Font Awesome 5 Free 13
+    # status_command while ~/.config/sway/status.sh; do sleep 1; done
+    status_command i3status
     pango_markup enabled
     status_padding 0
-    separator_symbol "|"
+    separator_symbol ""
     icon_theme Adapta-Nokto
     tray_padding 4px
     colors {

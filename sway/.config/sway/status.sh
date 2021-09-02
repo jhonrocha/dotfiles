@@ -9,7 +9,7 @@ date=$(date "+%b %d, %H:%M")
 us_date=$(TZ="America/Los_Angeles" date "+%H:%M")
 
 # Returns the battery status: "Full", "Discharging", or "Charging".
-# battery_status=$(cat /sys/class/power_supply/BAT0/status)
+battery_status=$(cat /sys/class/power_supply/BAT0/status)
 
 mem_used=$(free -m | awk '/Mem/ {print $3"M"}')
 
