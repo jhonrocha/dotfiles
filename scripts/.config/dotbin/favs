@@ -1,0 +1,43 @@
+#!/bin/bash
+code=(
+  "$HOME/dotfiles dot"
+  "$HOME/personal/rust-web rw"
+  "$HOME/personal/scripts scripts"
+  "$HOME/personal/telescope.nvim tele"
+  "$HOME/personal/jhonrocha jhon"
+  "$HOME/personal/noob-invest-node-aws ninvest"
+)
+
+dirs=(
+  "$HOME/"
+  "$HOME/bkp"
+  "$HOME/dotfiles"
+  "$HOME/Downloads"
+  "$HOME/personal"
+  "$HOME/drive"
+  "$HOME/Data1"
+  "$HOME/Data2"
+  "$HOME/prvdots/keys"
+  "$HOME/Pictures"
+)
+
+if [ $# -eq 0 ]; then
+  printf '%s\n' "${code[@]}" "${dirs[@]}"
+else
+  while (( "$#" )); do
+    case "$1" in
+      c|-c)
+        printf '%s\n' "${code[@]}"
+        shift
+        ;;
+      d|-d)
+        printf '%s\n' "${dirs[@]}"
+        shift
+        ;;
+      *)
+        printf '%s\n' "${dirs[@]}" "${code[@]}" | cut -d' ' -f1
+        shift
+        ;;
+    esac
+  done
+fi

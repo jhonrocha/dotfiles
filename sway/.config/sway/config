@@ -22,10 +22,7 @@ set $fg #eff1f5
 set $br #ff69b4
 set $ia #232425
 set $id #FFFFFF
-gaps inner $gIn
-gaps horizontal $gHorz
-gaps vertical $gVert
-
+focus_on_window_activation focus
 #
 # Basic
 #
@@ -46,6 +43,10 @@ for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 70
 for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 # Font
 font Cantarell 0
+# Gaps
+gaps inner $gIn
+# gaps horizontal $gHorz
+# gaps vertical $gVert
 #
 # Output configuration
 #
@@ -112,6 +113,15 @@ mode "gaps" {
     bindsym p gaps outer current plus  5
     bindsym Shift+o gaps outer current minus 50
     bindsym Shift+p gaps outer current plus  50
+    # Lateral
+    bindsym Left gaps left current plus 10
+    bindsym Shift+Left gaps left current minus 10
+    bindsym Right gaps right current plus 10
+    bindsym Shift+Right gaps right current minus 10
+    bindsym Up gaminus top current plus 10
+    bindsym Shift+Up gaminus top current minus 10
+    bindsym Down gaps bottom current plus 10
+    bindsym Shift+Down gaps bottom current minus 10
     # Setups
     bindsym 1 gaps vertical current set 0
     bindsym 2 gaps horizontal current set 0
@@ -273,15 +283,21 @@ bindsym $mod+F12 exec amixer sset Master 5%+
     bindsym $mod+Control+3 exec "wm-scratch mark3"
     bindsym $mod+Control+4 exec "wm-scratch mark4"
     bindsym $mod+Control+5 exec "wm-scratch mark5"
+    bindsym $mod+Control+6 exec "wm-scratch mark6"
+    bindsym $mod+Control+7 exec "wm-scratch mark7"
+    bindsym $mod+Control+8 exec "wm-scratch mark8"
+    bindsym $mod+Control+9 exec "wm-scratch mark9"
+    bindsym $mod+Control+0 exec "wm-scratch mark0"
 
 # Status bar
 bar {
     position top
-    font pango:Iosevka Nerd Font 18
-    status_command while ~/.config/sway/status.sh; do sleep 1; done
+    font pango:Iosevka Nerd Font, Font Awesome 5 Free 18
+    # status_command while ~/.config/sway/status.sh; do sleep 1; done
+    status_command i3status
     pango_markup enabled
     status_padding 0
-    separator_symbol "|"
+    separator_symbol ""
     icon_theme Adapta-Nokto
     tray_padding 4px
     colors {
@@ -295,7 +311,7 @@ bar {
 include /etc/sway/config.d/*
 
 # Initializing
-exec pipewire
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+# exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec mako
+

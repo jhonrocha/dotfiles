@@ -13,20 +13,17 @@ general {
   markup = "pango"
 }
 
-order += "volume master"
-order += "memory"
 order += "battery all"
+order += "memory"
+order += "volume master"
 order += "cpu_usage"
 order += "cpu_temperature 0"
 order += "tztime us"
 order += "tztime local"
 
-volume master {
-  format = "<span foreground='#d670d6'></span><span background='#d670d6' foreground='#000000' weight='bold'> 奔 %volume </span>"
-  format_muted = "<span foreground='#d670d6' weight='bold'></span><span background='#d670d6' foreground='#000000' weight='bold'> 奔 %volume </span>"
-  device = "default"
-  mixer = "Master"
-  mixer_idx = 0
+battery all {
+  format ="<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'>  %percentage </span>"
+  format_down="<span foreground='#d670d6'></span>"
   separator_block_width = 0
 }
 
@@ -35,9 +32,12 @@ memory {
   separator_block_width = 0
 }
 
-battery all {
-  format ="<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'>  %percentage </span>"
-  format_down=""
+volume master {
+  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> 奔 %volume </span>"
+  format_muted = "<span foreground='#d670d6' weight='bold'></span><span background='#d670d6' foreground='#000000' weight='bold'> 奔 %volume </span>"
+  device = "default"
+  mixer = "Master"
+  mixer_idx = 0
   separator_block_width = 0
 }
 
