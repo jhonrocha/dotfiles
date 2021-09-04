@@ -33,8 +33,8 @@ init-sway () {
 machine=$(uname -n)
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   if [ $machine = "tiamat" ]; then
-    init-sway
-    # init-i3
+    # init-sway
+    init-i3
   elif [ $machine = "drogon" ]; then
     init-sway
   else
