@@ -33,7 +33,7 @@ focus_follows_mouse no
 # Window Rules
 for_window [class="zoom"] floating enable
 for_window [class="Pavucontrol"] floating enable
-for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 70 ppt height 90 ppt, move position center
+for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 # Font
 font pango:Cantarell 0
@@ -224,11 +224,15 @@ mode "resize" {
 # Scratchpad:
     bindsym $mod+Shift+y move scratchpad
     bindsym $mod+y scratchpad show
-    bindsym $mod+Control+1 exec "i3-scratch mark1"
-    bindsym $mod+Control+2 exec "i3-scratch mark2"
-    bindsym $mod+Control+3 exec "i3-scratch mark3"
-    bindsym $mod+Control+4 exec "i3-scratch mark4"
-    bindsym $mod+Control+5 exec "i3-scratch mark5"
+    bindsym $mod+Control+1 exec "wm-scratch mark1"
+    bindsym $mod+Control+2 exec "wm-scratch mark2"
+    bindsym $mod+Control+3 exec "wm-scratch mark3"
+    bindsym $mod+Control+4 exec "wm-scratch mark4"
+    bindsym $mod+Control+5 exec "wm-scratch mark5"
+    bindsym $mod+Control+6 exec "wm-scratch mark6"
+    bindsym $mod+Control+7 exec "wm-scratch mark7"
+    bindsym $mod+Control+8 exec "wm-scratch mark8"
+    bindsym $mod+Control+9 exec "wm-scratch mark9"
 #
 # Status Bar:
 bar {
