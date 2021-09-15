@@ -27,6 +27,7 @@ init-xmonad () {
 init-sway () {
   export WM=sway
   export MOZ_ENABLE_WAYLAND=1
+  export LIBSEAT_BACKEND=logind
   exec sway --my-next-gpu-wont-be-nvidia >> ~/.cache/sway.log 2>&1
 }
 
