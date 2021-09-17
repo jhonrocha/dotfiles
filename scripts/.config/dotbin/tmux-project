@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # List options to pen a new session, window, pane or horizontal pane by location
 launcher_cmd() {
-  fzf-tmux -xC -yC --multi --exit-0 --cycle --reverse --bind='ctrl-r:toggle-all' --bind='ctrl-s:toggle-sort' --no-preview --header="Launch project"
+  fzf-tmux -xC -yC --multi -w 90% -h 50% --exit-0 --cycle --reverse --bind='ctrl-r:toggle-all' --bind='ctrl-s:toggle-sort' --no-preview --header="Launch project"
 }
 
 # Choose Project

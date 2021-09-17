@@ -3,6 +3,7 @@ code=(
   "$HOME/dotfiles dot"
   "$HOME/personal/rust-web rw"
   "$HOME/personal/scripts scripts"
+  "$HOME/personal/projetao-cloud/ pcloud"
   "$HOME/personal/telescope.nvim tele"
   "$HOME/personal/jhonrocha jhon"
   "$HOME/personal/noob-invest-node-aws ninvest"

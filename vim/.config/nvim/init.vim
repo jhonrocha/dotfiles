@@ -24,11 +24,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " LSP
 Plug 'neovim/nvim-lspconfig'
-" Completion
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/cmp-buffer'
-
+" Completion COQ_NVIM
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+" 9000+ Snippets
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+" Third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Telescope
@@ -39,8 +40,6 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'rakr/vim-one'
 Plug 'projekt0n/github-nvim-theme'
-" Distraction Free
-Plug 'junegunn/goyo.vim'
 " Marks
 Plug 'kshenoy/vim-signature'
 " WhichKey
@@ -172,7 +171,7 @@ set title
 set titleold="Terminal"
 set titlestring=%F
 " Lua Configs
-lua require("config")
+let g:coq_settings = { 'auto_start': v:true }
 " }}}
 
 ">>>....................Autocmd.................... {{{
@@ -235,16 +234,8 @@ cnoreabbrev Qall qall
 autocmd TermOpen term://* startinsert
 " }}}
 
-">>>....................Goyo.................... {{{
-let g:goyo_width=70
-let g:goyo_height=70
-let g:goyo_linenr=70
-function! s:goyo_enter()
-  set laststatus=0
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+">>>....................Load LUA.................... {{{
+lua require("config")
 " }}}
 
 ">>>....................Mappings.................... {{{
