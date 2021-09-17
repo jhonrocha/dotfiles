@@ -20,6 +20,8 @@ require("github-theme").setup({
 
 -- LSP
 local lspconfig = require('lspconfig')
+-- Completion
+local coq = require "coq"
 -- TS-JS
 lspconfig.tsserver.setup{
   on_attach = function(client)
@@ -113,7 +115,7 @@ lspconfig.diagnosticls.setup{
   }
 }
 -- RUST
-lspconfig.rust_analyzer.setup({
+lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities({
   settings = {
     ["rust-analyzer"] = {
       assist = {
@@ -131,7 +133,7 @@ lspconfig.rust_analyzer.setup({
       },
     }
   }
-})
+}))
 -- VIM
 lspconfig.vimls.setup{}
 
@@ -163,137 +165,71 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
-
--- CMP
-local cmp = require'cmp'
-cmp.setup{
-  mapping = {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    }),
-    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
+-- Telescope
+local actions = require('telescope.actions')
+require("telescope").setup {
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--hidden',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--glob=!.git',
+      '--column',
+      '--smart-case'
+    },
+    border = true,
+    borderchars = {
+      prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+      results = { " " },
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
+    dynamic_preview_title = false,
+    file_previewer = require('telescope.previewers').cat.new,
+    sorting_strategy = "ascending",
+    -- layout_strategy = "horizontal",
+    layout_strategy = "bottom_pane",
+    layout_config = {
+      bottom_pane = {
+        height = 0.4,
+      },
+      horizontal = {
+        width = 0.95,
+        height = 0.4,
+        preview_width = 0.4,
+        prompt_position = "top",
+        preview_cutoff = 60,
+      },
+      vertical = {
+        mirror = false
+      }
+    },
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+        ["<c-j>"] = actions.move_selection_next,
+        ["<c-k>"] = actions.move_selection_previous,
+        ["<tab>"] = actions.add_selection + actions.move_selection_next,
+        ["<s-tab>"] = actions.remove_selection + actions.move_selection_previous
+      }
+    }
+  },
+  pickers = {
+    buffers = {
+      sort_lastused = true,
+      mappings = {
+        i = {
+          ["<c-d>"] = "delete_buffer",
+        },
+      }
+    }
   }
 }
--- Set completeopt to have a better completion experience
--- vim.o.completeopt = 'menuone,noselect'
 
--- luasnip setup
--- local luasnip = require 'luasnip'
-
--- nvim-cmp setup
--- local cmp = require 'cmp'
--- cmp.setup {
-  --   snippet = {
-    --     expand = function(args)
-      --       require('luasnip').lsp_expand(args.body)
-      --     end,
-      --   },
-      --   mapping = {
-        --     ['<C-p>'] = cmp.mapping.select_prev_item(),
-        --     ['<C-n>'] = cmp.mapping.select_next_item(),
-        --     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        --     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        --     ['<C-Space>'] = cmp.mapping.complete(),
-        --     ['<C-e>'] = cmp.mapping.close(),
-        --     ['<CR>'] = cmp.mapping.confirm {
-          --       behavior = cmp.ConfirmBehavior.Replace,
-          --       select = true,
-          --     },
-          --     ['<Tab>'] = function(fallback)
-            --       if vim.fn.pumvisible() == 1 then
-            --         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-            --       elseif luasnip.expand_or_jumpable() then
-            --         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
-            --       else
-            --         fallback()
-            --       end
-            --     end,
-            --     ['<S-Tab>'] = function(fallback)
-              --       if vim.fn.pumvisible() == 1 then
-              --         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
-              --       elseif luasnip.jumpable(-1) then
-              --         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
-              --       else
-              --         fallback()
-              --       end
-              --     end,
-              --   },
-              --   sources = {
-                --     { name = 'lspconfig' },
-                --     { name = 'luasnip' },
-                --   },
-                -- }
-
-                -- Telescope
-                local actions = require('telescope.actions')
-                require("telescope").setup {
-                  defaults = {
-                    vimgrep_arguments = {
-                      'rg',
-                      '--hidden',
-                      '--color=never',
-                      '--no-heading',
-                      '--with-filename',
-                      '--line-number',
-                      '--glob=!.git',
-                      '--column',
-                      '--smart-case'
-                    },
-                    border = true,
-                    borderchars = {
-                      prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
-                      results = { " " },
-                      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-                    },
-                    dynamic_preview_title = false,
-                    file_previewer = require('telescope.previewers').cat.new,
-                    sorting_strategy = "ascending",
-                    -- layout_strategy = "horizontal",
-                    layout_strategy = "bottom_pane",
-                    layout_config = {
-                      bottom_pane = {
-                        height = 0.4,
-                      },
-                      horizontal = {
-                        width = 0.95,
-                        height = 0.4,
-                        preview_width = 0.4,
-                        prompt_position = "top",
-                        preview_cutoff = 60,
-                      },
-                      vertical = {
-                        mirror = false
-                      }
-                    },
-                    mappings = {
-                      i = {
-                        ["<esc>"] = actions.close,
-                        ["<c-j>"] = actions.move_selection_next,
-                        ["<c-k>"] = actions.move_selection_previous,
-                        ["<tab>"] = actions.add_selection + actions.move_selection_next,
-                        ["<s-tab>"] = actions.remove_selection + actions.move_selection_previous
-                      }
-                    }
-                  },
-                  pickers = {
-                    buffers = {
-                      sort_lastused = true,
-                      mappings = {
-                        i = {
-                          ["<c-d>"] = "delete_buffer",
-                        },
-                      }
-                    }
-                  }
-                }
-
-                function ff()
-                  require('telescope.builtin').find_files {
-                    find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git','--exclude','node_modules'}
-                  }
-                end
+function ff()
+  require('telescope.builtin').find_files {
+    find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git','--exclude','node_modules'}
+  }
+end
