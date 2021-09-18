@@ -135,10 +135,10 @@ lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities({
   }
 }))
 -- VIM
-lspconfig.vimls.setup{}
+lspconfig.vimls.setup(coq.lsp_ensure_capabilities({}))
 
 -- LUA
-lspconfig.sumneko_lua.setup{
+lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
   cmd = {"/usr/bin/lua-language-server", "-E"};
   settings = {
     Lua = {
@@ -147,10 +147,10 @@ lspconfig.sumneko_lua.setup{
       },
     },
   },
-}
+}))
 
 -- Python
-lspconfig.pylsp.setup{}
+lspconfig.pylsp.setup(coq.lsp_ensure_capabilities({}))
 
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
