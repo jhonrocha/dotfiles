@@ -134,6 +134,7 @@ lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities({
     }
   }
 }))
+
 -- VIM
 lspconfig.vimls.setup(coq.lsp_ensure_capabilities({}))
 
