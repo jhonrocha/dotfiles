@@ -207,15 +207,6 @@ hi LspDiagnosticsUnderlineInformation cterm=undercurl gui=undercurl guisp=#83a59
 hi LspDiagnosticsUnderlineHint cterm=undercurl gui=undercurl guisp=#8ec07c
 " }}}
 
-">>>....................Tree.................... {{{
-let g:nvim_tree_indent_markers = 1
-hi NvimTreeFolderIcon guifg=#61afef
-hi NvimTreeFolderName guifg=#61afef
-let g:nvim_tree_hijack_netrw = 1
-let g:nvim_tree_disable_netrw = 0
-let g:nvim_tree_quit_on_open = 1
-" }}}
-
 ">>>....................Abbreviations.................... {{{
 "" no one is really happy until you have this shortcuts
 cnoreabbrev W! w!

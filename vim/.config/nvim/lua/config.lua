@@ -13,10 +13,13 @@ require('lualine').setup {
     lualine_z = {'location'}
   },
 }
+
 -- Theme
 require("github-theme").setup({
-  themeStyle = "dark",
+  theme_style = "dark",
 })
+
+require'nvim-tree'.setup()
 
 -- LSP
 local lspconfig = require('lspconfig')
@@ -37,6 +40,7 @@ lspconfig.diagnosticls.setup{
     lspconfig.util.root_pattern(".eslintrc")(fname) or
     lspconfig.util.root_pattern(".eslintrc.json")(fname) or
     lspconfig.util.root_pattern(".eslintrc.js")(fname) or
+    lspconfig.util.root_pattern("package.json")(fname) or
     lspconfig.util.root_pattern(".pylintrc")(fname)
   end,
   init_options = {
