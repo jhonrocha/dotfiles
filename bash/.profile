@@ -68,9 +68,9 @@ alias gl="git log --pretty=format:\"[%h] %ae, %ar: %s\" --stat"
 # Make
 alias m="make"
 # List all files
-alias l="exa --group-directories-first"
-alias la="exa -a --group-directories-first"
-alias ll="exa -la --group-directories-first"
+alias l="exa --group-directories-first --icons"
+alias la="exa -a --group-directories-first --icons"
+alias ll="exa -la --group-directories-first --icons"
 # Copy to clipboard
 alias clip="yank"
 # EMACS
