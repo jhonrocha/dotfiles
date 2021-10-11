@@ -271,7 +271,8 @@ let g:which_key_map.c = {
       \ 'wr' : [':call v:lua.vim.lsp.buf.remove_workspace_folder()', 'work rm'],
       \ }
 
-let g:which_key_map.d = ['NvimTreeFindFile', 'tree']
+nnoremap <leader>d :NvimTreeToggle<CR>
+let g:which_key_map.d = 'tree'
 
 nnoremap <leader>E :e <C-R>=expand("%:p:h") . "/"<CR>
 let g:which_key_map.E = 'open file'

@@ -7,6 +7,7 @@ code=(
   "$HOME/personal/happy-pet-server/ pet"
   "$HOME/personal/telescope.nvim tele"
   "$HOME/personal/jhonrocha jhon"
+  "$HOME/personal/coding-flex/ coding"
   "$HOME/personal/noob-invest-node-aws ninvest"
 )
 

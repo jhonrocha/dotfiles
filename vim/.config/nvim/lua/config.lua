@@ -19,7 +19,12 @@ require("github-theme").setup({
   theme_style = "dark",
 })
 
-require'nvim-tree'.setup()
+vim.g.nvim_tree_quit_on_open = 1
+require'nvim-tree'.setup {
+    update_focused_file = {
+    enable      = true,
+  }
+}
 
 -- LSP
 local lspconfig = require('lspconfig')
