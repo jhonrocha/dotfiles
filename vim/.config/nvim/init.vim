@@ -24,12 +24,14 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " LSP
 Plug 'neovim/nvim-lspconfig'
-" Completion COQ_NVIM
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-" 9000+ Snippets
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-" Third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+" Completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+" For vsnip user.
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'onsails/lspkind-nvim'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Telescope
@@ -38,8 +40,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " Themes
 Plug 'gruvbox-community/gruvbox'
-Plug 'rakr/vim-one'
 Plug 'projekt0n/github-nvim-theme'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " Marks
 Plug 'kshenoy/vim-signature'
 " WhichKey
@@ -76,12 +78,12 @@ function! s:patch_theme_colors()
   hi! SignColor ctermbg=NONE guibg=NONE 
   hi! LineNr ctermbg=NONE guibg=NONE
 endfunction
-" autocmd! ColorScheme * call s:patch_theme_colors()
+autocmd! ColorScheme * call s:patch_theme_colors()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set background=light
+set background=dark
 " Syntax highlight
 syntax on
-" colorscheme one
+colorscheme github
 " Turn on for plugin management
 filetype plugin indent on
 " Encoding
@@ -170,8 +172,6 @@ set modelineexpr
 set title
 set titleold="Terminal"
 set titlestring=%F
-" Lua Configs
-let g:coq_settings = { 'auto_start': v:true }
 " }}}
 
 ">>>....................Autocmd.................... {{{

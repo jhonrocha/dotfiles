@@ -17,28 +17,64 @@ require('lualine').setup {
 -- Theme
 require("github-theme").setup({
   theme_style = "dark",
+  -- transparent = true,
+  -- dark_float = true
 })
 
 vim.g.nvim_tree_quit_on_open = 1
 require'nvim-tree'.setup {
-    update_focused_file = {
-    enable      = true,
+  update_focused_file = {
+    enable = true,
   }
 }
 
 -- LSP
 local lspconfig = require('lspconfig')
--- Completion
-local coq = require "coq"
+-- Setup nvim-cmp.
+local cmp = require'cmp'
+local lspkind = require('lspkind')
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  documentation = {
+    -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    -- For vsnip user.
+    { name = 'vsnip' },
+    { name = 'buffer' },
+  },
+  formatting = {
+    format = lspkind.cmp_format(),
+  }
+});
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 -- TS-JS
-lspconfig.tsserver.setup{
+lspconfig.tsserver.setup {
+  capabilities = capabilities,
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
   end
 }
 
 -- diagnosticls
-lspconfig.diagnosticls.setup{
+lspconfig.diagnosticls.setup {
+  capabilities = capabilities,
   filetypes = {"javascript", "typescript","python"},
   root_dir = function(fname)
     return lspconfig.util.root_pattern("tsconfig.json")(fname) or
@@ -124,7 +160,8 @@ lspconfig.diagnosticls.setup{
   }
 }
 -- RUST
-lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities({
+lspconfig.rust_analyzer.setup {
+  capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
       assist = {
@@ -142,13 +179,16 @@ lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities({
       },
     }
   }
-}))
+}
 
 -- VIM
-lspconfig.vimls.setup(coq.lsp_ensure_capabilities({}))
+lspconfig.vimls.setup {
+  capabilities = capabilities,
+}
 
 -- LUA
-lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+lspconfig.sumneko_lua.setup {
+  capabilities = capabilities,
   cmd = {"/usr/bin/lua-language-server", "-E"};
   settings = {
     Lua = {
@@ -157,16 +197,20 @@ lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
       },
     },
   },
-}))
+}
 
 -- Python
-lspconfig.pylsp.setup(coq.lsp_ensure_capabilities({}))
+lspconfig.pylsp.setup {
+  capabilities = capabilities,
+}
+
 
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false
-})
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false
+  }
+)
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
@@ -175,6 +219,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
+
 -- Telescope
 local actions = require('telescope.actions')
 require("telescope").setup {
