@@ -78,7 +78,7 @@ function! s:patch_theme_colors()
   hi! SignColor ctermbg=NONE guibg=NONE 
   hi! LineNr ctermbg=NONE guibg=NONE
 endfunction
-autocmd! ColorScheme * call s:patch_theme_colors()
+" autocmd! ColorScheme * call s:patch_theme_colors()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " Syntax highlight
