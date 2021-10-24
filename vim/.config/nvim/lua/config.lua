@@ -18,7 +18,7 @@ require('lualine').setup {
 require("github-theme").setup({
   theme_style = "dark",
   -- transparent = true,
-  -- dark_float = true
+  dark_float = true
 })
 
 vim.g.nvim_tree_quit_on_open = 1
@@ -51,6 +51,7 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'path' },
     -- For vsnip user.
     { name = 'vsnip' },
     { name = 'buffer' },

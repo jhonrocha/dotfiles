@@ -8,6 +8,7 @@ code=(
   "$HOME/personal/telescope.nvim tele"
   "$HOME/personal/jhonrocha jhon"
   "$HOME/personal/coding-flex/ coding"
+  "$HOME/personal/time-app tmz"
   "$HOME/personal/noob-invest-node-aws ninvest"
 )
 
