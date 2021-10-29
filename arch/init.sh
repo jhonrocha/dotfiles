@@ -15,9 +15,6 @@ fi
 cd /data/dotfiles/arch
 yay -S --answerclean None --answerdiff None --answeredit None --noprovides --norebuild --needed - < pkg-aur.txt
 
-#### Devlopment Stack
-./dev-init.sh
-
 #### STOW THE PACKAGES
 rm ~/.bash*
 cd /data/dotfiles
@@ -48,9 +45,6 @@ xdg-mime default org.pwmt.zathura.desktop application/pdf
 git config --global credential.helper store
 git config --global core.excludesFile '~/.config/.git-ignore'
 
-
-# ##### PIP Install
-sudo pip3 install pygobject
 
 ##### Setting audio
 amixer sset Master unmute
