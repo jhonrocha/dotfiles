@@ -1,6 +1,6 @@
 #!/bin/bash
 code=(
-  "$HOME/dotfiles dot"
+  "/data/dotfiles dot"
   "$HOME/personal/rust-web rw"
   "$HOME/personal/scripts scripts"
   "$HOME/personal/projetao-cloud/ pcloud"
@@ -15,7 +15,7 @@ code=(
 dirs=(
   "$HOME/"
   "$HOME/bkp"
-  "$HOME/dotfiles"
+  "/data/dotfiles"
   "$HOME/Downloads"
   "$HOME/personal"
   "$HOME/drive"

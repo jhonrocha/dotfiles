@@ -8,5 +8,5 @@ sudo pacman --noconfirm --needed -S \
     qt5-wayland qt6-wayland
 
 #### STOW THE PACKAGES
-cd ~/dotfiles
-stow sway
+cd /data/dotfiles
+stow sway -t ~/

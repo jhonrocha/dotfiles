@@ -7,11 +7,12 @@ sudo pacman --noconfirm --needed -S \
     xterm xclip xdo i3 picom
 
 #### STOW THE PACKAGES
-cd ~/dotfiles
-stow dunst
-stow picom
-stow x
-stow i3
+cd /data/dotfiles
+stow dunst -t ~/
+stow picom -t ~/
+stow x -t ~/
+stow i3 -t ~/
+stow i3status -t ~/
 
 #### Wallpaper
 mkdir -p $HOME/.config/wallpapers

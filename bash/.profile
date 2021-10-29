@@ -39,11 +39,6 @@ export LESS_TERMCAP_so=$'\e[30;43m'       # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
 
-# NNN Bookmarks
-export NNN_BMS='h:~;.:~/dotfiles;D:~/Documents;d:~/Downloads;1:~/oneDrive;o:~/org;k:~/keys;w:~/workspace;j:~/jhworkspace;p:~/Pictures'
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='a:preview-tui;p:preview-tabbed;v:imgview'
-
 # Config
 export WINEPREFIX=~/.config/wine
 
@@ -55,7 +50,7 @@ alias .....="cd ../../../.."
 # Shortcuts
 alias gw="cd ~/workspace"
 alias gj="cd ~/personal"
-alias g.="cd ~/dotfiles"
+alias g.="cd /data/dotfiles"
 alias g,="cd ~/prvdots"
 alias g1="cd ~/oneDrive"
 alias gd="cd ~/Downloads"

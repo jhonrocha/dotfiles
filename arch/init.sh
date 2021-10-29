@@ -1,6 +1,6 @@
 #!/bin/bash -v
 
-cd ~/dotfiles/arch
+cd /data/dotfiles/arch
 ##### INSTALL PKGS
 sudo pacman --noconfirm --needed -S - < pkg-all.txt
 
@@ -12,7 +12,7 @@ then
     makepkg -si
 fi
 
-cd ~/dotfiles/arch
+cd /data/dotfiles/arch
 yay -S --answerclean None --answerdiff None --answeredit None --noprovides --norebuild --needed - < pkg-aur.txt
 
 #### Devlopment Stack
@@ -20,23 +20,20 @@ yay -S --answerclean None --answerdiff None --answeredit None --noprovides --nor
 
 #### STOW THE PACKAGES
 rm ~/.bash*
-cd ~/dotfiles
-stow doom
-stow editor
-stow emacs
-stow fd
-stow fish
-stow git-config
-stow gtk
-stow rofi
-stow scripts
-stow starship
-stow tmux
-stow vim
-stow vifm
-stow bash
-stow zsh
-stow kitty
+cd /data/dotfiles
+stow editor -t ~/
+stow fd -t ~/
+stow git-config -t ~/
+stow gtk -t ~/
+stow rofi -t ~/
+stow scripts -t ~/
+stow starship -t ~/
+stow tmux -t ~/
+stow vim -t ~/
+stow vifm -t ~/
+stow bash -t ~/
+stow zsh -t ~/
+stow kitty -t ~/
 
 #### Check for TPM
 [ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
