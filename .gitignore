@@ -6,4 +6,4 @@ ranger/.config/ranger/plugins
 xmonad/.xmonad
 fish_variables
 vifminfo.json
-*bookmarks
+gtk/.config/gtk-3.0/bookmarks

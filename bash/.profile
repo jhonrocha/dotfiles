@@ -49,7 +49,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 # Shortcuts
 alias gw="cd ~/workspace"
-alias gj="cd ~/personal"
+alias gj="cd /data"
 alias g.="cd /data/dotfiles"
 alias g,="cd ~/prvdots"
 alias g1="cd ~/oneDrive"

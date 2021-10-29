@@ -7,6 +7,6 @@ Use `stow` to manage these files.
 ## Tips:
 mkdir /data
 sudo chown :users data
-sudo chmod 2777 /data
+sudo chmod 2775 /data
 sudo setfacl -d -m g::rwx data
 
