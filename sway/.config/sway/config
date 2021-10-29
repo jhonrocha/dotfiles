@@ -52,9 +52,9 @@ gaps inner $gIn
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $(find ~/.config/wallpapers -type f | shuf -n 1) fill
-output HDMI-A-2 pos 0 -1440
-output eDP-1 pos 0 0
-output DP-1 res 1400 1050 pos 1920 0
+# output HDMI-A-2 pos 0 -1440
+# output eDP-1 pos 0 0
+# output DP-1 res 1400 1050 pos 1920 0
 
 #
 # Input configuration
@@ -241,6 +241,8 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # Next/Prior
 bindsym $mod+o workspace prev_on_output
 bindsym $mod+p workspace next_on_output
+bindsym $mod+Tab workspace back_and_forth
+
 # Layout stuff:
 bindsym $mod+w splith
 bindsym $mod+e splitv
@@ -308,7 +310,7 @@ bar {
 include /etc/sway/config.d/*
 
 # Initializing
-# exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec mako
 
