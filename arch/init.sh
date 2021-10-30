@@ -16,21 +16,7 @@ cd /data/dotfiles/arch
 yay -S --answerclean None --answerdiff None --answeredit None --noprovides --norebuild --needed - < pkg-aur.txt
 
 #### STOW THE PACKAGES
-rm ~/.bash*
-cd /data/dotfiles
-stow editor -t ~/
-stow fd -t ~/
-stow git-config -t ~/
-stow gtk -t ~/
-stow rofi -t ~/
-stow scripts -t ~/
-stow starship -t ~/
-stow tmux -t ~/
-stow vim -t ~/
-stow vifm -t ~/
-stow bash -t ~/
-stow zsh -t ~/
-stow kitty -t ~/
+./stowing.sh
 
 #### Check for TPM
 [ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
