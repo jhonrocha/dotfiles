@@ -27,18 +27,26 @@ init-xmonad () {
 init-sway () {
   export WM=sway
   export MOZ_ENABLE_WAYLAND=1
-  export LIBSEAT_BACKEND=logind
-  exec sway --my-next-gpu-wont-be-nvidia >> ~/.cache/sway.log 2>&1
+  exec sway --unsupported-gpu >> ~/.cache/sway.log 2>&1
 }
 
 machine=$(uname -n)
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+if [[ ! $DISPLAY && (($XDG_VTNR -eq 1) || ($XDG_VTNR -eq 6)) ]]; then
   if [ $machine = "tiamat" ]; then
+    # export LIBSEAT_BACKEND=logind
+    # export WLR_NO_HARDWARE_CURSORS=1
+    # export QT_AUTO_SCREEN_SCALE_FACTOR=1
+    # export QT_QPA_PLATFORM=wayland
+    # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    # export GDK_BACKEND=wayland
+    # export XDG_CURRENT_DESKTOP=sway
+    # export GBM_BACKEND=nvidia-drm
+    # export __GLX_VENDOR_LIBRARY_NAME=nvidia
     # init-sway
     init-i3
   elif [ $machine = "drogon" ]; then
-    init-sway
-    # init-i3
+    # init-sway
+    init-i3
   else
     init-i3
   fi
