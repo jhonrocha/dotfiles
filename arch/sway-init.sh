@@ -10,3 +10,4 @@ sudo pacman --noconfirm --needed -S \
 #### STOW THE PACKAGES
 cd /data/dotfiles
 stow sway -t ~/
+stow i3-status -t ~/
