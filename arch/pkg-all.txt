@@ -86,3 +86,6 @@ pipewire-media-session
 xdg-desktop-portal
 dbeaver
 ncdu
+ranger
+python-pillow
+imagemagick

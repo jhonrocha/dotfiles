@@ -1,8 +1,7 @@
 -- Line
--- require("plug-galaxyline")
 require('lualine').setup {
   options = {
-    theme = 'github'
+    theme = 'catppuccino'
   },
   sections = {
     lualine_a = {'mode'},
@@ -15,11 +14,12 @@ require('lualine').setup {
 }
 
 -- Theme
-require("github-theme").setup({
-  theme_style = "dark",
-  -- transparent = true,
-  dark_float = true
-})
+-- require("github-theme").setup({
+--   theme_style = "dark_default",
+--   transparent = false,
+--   dark_float = true
+-- })
+require("catppuccino").setup()
 
 vim.g.nvim_tree_quit_on_open = 1
 require'nvim-tree'.setup {
@@ -234,7 +234,7 @@ require("telescope").setup {
       '--line-number',
       '--glob=!.git',
       '--column',
-      '--smart-case'
+      '--smart-case',
     },
     border = true,
     borderchars = {
@@ -244,6 +244,7 @@ require("telescope").setup {
     },
     dynamic_preview_title = false,
     file_previewer = require('telescope.previewers').cat.new,
+    file_ignore_patterns = {"node_modules"},
     sorting_strategy = "ascending",
     -- layout_strategy = "horizontal",
     layout_strategy = "bottom_pane",
@@ -286,6 +287,6 @@ require("telescope").setup {
 
 function ff()
   require('telescope.builtin').find_files {
-    find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git','--exclude','node_modules'}
+    find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git','--exclude','node_modules', '--no-ignore'}
   }
 end

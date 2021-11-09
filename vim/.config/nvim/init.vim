@@ -41,15 +41,14 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " Themes
-Plug 'gruvbox-community/gruvbox'
+Plug 'Pocco81/Catppuccino.nvim'
 Plug 'projekt0n/github-nvim-theme'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " Marks
 Plug 'kshenoy/vim-signature'
 " WhichKey
 Plug 'liuchengxu/vim-which-key'
 " Line
-Plug 'hoob3rt/lualine.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 call plug#end()
 " }}}
 
@@ -74,18 +73,11 @@ set signcolumn=auto:1
 " Completion
 set completeopt=menuone,noinsert,noselect
 " Theme Setting
-function! s:patch_theme_colors()
-  hi! Normal ctermbg=NONE guibg=NONE
-  hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-  hi! SignColor ctermbg=NONE guibg=NONE 
-  hi! LineNr ctermbg=NONE guibg=NONE
-endfunction
-" autocmd! ColorScheme * call s:patch_theme_colors()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " Syntax highlight
 syntax on
-" colorscheme github
+colorscheme catppuccino
 " Turn on for plugin management
 filetype plugin indent on
 " Encoding
@@ -364,6 +356,7 @@ let g:which_key_map[','] = [':Telescope buffers', 'T buffers']
 let g:which_key_map.s = {
       \ 'name' : '+Fuzzy' ,
       \ 'c' : [':Telescope git_commits', 'commits'],
+      \ 'b' : [':Telescope git_branches', 'branches'],
       \ 'h' : [':Telescope help_tags', 'help'],
       \ 'p' : [':Telescope oldfiles', 'prev files'],
       \ 'g' : [':Telescope live_grep', 'grep'],
