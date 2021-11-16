@@ -1,12 +1,12 @@
 -- Line
 require('lualine').setup {
   options = {
-    theme = 'catppuccino'
+    theme = 'catppuccin'
   },
   sections = {
     lualine_a = {'mode'},
     lualine_b = {''},
-    lualine_c = {'filename'},
+    lualine_c = { {'filename', path = 1} },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -14,19 +14,23 @@ require('lualine').setup {
 }
 
 -- Theme
--- require("github-theme").setup({
---   theme_style = "dark_default",
---   transparent = false,
---   dark_float = true
--- })
-require("catppuccino").setup()
 
-vim.g.nvim_tree_quit_on_open = 1
-require'nvim-tree'.setup {
-  update_focused_file = {
-    enable = true,
+require("catppuccin").setup({
+  integration = {
+    nvimtree = {
+      enabled = true,
+      show_root = true, -- makes the root folder not transparent
+    }
   }
-}
+})
+-- require("github-theme").setup({ theme_style = "dark_default", transparent = false, dark_float = true })
+
+-- TREE
+vim.g.nvim_tree_quit_on_open = 1
+require'nvim-tree'.setup {}
+
+-- Pairs
+require('nvim-autopairs').setup{}
 
 -- LSP
 local lspconfig = require('lspconfig')
@@ -76,7 +80,7 @@ lspconfig.tsserver.setup {
 -- diagnosticls
 lspconfig.diagnosticls.setup {
   capabilities = capabilities,
-  filetypes = {"javascript", "typescript","python"},
+  filetypes = {"javascript", "typescript","python", "json"},
   root_dir = function(fname)
     return lspconfig.util.root_pattern("tsconfig.json")(fname) or
     lspconfig.util.root_pattern(".eslintrc")(fname) or
@@ -149,7 +153,8 @@ lspconfig.diagnosticls.setup {
     },
     formatFiletypes = {
       javascript = {"prettier","eslint_fmt"},
-      typescript = "prettier",
+      json = {"prettier"},
+      typescript = {"prettier"},
       typescriptreact = "prettier",
       rust = "rustfmt",
     },
@@ -208,9 +213,9 @@ lspconfig.pylsp.setup {
 
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false
-  }
+vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = false
+}
 )
 
 -- Treesitter
@@ -244,7 +249,7 @@ require("telescope").setup {
     },
     dynamic_preview_title = false,
     file_previewer = require('telescope.previewers').cat.new,
-    file_ignore_patterns = {"node_modules"},
+    file_ignore_patterns = {"node_modules", ".git"},
     sorting_strategy = "ascending",
     -- layout_strategy = "horizontal",
     layout_strategy = "bottom_pane",
@@ -281,12 +286,15 @@ require("telescope").setup {
           ["<c-d>"] = "delete_buffer",
         },
       }
+    },
+    find_files = {
+      hidden = true
     }
   }
 }
 
 function ff()
   require('telescope.builtin').find_files {
-    find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git','--exclude','node_modules', '--no-ignore'}
+    -- find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git','--exclude','node_modules', '--no-ignore'}
   }
 end

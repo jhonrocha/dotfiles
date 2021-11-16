@@ -47,7 +47,7 @@ mode "apps" {
   bindsym s exec "i3-msg [class=\\"$term\\"] focus || $term"; mode "default"
   bindsym f exec "i3-msg [class=\\"Brave-browser\\"] focus || brave"; mode "default"
   bindsym g exec jhbrowser; mode "default"
-  bindsym e exec "$term ranger --cmd 'set preview_images true'"; mode "default"
+  bindsym e exec "kitty ranger --cmd 'set preview_images_method kitty'"; mode "default"
   bindsym i exec "$term htop"; mode "default"
   bindsym y exec jhsync; mode "default"
   bindsym b exec "$term nvim ~/.config/favs.txt"; mode "default"
@@ -89,8 +89,10 @@ mode "gaps" {
   bindsym p gaps outer current plus  5
   bindsym Shift+p gaps outer current plus  10
   # Setups
-  bindsym 0 gaps outer all set $gOut; gaps inner all set $gIn; mode "default"
-  bindsym Shift+0 gaps outer current set $gOut; gaps inner current set $gIn; mode "default"
+  bindsym equal gaps outer all set $gOut; gaps inner all set $gIn; mode "default"
+  bindsym Shift+equal gaps outer current set $gOut; gaps inner current set $gIn; mode "default"
+  bindsym 0 gaps outer all set 0; gaps inner all set 0; mode "default"
+  bindsym Shift+0 gaps outer current set 0; gaps inner current set 0; mode "default"
   bindsym 1 gaps outer all set 100; mode "default"
   bindsym Shift+1 gaps outer current set 100; mode "default"
   # Return to default mode
@@ -237,7 +239,7 @@ bar {
   i3bar_command i3bar --transparency
   status_command i3status
   position top
-  font pango:Iosevka Nerd Font 12
+  font pango:Iosevka,Iosevka Nerd Font 12
   separator_symbol " "
   tray_padding 4px
   colors {

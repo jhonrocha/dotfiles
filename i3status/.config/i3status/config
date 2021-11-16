@@ -19,7 +19,7 @@ order += "volume master"
 order += "cpu_usage"
 order += "cpu_temperature 0"
 order += "tztime us"
-order += "tztime local"
+order += "time"
 
 battery all {
   format ="<span foreground='#d670d6'></span><span background='#d670d6' foreground='#000000' weight='bold'>  %percentage </span>"
@@ -54,14 +54,12 @@ cpu_temperature 0 {
 
 
 tztime us {
-  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> %time </span>"
-  format_time = "%H:%M %Z"
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> %H:%M %Z </span>"
   timezone = "America/Los_Angeles"
   separator_block_width = 0
 }
 
-tztime local {
-  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> %time </span><span foreground='#d670d6'></span>"
-  format_time = "%b %d, %H:%M"
-  separator_block_width = 0
+time {
+  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> %b %d, %H:%M </span><span foreground='#d670d6'></span>"
+  separator_block_width = 1 
 }

@@ -16,8 +16,11 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 " ViFM
 Plug 'vifm/vifm.vim'
+Plug 'kevinhwang91/rnvimr'
 " Vim Surround
 Plug 'tpope/vim-surround'
+" Nvim Pairs
+Plug 'windwp/nvim-autopairs'
 " GCC to Comment
 Plug 'tpope/vim-commentary'
 " Git Integration
@@ -41,7 +44,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " Themes
-Plug 'Pocco81/Catppuccino.nvim'
+Plug 'catppuccin/nvim'
 Plug 'projekt0n/github-nvim-theme'
 " Marks
 Plug 'kshenoy/vim-signature'
@@ -77,7 +80,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " Syntax highlight
 syntax on
-colorscheme catppuccino
+colorscheme catppuccin
 " Turn on for plugin management
 filetype plugin indent on
 " Encoding
@@ -257,7 +260,7 @@ let g:which_key_map.c = {
       \ 'D' : [':call v:lua.vim.lsp.buf.declaration()', 'declaration'],
       \ '[' : [':call v:lua.vim.lsp.diagnostic.goto_prev()', 'prev error'],
       \ ']' : [':call v:lua.vim.lsp.diagnostic.goto_next()', 'next error'],
-      \ 'c' : [':call v:lua.vim.lsp.buf.rename()', 'rename'],
+      \ 'w' : [':call v:lua.vim.lsp.buf.rename()', 'rename'],
       \ 'd' : [':call v:lua.vim.lsp.buf.definition()', 'definition'],
       \ 'i' : [':call v:lua.vim.lsp.buf.implementation()', 'implementation'],
       \ 'f' : [':call Formatting()', 'formatting'],
@@ -268,12 +271,12 @@ let g:which_key_map.c = {
       \ 'r' : [':call v:lua.vim.lsp.buf.references()', 'reference'],
       \ 's' : [':call v:lua.vim.lsp.buf.signature_help()', 'help'],
       \ 't' : [':call v:lua.vim.lsp.buf.type_definition()', 'type def'],
-      \ 'wa' : [':call v:lua.vim.lsp.buf.add_workspace_folder()', 'work add'],
-      \ 'wl' : [':call v:lua.print(vim.inspect(vim.lsp.buf.list_workspace_folders()))', 'work list'],
-      \ 'wr' : [':call v:lua.vim.lsp.buf.remove_workspace_folder()', 'work rm'],
+      \ 'Wa' : [':call v:lua.vim.lsp.buf.add_workspace_folder()', 'work add'],
+      \ 'Wl' : [':call v:lua.print(vim.inspect(vim.lsp.buf.list_workspace_folders()))', 'work list'],
+      \ 'Wr' : [':call v:lua.vim.lsp.buf.remove_workspace_folder()', 'work rm'],
       \ }
 
-nnoremap <leader>d :NvimTreeToggle<CR>
+nnoremap <leader>d :NvimTreeFindFileToggle<CR>
 let g:which_key_map.d = 'tree'
 
 nnoremap <leader>E :e <C-R>=expand("%:p:h") . "/"<CR>
@@ -287,16 +290,18 @@ function! Vifm_jump()
   let g:vifm_exec_args = ''
 endfunction
 
-nnoremap <leader>ff :call Vifm_jump()<CR>
+" nnoremap <leader>ff :call Vifm_jump()<CR>
 let g:which_key_map.f = {
       \ 'name' : '+files' ,
       \ 'd' : ['bd', 'delete'],
-      \ 'f' : 'Vifm',
+      \ 'f' : ['RnvimrToggle', 'manager'],
       \ 'k' : [':bp | bd #', 'close'],
       \ 'n' : ['bn' , 'next'],
       \ 'p' : ['bp' , 'prev'],
       \ 's' : ['update', 'save'],
       \ }
+let g:which_key_map.j = ['bn', 'next buf']
+let g:which_key_map.k = ['bp', 'prev buf']
 
 nnoremap <leader>gy :!gy<CR><CR>
 nnoremap <leader>gk :Git checkout
@@ -334,9 +339,9 @@ let g:which_key_map.q = {
       \ 'name' : '+quicklist' ,
       \ 'c' : [':cclose', 'close'],
       \ 'q' : [':copen', 'open'],
+      \ 'j' : [':cn', 'quick next'],
+      \ 'k' : [':cp', 'quick prev'],
       \ }
-let g:which_key_map.j = [':cn', 'quick next']
-let g:which_key_map.k = [':cp', 'quick prev']
 
 let g:which_key_map.r = { 'name' : '+replace' }
 

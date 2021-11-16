@@ -6,7 +6,7 @@
 # \___/|_| |_|_| \_\___/ \___|_| |_|\__,_|
 
 ##### Keyboard Settings
-xkbcomp ~/.config/xkb/xkbmap $DISPLAY
+xkbcomp ~/.config/xkb/xkbmap $DISPLAY &> /dev/null
 
 ##### Xrandr screen
 monitors=$(xrandr | awk '/ connected/ { print "->" $1 }')
@@ -29,4 +29,4 @@ $HOME/.config/dunst/launch.sh
 xsetroot -cursor_name left_ptr
 
 ##### Wifi
-# nm-applet &
+nm-applet &
