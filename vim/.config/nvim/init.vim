@@ -14,11 +14,8 @@ call plug#begin(expand('~/.vim/plugged'))
 "File Drawer
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-" ViFM
-Plug 'vifm/vifm.vim'
+" Ranger
 Plug 'kevinhwang91/rnvimr'
-" Vim Surround
-Plug 'tpope/vim-surround'
 " Nvim Pairs
 Plug 'windwp/nvim-autopairs'
 " GCC to Comment
@@ -43,6 +40,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+
 " Themes
 Plug 'catppuccin/nvim'
 Plug 'projekt0n/github-nvim-theme'
@@ -284,13 +282,6 @@ let g:which_key_map.E = 'open file'
 
 let g:which_key_map.e = [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'lsp_line']
 
-function! Vifm_jump()
-  let g:vifm_exec_args = '-c only --select ' . expand('%:p')
-  Vifm
-  let g:vifm_exec_args = ''
-endfunction
-
-" nnoremap <leader>ff :call Vifm_jump()<CR>
 let g:which_key_map.f = {
       \ 'name' : '+files' ,
       \ 'd' : ['bd', 'delete'],
@@ -350,10 +341,6 @@ let g:which_key_map.r.r = 'all'
 
 nnoremap <leader>rb :.,$s//gc<left><left><left>
 let g:which_key_map.r.b = 'bellow'
-
-" FZF
-nnoremap <silent> <leader>. :Files <c-r>=expand("%:p:h") . "/"<cr><cr>
-let g:which_key_map['.'] = '. files'
 
 " Telescope
 let g:which_key_map[' '] = [':call v:lua.ff()', 'T files']

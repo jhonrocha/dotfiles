@@ -5,7 +5,8 @@ sudo pacman --noconfirm --needed -S \
     docker docker-compose nodejs npm \
     redis mariadb mysql-workbench \
     code openconnect gnome-keyring \
-    seahorse aws-cli lua-language-server
+    seahorse aws-cli lua-language-server \
+    efm-langserver luarocks 
 
 
 # NPM Globals Installs
@@ -19,6 +20,9 @@ sudo usermod -aG docker $USER
 # NeoVIM LSP
 npm install -g typescript typescript-language-server
 yarn global add diagnostic-languageserver
+
+# LuaRocks Formatter
+sudo luarocks install --server=https://luarocks.org/dev luaformatter
 
 # Python LSP
 pip install 'python-lsp-server[all]'
