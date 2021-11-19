@@ -1,6 +1,4 @@
 vpn-slice
-nerd-fonts-fira-code
-nerd-fonts-iosevka
 nerd-fonts-hack
 nerd-fonts-source-code-pro
 nerd-fonts-jetbrains-mono

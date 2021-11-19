@@ -11,7 +11,7 @@ stow scripts -t ~/
 stow starship -t ~/
 stow tmux -t ~/
 stow vim -t ~/
-stow vifm -t ~/
+stow ranger -t ~/
 stow bash -t ~/
 stow zsh -t ~/
 stow kitty -t ~/
