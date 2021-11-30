@@ -93,8 +93,8 @@ mode "gaps" {
   bindsym Shift+equal gaps outer current set $gOut; gaps inner current set $gIn; mode "default"
   bindsym 0 gaps outer all set 0; gaps inner all set 0; mode "default"
   bindsym Shift+0 gaps outer current set 0; gaps inner current set 0; mode "default"
-  bindsym 1 gaps outer all set 100; mode "default"
-  bindsym Shift+1 gaps outer current set 100; mode "default"
+  bindsym 1 gaps outer all set 100; gaps inner current set $gIn; mode "default"
+  bindsym Shift+1 gaps outer current set 100; gaps inner current set $gIn; mode "default"
   # Return to default mode
   bindsym Return mode "default"
   bindsym Escape mode "default"

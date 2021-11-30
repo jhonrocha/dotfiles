@@ -44,6 +44,9 @@ Plug 'nvim-telescope/telescope.nvim'
 " Themes
 Plug 'catppuccin/nvim'
 Plug 'projekt0n/github-nvim-theme'
+" Dashboard
+Plug 'glepnir/dashboard-nvim'
+
 " Marks
 Plug 'kshenoy/vim-signature'
 " WhichKey
@@ -228,6 +231,43 @@ cnoreabbrev Qall qall
 autocmd TermOpen term://* startinsert
 " }}}
 
+">>>....................DASHBOARD.................... {{{
+let g:dashboard_default_executive ='telescope'
+let g:dashboard_custom_shortcut={
+\ 'find_file'          : 'SPC SPC',
+\ 'find_history'       : 'SPC f o',
+\ 'new_file'           : 'SPC f n',
+\ 'find_word'          : 'SPC f w',
+\ 'book_marks'         : 'SPC f m',
+\ 'last_session'       : 'SPC s l',
+\ 'change_colorscheme' : 'SPC f t',
+\ }
+
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR
+
+
+
+
+let g:dashboard_custom_header = [
+\ '                   ****                                  ****',
+\ '               *********             *    *             *********',
+\ '            ****************        ***  ***        ****************',
+\ '         **************************************************************',
+\ '       ******************************************************************',
+\ '     **********************************************************************',
+\ '    ************************************************************************',
+\ '   ***************************************************************************',
+\ '  *****        **************************************************        ******',
+\ ' ***            ******        ********************        ******            ***',
+\ '**                                ************                                **',
+\ '                                    ********',
+\ '                                     ******',
+\ '                                      ****',
+\ '                                       **']
+
+" }}}
+
 ">>>....................Load LUA.................... {{{
 lua require("config")
 " }}}
@@ -282,18 +322,6 @@ let g:which_key_map.E = 'open file'
 
 let g:which_key_map.e = [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'lsp_line']
 
-let g:which_key_map.f = {
-      \ 'name' : '+files' ,
-      \ 'd' : ['bd', 'delete'],
-      \ 'f' : ['RnvimrToggle', 'manager'],
-      \ 'k' : [':bp | bd #', 'close'],
-      \ 'n' : ['bn' , 'next'],
-      \ 'p' : ['bp' , 'prev'],
-      \ 's' : ['update', 'save'],
-      \ }
-let g:which_key_map.j = ['bn', 'next buf']
-let g:which_key_map.k = ['bp', 'prev buf']
-
 nnoremap <leader>gy :!gy<CR><CR>
 nnoremap <leader>gk :Git checkout
 nnoremap <leader>gp :Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>
@@ -316,9 +344,9 @@ let g:which_key_map.l = {
       \ 'name' : '+loclist' ,
       \ 'c' : ['lclose', 'close'],
       \ 'l' : ['lopen', 'open'],
+      \ 'j' : [':ln', 'l. next'],
+      \ 'k' : [':lp', 'l. prev'],
       \ }
-let g:which_key_map.i = ['lnext', 'loc next']
-let g:which_key_map.u = ['lprevious', 'loc prev']
 
 nnoremap <leader>p "vp
 let g:which_key_map.p = "p bellow"
@@ -345,22 +373,25 @@ let g:which_key_map.r.b = 'bellow'
 " Telescope
 let g:which_key_map[' '] = [':call v:lua.ff()', 'T files']
 let g:which_key_map[','] = [':Telescope buffers', 'T buffers']
-let g:which_key_map.s = {
-      \ 'name' : '+Fuzzy' ,
-      \ 'c' : [':Telescope git_commits', 'commits'],
+let g:which_key_map.f = {
+      \ 'name' : '+Files' ,
       \ 'b' : [':Telescope git_branches', 'branches'],
+      \ 'c' : [':Telescope git_commits', 'commits'],
+      \ 'd' : ['bd', 'delete'],
+      \ 'f' : ['RnvimrToggle', 'manager'],
       \ 'h' : [':Telescope help_tags', 'help'],
-      \ 'p' : [':Telescope oldfiles', 'prev files'],
-      \ 'g' : [':Telescope live_grep', 'grep'],
+      \ 'm' : [':Telescope marks', 'marks'],
+      \ 'k' : [':bp | bd #', 'close'],
+      \ 'o' : [':Telescope oldfiles', 'prev files'],
+      \ 's' : ['update', 'save'],
+      \ 't' : [':Telescope colorscheme', 'theme'],
+      \ 'w' : [':Telescope live_grep', 'grep'],
       \ 'x' : [':Telescope commands', 'commands'],
       \ 'y' : [':Telescope command_history', 'com. history'],
       \ }
 
-let g:which_key_map.x = {
-      \ 'name' : '+M-x' ,
-      \ 'k' : ['update', 'save'],
-      \ 'g' : ['Goyo', 'Goyo'],
-    \ }
+let g:which_key_map.j = ['bn', 'next buf']
+let g:which_key_map.k = ['bp', 'prev buf']
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
