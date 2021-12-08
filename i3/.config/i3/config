@@ -140,6 +140,7 @@ bindsym $mod+r exec rofi -show run
 floating_modifier $mod
 # Reload the configuration file
 bindsym $mod+z restart
+bindsym $mod+Shift+z exit
 # Move your focus around
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down

@@ -1,5 +1,8 @@
 #!/bin/bash -v
 
+### Get the repo
+[ ! -d "/data/dotfiles" ] && git clone https://github.com/jhonrocha/dotfiles.git /data/dotfiles
+### Go to the repo
 cd /data/dotfiles/arch
 ##### INSTALL PKGS
 sudo pacman --noconfirm --needed -S - < pkg-all.txt
@@ -12,11 +15,15 @@ then
     makepkg -si
 fi
 
+### Install from AUR
 cd /data/dotfiles/arch
 yay -S --answerclean None --answerdiff None --answeredit None --noprovides --norebuild --needed - < pkg-aur.txt
 
 #### STOW THE PACKAGES
 ./stowing.sh
+
+### Install i3
+./i3-init.sh
 
 #### Check for TPM
 [ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -30,7 +37,6 @@ xdg-mime default org.pwmt.zathura.desktop application/pdf
 #### GIT Store
 git config --global credential.helper store
 git config --global core.excludesFile '~/.config/.git-ignore'
-
 
 ##### Setting audio
 amixer sset Master unmute

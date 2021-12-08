@@ -13,6 +13,7 @@ require('lualine').setup {
 
 -- Theme
 require("catppuccin").setup({
+  transparent_background = true,
   integration = {
     nvimtree = {
       enabled = true,
@@ -20,6 +21,8 @@ require("catppuccin").setup({
     }
   }
 })
+vim.cmd [[colorscheme catppuccin]]
+
 -- require("github-theme").setup({ theme_style = "dark_default", transparent = false, dark_float = true })
 
 -- TREE
@@ -41,16 +44,17 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({select = true})
+    ['<C-y>'] = cmp.mapping.confirm({select = true})
   },
   documentation = {
     -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   },
   sources = {
-    {name = 'nvim_lsp'}, {name = 'path'}, -- For vsnip user.
+    {name = 'nvim_lua'}, {name = 'nvim_lsp'}, {name = 'path'}, -- For vsnip user.
     {name = 'vsnip'}, {name = 'buffer'}
   },
-  formatting = {format = lspkind.cmp_format()}
+  formatting = {format = lspkind.cmp_format()},
+  experimental = {ghost_text = true}
 });
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
@@ -154,17 +158,7 @@ require"lspconfig".efm.setup {
 }
 
 -- RUST
-lspconfig.rust_analyzer.setup {
-  capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      assist = {importMergeBehavior = "last", importPrefix = "by_self"},
-      cargo = {loadOutDirsFromCheck = true},
-      procMacro = {enable = true},
-      checkOnSave = {command = "clippy"}
-    }
-  }
-}
+lspconfig.rust_analyzer.setup {capabilities = capabilities}
 
 -- VIM
 lspconfig.vimls.setup {capabilities = capabilities}
