@@ -16,7 +16,7 @@ monitors=$(xrandr | awk '/ connected/ { print "->" $1 }')
 
 # ##### Compositor
 killall picom
-picom --experimental-backends -b
+picom -b
 
 # Set wallpaper
 ~/.fehbg &

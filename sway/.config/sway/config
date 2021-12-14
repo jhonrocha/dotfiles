@@ -278,7 +278,7 @@ bindsym $mod+F12 exec amixer sset Master 5%+
 # Status bar
 bar {
     position top
-    font pango:Iosevka Nerd Font, Font Awesome 5 Free 13
+    font pango:JetBrainsMono Nerd Font 13
     # status_command while ~/.config/sway/status.sh; do sleep 1; done
     status_command i3status
     pango_markup enabled
