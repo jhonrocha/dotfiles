@@ -331,7 +331,7 @@ let g:which_key_map.g = {
       \ 'c' : ['Git commit', 'commit'],
       \ 'd' : ['Gvdiffsplit!', 'diff'],
       \ 'f' : [':Git pull', 'pull'],
-      \ 'g' : [':tab Git', 'status'],
+      \ 'g' : [':Git', 'status'],
       \ 'h' : [':call diffget //2', 'diff h'],
       \ 'k' : 'checkout',
       \ 'p' : 'push',
