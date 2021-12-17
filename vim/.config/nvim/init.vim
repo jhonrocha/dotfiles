@@ -114,9 +114,9 @@ set ignorecase
 set smartcase
 " Shell setting
 if exists('$SHELL')
-    set shell=$SHELL
+  set shell=$SHELL
 else
-    set shell=/bin/sh
+  set shell=/bin/sh
 endif
 
 " Split direction
@@ -199,7 +199,7 @@ let g:which_key_use_floating_win = 0
 " Hide status line
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+      \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
 
 ">>>....................LSP.................... {{{
@@ -234,14 +234,14 @@ autocmd TermOpen term://* startinsert
 ">>>....................DASHBOARD.................... {{{
 let g:dashboard_default_executive ='telescope'
 let g:dashboard_custom_shortcut={
-\ 'find_file'          : 'SPC SPC',
-\ 'find_history'       : 'SPC f o',
-\ 'new_file'           : 'SPC f n',
-\ 'find_word'          : 'SPC f w',
-\ 'book_marks'         : 'SPC f m',
-\ 'last_session'       : 'SPC s l',
-\ 'change_colorscheme' : 'SPC f t',
-\ }
+      \ 'find_file'          : 'SPC SPC',
+      \ 'find_history'       : 'SPC f o',
+      \ 'new_file'           : 'SPC f n',
+      \ 'find_word'          : 'SPC f w',
+      \ 'book_marks'         : 'SPC f m',
+      \ 'last_session'       : 'SPC s l',
+      \ 'change_colorscheme' : 'SPC f t',
+      \ }
 
 nmap <Leader>ss :<C-u>SessionSave<CR>
 nmap <Leader>sl :<C-u>SessionLoad<CR
@@ -250,21 +250,21 @@ nmap <Leader>sl :<C-u>SessionLoad<CR
 
 
 let g:dashboard_custom_header = [
-\ '                   ****                                  ****',
-\ '               *********             *    *             *********',
-\ '            ****************        ***  ***        ****************',
-\ '         **************************************************************',
-\ '       ******************************************************************',
-\ '     **********************************************************************',
-\ '    ************************************************************************',
-\ '   ***************************************************************************',
-\ '  *****        **************************************************        ******',
-\ ' ***            ******        ********************        ******            ***',
-\ '**                                ************                                **',
-\ '                                    ********',
-\ '                                     ******',
-\ '                                      ****',
-\ '                                       ** ']
+      \ '                   ****                                  ****',
+      \ '               *********             *    *             *********',
+      \ '            ****************        ***  ***        ****************',
+      \ '         **************************************************************',
+      \ '       ******************************************************************',
+      \ '     **********************************************************************',
+      \ '    ************************************************************************',
+      \ '   ***************************************************************************',
+      \ '  *****        **************************************************        ******',
+      \ ' ***            ******        ********************        ******            ***',
+      \ '**                                ************                                **',
+      \ '                                    ********',
+      \ '                                     ******',
+      \ '                                      ****',
+      \ '                                       ** ']
 
 " }}}
 
@@ -381,7 +381,7 @@ let g:which_key_map.f = {
       \ 'f' : ['RnvimrToggle', 'manager'],
       \ 'h' : [':Telescope help_tags', 'help'],
       \ 'm' : [':Telescope marks', 'marks'],
-      \ 'k' : [':bp | bd #', 'close'],
+      \ 'k' : ['bd', 'close'],
       \ 'o' : [':Telescope oldfiles', 'prev files'],
       \ 's' : ['update', 'save'],
       \ 't' : [':Telescope colorscheme', 'theme'],
@@ -418,17 +418,17 @@ nnoremap S "vS
 " Functions
 let s:hidden_bar = 0
 function! ToggleHiddenBar()
-    if s:hidden_bar  == 0
-        let s:hidden_bar = 1
-        set noruler
-        set laststatus=0
-        set noshowcmd
-    else
-        let s:hidden_bar = 0
-        set ruler
-        set laststatus=2
-        set showcmd
-    endif
+  if s:hidden_bar  == 0
+    let s:hidden_bar = 1
+    set noruler
+    set laststatus=0
+    set noshowcmd
+  else
+    let s:hidden_bar = 0
+    set ruler
+    set laststatus=2
+    set showcmd
+  endif
 endfunction
 call which_key#register('<Space>', "g:which_key_map")
 " }}}

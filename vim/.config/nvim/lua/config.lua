@@ -13,7 +13,7 @@ require('lualine').setup {
 
 -- Theme
 require("catppuccin").setup({
-  transparent_background = true,
+  -- transparent_background = true,
   integration = {
     nvimtree = {
       enabled = true,
