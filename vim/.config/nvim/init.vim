@@ -34,13 +34,14 @@ Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'rafamadriz/friendly-snippets'
+" Rust
+Plug 'simrat39/rust-tools.nvim'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
 " Themes
 Plug 'catppuccin/nvim'
 Plug 'projekt0n/github-nvim-theme'

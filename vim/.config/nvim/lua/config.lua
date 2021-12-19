@@ -23,17 +23,15 @@ require("catppuccin").setup({
 })
 vim.cmd [[colorscheme catppuccin]]
 
--- require("github-theme").setup({ theme_style = "dark_default", transparent = false, dark_float = true })
-
 -- TREE
 vim.g.nvim_tree_quit_on_open = 1
-require'nvim-tree'.setup {}
+require'nvim-tree'.setup {git = {enable = true, ignore = false, timeout = 500}}
 
 -- Pairs
 require('nvim-autopairs').setup {}
 
 -- LSP
-local lspconfig = require('lspconfig')
+local nvim_lsp = require('lspconfig')
 -- Setup nvim-cmp.
 local cmp = require 'cmp'
 local lspkind = require('lspkind')
@@ -62,7 +60,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- TS-JS
-lspconfig.tsserver.setup {
+nvim_lsp.tsserver.setup {
   capabilities = capabilities,
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
@@ -70,16 +68,16 @@ lspconfig.tsserver.setup {
 }
 
 -- diagnosticls
-lspconfig.diagnosticls.setup {
+nvim_lsp.diagnosticls.setup {
   capabilities = capabilities,
   filetypes = {"javascript", "typescript", "typescriptreact", "python", "json"},
   root_dir = function(fname)
-    return lspconfig.util.root_pattern("tsconfig.json")(fname) or
-            lspconfig.util.root_pattern(".eslintrc")(fname) or
-            lspconfig.util.root_pattern(".eslintrc.json")(fname) or
-            lspconfig.util.root_pattern(".eslintrc.js")(fname) or
-            lspconfig.util.root_pattern("package.json")(fname) or
-            lspconfig.util.root_pattern(".pylintrc")(fname)
+    return nvim_lsp.util.root_pattern("tsconfig.json")(fname) or
+            nvim_lsp.util.root_pattern(".eslintrc")(fname) or
+            nvim_lsp.util.root_pattern(".eslintrc.json")(fname) or
+            nvim_lsp.util.root_pattern(".eslintrc.js")(fname) or
+            nvim_lsp.util.root_pattern("package.json")(fname) or
+            nvim_lsp.util.root_pattern(".pylintrc")(fname)
   end,
   init_options = {
     linters = {
@@ -148,7 +146,7 @@ lspconfig.diagnosticls.setup {
 }
 
 -- Using EFM
-require"lspconfig".efm.setup {
+nvim_lsp.efm.setup {
   init_options = {documentFormatting = true},
   filetypes = {"lua"},
   settings = {
@@ -158,20 +156,35 @@ require"lspconfig".efm.setup {
 }
 
 -- RUST
-lspconfig.rust_analyzer.setup {capabilities = capabilities}
+-- rust-tools options
+local opts = {
+  tools = {
+    autoSetHints = true,
+    hover_with_actions = true,
+    inlay_hints = {
+      show_parameter_hints = false,
+      parameter_hints_prefix = "",
+      other_hints_prefix = ""
+    }
+  },
+  server = {
+    settings = {["rust-analyzer"] = {checkOnSave = {command = "clippy"}}}
+  }
+}
 
+require('rust-tools').setup(opts)
 -- VIM
-lspconfig.vimls.setup {capabilities = capabilities}
+nvim_lsp.vimls.setup {capabilities = capabilities}
 
 -- LUA
-lspconfig.sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
   capabilities = capabilities,
   cmd = {"/usr/bin/lua-language-server", "-E"},
   settings = {Lua = {diagnostics = {globals = {'vim'}}}}
 }
 
 -- Python
-lspconfig.pylsp.setup {capabilities = capabilities}
+nvim_lsp.pylsp.setup {capabilities = capabilities}
 
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
