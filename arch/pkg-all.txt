@@ -89,3 +89,5 @@ ncdu
 ranger
 python-pillow
 imagemagick
+luarocks
+efm-languageserver
