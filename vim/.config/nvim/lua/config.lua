@@ -48,8 +48,8 @@ cmp.setup({
     -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   },
   sources = {
-    {name = 'nvim_lua'}, {name = 'nvim_lsp'}, {name = 'path'}, -- For vsnip user.
-    {name = 'vsnip'}, {name = 'buffer'}
+    {name = 'vsnip'}, {name = 'nvim_lsp'}, {name = 'nvim_lua'}, {name = 'path'},
+    {name = 'buffer'}
   },
   formatting = {format = lspkind.cmp_format()},
   experimental = {ghost_text = true}
