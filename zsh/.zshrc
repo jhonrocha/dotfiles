@@ -45,8 +45,8 @@ if [[ ! $DISPLAY && (($XDG_VTNR -eq 1) || ($XDG_VTNR -eq 6)) ]]; then
     # init-sway
     init-i3
   elif [ $machine = "drogon" ]; then
-    init-sway
-    # init-i3
+    # init-sway
+    init-i3
   else
     init-i3
   fi
