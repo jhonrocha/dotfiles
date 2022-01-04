@@ -14,6 +14,7 @@ stow vim -t ~/
 stow ranger -t ~/
 stow bash -t ~/
 stow zsh -t ~/
+stow doom -t ~/
 stow kitty -t ~/
 
 
