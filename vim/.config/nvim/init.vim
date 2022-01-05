@@ -285,8 +285,8 @@ let g:which_key_map['TAB'] = 'last buf'
 let g:which_key_map.b = [':call ToggleHiddenBar()', 'bar']
 
 nnoremap <silent> <leader>cP :let @+=expand('%:t')<CR>
-nnoremap ]j :lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap ]k :lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap ]j :lua vim.diagnostic.goto_next()<CR>
+nnoremap ]k :lua vim.diagnostic.goto_prev()<CR>
 " Autofix entire buffer with eslint_d:
 nnoremap <leader>cf :call Formatting()<CR>
 function! Formatting()
@@ -297,9 +297,9 @@ endfunction
 let g:which_key_map.c = {
       \ 'name' : '+code' ,
       \ 'D' : [':call v:lua.vim.lsp.buf.declaration()', 'declaration'],
-      \ '[' : [':call v:lua.vim.lsp.diagnostic.goto_prev()', 'prev error'],
-      \ ']' : [':call v:lua.vim.lsp.diagnostic.goto_next()', 'next error'],
-      \ 'w' : [':call v:lua.vim.lsp.buf.rename()', 'rename'],
+      \ '[' : [':call v:lua.vim.diagnostic.goto_prev()', 'prev error'],
+      \ ']' : [':call v:lua.vim.diagnostic.goto_next()', 'next error'],
+      \ 'a' : [':call v:lua.vim.lsp.buf.code_action()', 'action'],
       \ 'd' : [':call v:lua.vim.lsp.buf.definition()', 'definition'],
       \ 'i' : [':call v:lua.vim.lsp.buf.implementation()', 'implementation'],
       \ 'f' : [':call Formatting()', 'formatting'],
@@ -310,6 +310,7 @@ let g:which_key_map.c = {
       \ 'r' : [':call v:lua.vim.lsp.buf.references()', 'reference'],
       \ 's' : [':call v:lua.vim.lsp.buf.signature_help()', 'help'],
       \ 't' : [':call v:lua.vim.lsp.buf.type_definition()', 'type def'],
+      \ 'w' : [':call v:lua.vim.lsp.buf.rename()', 'rename'],
       \ 'Wa' : [':call v:lua.vim.lsp.buf.add_workspace_folder()', 'work add'],
       \ 'Wl' : [':call v:lua.print(vim.inspect(vim.lsp.buf.list_workspace_folders()))', 'work list'],
       \ 'Wr' : [':call v:lua.vim.lsp.buf.remove_workspace_folder()', 'work rm'],
@@ -321,7 +322,7 @@ let g:which_key_map.d = 'tree'
 nnoremap <leader>E :e <C-R>=expand("%:p:h") . "/"<CR>
 let g:which_key_map.E = 'open file'
 
-let g:which_key_map.e = [':call v:lua.vim.lsp.diagnostic.show_line_diagnostics()', 'lsp_line']
+let g:which_key_map.e = [':call v:lua.vim.diagnostic.open_float()', 'lsp_line']
 
 nnoremap <leader>gy :!gy<CR><CR>
 nnoremap <leader>gk :Git checkout
