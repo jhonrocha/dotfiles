@@ -35,6 +35,7 @@ for_window [class="zoom"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
+for_window [class="Emacs"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 # Font
 font pango:Cantarell 0
 # Gaps
@@ -43,9 +44,6 @@ gaps outer $gOut
 ### Key bindings
 # Apps
 mode "apps" {
-  bindsym a exec "i3-msg [class=\\"Emacs\\"] focus || emacs --with-profile=doom"; mode "default"
-  bindsym s exec "i3-msg [class=\\"$term\\"] focus || $term"; mode "default"
-  bindsym f exec "i3-msg [class=\\"Brave-browser\\"] focus || brave"; mode "default"
   bindsym g exec jhbrowser; mode "default"
   bindsym e exec "kitty ranger --cmd 'set preview_images_method kitty'"; mode "default"
   bindsym i exec "$term htop"; mode "default"
@@ -129,6 +127,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+u exec "i3-msg [class=\\"Ferdi\\"] scratchpad show || ferdi"
 # Terminal ScratchPad
 bindsym $mod+i exec "i3-msg [class=\\"termpad\\"] scratchpad show || $term --class termpad"
+bindsym $mod+n exec "i3-msg [class=\\"Emacs\\"] scratchpad show || emacs"
 # Kill focused window
 bindsym $mod+F4 kill
 bindsym $mod+q kill
@@ -163,10 +162,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Workspaces:
-bindsym $mod+Mod1+h move workspace to output left
-bindsym $mod+Mod1+l move workspace to output right
-bindsym $mod+m focus output left
-bindsym $mod+n focus output right
+# bindsym $mod+Mod1+h move workspace to output left
+# bindsym $mod+Mod1+l move workspace to output right
+# bindsym $mod+m focus output left
+# bindsym $mod+n focus output right
 # Switch to workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
