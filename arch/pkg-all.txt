@@ -90,4 +90,5 @@ ranger
 python-pillow
 imagemagick
 luarocks
-efm-languageserver
+efm-langserver 
+
