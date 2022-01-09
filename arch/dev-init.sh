@@ -31,6 +31,9 @@ pip install pylint
 # PyGoObeject
 pip3 install pygobject
 
+# Vim
+npm install -g vim-language-server
+
 # Rust
 if ! command -v rustc &> /dev/null
 then

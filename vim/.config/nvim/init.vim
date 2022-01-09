@@ -203,17 +203,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
 
-">>>....................LSP.................... {{{
-sign define LspDiagnosticsSignError text=. texthl=LspDiagnosticsSignError linehl= numhl=
-sign define LspDiagnosticsSignWarning text=. texthl=LspDiagnosticsSignWarning linehl= numhl=
-sign define LspDiagnosticsSignInformation text=. texthl=LspDiagnosticsSignInformation linehl= numhl=
-sign define LspDiagnosticsSignHint text=.  texthl=LspDiagnosticsSignHint linehl= numhl=
-hi LspDiagnosticsUnderlineError cterm=undercurl gui=undercurl guisp=#fb4934
-hi LspDiagnosticsUnderlineWarning cterm=undercurl gui=undercurl guisp=#fabd2f
-hi LspDiagnosticsUnderlineInformation cterm=undercurl gui=undercurl guisp=#83a598
-hi LspDiagnosticsUnderlineHint cterm=undercurl gui=undercurl guisp=#8ec07c
-" }}}
-
 ">>>....................Abbreviations.................... {{{
 "" no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
@@ -291,7 +280,7 @@ nnoremap ]k :lua vim.diagnostic.goto_prev()<CR>
 nnoremap <leader>cf :call Formatting()<CR>
 function! Formatting()
   let s:line=line('.')
-  lua vim.lsp.buf.formatting_sync()
+  lua vim.lsp.buf.formatting()
   execute s:line
 endfunction
 let g:which_key_map.c = {

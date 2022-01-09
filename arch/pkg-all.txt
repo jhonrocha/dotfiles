@@ -90,5 +90,5 @@ ranger
 python-pillow
 imagemagick
 luarocks
-efm-langserver 
-
+efm-langserver
+ttf-iosevka-nerd
