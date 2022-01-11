@@ -212,7 +212,7 @@ require("telescope").setup {
     },
     dynamic_preview_title = false,
     -- file_previewer = require('telescope.previewers').cat.new,
-    file_ignore_patterns = {"node_modules", ".git"},
+    file_ignore_patterns = {"node_modules", ".git/"},
     sorting_strategy = "ascending",
     -- layout_strategy = "horizontal",
     layout_strategy = "bottom_pane",
@@ -242,12 +242,19 @@ require("telescope").setup {
       sort_lastused = true,
       mappings = {i = {["<c-d>"] = "delete_buffer"}}
     },
-    find_files = {hidden = true}
+    find_files = {
+      hidden = true,
+      find_command = {
+        'fd', '--type', 'f', '--hidden', '--follow', '--exclude', '.git/',
+        '--exclude', 'node_modules', '--no-ignore-vcs'
+      }
+    }
   }
 }
 
-function ff()
+function find_files()
   require('telescope.builtin').find_files {
-    -- find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git','--exclude','node_modules', '--no-ignore'}
+    -- find_command = {'fd','--type','f','--hidden','--follow','--exclude','.git/','--exclude','node_modules', '--no-ignore'}
   }
 end
+

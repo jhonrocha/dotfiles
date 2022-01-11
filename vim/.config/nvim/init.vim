@@ -362,7 +362,7 @@ nnoremap <leader>rb :.,$s//gc<left><left><left>
 let g:which_key_map.r.b = 'bellow'
 
 " Telescope
-let g:which_key_map[' '] = [':call v:lua.ff()', 'T files']
+let g:which_key_map[' '] = [':call v:lua.find_files()', 'T files']
 let g:which_key_map[','] = [':Telescope buffers', 'T buffers']
 let g:which_key_map.f = {
       \ 'name' : '+Files' ,
