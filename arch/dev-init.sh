@@ -21,12 +21,16 @@ sudo usermod -aG docker $USER
 npm install -g typescript typescript-language-server
 yarn global add diagnostic-languageserver
 
+# Eslint
+npm install -g eslint_d
+
 # LuaRocks Formatter
-sudo luarocks install --server=https://luarocks.org/dev luaformatter
+cargo install lua
 
 # Python LSP
 pip install 'python-lsp-server[all]'
 pip install pylint
+pip install black
 
 # PyGoObeject
 pip3 install pygobject

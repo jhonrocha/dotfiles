@@ -11,6 +11,8 @@ endif
 
 ">>>....................Plugins.................... {{{
 call plug#begin(expand('~/.vim/plugged'))
+" Important
+Plug 'nvim-lua/plenary.nvim'
 "File Drawer
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -22,8 +24,10 @@ Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-commentary'
 " Git Integration
 Plug 'tpope/vim-fugitive'
+Plug 'lewis6991/gitsigns.nvim'
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -40,7 +44,6 @@ Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Telescope
 Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " Themes
 Plug 'catppuccin/nvim'
@@ -203,24 +206,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
 
-">>>....................Abbreviations.................... {{{
-"" no one is really happy until you have this shortcuts
-cnoreabbrev W! w!
-cnoreabbrev Q! q!
-cnoreabbrev Qall! qall!
-cnoreabbrev Wq wq
-cnoreabbrev Wa wa
-cnoreabbrev wQ wq
-cnoreabbrev WQ wq
-cnoreabbrev W w
-cnoreabbrev Q q
-cnoreabbrev Qall qall
-" }}}
-
-">>>....................Terminal.................... {{{
-autocmd TermOpen term://* startinsert
-" }}}
-
 ">>>....................DASHBOARD.................... {{{
 let g:dashboard_default_executive ='telescope'
 let g:dashboard_custom_shortcut={
@@ -277,12 +262,12 @@ nnoremap <silent> <leader>cP :let @+=expand('%:t')<CR>
 nnoremap ]j :lua vim.diagnostic.goto_next()<CR>
 nnoremap ]k :lua vim.diagnostic.goto_prev()<CR>
 " Autofix entire buffer with eslint_d:
-nnoremap <leader>cf :call Formatting()<CR>
-function! Formatting()
-  let s:line=line('.')
-  lua vim.lsp.buf.formatting()
-  execute s:line
-endfunction
+" nnoremap <leader>cf :call Formatting()<CR>
+" function! Formatting()
+"   let s:line=line('.')
+"   lua vim.lsp.buf.formatting()
+"   execute s:line
+" endfunction
 let g:which_key_map.c = {
       \ 'name' : '+code' ,
       \ 'D' : [':call v:lua.vim.lsp.buf.declaration()', 'declaration'],
@@ -291,7 +276,7 @@ let g:which_key_map.c = {
       \ 'a' : [':call v:lua.vim.lsp.buf.code_action()', 'action'],
       \ 'd' : [':call v:lua.vim.lsp.buf.definition()', 'definition'],
       \ 'i' : [':call v:lua.vim.lsp.buf.implementation()', 'implementation'],
-      \ 'f' : [':call Formatting()', 'formatting'],
+      \ 'f' : [':call v:lua.vim.lsp.buf.formatting()', 'formatting'],
       \ 'k' : [':call v:lua.vim.lsp.buf.hover()', 'hover'],
       \ 'l' : [':call v:lua.vim.lsp.diagnostic.set_loclist()', 'loclist'],
       \ 'p' : [':let @+=@%', 'cp path'],
@@ -362,7 +347,7 @@ nnoremap <leader>rb :.,$s//gc<left><left><left>
 let g:which_key_map.r.b = 'bellow'
 
 " Telescope
-let g:which_key_map[' '] = [':call v:lua.find_files()', 'T files']
+let g:which_key_map[' '] = [':Telescope find_files', 'T files']
 let g:which_key_map[','] = [':Telescope buffers', 'T buffers']
 let g:which_key_map.f = {
       \ 'name' : '+Files' ,
@@ -391,10 +376,6 @@ vmap > >gv
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-" Closing
-" nnoremap <silent> <C-x><C-q> :qa<CR>
-" Close the current buffer and move to the previous one
-" nmap <C-x><C-s> :update<CR>
 
 " Moving deletions to register 'v'
 nnoremap d "vd
