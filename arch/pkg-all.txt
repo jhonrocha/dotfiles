@@ -90,5 +90,10 @@ ranger
 python-pillow
 imagemagick
 luarocks
+<<<<<<< HEAD
 efm-langserver
 ttf-iosevka-nerd
+=======
+efm-languageserver
+ttf-iosevka-nerd 
+>>>>>>> 50be757 (fix: Iosevka font)
