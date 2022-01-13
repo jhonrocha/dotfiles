@@ -19,13 +19,12 @@ sudo usermod -aG docker $USER
 
 # NeoVIM LSP
 npm install -g typescript typescript-language-server
-yarn global add diagnostic-languageserver
 
 # Eslint
 npm install -g eslint_d
 
 # LuaRocks Formatter
-cargo install lua
+cargo install stylua
 
 # Python LSP
 pip install 'python-lsp-server[all]'

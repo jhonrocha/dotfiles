@@ -25,7 +25,7 @@ require("catppuccin").setup({
 vim.cmd([[colorscheme catppuccin]])
 
 -- Git integration
-require('gitsigns').setup()
+require("gitsigns").setup()
 
 -- TREE
 vim.g.nvim_tree_quit_on_open = 1
@@ -106,7 +106,7 @@ local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.formatting.eslint_d,
 	null_ls.builtins.formatting.prettier,
-  null_ls.builtins.formatting.prettier_standard,
+	null_ls.builtins.formatting.prettier_standard,
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.black,
 	null_ls.builtins.diagnostics.pylint,
@@ -179,6 +179,7 @@ require("telescope").setup({
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
+        ["<c-h>"] = "which_key",
 				["<c-j>"] = actions.move_selection_next,
 				["<c-k>"] = actions.move_selection_previous,
 				["<tab>"] = actions.add_selection + actions.move_selection_next,
@@ -207,4 +208,20 @@ require("telescope").setup({
 			},
 		},
 	},
+	extensions = {
+		file_browser = {
+			-- theme = "ivy",
+      hidden = true,
+			mappings = {
+				["i"] = {
+					-- your custom insert mode mappings
+				},
+				["n"] = {
+					-- your custom normal mode mappings
+				},
+			},
+		},
+	},
 })
+
+require("telescope").load_extension("file_browser")

@@ -45,6 +45,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 " Themes
 Plug 'catppuccin/nvim'
 Plug 'projekt0n/github-nvim-theme'
@@ -354,11 +355,12 @@ let g:which_key_map.f = {
       \ 'b' : [':Telescope git_branches', 'branches'],
       \ 'c' : [':Telescope git_commits', 'commits'],
       \ 'd' : ['bd', 'delete'],
-      \ 'f' : ['RnvimrToggle', 'manager'],
+      \ 'f' : [':Telescope file_browser', 'file_browser'],
       \ 'h' : [':Telescope help_tags', 'help'],
       \ 'm' : [':Telescope marks', 'marks'],
       \ 'k' : ['bd', 'close'],
       \ 'o' : [':Telescope oldfiles', 'prev files'],
+      \ 'r' : ['RnvimrToggle', 'manager'],
       \ 's' : ['update', 'save'],
       \ 't' : [':Telescope colorscheme', 'theme'],
       \ 'w' : [':Telescope live_grep', 'grep'],
