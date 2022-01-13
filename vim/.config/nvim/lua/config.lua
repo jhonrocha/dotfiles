@@ -140,6 +140,7 @@ require("nvim-treesitter.configs").setup({
 
 -- Telescope
 local actions = require("telescope.actions")
+local fb_actions = require "telescope".extensions.file_browser.actions
 require("telescope").setup({
 	defaults = {
 		vimgrep_arguments = {
@@ -178,8 +179,7 @@ require("telescope").setup({
 		},
 		mappings = {
 			i = {
-				["<esc>"] = actions.close,
-        ["<c-h>"] = "which_key",
+        ["<c-h>"] = actions.which_key,
 				["<c-j>"] = actions.move_selection_next,
 				["<c-k>"] = actions.move_selection_previous,
 				["<tab>"] = actions.add_selection + actions.move_selection_next,
