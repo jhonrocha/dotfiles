@@ -87,7 +87,7 @@ mode "apps" {
   bindsym w exec "feh --bg-fill --randomize ~/.config/wallpapers/"
 # Screenshot
   bindsym p exec grim -g "$(slurp)" - | swappy -f -; mode "default"
-  bindsym Shift+p exec import -frame -window "$(xdo id)" ~/Images/screenshot_$(date +%s).png; mode "default"
+  bindsym Shift+p exec import -frame -window "$(xdo id)" ~/Pictures/screenshot_$(date +%s).png; mode "default"
 # Return to default mode
   bindsym Return mode "default"
 }
