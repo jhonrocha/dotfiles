@@ -51,7 +51,8 @@ Plug 'catppuccin/nvim'
 Plug 'projekt0n/github-nvim-theme'
 " Dashboard
 Plug 'glepnir/dashboard-nvim'
-
+" http
+Plug 'NTBBloodbath/rest.nvim'
 " Marks
 Plug 'kshenoy/vim-signature'
 " WhichKey
@@ -262,13 +263,6 @@ let g:which_key_map.b = [':call ToggleHiddenBar()', 'bar']
 nnoremap <silent> <leader>cP :let @+=expand('%:t')<CR>
 nnoremap ]j :lua vim.diagnostic.goto_next()<CR>
 nnoremap ]k :lua vim.diagnostic.goto_prev()<CR>
-" Autofix entire buffer with eslint_d:
-" nnoremap <leader>cf :call Formatting()<CR>
-" function! Formatting()
-"   let s:line=line('.')
-"   lua vim.lsp.buf.formatting()
-"   execute s:line
-" endfunction
 let g:which_key_map.c = {
       \ 'name' : '+code' ,
       \ 'D' : [':call v:lua.vim.lsp.buf.declaration()', 'declaration'],
@@ -280,6 +274,7 @@ let g:which_key_map.c = {
       \ 'f' : [':call v:lua.vim.lsp.buf.formatting()', 'formatting'],
       \ 'k' : [':call v:lua.vim.lsp.buf.hover()', 'hover'],
       \ 'l' : [':call v:lua.vim.lsp.diagnostic.set_loclist()', 'loclist'],
+      \ 'h' : ['<Plug>RestNvim', 'http'],
       \ 'p' : [':let @+=@%', 'cp path'],
       \ 'P' : 'cp file',
       \ 'r' : [':call v:lua.vim.lsp.buf.references()', 'reference'],

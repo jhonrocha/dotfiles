@@ -34,6 +34,9 @@ require("nvim-tree").setup({ git = { enable = true, ignore = false, timeout = 50
 -- Pairs
 require("nvim-autopairs").setup({})
 
+-- HTTP
+require("rest-nvim").setup({})
+
 -- LSP
 local nvim_lsp = require("lspconfig")
 
@@ -105,8 +108,8 @@ local null_ls = require("null-ls")
 local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.formatting.eslint_d,
-	null_ls.builtins.formatting.prettier,
 	null_ls.builtins.formatting.prettier_standard,
+  -- null_ls.builtins.formatting.prettier,
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.black,
 	null_ls.builtins.diagnostics.pylint,
@@ -140,7 +143,7 @@ require("nvim-treesitter.configs").setup({
 
 -- Telescope
 local actions = require("telescope.actions")
-local fb_actions = require "telescope".extensions.file_browser.actions
+local fb_actions = require("telescope").extensions.file_browser.actions
 require("telescope").setup({
 	defaults = {
 		vimgrep_arguments = {
@@ -179,7 +182,7 @@ require("telescope").setup({
 		},
 		mappings = {
 			i = {
-        ["<c-h>"] = actions.which_key,
+				["<c-h>"] = actions.which_key,
 				["<c-j>"] = actions.move_selection_next,
 				["<c-k>"] = actions.move_selection_previous,
 				["<tab>"] = actions.add_selection + actions.move_selection_next,
@@ -211,7 +214,7 @@ require("telescope").setup({
 	extensions = {
 		file_browser = {
 			-- theme = "ivy",
-      hidden = true,
+			hidden = true,
 			mappings = {
 				["i"] = {
 					-- your custom insert mode mappings
