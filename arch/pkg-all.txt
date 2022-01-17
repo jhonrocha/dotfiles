@@ -45,9 +45,6 @@ pcmanfm
 playerctl
 polkit-gnome
 procs
-pulseaudio
-pulseaudio-alsa
-pulseaudio-bluetooth
 python-pip
 python-pynvim
 rclone
