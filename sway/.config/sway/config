@@ -84,7 +84,7 @@ mode "apps" {
   bindsym b exec "$term nvim ~/.config/favs.txt"; mode "default"
   bindsym u unmark; mode "default"
 # Change Wallpaper
-  bindsym w exec "feh --bg-fill --randomize ~/.config/wallpapers/"
+  bindsym w exec "swaybg -m $(find ~/.config/wallpapers -type f | shuf -n 1) -m fill"
 # Screenshot
   bindsym p exec grim -g "$(slurp)" - | swappy -f -; mode "default"
   bindsym Shift+p exec import -frame -window "$(xdo id)" ~/Pictures/screenshot_$(date +%s).png; mode "default"

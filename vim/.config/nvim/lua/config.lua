@@ -1,6 +1,7 @@
 -- Line
 require("lualine").setup({
-	options = { theme = "catppuccin" },
+	-- options = { theme = "catppuccin" },
+	options = { theme = "github" },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "" },
@@ -12,17 +13,20 @@ require("lualine").setup({
 })
 
 -- Theme
-require("catppuccin").setup({
-	-- transparent_background = true,
-	integration = {
-		nvimtree = {
-			enabled = true,
-			show_root = true, -- makes the root folder not transparent
-		},
-	},
+require('github-theme').setup({
+  theme_style = "light"
 })
+-- require("catppuccin").setup({
+-- 	-- transparent_background = true,
+-- 	integration = {
+-- 		nvimtree = {
+-- 			enabled = true,
+-- 			show_root = true, -- makes the root folder not transparent
+-- 		},
+-- 	},
+-- })
 
-vim.cmd([[colorscheme catppuccin]])
+-- vim.cmd([[colorscheme catppuccin]])
 
 -- Git integration
 require("gitsigns").setup()
