@@ -1,7 +1,14 @@
+-- Default theme
+local theme = "catppuccin"
+-- Using light theme on the morning
+local t = os.date("*t")
+if t.hour < 10 and t.hour > 6 then
+	theme = "github_light"
+end
+
 -- Line
 require("lualine").setup({
-	-- options = { theme = "catppuccin" },
-	options = { theme = "github" },
+	options = { theme },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "" },
@@ -13,27 +20,38 @@ require("lualine").setup({
 })
 
 -- Theme
-require('github-theme').setup({
-  theme_style = "light"
+require("github-theme").setup({
+	theme_style = "light",
 })
--- require("catppuccin").setup({
--- 	-- transparent_background = true,
--- 	integration = {
--- 		nvimtree = {
--- 			enabled = true,
--- 			show_root = true, -- makes the root folder not transparent
--- 		},
--- 	},
--- })
 
--- vim.cmd([[colorscheme catppuccin]])
+require("catppuccin").setup({
+	-- transparent_background = true,
+	integration = {
+		nvimtree = {
+			enabled = true,
+			show_root = true, -- makes the root folder not transparent
+		},
+	},
+})
+
+vim.cmd("colorscheme " .. theme)
 
 -- Git integration
 require("gitsigns").setup()
 
 -- TREE
 vim.g.nvim_tree_quit_on_open = 1
-require("nvim-tree").setup({ git = { enable = true, ignore = false, timeout = 500 } })
+require("nvim-tree").setup({
+	git = {
+		enable = true,
+		ignore = false,
+		timeout = 500,
+	},
+	view = {
+		side = "left",
+		-- height = "10%"
+	},
+})
 
 -- Pairs
 require("nvim-autopairs").setup({})
@@ -113,7 +131,7 @@ local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.formatting.eslint_d,
 	null_ls.builtins.formatting.prettier_standard,
-  -- null_ls.builtins.formatting.prettier,
+	-- null_ls.builtins.formatting.prettier,
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.black,
 	null_ls.builtins.diagnostics.pylint,
