@@ -22,17 +22,18 @@ require("lualine").setup({
 -- Theme
 require("github-theme").setup({
 	theme_style = "light",
+	dark_float = true,
 })
 
 require("catppuccin").setup({
 	-- transparent_background = true,
-  styles = {
-    comments = "italic",
-    functions = "NONE",
-    keywords = "NONE",
-    strings = "NONE",
-    variables = "NONE",
-  },
+	styles = {
+		comments = "italic",
+		functions = "NONE",
+		keywords = "NONE",
+		strings = "NONE",
+		variables = "NONE",
+	},
 	integration = {
 		nvimtree = {
 			enabled = true,

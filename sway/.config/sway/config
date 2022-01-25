@@ -38,6 +38,7 @@ focus_follows_mouse no
 floating_modifier $mod normal
 # Window Rules
 for_window [app_id="zoom"] floating enable
+for_window [class="zoom"] floating enable
 for_window [app_id="pavucontrol"] floating enable
 for_window [class="Ferdi"] floating enable, move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
@@ -67,6 +68,17 @@ input type:keyboard {
 input type:pointer {
   accel_profile adaptive
   pointer_accel 1.0
+}
+
+input type:mouse {
+  accel_profile adaptive
+  pointer_accel 1.0
+}
+
+input type:touchpad {
+  tap enabled
+  accel_profile adaptive
+  pointer_accel 0.5
 }
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 #
