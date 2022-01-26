@@ -191,10 +191,7 @@ require("telescope").setup({
 			preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 		},
 		dynamic_preview_title = false,
-		-- file_previewer = require('telescope.previewers').cat.new,
-		file_ignore_patterns = { "node_modules", ".git/" },
 		sorting_strategy = "ascending",
-		-- layout_strategy = "horizontal",
 		layout_strategy = "bottom_pane",
 		layout_config = {
 			bottom_pane = { height = 0.4 },
@@ -219,11 +216,13 @@ require("telescope").setup({
 	},
 	pickers = {
 		buffers = {
+			hidden = true,
 			sort_lastused = true,
 			mappings = { i = { ["<c-d>"] = "delete_buffer" } },
 		},
 		find_files = {
 			hidden = true,
+			file_ignore_patterns = { "node_modules", ".git/" },
 			find_command = {
 				"fd",
 				"--type",
