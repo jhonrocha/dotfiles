@@ -3,7 +3,7 @@ local theme = "catppuccin"
 -- Using light theme on the morning
 local t = os.date("*t")
 if t.hour < 10 and t.hour > 6 then
-	theme = "github_light"
+	theme = "github_dark"
 end
 
 -- Line
@@ -21,7 +21,7 @@ require("lualine").setup({
 
 -- Theme
 require("github-theme").setup({
-	theme_style = "light",
+	theme_style = "dark",
 	dark_float = true,
 })
 
@@ -136,8 +136,8 @@ local null_ls = require("null-ls")
 
 -- register any number of sources simultaneously
 local sources = {
-	null_ls.builtins.diagnostics.eslint_d,
-	null_ls.builtins.formatting.eslint_d,
+	null_ls.builtins.diagnostics.eslint,
+	null_ls.builtins.formatting.eslint,
 	null_ls.builtins.formatting.prettier_standard.with({
 		command = "standard",
 		args = { "--fix", "--stdin" },
