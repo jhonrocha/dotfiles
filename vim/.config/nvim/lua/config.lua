@@ -136,12 +136,12 @@ local null_ls = require("null-ls")
 
 -- register any number of sources simultaneously
 local sources = {
-	null_ls.builtins.diagnostics.eslint,
-	null_ls.builtins.formatting.eslint,
-	null_ls.builtins.formatting.prettier_standard.with({
-		command = "standard",
-		args = { "--fix", "--stdin" },
-	}),
+	null_ls.builtins.diagnostics.eslint_d,
+	null_ls.builtins.formatting.eslint_d,
+	-- null_ls.builtins.formatting.prettier_standard.with({
+	-- 	command = "standard",
+	-- 	args = { "--fix", "--stdin" },
+	-- }),
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.black,
 	null_ls.builtins.diagnostics.pylint,
@@ -165,7 +165,28 @@ require("rust-tools").setup(opts)
 -- Treesitter
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "maintained",
+	ignore_install = { "norg" },
 	highlight = { enable = true },
+	tree_docs = {
+		enable = true,
+		spec_config = {
+			jsdoc = {
+				slots = {
+					class = { author = true },
+					["function"] = {
+						author = true,
+						returns = true,
+            export = false
+					},
+				},
+				processors = {
+					author = function()
+						return " * @author Jhon Rocha"
+					end,
+				},
+			},
+		},
+	},
 })
 
 -- Telescope

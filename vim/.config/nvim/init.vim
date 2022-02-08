@@ -42,6 +42,7 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'simrat39/rust-tools.nvim'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-tree-docs'
 " Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
