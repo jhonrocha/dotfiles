@@ -123,6 +123,7 @@ cmp.setup({
 	sources = {
 		{ name = "vsnip" },
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
 		{ name = "buffer" },
@@ -172,17 +173,10 @@ require("nvim-treesitter.configs").setup({
 		spec_config = {
 			jsdoc = {
 				slots = {
-					class = { author = true },
 					["function"] = {
-						author = true,
 						returns = true,
-            export = false
+						export = false,
 					},
-				},
-				processors = {
-					author = function()
-						return " * @author Jhon Rocha"
-					end,
 				},
 			},
 		},
