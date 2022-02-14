@@ -22,8 +22,8 @@ set $ia #232425
 set $id #FFFFFF
 
 # CONFIG
-default_border pixel 3
-default_floating_border pixel 3
+default_border pixel 1
+default_floating_border pixel 1
 smart_borders on
 # class                 border      backgr.     text    indicator child_border
 client.focused          #c678dd     #c678dd     $fg     $id       $br
