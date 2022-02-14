@@ -71,8 +71,8 @@ nnoremap <Space> <Nop>
 nnoremap <silent> <F11> :Goyo<CR>
 " Set space as leader
 let mapleader=" "
-" Relative and global linenumbers
-set number relativenumber
+" Global linenumbers
+set number 
 " True Colors
 set termguicolors
 " Time to wait mapped input
