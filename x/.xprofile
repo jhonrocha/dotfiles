@@ -16,7 +16,12 @@ monitors=$(xrandr | awk '/ connected/ { print "->" $1 }')
 
 # ##### Compositor
 killall picom
-picom -b
+machine=$(uname -n)
+if [ $machine = "drogon" ]; then
+  picom -b --backend glx --vsync
+else
+  picom -b
+fi
 
 # Set wallpaper
 ~/.fehbg &

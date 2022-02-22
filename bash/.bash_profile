@@ -21,7 +21,7 @@ if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]
   if [ $machine = "tiamat" ]; then
     # init-sway
     init-i3
-  elif [ $machine = "think" ]; then
+  elif [ $machine = "drogon" ]; then
     init-i3
   fi
 else
