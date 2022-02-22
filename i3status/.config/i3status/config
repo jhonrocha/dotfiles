@@ -34,7 +34,7 @@ memory {
 
 volume master {
   format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> 奔 %volume </span>"
-  format_muted = "<span foreground='#d670d6' weight='bold'></span><span background='#d670d6' foreground='#000000' weight='bold'> 奔 %volume </span>"
+  format_muted = "<span foreground='#d670d6' background='#3b8eea' weight='bold'></span><span background='#d670d6' foreground='#000000' weight='bold'>   %volume </span>"
   device = "default"
   mixer = "Master"
   mixer_idx = 0
