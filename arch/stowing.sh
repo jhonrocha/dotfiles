@@ -16,5 +16,6 @@ stow bash -t ~/
 stow zsh -t ~/
 stow doom -t ~/
 stow kitty -t ~/
+stow redshift -t ~/
 
 

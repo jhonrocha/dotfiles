@@ -1,14 +1,16 @@
 -- Default theme
 local theme = "catppuccin"
+local line_theme = "catppuccin"
 -- Using light theme on the morning
 local t = os.date("*t")
 if t.hour < 10 and t.hour > 6 then
 	theme = "github_dark"
+  line_theme = "github"
 end
 
 -- Line
 require("lualine").setup({
-	options = { theme },
+	options = { theme = line_theme },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "" },
@@ -95,6 +97,9 @@ nvim_lsp.sumneko_lua.setup({
 -- Python
 nvim_lsp.pylsp.setup({ capabilities = capabilities })
 
+-- GOLANG
+nvim_lsp.gopls.setup({ capabilities = capabilities })
+
 -- LSP Config
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics,
@@ -121,11 +126,11 @@ cmp.setup({
 		-- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 	},
 	sources = {
-		{ name = "vsnip" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
+    { name = "vsnip" },
 		{ name = "buffer" },
 	},
 	formatting = { format = lspkind.cmp_format() },
@@ -139,13 +144,10 @@ local null_ls = require("null-ls")
 local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.formatting.eslint_d,
-	-- null_ls.builtins.formatting.prettier_standard.with({
-	-- 	command = "standard",
-	-- 	args = { "--fix", "--stdin" },
-	-- }),
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.black,
 	null_ls.builtins.diagnostics.pylint,
+	null_ls.builtins.diagnostics.staticcheck,
 }
 
 null_ls.setup({ sources = sources })
@@ -160,7 +162,6 @@ local opts = {
 		settings = { ["rust-analyzer"] = { checkOnSave = { command = "clippy" } } },
 	},
 }
-
 require("rust-tools").setup(opts)
 
 -- Treesitter

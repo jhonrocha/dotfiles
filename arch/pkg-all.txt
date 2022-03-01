@@ -26,6 +26,7 @@ firefox
 fzf
 git
 go
+staticcheck
 gvfs
 htop
 kitty
@@ -45,6 +46,7 @@ pcmanfm
 playerctl
 polkit-gnome
 procs
+python-poetry
 python-pip
 python-pynvim
 rclone
