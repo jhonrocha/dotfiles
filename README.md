@@ -9,4 +9,4 @@ mkdir /data
 sudo chown :users /data
 sudo chmod 2775 /data
 sudo setfacl -d -m g::rwx /data
-
+convert lotr.jpg -bordercolor "#0d1118" -border 20 kitty.png
