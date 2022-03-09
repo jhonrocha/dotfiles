@@ -5,7 +5,7 @@ local line_theme = "catppuccin"
 local t = os.date("*t")
 if t.hour < 10 and t.hour > 6 then
 	theme = "github_dark"
-  line_theme = "github"
+	line_theme = "github"
 end
 
 -- Line
@@ -22,13 +22,12 @@ require("lualine").setup({
 })
 
 -- Theme
-require("github-theme").setup({
-	theme_style = "dark",
-	dark_float = true,
-})
+-- require("github-theme").setup({
+-- 	theme_style = "dark",
+-- 	dark_float = true,
+-- })
 
 require("catppuccin").setup({
-	-- transparent_background = true,
 	styles = {
 		comments = "italic",
 		functions = "NONE",
@@ -50,8 +49,8 @@ vim.cmd("colorscheme " .. theme)
 require("gitsigns").setup()
 
 -- TREE
-vim.g.nvim_tree_quit_on_open = 1
 require("nvim-tree").setup({
+	auto_close = true,
 	git = {
 		enable = true,
 		ignore = false,
@@ -130,7 +129,7 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
-    { name = "vsnip" },
+		{ name = "vsnip" },
 		{ name = "buffer" },
 	},
 	formatting = { format = lspkind.cmp_format() },

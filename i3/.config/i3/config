@@ -1,3 +1,4 @@
+# vi: ft=config
 # i3 config file (v4)
 ### Variables
 # Logo key. Use Mod1 for Alt.
@@ -34,7 +35,7 @@ focus_follows_mouse no
 for_window [class="zoom"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
-for_window [class="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
+for_window [class="termscratch"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 for_window [class="Emacs"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 # Font
 font pango:Cantarell 0
@@ -126,7 +127,7 @@ bindsym $mod+Return exec $term
 # Rambox ScratchPad
 bindsym $mod+u exec "i3-msg [class=\\"Ferdi\\"] scratchpad show || ferdi"
 # Terminal ScratchPad
-bindsym $mod+i exec "i3-msg [class=\\"termpad\\"] scratchpad show || $term --class termpad"
+bindsym $mod+i exec "i3-msg \[class=\\"termscratch\\"\] scratchpad show || $term --class termscratch"
 bindsym $mod+n exec "i3-msg [class=\\"Emacs\\"] scratchpad show || emacs"
 # Kill focused window
 bindsym $mod+F4 kill
