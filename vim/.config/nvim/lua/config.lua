@@ -15,7 +15,6 @@ require("lualine").setup({
 	},
 })
 
-
 require("catppuccin").setup({
 	styles = {
 		comments = "italic",
@@ -48,6 +47,11 @@ require("nvim-tree").setup({
 	view = {
 		side = "left",
 		-- height = "10%"
+	},
+	actions = {
+		open_file = {
+			quit_on_open = true,
+		},
 	},
 })
 
@@ -233,11 +237,11 @@ require("telescope").setup({
 				"f",
 				"--hidden",
 				"--follow",
-				-- "--no-ignore-vcs",
-				-- "--exclude",
-				-- ".git/",
-				-- "--exclude",
-				-- "node_modules",
+				"--no-ignore-vcs",
+				"--exclude",
+				".git/",
+				"--exclude",
+				"node_modules",
 			},
 		},
 	},
