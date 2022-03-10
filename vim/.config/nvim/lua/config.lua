@@ -1,12 +1,6 @@
 -- Default theme
 local theme = "catppuccin"
 local line_theme = "catppuccin"
--- Using light theme on the morning
-local t = os.date("*t")
-if t.hour < 10 and t.hour > 6 then
-	theme = "github_dark"
-	line_theme = "github"
-end
 
 -- Line
 require("lualine").setup({
@@ -21,11 +15,6 @@ require("lualine").setup({
 	},
 })
 
--- Theme
--- require("github-theme").setup({
--- 	theme_style = "dark",
--- 	dark_float = true,
--- })
 
 require("catppuccin").setup({
 	styles = {
