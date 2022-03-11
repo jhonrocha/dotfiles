@@ -18,7 +18,7 @@ order += "memory"
 order += "volume master"
 order += "cpu_usage"
 order += "cpu_temperature 0"
-order += "tztime gmt"
+order += "tztime est"
 order += "time"
 
 battery all {
@@ -53,9 +53,9 @@ cpu_temperature 0 {
 }
 
 
-tztime gmt {
+tztime est {
   format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> %H:%M %Z </span>"
-  timezone = "Europe/Dublin"
+  timezone = "America/New_York"
   separator_block_width = 0
 }
 
