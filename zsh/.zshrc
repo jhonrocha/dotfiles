@@ -55,6 +55,7 @@ fi
 autoload -U colors && colors
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
+autoload -U +X bashcompinit && bashcompinit
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/jh/.zshrc'
@@ -120,8 +121,7 @@ if  command -v starship &> /dev/null
 then
     eval "$(starship init zsh)"
 fi
-
-# Added by serverless binary installer
-export PATH="$HOME/.serverless/bin:$PATH"
-
+# ASDF
 [ -f /opt/asdf-vm/asdf.sh ] && . /opt/asdf-vm/asdf.sh
+# AZ
+[ -f /opt/azure-cli/az.completion ] && . /opt/azure-cli/az.completion

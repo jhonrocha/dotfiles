@@ -125,7 +125,7 @@ cmp.setup({
 		{ name = "vsnip" },
 		{ name = "buffer" },
 	},
-	formatting = { format = lspkind.cmp_format() },
+	formatting = { format = lspkind.cmp_format({ maxwidth = 30 }) },
 	experimental = { ghost_text = true },
 })
 

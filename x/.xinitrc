@@ -26,6 +26,8 @@ fi
 # profile
 [ -f /etc/xprofile ] && . /etc/xprofile
 [ -f ~/.xprofile ] && . ~/.xprofile
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
 case $WM in
     i3 )
       exec dbus-launch i3
