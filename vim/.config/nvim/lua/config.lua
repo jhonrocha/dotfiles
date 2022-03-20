@@ -38,7 +38,6 @@ require("gitsigns").setup()
 
 -- TREE
 require("nvim-tree").setup({
-	auto_close = true,
 	git = {
 		enable = true,
 		ignore = false,
