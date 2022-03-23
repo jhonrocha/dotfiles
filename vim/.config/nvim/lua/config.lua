@@ -167,6 +167,7 @@ require("nvim-treesitter.configs").setup({
 
 -- Telescope
 local actions = require("telescope.actions")
+local action_layout = require("telescope.actions.layout")
 require("telescope").setup({
 	defaults = {
 		vimgrep_arguments = {
@@ -210,6 +211,7 @@ require("telescope").setup({
 				["<c-k>"] = actions.move_selection_previous,
 				["<tab>"] = actions.add_selection + actions.move_selection_next,
 				["<s-tab>"] = actions.remove_selection + actions.move_selection_previous,
+				["<c-f>"] = action_layout.toggle_preview
 			},
 		},
 	},
