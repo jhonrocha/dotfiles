@@ -15,21 +15,7 @@ require("lualine").setup({
 	},
 })
 
-require("catppuccin").setup({
-	styles = {
-		comments = "italic",
-		functions = "NONE",
-		keywords = "NONE",
-		strings = "NONE",
-		variables = "NONE",
-	},
-	integration = {
-		nvimtree = {
-			enabled = true,
-			show_root = true, -- makes the root folder not transparent
-		},
-	},
-})
+require("catppuccin").setup({})
 
 vim.cmd("colorscheme " .. theme)
 
@@ -45,12 +31,15 @@ require("nvim-tree").setup({
 	},
 	view = {
 		side = "left",
-		-- height = "10%"
+		width = 40,
 	},
 	actions = {
 		open_file = {
 			quit_on_open = true,
 		},
+	},
+	update_focused_file = {
+		enable = true,
 	},
 })
 
@@ -135,6 +124,7 @@ local null_ls = require("null-ls")
 local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.formatting.eslint_d,
+	null_ls.builtins.formatting.prettier,
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.black,
 	null_ls.builtins.diagnostics.pylint,
