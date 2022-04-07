@@ -122,7 +122,17 @@ local null_ls = require("null-ls")
 
 -- register any number of sources simultaneously
 local sources = {
-	null_ls.builtins.diagnostics.eslint_d,
+	null_ls.builtins.diagnostics.eslint_d.with({
+		condition = function(utils)
+			return utils.root_has_file({
+				".eslintrc.js",
+				".eslintrc.cjs",
+				".eslintrc.yaml",
+				".eslintrc.yml",
+				".eslintrc.json",
+			})
+		end,
+	}),
 	null_ls.builtins.formatting.prettier,
 	null_ls.builtins.formatting.eslint_d,
 	null_ls.builtins.formatting.stylua,
@@ -189,8 +199,8 @@ require("telescope").setup({
 		},
 		dynamic_preview_title = false,
 		preview = {
-      hide_on_startup = true
-    },
+			hide_on_startup = true,
+		},
 		sorting_strategy = "ascending",
 		layout_strategy = "bottom_pane",
 		layout_config = {
