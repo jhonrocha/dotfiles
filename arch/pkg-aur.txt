@@ -1,6 +1,4 @@
-vpn-slice
-nerd-fonts-hack
-nerd-fonts-source-code-pro
-nerd-fonts-jetbrains-mono
 ferdi
 brave-bin
+stpv-git
+lf

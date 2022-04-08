@@ -54,7 +54,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 # Shortcuts
 alias gw="cd ~/workspace"
-alias gf="cd ~/homefree"
+alias gh="cd ~/homefree"
 alias gj="cd /data"
 alias g.="cd /data/dotfiles"
 alias gd="cd ~/Downloads"
@@ -63,7 +63,6 @@ alias gt="cd ~/Desktop"
 alias gk="cd ~/prvdots/keys"
 alias gg="cd ~/org"
 alias gp="cd ~/Pictures"
-alias gl="git log --pretty=format:\"[%h] %ae, %ar: %s\" --stat"
 # Make
 alias m="make"
 # List all files

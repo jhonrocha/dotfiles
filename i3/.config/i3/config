@@ -46,7 +46,7 @@ gaps outer $gOut
 # Apps
 mode "apps" {
   bindsym g exec jhbrowser; mode "default"
-  bindsym e exec "kitty ranger --cmd 'set preview_images_method kitty'"; mode "default"
+  bindsym e exec "kitty lf"; mode "default"
   bindsym i exec "$term htop"; mode "default"
   bindsym y exec jhsync; mode "default"
   bindsym b exec "$term nvim ~/.config/favs.txt"; mode "default"
