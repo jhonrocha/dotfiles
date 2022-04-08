@@ -30,7 +30,7 @@
   (setq gc-cons-threshold 20000000)
 
   ;; FONTS
-  (set-face-attribute 'default nil :font "FiraMono Nerd Font" :height 150)
+  (set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 150)
 
   ;; Set Transparency
   (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
