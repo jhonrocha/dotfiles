@@ -16,8 +16,6 @@ Plug 'nvim-lua/plenary.nvim'
 "File Drawer
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-" Ranger
-Plug 'kevinhwang91/rnvimr'
 " Nvim Pairs
 Plug 'windwp/nvim-autopairs'
 " GCC to Comment
@@ -27,6 +25,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 " Completion
 Plug 'onsails/lspkind-nvim'
@@ -35,29 +34,20 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-Plug 'hrsh7th/nvim-cmp'
-" Copilot
-" Plug 'github/copilot.vim'
-" For vsnip user.
 Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/nvim-cmp'
+" Snippets
 Plug 'hrsh7th/vim-vsnip'
 Plug 'rafamadriz/friendly-snippets'
 " Rust
 Plug 'simrat39/rust-tools.nvim'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-tree-docs'
 " Telescope
-Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-file-browser.nvim'
 " Themes
 Plug 'catppuccin/nvim'
 Plug 'projekt0n/github-nvim-theme'
-" Dashboard
-Plug 'glepnir/dashboard-nvim'
-" http
-Plug 'NTBBloodbath/rest.nvim'
 " Marks
 Plug 'kshenoy/vim-signature'
 " WhichKey
@@ -214,46 +204,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 " }}}
 
-">>>....................DASHBOARD.................... {{{
-let g:dashboard_default_executive ='telescope'
-let g:dashboard_custom_shortcut={
-      \ 'find_file'          : 'SPC SPC',
-      \ 'find_history'       : 'SPC f o',
-      \ 'new_file'           : 'SPC f n',
-      \ 'find_word'          : 'SPC f w',
-      \ 'book_marks'         : 'SPC f m',
-      \ 'last_session'       : 'SPC s l',
-      \ 'change_colorscheme' : 'SPC f t',
-      \ }
-
-nmap <Leader>ss :<C-u>SessionSave<CR>
-nmap <Leader>sl :<C-u>SessionLoad<CR
-
-let g:dashboard_custom_header = [
-  \'               ▄▄██████████▄▄             ',
-  \'               ▀▀▀   ██   ▀▀▀             ',
-  \'       ▄██▄   ▄▄████████████▄▄   ▄██▄     ',
-  \'     ▄███▀  ▄████▀▀▀    ▀▀▀████▄  ▀███▄   ',
-  \'    ████▄ ▄███▀              ▀███▄ ▄████  ',
-  \'   ███▀█████▀▄████▄      ▄████▄▀█████▀███ ',
-  \'   ██▀  ███▀ ██████      ██████ ▀███  ▀██ ',
-  \'    ▀  ▄██▀  ▀████▀  ▄▄  ▀████▀  ▀██▄  ▀  ',
-  \'       ███           ▀▀           ███     ',
-  \'       ██████████████████████████████     ',
-  \'   ▄█  ▀██  ███   ██    ██   ███  ██▀  █▄ ',
-  \'   ███  ███ ███   ██    ██   ███▄███  ███ ',
-  \'   ▀██▄████████   ██    ██   ████████▄██▀ ',
-  \'    ▀███▀ ▀████   ██    ██   ████▀ ▀███▀  ',
-  \'     ▀███▄  ▀███████    ███████▀  ▄███▀   ',
-  \'       ▀███    ▀▀██████████▀▀▀   ███▀     ',
-  \'         ▀    ▄▄▄    ██    ▄▄▄    ▀       ',
-  \'               ▀████████████▀             ',
-\]
-
-
-
-" }}}
-
 ">>>....................Load LUA.................... {{{
 lua require("config")
 " }}}
@@ -280,7 +230,7 @@ let g:which_key_map.c = {
       \ 'a' : [':call v:lua.vim.lsp.buf.code_action()', 'action'],
       \ 'd' : [':call v:lua.vim.lsp.buf.definition()', 'definition'],
       \ 'i' : [':call v:lua.vim.lsp.buf.implementation()', 'implementation'],
-      \ 'f' : [':call v:lua.vim.lsp.buf.formatting()', 'formatting'],
+      \ 'f' : [':call v:lua.vim.lsp.buf.formatting_seq_sync()', 'formatting'],
       \ 'k' : [':call v:lua.vim.lsp.buf.hover()', 'hover'],
       \ 'l' : [':call v:lua.vim.lsp.diagnostic.set_loclist()', 'loclist'],
       \ 'h' : ['<Plug>RestNvim', 'http'],
@@ -364,7 +314,6 @@ let g:which_key_map.f = {
       \ 'm' : [':Telescope marks', 'marks'],
       \ 'k' : ['bd', 'close'],
       \ 'o' : [':Telescope oldfiles', 'prev files'],
-      \ 'r' : ['RnvimrToggle', 'manager'],
       \ 's' : ['update', 'save'],
       \ 't' : [':Telescope colorscheme', 'theme'],
       \ 'w' : [':Telescope live_grep', 'grep'],
