@@ -1,4 +1,4 @@
 ferdi
 brave-bin
 stpv-git
-lf-bin
+lf
