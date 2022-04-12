@@ -96,7 +96,7 @@ local null_ls = require("null-ls")
 
 -- register any number of sources simultaneously
 local sources = {
-  null_ls.builtins.diagnostics.eslint_d.with({
+  null_ls.builtins.diagnostics.eslint.with({
     condition = function(utils)
       return utils.root_has_file({
         ".eslintrc.js",
@@ -107,8 +107,8 @@ local sources = {
       })
     end,
   }),
+  -- null_ls.builtins.formatting.eslint,
   null_ls.builtins.formatting.prettier,
-  null_ls.builtins.formatting.eslint_d,
   null_ls.builtins.formatting.stylua,
   null_ls.builtins.formatting.black,
   null_ls.builtins.diagnostics.pylint,
