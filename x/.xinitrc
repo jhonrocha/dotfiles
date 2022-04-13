@@ -30,28 +30,28 @@ eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 case $WM in
     i3 )
-      exec dbus-launch i3
+      exec i3
       ;;
     awesome )
       sxhkd &
-      exec dbus-launch awesome
+      exec awesome
       ;;
     bspwm )
       sxhkd &
-      exec dbus-launch bspwm
+      exec bspwm
       ;;
     spectrwm )
       sxhkd &
-      exec dbus-launch spectrwm
+      exec spectrwm
       ;;
     xmonad )
-      exec dbus-launch xmonad;;
+      exec xmonad;;
     dwm )
       killall dwmbar
       dwmbar &
       sxhkd &
-      exec dbus-launch dwm
+      exec dwm
       ;;
     * )
-      exec dbus-launch xmonad;;
+      exec xmonad;;
 esac
