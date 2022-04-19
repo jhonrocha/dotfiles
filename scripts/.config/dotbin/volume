@@ -1,0 +1,5 @@
+#!/bin/sh
+for SINK in `pactl list sinks short | cut -b1`
+do
+  pactl set-sink-volume $SINK $1
+done

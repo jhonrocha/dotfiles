@@ -36,6 +36,7 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [class="termscratch"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 for_window [class="Emacs"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
+for_window [class="join?"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 # Font
 font pango:Cantarell 0
 # Gaps
@@ -218,8 +219,8 @@ bindsym $mod+F7 exec playerctl play-pause
 bindsym $mod+F6 exec playerctl previous
 bindsym $mod+F8 exec playerctl next
 bindsym $mod+F9 exec pavucontrol
-bindsym $mod+F11 exec pactl set-sink-volume 0 -5% & pactl set-sink-volume 1 -5%
-bindsym $mod+F12 exec pactl set-sink-volume 0 +5% & pactl set-sink-volume 1 +5%
+bindsym $mod+F11 exec volume -5%
+bindsym $mod+F12 exec volume +5%
 
 # Scratchpad:
 bindsym $mod+Shift+y move scratchpad

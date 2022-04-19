@@ -80,9 +80,6 @@ zsh-autosuggestions
 zsh-syntax-highlighting
 mpv
 network-manager-applet
-pipewire
-pipewire-media-session
-xdg-desktop-portal
 dbeaver
 ncdu
 ranger
