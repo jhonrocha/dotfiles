@@ -160,7 +160,6 @@ vim.keymap.set("n", "<leader>o", require("telescope.builtin").oldfiles)
 -- My Maps
 vim.keymap.set("n", "<leader>fs", "<Cmd>update<CR>")
 vim.keymap.set("n", "<leader>fk", "<Cmd>bd<CR>")
-vim.keymap.set("n", "<leader><TAB>", "<C-^>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
@@ -173,3 +172,31 @@ vim.keymap.set("n", "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>")
 
 -- Git
 vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>")
+vim.keymap.set("n", "<leader>gy", "<Cmd>!gy<CR><CR>")
+vim.keymap.set("n", "<leader>gp", ':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>')
+
+-- Buffer navigation
+vim.keymap.set("n", "<leader>j", "<Cmd>bn<CR>")
+vim.keymap.set("n", "<leader>k", "<Cmd>bp<CR>")
+vim.keymap.set("n", "<leader><TAB>", "<C-^>")
+
+-- Replacers
+vim.keymap.set("n", "<leader>rr", ":%s//gc<left><left><left>")
+vim.keymap.set("n", "<leader>rb", ":.,$s//gc<left><left><left>")
+
+-- Utilities
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "J", "<Cmd>m '>+1<CR>gv=gv<Cr>")
+vim.keymap.set("v", "K", "<Cmd>m '<-2<CR>gv=gv<Cr>")
+vim.keymap.set("n", "d", '"vd')
+vim.keymap.set("n", "D", '"vD')
+vim.keymap.set("n", "x", '"vx')
+vim.keymap.set("n", "X", '"vX')
+vim.keymap.set("n", "c", '"vc')
+vim.keymap.set("n", "C", '"vC')
+vim.keymap.set("n", "s", '"vs')
+vim.keymap.set("n", "S", '"vS')
+
+vim.keymap.set("n", "<leader>p", '"vp')
+vim.keymap.set("n", "<leader>P", '"vP')

@@ -51,6 +51,7 @@ require("packer").startup(function(use)
   use("hrsh7th/cmp-nvim-lsp")
   use("saadparwaiz1/cmp_luasnip")
   use("L3MON4D3/LuaSnip") -- Snippets plugin
+  use "rafamadriz/friendly-snippets"
 end)
 
 -- Clipboard
@@ -74,9 +75,9 @@ vim.o.smartcase = true
 
 -- Tab size
 vim.o.expandtab = 2
-vim.o.tabstop=2
-vim.o.softtabstop=2
-vim.o.shiftwidth=2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
 
 --Decrease update time
 vim.o.updatetime = 250
@@ -84,7 +85,7 @@ vim.wo.signcolumn = "yes"
 
 --Set colorscheme
 vim.o.termguicolors = true
-require("catppuccin").setup({})
+require("catppuccin").setup()
 vim.cmd([[colorscheme catppuccin]])
 
 -- Set completeopt to have a better completion experience
@@ -100,7 +101,7 @@ require("lualine").setup({
   },
   sections = {
     lualine_a = { 'mode' },
-    lualine_b = { 'filename', 'diff', 'diagnostics' },
+    lualine_b = { { 'filename', path = 1 }, 'diff', 'diagnostics' },
     lualine_c = { 'branch' },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
     lualine_y = { 'progress' },
@@ -201,6 +202,7 @@ require("nvim-treesitter.configs").setup({
 
 -- luasnip setup
 local luasnip = require("luasnip")
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- nvim-cmp setup
 local cmp = require("cmp")
