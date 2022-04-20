@@ -150,6 +150,7 @@ require("gitsigns").setup({
 -- Parsers must be installed manually via :TSInstall
 require("nvim-treesitter.configs").setup({
   ensure_installed = "all",
+  ignore_install = { "norg", "phpdoc" },
   highlight = {
     enable = true, -- false will disable the whole extension
   },
