@@ -1,7 +1,7 @@
 # Logs
+!vim/.config/nvim/init.lua
 vim/.config/nvim/
 !vim/.config/nvim/lua
-!vim/.config/nvim/init.lua
 !vim/.config/nvim/bkp.init.vim
 ranger/.config/ranger/plugins
 xmonad/.xmonad

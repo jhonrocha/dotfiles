@@ -26,11 +26,6 @@ require("packer").startup(function(use)
   use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   -- Themes
-  use("mjlbach/onedark.nvim") -- Theme inspired by Atom
-  use({
-    "catppuccin/nvim",
-    as = "catppuccin",
-  })
   use("folke/tokyonight.nvim")
   -- Fancier statusline
   use({
