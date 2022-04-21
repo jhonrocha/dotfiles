@@ -90,6 +90,13 @@ vim.o.shiftwidth = 2
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
 
+--Folding
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldenable = false
+vim.o.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+vim.o.fillchars = "fold: "
+
 --Set colorscheme
 vim.o.termguicolors = true
 require("catppuccin").setup()
@@ -114,6 +121,7 @@ require("lualine").setup({
     lualine_y = { "progress" },
     lualine_z = { "location" },
   },
+  extensions = { "quickfix", "nvim-tree" },
 })
 
 --Enable Comment.nvim
@@ -135,6 +143,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 --Map blankline
+vim.cmd([[highlight IndentBlanklineContextStart guisp=#ffffff gui=underdot cterm=underdot]])
 require("indent_blankline").setup({
   char = "┊",
   space_char_blankline = " ",
@@ -151,6 +160,49 @@ require("gitsigns").setup({
     topdelete = { text = "‾" },
     changedelete = { text = "~" },
   },
+  current_line_blame_opts = {
+    delay = 300,
+  },
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    map("n", "]c", function()
+      if vim.wo.diff then
+        return "]c"
+      end
+      vim.schedule(function()
+        gs.next_hunk()
+      end)
+      return "<Ignore>"
+    end, { expr = true })
+    map("n", "[c", function()
+      if vim.wo.diff then
+        return "[c"
+      end
+      vim.schedule(function()
+        gs.prev_hunk()
+      end)
+      return "<Ignore>"
+    end, { expr = true })
+    -- Actions
+    map("n", "<leader>gp", gs.preview_hunk)
+    map("n", "<leader>gb", function()
+      gs.blame_line({ full = true })
+    end)
+    map("n", "<leader>gl", gs.toggle_current_line_blame)
+    map("n", "<leader>gd", gs.diffthis)
+    map("n", "<leader>gD", function()
+      gs.diffthis("~")
+    end)
+    map("n", "<leader>gp", gs.preview_hunk)
+    map("n", "<leader>gs", gs.select_hunk)
+  end,
 })
 
 -- Treesitter configuration
@@ -258,26 +310,23 @@ cmp.setup({
 })
 
 -- LSP settings
-local on_attach = function(_, bufnr)
-  local opts = { buffer = bufnr }
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-  vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-  vim.keymap.set("n", "<leader>wl", function()
-    vim.inspect(vim.lsp.buf.list_workspace_folders())
-  end, opts)
-  vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>fl", require("telescope.builtin").lsp_document_symbols, opts)
-  vim.keymap.set("n", "<leader>cf", vim.lsp.buf.formatting_seq_sync, opts)
-end
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "TODO" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "TODO" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "TODO" })
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "TODO" })
+vim.keymap.set({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help, { desc = "TODO" })
+vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "TODO" })
+vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "TODO" })
+vim.keymap.set("n", "<leader>wl", function()
+  vim.inspect(vim.lsp.buf.list_workspace_folders())
+end, { desc = "TODO" })
+vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "TODO" })
+vim.keymap.set("n", "<leader>cw", vim.lsp.buf.rename, { desc = "rename" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "TODO" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "TODO" })
+vim.keymap.set("n", "<leader>fl", require("telescope.builtin").lsp_document_symbols, { desc = "TODO" })
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.formatting_seq_sync, { desc = "TODO" })
+
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
@@ -292,7 +341,6 @@ require("nvim-lsp-installer").on_server_ready(function(server)
       },
     }
   end
-  opts.on_attach = on_attach
   opts.capabilities = capabilities
   server:setup(opts)
 end)
@@ -425,18 +473,18 @@ require("nvim-tree").setup({
 })
 
 --Remap for dealing with word wrap
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "TODO" })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "TODO" })
 
 --Add leader shortcuts
-vim.keymap.set("n", "<leader>,", require("telescope.builtin").buffers)
-vim.keymap.set("n", "<leader><space>", require("telescope.builtin").find_files)
-vim.keymap.set("n", "<leader>ff", require("telescope.builtin").current_buffer_fuzzy_find)
-vim.keymap.set("n", "<leader>fW", require("telescope.builtin").grep_string)
-vim.keymap.set("n", "<leader>fw", require("telescope.builtin").live_grep)
-vim.keymap.set("n", "<leader>fgc", require("telescope.builtin").git_commits)
-vim.keymap.set("n", "<leader>fgb", require("telescope.builtin").git_branches)
-vim.keymap.set("n", "<leader>o", require("telescope.builtin").oldfiles)
+vim.keymap.set("n", "<leader>,", require("telescope.builtin").buffers, { desc = "TODO" })
+vim.keymap.set("n", "<leader><space>", require("telescope.builtin").find_files, { desc = "TODO" })
+vim.keymap.set("n", "<leader>ff", require("telescope.builtin").current_buffer_fuzzy_find, { desc = "TODO" })
+vim.keymap.set("n", "<leader>fW", require("telescope.builtin").grep_string, { desc = "TODO" })
+vim.keymap.set("n", "<leader>fw", require("telescope.builtin").live_grep, { desc = "TODO" })
+vim.keymap.set("n", "<leader>fgc", require("telescope.builtin").git_commits, { desc = "TODO" })
+vim.keymap.set("n", "<leader>fgb", require("telescope.builtin").git_branches, { desc = "TODO" })
+vim.keymap.set("n", "<leader>o", require("telescope.builtin").oldfiles, { desc = "TODO" })
 
 -- My Maps
 vim.keymap.set("n", "<leader>fs", "<Cmd>update<CR>")
@@ -454,7 +502,7 @@ vim.keymap.set("n", "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>")
 -- Git
 vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>")
 vim.keymap.set("n", "<leader>gy", "<Cmd>!gy<CR><CR>")
-vim.keymap.set("n", "<leader>gp", ':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>')
+vim.keymap.set("n", "<leader>gP", ':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>')
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader>j", "<Cmd>bn<CR>")
