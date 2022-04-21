@@ -13,17 +13,25 @@ vim.api.nvim_create_autocmd(
 
 require("packer").startup(function(use)
   use("wbthomason/packer.nvim") -- Package manager
+  -- Git
   use("tpope/vim-fugitive") -- Git commands in nvim
-  use("tpope/vim-rhubarb") -- Fugitive-companion to interact with github
+  use({
+      "sindrets/diffview.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  })
   use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
   -- UI to select things (files, grep results, open buffers...)
   use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  -- Themes
   use("mjlbach/onedark.nvim") -- Theme inspired by Atom
   use({
     "catppuccin/nvim",
     as = "catppuccin",
   })
+  use("folke/tokyonight.nvim")
   -- Fancier statusline
   use({
     "nvim-lualine/lualine.nvim",
@@ -86,6 +94,9 @@ vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 
+-- Split right
+vim.o.splitright = true
+
 --Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
@@ -95,12 +106,12 @@ vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldenable = false
 vim.o.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
-vim.o.fillchars = "fold: "
+vim.o.fillchars = "fold: ,diff: "
 
 --Set colorscheme
 vim.o.termguicolors = true
-require("catppuccin").setup()
-vim.cmd([[colorscheme catppuccin]])
+vim.g.tokyonight_style = "night"
+vim.cmd([[colorscheme tokyonight]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -109,7 +120,7 @@ vim.o.completeopt = "menuone,noselect"
 require("lualine").setup({
   options = {
     icons_enabled = true,
-    theme = "catppuccin",
+    theme = "tokyonight",
     -- component_separators = "|",
     -- section_separators = "",
   },
@@ -191,16 +202,14 @@ require("gitsigns").setup({
       return "<Ignore>"
     end, { expr = true })
     -- Actions
-    map("n", "<leader>gp", gs.preview_hunk)
+    map("n", "<leader>gv", gs.preview_hunk)
     map("n", "<leader>gb", function()
       gs.blame_line({ full = true })
     end)
     map("n", "<leader>gl", gs.toggle_current_line_blame)
-    map("n", "<leader>gd", gs.diffthis)
-    map("n", "<leader>gD", function()
+    map("n", "<leader>gt", function()
       gs.diffthis("~")
     end)
-    map("n", "<leader>gp", gs.preview_hunk)
     map("n", "<leader>gs", gs.select_hunk)
   end,
 })
@@ -472,6 +481,15 @@ require("nvim-tree").setup({
   },
 })
 
+-- GIT
+require("diffview").setup({
+  file_panel = {
+    position = "left",
+    width = 20,
+    listing_style = "list",
+  },
+})
+
 --Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "TODO" })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "TODO" })
@@ -500,22 +518,24 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 vim.keymap.set("n", "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>")
 
 -- Git
-vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>")
-vim.keymap.set("n", "<leader>gy", "<Cmd>!gy<CR><CR>")
-vim.keymap.set("n", "<leader>gP", ':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>')
+vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", { desc = "Git" })
+vim.keymap.set("n", "<leader>gd", "<Cmd>DiffviewOpen<CR>", { desc = "gdiff" })
+vim.keymap.set("n", "<leader>gq", "<Cmd>DiffviewClose<CR>", { desc = "close gdiff" })
+vim.keymap.set("n", "<leader>gy", "<Cmd>!gy<CR><CR>", { desc = "yank branch" })
+vim.keymap.set("n", "<leader>gp", ':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>', { desc = "push" })
 
 -- Buffer navigation
-vim.keymap.set("n", "<leader>j", "<Cmd>bn<CR>")
-vim.keymap.set("n", "<leader>k", "<Cmd>bp<CR>")
-vim.keymap.set("n", "<leader><TAB>", "<C-^>")
+vim.keymap.set("n", "<leader>j", "<Cmd>bn<CR>", { desc = "next buf" })
+vim.keymap.set("n", "<leader>k", "<Cmd>bp<CR>", { desc = "prev buf" })
+vim.keymap.set("n", "<leader><TAB>", "<C-^>", { desc = "alt buf" })
 
 -- Replacers
-vim.keymap.set("n", "<leader>rr", ":%s//gc<left><left><left>")
-vim.keymap.set("n", "<leader>rb", ":.,$s//gc<left><left><left>")
+vim.keymap.set("n", "<leader>rr", ":%s//gc<left><left><left>", { desc = "replace all" })
+vim.keymap.set("n", "<leader>rb", ":.,$s//gc<left><left><left>", { desc = "replace bellow" })
 
 -- Utilities
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv", { desc = "indent right" })
+vim.keymap.set("v", ">", ">gv", { desc = "indent left" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv")
 vim.keymap.set("n", "d", '"vd')
