@@ -1,8 +1,6 @@
 # Logs
-!vim/.config/nvim/init.lua
-vim/.config/nvim/
-!vim/.config/nvim/lua
-!vim/.config/nvim/bkp.init.vim
+vim/.config/nvim/autoload/
+vim/.config/nvim/plugins/
 ranger/.config/ranger/plugins
 xmonad/.xmonad
 fish_variables
