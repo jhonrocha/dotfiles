@@ -16,7 +16,7 @@ require("packer").startup(function(use)
   -- Git
   use("tpope/vim-fugitive") -- Git commands in nvim
   use({
-      "sindrets/diffview.nvim",
+    "sindrets/diffview.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
     },
@@ -32,14 +32,17 @@ require("packer").startup(function(use)
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
+  -- Tree/File Browser
   use({
     "kyazdani42/nvim-tree.lua",
     requires = {
-      "kyazdani42/nvim-web-devicons", -- optional, for file icon
+      "kyazdani42/nvim-web-devicons",
     },
   })
   -- Add indentation guides even on blank lines
   use("lukas-reineke/indent-blankline.nvim")
+  -- Add marks to the left bar
+  use("chentau/marks.nvim")
   -- Add git related info in the signs columns and popups
   use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
   -- Highlight, edit, and navigate code using a fast incremental parsing library
@@ -280,7 +283,7 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<CR>"] = cmp.mapping.confirm({
+    ["<C-j>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
@@ -476,6 +479,9 @@ require("nvim-tree").setup({
   },
 })
 
+-- Marks
+require("marks").setup({})
+
 -- GIT
 require("diffview").setup({
   file_panel = {
@@ -517,7 +523,12 @@ vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", { desc = "Git" })
 vim.keymap.set("n", "<leader>gd", "<Cmd>DiffviewOpen<CR>", { desc = "gdiff" })
 vim.keymap.set("n", "<leader>gq", "<Cmd>DiffviewClose<CR>", { desc = "close gdiff" })
 vim.keymap.set("n", "<leader>gy", "<Cmd>!gy<CR><CR>", { desc = "yank branch" })
-vim.keymap.set("n", "<leader>gp", ':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>', { desc = "push" })
+vim.keymap.set(
+  "n",
+  "<leader>gp",
+  ':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>',
+  { desc = "push" }
+)
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader>j", "<Cmd>bn<CR>", { desc = "next buf" })
