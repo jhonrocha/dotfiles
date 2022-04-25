@@ -1,6 +1,7 @@
 # Logs
 vim/.config/nvim/autoload/
 vim/.config/nvim/plugins/
+vim/.config/nvim/plugin/
 ranger/.config/ranger/plugins
 xmonad/.xmonad
 fish_variables
