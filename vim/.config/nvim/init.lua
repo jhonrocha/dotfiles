@@ -51,6 +51,9 @@ require("packer").startup(function(use)
     -- Additional textobjects for treesitter
     "nvim-treesitter/nvim-treesitter-textobjects",
   })
+  -- AutoPairs
+  use("windwp/nvim-autopairs")
+  -- LSP
   use({
     "neovim/nvim-lspconfig",
     "williamboman/nvim-lsp-installer",
@@ -476,6 +479,9 @@ require("diffview").setup({
     listing_style = "list",
   },
 })
+
+-- Pairs
+require("nvim-autopairs").setup({})
 
 --Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "TODO" })
