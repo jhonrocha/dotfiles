@@ -509,7 +509,7 @@ end)
 vim.keymap.set("n", "]j", function()
   vim.diagnostic.goto_next({ float = true })
 end)
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+vim.keymap.set("n", "<leader>cq", vim.diagnostic.setloclist)
 
 -- Tree
 vim.keymap.set("n", "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>")
