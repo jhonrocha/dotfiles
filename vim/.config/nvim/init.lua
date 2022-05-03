@@ -557,6 +557,12 @@ vim.keymap.set("n", "<leader>P", '"vP')
 -- Clear search
 vim.keymap.set("n", "<leader><Esc>", "<Cmd>noh<CR>", { desc = "clear highlight" })
 
+-- Quicklist
+vim.keymap.set("n", "<leader>qq", "<Cmd>copen<CR>", { desc = "quick open" })
+vim.keymap.set("n", "<leader>qc", "<Cmd>cclose<CR>", { desc = "quick close" })
+vim.keymap.set("n", "<leader>qj", "<Cmd>cn<CR>", { desc = "quick next" })
+vim.keymap.set("n", "<leader>qk", "<Cmd>cp<CR>", { desc = "quick previous" })
+
 -- LuaSnip
 vim.keymap.set({ "s", "i" }, "<Tab>", function()
   if luasnip.expand_or_jumpable() then
