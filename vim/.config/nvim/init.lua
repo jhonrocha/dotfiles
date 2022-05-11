@@ -61,6 +61,8 @@ require("packer").startup(function(use)
 			"jose-elias-alvarez/null-ls.nvim",
 		},
 	})
+	-- Rust
+	use("simrat39/rust-tools.nvim")
 	-- Autocompletion plugin
 	use({
 		"hrsh7th/nvim-cmp",
@@ -305,6 +307,12 @@ cmp.setup({
 		{ name = "buffer" },
 	},
 	experimental = { ghost_text = true },
+	formatting = {
+		format = function(_, vim_item)
+			vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
+			return vim_item
+		end,
+	},
 })
 
 -- LSP settings
@@ -331,9 +339,25 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- Enable the following language servers
-require("nvim-lsp-installer").on_server_ready(function(server)
+local ensure_installed = {
+	"jsonls",
+	"yamlls",
+	"ccls",
+	"jedi_language_server",
+	"sumneko_lua",
+	"tsserver",
+}
+require("nvim-lsp-installer").setup({
+	ensure_installed,
+	automatic_installation = true,
+})
+
+local lspconfig = require("lspconfig")
+
+for _, server_name in pairs(ensure_installed) do
+	-- //todo
 	local opts = {}
-	if server.name == "sumneko_lua" then
+	if server_name == "sumneko_lua" then
 		opts.settings = {
 			Lua = {
 				diagnostics = { globals = { "vim" } },
@@ -341,8 +365,26 @@ require("nvim-lsp-installer").on_server_ready(function(server)
 		}
 	end
 	opts.capabilities = capabilities
-	server:setup(opts)
-end)
+	lspconfig[server_name].setup(opts)
+end
+
+-- rust-tools options
+require("rust-tools").setup({
+	tools = {
+		autoSetHints = true,
+		hover_with_actions = true,
+	},
+	server = {
+		capabilities,
+		settings = {
+			["rust-analyzer"] = {
+				checkOnSave = {
+					command = "clippy",
+				},
+			},
+		},
+	},
+})
 
 -- Diagnostic config
 local null_ls = require("null-ls")
