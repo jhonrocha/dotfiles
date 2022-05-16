@@ -11,7 +11,6 @@ export LDFLAGS="-L/usr/local/opt/node@8/lib"
 export CPPFLAGS="-I/usr/local/opt/node@8/include"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export EDITOR="nvim"
-export TERMCMD=kitty
 export FILE=ranger
 
 export BROWSER=brave
