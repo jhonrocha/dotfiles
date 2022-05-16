@@ -42,7 +42,7 @@ require("packer").startup(function(use)
 	-- Add indentation guides even on blank lines
 	use("lukas-reineke/indent-blankline.nvim")
 	-- Add marks to the left bar
-	use("chentau/marks.nvim")
+	use("chentoast/marks.nvim")
 	-- Add git related info in the signs columns and popups
 	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	-- Highlight, edit, and navigate code using a fast incremental parsing library
@@ -333,6 +333,8 @@ vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = "TODO" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "TODO" })
 vim.keymap.set("n", "<leader>fl", require("telescope.builtin").lsp_document_symbols, { desc = "TODO" })
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.formatting_seq_sync, { desc = "TODO" })
+vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references, { desc = "lsp_references" })
+vim.keymap.set("n", "<leader>fi", require("telescope.builtin").lsp_implementations, { desc = "lsp_implementations" })
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
