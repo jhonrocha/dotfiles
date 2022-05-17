@@ -350,8 +350,8 @@ local ensure_installed = {
 	"tsserver",
 }
 require("nvim-lsp-installer").setup({
-	ensure_installed,
-	automatic_installation = true,
+	-- ensure_installed,
+	-- automatic_installation = true,
 })
 
 local lspconfig = require("lspconfig")
