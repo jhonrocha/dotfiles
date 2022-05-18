@@ -125,7 +125,7 @@ bindsym $mod+x mode "resize"
 # Start a terminal
 bindsym $mod+Return exec $term
 # Rambox ScratchPad
-bindsym $mod+u exec "i3-msg [class=\\"Ferdi\\"] scratchpad show || ferdi"
+bindsym $mod+u exec "i3-msg [class=\\"Ferdi\\"] scratchpad show || ferdi --force-device-scale-factor=1.0"
 # Terminal ScratchPad
 bindsym $mod+i exec "i3-msg \[class=\\"termscratch\\"\] scratchpad show || $term --class termscratch"
 bindsym $mod+n exec "i3-msg [class=\\"obsidian\\"] scratchpad show || obsidian"
