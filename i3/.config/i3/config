@@ -33,7 +33,7 @@ client.unfocused        #000000     #000000     $fg     $id       #000000
 focus_follows_mouse no
 # Window Rules
 for_window [class="Pavucontrol"] floating enable
-for_window [class="Ferdi"] move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
+for_window [class="rambox"] move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [class="termscratch"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 for_window [class="obsidian"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 for_window [class="join?"] floating enable
@@ -125,7 +125,7 @@ bindsym $mod+x mode "resize"
 # Start a terminal
 bindsym $mod+Return exec $term
 # Rambox ScratchPad
-bindsym $mod+u exec "i3-msg [class=\\"Ferdi\\"] scratchpad show || ferdi --force-device-scale-factor=1.0"
+bindsym $mod+u exec "i3-msg [class=\\"rambox\\"] scratchpad show || rambox"
 # Terminal ScratchPad
 bindsym $mod+i exec "i3-msg \[class=\\"termscratch\\"\] scratchpad show || $term --class termscratch"
 bindsym $mod+n exec "i3-msg [class=\\"obsidian\\"] scratchpad show || obsidian"
