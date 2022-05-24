@@ -348,6 +348,7 @@ local ensure_installed = {
 	"jedi_language_server",
 	"sumneko_lua",
 	"tsserver",
+  "gopls",
 }
 require("nvim-lsp-installer").setup({
 	-- ensure_installed,
