@@ -348,12 +348,9 @@ local ensure_installed = {
 	"jedi_language_server",
 	"sumneko_lua",
 	"tsserver",
-  "gopls",
+	"gopls",
 }
-require("nvim-lsp-installer").setup({
-	-- ensure_installed,
-	-- automatic_installation = true,
-})
+require("nvim-lsp-installer").setup()
 
 local lspconfig = require("lspconfig")
 
@@ -366,6 +363,10 @@ for _, server_name in pairs(ensure_installed) do
 				diagnostics = { globals = { "vim" } },
 			},
 		}
+	elseif server_name == "tsserver" then
+		opts.on_attach = function(client)
+			client.resolved_capabilities.document_formatting = false
+		end
 	end
 	opts.capabilities = capabilities
 	lspconfig[server_name].setup(opts)
@@ -522,9 +523,11 @@ require("marks").setup({})
 -- GIT
 require("diffview").setup({
 	file_panel = {
-		position = "left",
-		width = 20,
-		listing_style = "list",
+		win_config = {
+			position = "left",
+			width = 20,
+			listing_style = "list",
+		},
 	},
 })
 
