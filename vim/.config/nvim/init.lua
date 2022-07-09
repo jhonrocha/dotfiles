@@ -342,13 +342,14 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- Enable the following language servers
 local ensure_installed = {
-	"jsonls",
-	"yamlls",
+	"bashls",
 	"ccls",
+	"gopls",
 	"jedi_language_server",
+	"jsonls",
 	"sumneko_lua",
 	"tsserver",
-	"gopls",
+	"yamlls",
 }
 require("nvim-lsp-installer").setup()
 
@@ -367,6 +368,10 @@ for _, server_name in pairs(ensure_installed) do
 		opts.on_attach = function(client)
 			client.resolved_capabilities.document_formatting = false
 		end
+	elseif server_name == "gopls" then
+		opts.init_options = {
+			buildFlags = { "-tags=integration" },
+		}
 	end
 	opts.capabilities = capabilities
 	lspconfig[server_name].setup(opts)
@@ -549,7 +554,7 @@ vim.keymap.set("n", "<leader>fgb", require("telescope.builtin").git_branches, { 
 vim.keymap.set("n", "<leader>o", require("telescope.builtin").oldfiles, { desc = "TODO" })
 
 -- My Maps
-vim.keymap.set("n", "<leader>fs", "<Cmd>update<CR>")
+vim.keymap.set("n", "<leader>fs", "<Cmd>update!<CR>")
 vim.keymap.set("n", "<leader>fk", "<Cmd>bd<CR>")
 
 -- Diagnostic keymaps

@@ -31,7 +31,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export XDG_CONFIG_HOME="$HOME/.config"
 export GTK_THEME=Arc-Dark
-export BAT_THEME="github"
+export BAT_THEME="gruvbox-dark"
 export QT_STYLE_OVERRIDE=Breeze-Dark
 
 ## Less Colors for Man Pages
@@ -54,6 +54,7 @@ alias .....="cd ../../../.."
 # Shortcuts
 alias gw="cd ~/workspace"
 alias gh="cd ~/homefree"
+alias ga="cd ~/anjuna/"
 alias gj="cd /data"
 alias g.="cd /data/dotfiles"
 alias gd="cd ~/Downloads"
