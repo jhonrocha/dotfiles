@@ -14,11 +14,7 @@ export EDITOR="nvim"
 export FILE=ranger
 
 export BROWSER=brave
-export BROWSER_NAME=Brave-broser
-if [ "$(whoami)" = "therock" ]; then
-  export BROWSER=firefox
-  export BROWSER_NAME=Navigator
-fi
+export BROWSER_NAME=Brave-browser
 export SXHKD_SHELL=/bin/sh
 
 # CONFIGS

@@ -170,6 +170,10 @@ require("indent_blankline").setup({
 	show_current_context_start = true,
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = { "Jenkinsfile*"},
+	command = "setf groovy",
+})
 -- Gitsigns
 require("gitsigns").setup({
 	signs = {
@@ -229,6 +233,7 @@ require("nvim-treesitter.configs").setup({
 	ignore_install = { "norg", "phpdoc" },
 	highlight = {
 		enable = true, -- false will disable the whole extension
+		disable = { "sql" },
 	},
 	incremental_selection = {
 		enable = true,
@@ -414,6 +419,7 @@ local sources = {
 	null_ls.builtins.formatting.black,
 	null_ls.builtins.diagnostics.pylint,
 	null_ls.builtins.diagnostics.staticcheck,
+	null_ls.builtins.formatting.shfmt,
 }
 
 null_ls.setup({ sources = sources })

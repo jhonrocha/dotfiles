@@ -32,16 +32,6 @@ yay -S --answerclean None --answerdiff None --answeredit None --noprovides --nor
 xdg-mime default brave-broswer.desktop  x-scheme-handler/http
 xdg-mime default brave-browser.desktop x-scheme-handler/https
 xdg-settings set default-web-browser brave-browser.desktop
-
-if [ "$(whoami)" = "therock" ]; then
-  xdg-mime default brave-broswer.desktop  x-scheme-handler/http
-  xdg-mime default brave-browser.desktop x-scheme-handler/https
-  xdg-settings set default-web-browser brave-browser.desktop
-else
-  xdg-mime default firefox.desktop  x-scheme-handler/http
-  xdg-mime default firefox.desktop x-scheme-handler/https
-  xdg-settings set default-web-browser firefox.desktop
-fi
 xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 #### GIT Store

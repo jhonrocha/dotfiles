@@ -1,6 +1,5 @@
 #!/bin/sh
 userresources=$HOME/.Xresources
-userresources=$HOME/HighDpi.XResources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
@@ -13,9 +12,6 @@ if [ -f $sysmodmap ]; then
 fi
 if [ -f "$userresources" ]; then
   xrdb -merge "$userresources"
-fi
-if [ -f "$highdpi" ]; then
-  xrdb -merge "$highdpi"
 fi
 if [ -f "$usermodmap" ]; then
   xmodmap "$usermodmap"
