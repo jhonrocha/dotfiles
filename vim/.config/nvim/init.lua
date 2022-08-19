@@ -171,7 +171,7 @@ require("indent_blankline").setup({
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = { "Jenkinsfile*"},
+	pattern = { "Jenkinsfile*" },
 	command = "setf groovy",
 })
 -- Gitsigns
@@ -386,7 +386,6 @@ end
 require("rust-tools").setup({
 	tools = {
 		autoSetHints = true,
-		hover_with_actions = true,
 	},
 	server = {
 		capabilities,
