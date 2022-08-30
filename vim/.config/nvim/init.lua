@@ -48,8 +48,6 @@ require("packer").startup(function(use)
 	-- Highlight, edit, and navigate code using a fast incremental parsing library
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		-- Additional textobjects for treesitter
-		"nvim-treesitter/nvim-treesitter-textobjects",
 	})
 	-- AutoPairs
 	use("windwp/nvim-autopairs")
@@ -77,7 +75,6 @@ require("packer").startup(function(use)
 end)
 -- Clipboard
 vim.cmd([[set clipboard+=unnamedplus]])
-
 --Make line numbers default
 vim.wo.number = true
 
@@ -166,7 +163,6 @@ vim.cmd([[highlight IndentBlanklineContextStart guisp=#ffffff gui=underdot cterm
 require("indent_blankline").setup({
 	char = "┊",
 	space_char_blankline = " ",
-	show_current_context = true,
 	show_current_context_start = true,
 })
 
@@ -246,41 +242,7 @@ require("nvim-treesitter.configs").setup({
 	},
 	indent = {
 		enable = true,
-	},
-	textobjects = {
-		keymaps = {},
-		select = {
-			enable = true,
-			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-			keymaps = {
-				-- You can use the capture groups defined in textobjects.scm
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
-		},
-		move = {
-			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				["]m"] = "@function.outer",
-				["]]"] = "@class.outer",
-			},
-			goto_next_end = {
-				["]M"] = "@function.outer",
-				["]["] = "@class.outer",
-			},
-			goto_previous_start = {
-				["[m"] = "@function.outer",
-				["[["] = "@class.outer",
-			},
-			goto_previous_end = {
-				["[M"] = "@function.outer",
-				["[]"] = "@class.outer",
-			},
-		},
-	},
+	}
 })
 local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
 parser_configs.hcl = {
