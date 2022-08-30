@@ -282,7 +282,10 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 })
-
+local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+parser_configs.hcl = {
+  filetype = "hcl", "terraform",
+}
 -- luasnip setup
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -355,8 +358,12 @@ local ensure_installed = {
 	"sumneko_lua",
 	"tsserver",
 	"yamlls",
+  "terraformls"
 }
-require("nvim-lsp-installer").setup()
+require("nvim-lsp-installer").setup({
+  ensure_installed,
+  automatic_installation = false
+})
 
 local lspconfig = require("lspconfig")
 
