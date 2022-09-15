@@ -132,6 +132,8 @@ bindsym $mod+n exec "i3-msg [class=\\"obsidian\\"] scratchpad show || obsidian"
 # Kill focused window
 bindsym $mod+F4 kill
 bindsym $mod+q kill
+# Lock screen
+bindsym --release $mod+Delete exec slock
 # Start your launcher
 bindsym $mod+d exec $menu
 # Start your cmd launcher
