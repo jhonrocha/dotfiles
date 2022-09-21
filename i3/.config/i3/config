@@ -62,15 +62,6 @@ mode "apps" {
 }
 bindsym $mod+space mode "apps"
 
-mode "pwd" {
-  bindsym s exec pss; mode "default"
-  bindsym g exec "pss g"; mode "default"
-  # Return to default mode
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+s mode "pwd"
-
 # Gaps
 mode "gaps" {
   # Vertical/Horizontal
@@ -213,6 +204,8 @@ bindsym $mod+b bar mode toggle
 # Move focus to the parent container
 bindsym $mod+comma focus parent
 bindsym $mod+period focus child
+# Sticky window
+bindsym $mod+s sticky enable
 
 # Media Control
 bindsym $mod+F1 exec xbacklight -dec 10
