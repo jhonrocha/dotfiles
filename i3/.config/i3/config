@@ -26,6 +26,8 @@ set $id #FFFFFF
 default_border pixel 1
 default_floating_border pixel 1
 smart_borders on
+for_window [all] default_border pixel 1
+for_window [all] border pixel 1
 # class                 border      backgr.     text    indicator child_border
 client.focused          #c678dd     #c678dd     $fg     $id       $br
 client.unfocused        #000000     #000000     $fg     $id       #000000
