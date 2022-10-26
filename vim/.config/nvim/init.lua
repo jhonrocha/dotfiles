@@ -163,7 +163,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 --Map blankline
-vim.cmd([[highlight IndentBlanklineContextStart guisp=#ffffff gui=underdot cterm=underdot]])
+-- vim.cmd([[highlight IndentBlanklineContextStart guisp=#ffffff gui=underdot cterm=underdot]])
 require("indent_blankline").setup({
   char = "┊",
   space_char_blankline = " ",
@@ -313,7 +313,7 @@ vim.keymap.set("n", "<leader>fi", require("telescope.builtin").lsp_implementatio
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- Enable the following language servers
 local ensure_installed = {

@@ -14,7 +14,7 @@ export EDITOR="nvim"
 export FILE=ranger
 
 export BROWSER=brave
-export BROWSER_NAME=Brave-browser
+export BROWSER_NAME=vivaldi-stable
 export SXHKD_SHELL=/bin/sh
 
 # CONFIGS
