@@ -60,6 +60,6 @@ tztime est {
 }
 
 time {
-  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> %b %d, %H:%M </span><span foreground='#d670d6'></span>"
+  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> %b %d, %H:%M</span><span foreground='#d670d6'></span>"
   separator_block_width = 1 
 }
