@@ -81,6 +81,7 @@ vim.wo.number = true
 --Enable mouse mode
 vim.o.mouse = "a"
 
+vim.o.ch = 0
 --Enable break indent
 vim.o.breakindent = true
 
@@ -307,7 +308,7 @@ vim.keymap.set("n", "<leader>cw", vim.lsp.buf.rename, { desc = "rename" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = "TODO" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "TODO" })
 vim.keymap.set("n", "<leader>fl", require("telescope.builtin").lsp_document_symbols, { desc = "TODO" })
-vim.keymap.set("n", "<leader>cf", vim.lsp.buf.formatting_seq_sync, { desc = "TODO" })
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.formatting_seq_sync, { desc = "format" })
 vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references, { desc = "lsp_references" })
 vim.keymap.set("n", "<leader>fi", require("telescope.builtin").lsp_implementations, { desc = "lsp_implementations" })
 
