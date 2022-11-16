@@ -9,6 +9,8 @@ vicmd_symbol = "[>](bold purple)"
 # Disable the package module, hiding it from the prompt completely
 [aws]
 disabled = true
+[gcloud]
+disabled = true
 [package]
 disabled = true
 [nodejs]

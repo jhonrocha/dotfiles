@@ -29,9 +29,13 @@ yay -S --answerclean None --answerdiff None --answeredit None --noprovides --nor
 [ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #### Setup Defaults
-xdg-mime default brave-broswer.desktop  x-scheme-handler/http
-xdg-mime default brave-browser.desktop x-scheme-handler/https
-xdg-settings set default-web-browser brave-browser.desktop
+# xdg-mime default brave-broswer.desktop  x-scheme-handler/http
+# xdg-mime default brave-browser.desktop x-scheme-handler/https
+# xdg-settings set default-web-browser brave-browser.desktop
+
+xdg-mime default vivaldi-stable.desktop  x-scheme-handler/http
+xdg-mime default vivaldi-stable.desktop x-scheme-handler/https
+xdg-settings set default-web-browser vivaldi-stable.desktop
 xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 #### GIT Store

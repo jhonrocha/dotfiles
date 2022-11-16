@@ -13,7 +13,8 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export EDITOR="nvim"
 export FILE=ranger
 
-export BROWSER=brave
+# export BROWSER=brave
+export BROWSER=vivaldi-stable
 export BROWSER_NAME=vivaldi-stable
 export SXHKD_SHELL=/bin/sh
 
