@@ -346,7 +346,7 @@ for _, server_name in pairs(ensure_installed) do
     }
   elseif server_name == "tsserver" then
     opts.on_attach = function(client)
-      client.resolved_capabilities.document_formatting = false
+      client.server_capabilities.document_formatting = false
     end
   elseif server_name == "gopls" then
     opts.init_options = {
