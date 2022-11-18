@@ -20,3 +20,4 @@ stow redshift -t ~/
 stow lf -t ~/
 stow mpv -t ~/
 stow foot -t ~/
+stow htop -t ~/
