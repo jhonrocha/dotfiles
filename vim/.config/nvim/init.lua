@@ -65,6 +65,15 @@ require("packer").startup(function(use)
 	})
 	use("L3MON4D3/LuaSnip") -- Snippets plugin
 	use("rafamadriz/friendly-snippets")
+	use({
+		"nvim-neorg/neorg",
+		-- tag = "*",
+		ft = "norg",
+		after = "nvim-treesitter",
+		config = function()
+			require("neorg").setup({})
+		end,
+	})
 end)
 -- Clipboard
 vim.cmd([[set clipboard+=unnamedplus]])
@@ -316,7 +325,6 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 -- Enable the following language servers
 local ensure_installed = {
 	"bashls",
-	"ccls",
 	"gopls",
 	"bashls",
 	"jedi_language_server",
@@ -325,6 +333,7 @@ local ensure_installed = {
 	"tsserver",
 	"yamlls",
 	"terraformls",
+	"groovyls",
 }
 
 require("mason").setup()
@@ -336,25 +345,25 @@ require("mason-lspconfig").setup({
 local lspconfig = require("lspconfig")
 
 for _, server_name in pairs(ensure_installed) do
-  -- //todo
-  local opts = {}
-  if server_name == "sumneko_lua" then
-    opts.settings = {
-      Lua = {
-        diagnostics = { globals = { "vim" } },
-      },
-    }
-  elseif server_name == "tsserver" then
-    opts.on_attach = function(client)
-      client.server_capabilities.document_formatting = false
-    end
-  elseif server_name == "gopls" then
-    opts.init_options = {
-      buildFlags = { "-tags=integration" },
-    }
-  end
-  opts.capabilities = capabilities
-  lspconfig[server_name].setup(opts)
+	-- //todo
+	local opts = {}
+	if server_name == "sumneko_lua" then
+		opts.settings = {
+			Lua = {
+				diagnostics = { globals = { "vim" } },
+			},
+		}
+	elseif server_name == "tsserver" then
+		opts.on_attach = function(client)
+			client.server_capabilities.document_formatting = false
+		end
+	elseif server_name == "gopls" then
+		opts.init_options = {
+			buildFlags = { "-tags=integration" },
+		}
+	end
+	opts.capabilities = capabilities
+	lspconfig[server_name].setup(opts)
 end
 
 -- rust-tools options
