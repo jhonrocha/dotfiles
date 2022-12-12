@@ -24,7 +24,8 @@ export LC_ALL=en_US.UTF-8
 export FZF_DEFAULT_OPTS="--layout=reverse
 --history=$HOME/.cache/.fzf_history
 --border --cycle --multi
---bind 'ctrl-y:execute-silent(xclip -selection clipboard {})'
+--bind 'ctrl-y:execute(readlink -f {} | xclip -selection clipboard)'
+--bind 'ctrl-alt-y:execute-silent(xclip -selection clipboard {})'
 --bind ctrl-a:toggle-all,ctrl-u:preview-up,ctrl-d:preview-down,ctrl-s:toggle-preview"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export XDG_CONFIG_HOME="$HOME/.config"

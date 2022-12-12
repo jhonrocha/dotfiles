@@ -510,6 +510,10 @@ require("nvim-tree").setup({
 	update_focused_file = {
 		enable = true,
 	},
+	renderer = {
+		highlight_git = true,
+		highlight_opened_files = "all",
+	},
 })
 
 -- Marks
