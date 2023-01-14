@@ -93,6 +93,15 @@ alias tre='tree -a -I ".git|node_modules"'
 alias b='br -h'
 # NVM Init
 alias nvm-init=". /usr/share/nvm/init-nvm.sh"
+# kubectl
+alias kd="kubectl --context dev"
+alias kda="kubectl --context dev-admin"
+alias ke="kubectl --context e2e"
+alias kea="kubectl --context e2e-admin"
+alias kt="kubectl --context test"
+alias kta="kubectl --context test-admin"
+alias kp="kubectl --context prod"
+alias kpa="kubectl --context prod-admin"
 
 ##### BASHSMS #####
 # Print each PATH entry on a separate line

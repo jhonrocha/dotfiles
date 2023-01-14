@@ -208,7 +208,7 @@ bindsym $mod+b bar mode toggle
 bindsym $mod+comma focus parent
 bindsym $mod+period focus child
 # Sticky window
-bindsym $mod+s sticky enable
+bindsym $mod+s sticky toggle
 
 # Media Control
 bindsym $mod+F1 exec xbacklight -dec 10
