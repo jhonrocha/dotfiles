@@ -40,3 +40,4 @@ shopt -s checkwinsize
 [ -f ~/.cargo/env ] && . ~/.cargo/env
 
 eval "$(starship init bash)"
+

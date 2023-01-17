@@ -65,15 +65,6 @@ require("packer").startup(function(use)
 	})
 	use("L3MON4D3/LuaSnip") -- Snippets plugin
 	use("rafamadriz/friendly-snippets")
-	use({
-		"nvim-neorg/neorg",
-		-- tag = "*",
-		ft = "norg",
-		after = "nvim-treesitter",
-		config = function()
-			require("neorg").setup({})
-		end,
-	})
 end)
 -- Clipboard
 vim.cmd([[set clipboard+=unnamedplus]])

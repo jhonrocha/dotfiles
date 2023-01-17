@@ -45,6 +45,9 @@ export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
 # Config
 export WINEPREFIX=~/.config/wine
 
+# JAVA
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+
 # Alias definitions.
 alias ..="cd .."
 alias ...="cd ../.."
@@ -109,3 +112,8 @@ alias path='echo -e ${PATH//:/\\n}'
 
 [ -f ~/.config/.prvenvs ] && . ~/.config/.prvenvs
 [ -x "$(command -v rustc)" ] && export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library;
+
+function notify() {
+  notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')"
+  ffplay  -nodisp -autoexit -loglevel panic ~/Music/notification.mp3 > /dev/null 2>&1 &
+}
