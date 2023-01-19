@@ -115,5 +115,5 @@ alias path='echo -e ${PATH//:/\\n}'
 
 function notify() {
   notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')"
-  ffplay  -nodisp -autoexit -loglevel panic ~/Music/notification.mp3 > /dev/null 2>&1 &
+  aplay -q -N ~/Music/notification.wav &
 }
