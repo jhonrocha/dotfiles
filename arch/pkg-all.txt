@@ -87,3 +87,5 @@ python-pillow
 imagemagick
 luarocks
 ttf-iosevka-nerd
+ttf-jetbrains-mono-nerd
+ttf-ubuntu-nerd

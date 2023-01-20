@@ -29,7 +29,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse
 --bind ctrl-a:toggle-all,ctrl-u:preview-up,ctrl-d:preview-down,ctrl-s:toggle-preview"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export XDG_CONFIG_HOME="$HOME/.config"
-export GTK_THEME=Arc-Dark
+export GTK_THEME=WhiteSur-Light
 export BAT_THEME="gruvbox-dark"
 export QT_STYLE_OVERRIDE=Breeze-Dark
 
