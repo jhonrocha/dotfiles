@@ -26,7 +26,19 @@ require("lazy").setup({
 			vim.cmd([[colorscheme tokyonight-night]])
 		end,
 	},
-	"tpope/vim-fugitive",
+	{
+		"tpope/vim-fugitive",
+		keys = {
+			{ "<leader>gg", "<Cmd>Git<CR>", { desc = "Git" } },
+			{ "<leader>gy", "<Cmd>!gy<CR><CR>", { desc = "yank branch" } },
+			{
+				"n",
+				"<leader>gp",
+				':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>',
+				{ desc = "push" },
+			},
+		},
+	},
 	{
 		"sindrets/diffview.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -72,7 +84,7 @@ require("lazy").setup({
 			renderer = { highlight_opened_files = "icon" },
 		},
 		keys = {
-			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>" , desc = "file drawer" },
+			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
 		},
 	},
 	-- Add indentation guides even on blank lines
@@ -533,16 +545,6 @@ vim.keymap.set("n", "]j", function()
 	vim.diagnostic.goto_next({ float = true })
 end)
 vim.keymap.set("n", "<leader>cq", vim.diagnostic.setloclist)
-
--- Git
-vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", { desc = "Git" })
-vim.keymap.set("n", "<leader>gy", "<Cmd>!gy<CR><CR>", { desc = "yank branch" })
-vim.keymap.set(
-	"n",
-	"<leader>gp",
-	':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>',
-	{ desc = "push" }
-)
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader>j", "<Cmd>bn<CR>", { desc = "next buf" })
