@@ -1,71 +1,113 @@
--- Install packer
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
+vim.opt.rtp:prepend(lazypath)
 
-require("packer").startup(function(use)
-	use("wbthomason/packer.nvim") -- Package manager
-	-- Git
-	use("tpope/vim-fugitive") -- Git commands in nvim
-	use({
+--Remap space as leader key
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+require("lazy").setup({
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.g.tokyonight_colors = { border = "orange" }
+			vim.cmd([[colorscheme tokyonight-night]])
+		end,
+	},
+	"tpope/vim-fugitive",
+	{
 		"sindrets/diffview.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			file_panel = {
+				win_config = {
+					position = "left",
+					width = 10,
+					listing_style = "list",
+				},
+			},
 		},
-	})
-	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
-	-- UI to select things (files, grep results, open buffers...)
-	use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	-- Themes
-	use("folke/tokyonight.nvim")
-	-- Fancier statusline
-	use({
+		keys = {
+			{ "<leader>gd", "<Cmd>DiffviewOpen<CR>", { desc = "gdiff" } },
+			{ "<leader>gq", "<Cmd>DiffviewClose<CR>", { desc = "close gdiff" } },
+		},
+	},
+	{ "numToStr/Comment.nvim", config = true },
+	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{
 		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
-	-- Tree/File Browser
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = {
-			"kyazdani42/nvim-web-devicons",
+		dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
+		opts = {
+			options = { globalstatus = true },
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { { "filename", path = 1 }, "diff", "diagnostics" },
+				lualine_c = { "branch" },
+				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
+			},
+			extensions = { "quickfix", "nvim-tree" },
 		},
-	})
+	},
+	{
+		"kyazdani42/nvim-tree.lua",
+		dependencies = { "kyazdani42/nvim-web-devicons" },
+		opts = {
+			actions = { open_file = { quit_on_open = true } },
+			update_focused_file = { enable = true },
+			renderer = { highlight_opened_files = "icon" },
+		},
+		keys = {
+			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>" , desc = "file drawer" },
+		},
+	},
 	-- Add indentation guides even on blank lines
-	use("lukas-reineke/indent-blankline.nvim")
+	"lukas-reineke/indent-blankline.nvim",
 	-- Add marks to the left bar
-	use("chentoast/marks.nvim")
+	"chentoast/marks.nvim",
 	-- Add git related info in the signs columns and popups
-	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
+	{ "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	-- Highlight, edit, and navigate code using a fast incremental parsing library
-	use({
+	{
 		"nvim-treesitter/nvim-treesitter",
-	})
+	},
 	-- AutoPairs
-	use("windwp/nvim-autopairs")
+	"windwp/nvim-autopairs",
 	-- LSP
-	use({
+	{
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 		"jose-elias-alvarez/null-ls.nvim",
-	})
+	},
 	-- Rust
-	use("simrat39/rust-tools.nvim")
+	"simrat39/rust-tools.nvim",
 	-- Autocompletion plugin
-	use({
+	{
 		"hrsh7th/nvim-cmp",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-nvim-lua",
 		"saadparwaiz1/cmp_luasnip",
-	})
-	use("L3MON4D3/LuaSnip") -- Snippets plugin
-	use("rafamadriz/friendly-snippets")
-end)
+	},
+	"L3MON4D3/LuaSnip", -- Snippets plugin
+	"rafamadriz/friendly-snippets",
+})
 -- Clipboard
 vim.cmd([[set clipboard+=unnamedplus]])
 --Make line numbers default
@@ -111,44 +153,11 @@ vim.o.fillchars = "fold: ,diff: "
 --Set colorscheme
 vim.o.termguicolors = true
 
-require("tokyonight").setup({
-	style = "night",
-	terminal_colors = true,
-})
-
-vim.g.tokyonight_colors = { border = "orange" }
-vim.cmd([[colorscheme tokyonight]])
-
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
 --Set statusbar
-require("lualine").setup({
-	options = {
-		globalstatus = true,
-		icons_enabled = true,
-		theme = "tokyonight",
-		-- component_separators = "|",
-		-- section_separators = "",
-	},
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = { { "filename", path = 1 }, "diff", "diagnostics" },
-		lualine_c = { "branch" },
-		lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_y = { "progress" },
-		lualine_z = { "location" },
-	},
-	extensions = { "quickfix", "nvim-tree" },
-})
-
---Enable Comment.nvim
-require("Comment").setup()
-
---Remap space as leader key
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+require("lualine").setup({})
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -491,44 +500,8 @@ require("telescope").setup({
 -- Enable telescope fzf native
 require("telescope").load_extension("fzf")
 
--- File Browser Tree
-require("nvim-tree").setup({
-	git = {
-		enable = true,
-		ignore = false,
-		timeout = 500,
-	},
-	view = {
-		side = "left",
-		width = 40,
-	},
-	actions = {
-		open_file = {
-			quit_on_open = true,
-		},
-	},
-	update_focused_file = {
-		enable = true,
-	},
-	renderer = {
-		highlight_git = true,
-		highlight_opened_files = "all",
-	},
-})
-
 -- Marks
 require("marks").setup({})
-
--- GIT
-require("diffview").setup({
-	file_panel = {
-		win_config = {
-			position = "left",
-			width = 20,
-			listing_style = "list",
-		},
-	},
-})
 
 -- Pairs
 require("nvim-autopairs").setup({})
@@ -561,13 +534,8 @@ vim.keymap.set("n", "]j", function()
 end)
 vim.keymap.set("n", "<leader>cq", vim.diagnostic.setloclist)
 
--- Tree
-vim.keymap.set("n", "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>")
-
 -- Git
 vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", { desc = "Git" })
-vim.keymap.set("n", "<leader>gd", "<Cmd>DiffviewOpen<CR>", { desc = "gdiff" })
-vim.keymap.set("n", "<leader>gq", "<Cmd>DiffviewClose<CR>", { desc = "close gdiff" })
 vim.keymap.set("n", "<leader>gy", "<Cmd>!gy<CR><CR>", { desc = "yank branch" })
 vim.keymap.set(
 	"n",
