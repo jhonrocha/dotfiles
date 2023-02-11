@@ -32,7 +32,6 @@ require("lazy").setup({
 			{ "<leader>gg", "<Cmd>Git<CR>", { desc = "Git" } },
 			{ "<leader>gy", "<Cmd>!gy<CR><CR>", { desc = "yank branch" } },
 			{
-				"n",
 				"<leader>gp",
 				':Git push origin <c-r>=trim(system("git rev-parse --abbrev-ref HEAD"))<CR>',
 				{ desc = "push" },
