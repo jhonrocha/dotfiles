@@ -75,14 +75,13 @@ require("lazy").setup({
 		},
 	},
 	{
-		"kyazdani42/nvim-tree.lua",
-		lazy = false,
-		dependencies = { "kyazdani42/nvim-web-devicons", lazy = false },
+		"nvim-tree/nvim-tree.lua",
+		commit = "8b8d457",
+		dependencies = { "kyazdani42/nvim-web-devicons" },
 		opts = {
 			actions = { open_file = { quit_on_open = true } },
 			update_focused_file = { enable = true },
 			renderer = { highlight_opened_files = "icon" },
-			git = { enable = false },
 		},
 		keys = {
 			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
