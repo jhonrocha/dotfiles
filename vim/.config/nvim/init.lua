@@ -76,11 +76,13 @@ require("lazy").setup({
 	},
 	{
 		"kyazdani42/nvim-tree.lua",
-		dependencies = { "kyazdani42/nvim-web-devicons" },
+		lazy = false,
+		dependencies = { "kyazdani42/nvim-web-devicons", lazy = false },
 		opts = {
 			actions = { open_file = { quit_on_open = true } },
 			update_focused_file = { enable = true },
 			renderer = { highlight_opened_files = "icon" },
+			git = { enable = false },
 		},
 		keys = {
 			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
@@ -340,7 +342,7 @@ local ensure_installed = {
 	"bashls",
 	"jedi_language_server",
 	"jsonls",
-	"sumneko_lua",
+	"lua_ls",
 	"tsserver",
 	"yamlls",
 	"terraformls",
