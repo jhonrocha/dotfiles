@@ -1,3 +1,40 @@
+--- Basic Config
+-- Clipboard
+vim.opt.clipboard = "unnamedplus"
+--Make line numbers default
+vim.wo.number = true
+--Enable mouse mode
+vim.o.mouse = "a"
+--Enable break indent
+vim.o.breakindent = true
+--Save undo history
+vim.opt.undofile = true
+--Case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+-- Tab size
+vim.o.expandtab = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+-- Split right
+vim.o.splitright = true
+--Decrease update time
+vim.o.updatetime = 250
+--Folding
+vim.o.foldmethod = "expr"
+--Set colorscheme
+vim.o.termguicolors = true
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = "menuone,noselect"
+--Remap space as leader key
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+----------------------------------------
+--------------- PLUGINS ----------------
+----------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -5,16 +42,11 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
---Remap space as leader key
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 require("lazy").setup({
 	{
@@ -60,7 +92,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
+		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
 		opts = {
 			options = { globalstatus = true },
 			sections = {
@@ -77,7 +109,7 @@ require("lazy").setup({
 	{
 		"nvim-tree/nvim-tree.lua",
 		commit = "8b8d457",
-		dependencies = { "kyazdani42/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			actions = { open_file = { quit_on_open = true } },
 			update_focused_file = { enable = true },
@@ -88,17 +120,76 @@ require("lazy").setup({
 		},
 	},
 	-- Add indentation guides even on blank lines
-	"lukas-reineke/indent-blankline.nvim",
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		opts = {
+			char = "┊",
+			space_char_blankline = " ",
+			show_current_context_start = true,
+		},
+	},
 	-- Add marks to the left bar
-	"chentoast/marks.nvim",
+	{ "chentoast/marks.nvim", config = true },
 	-- Add git related info in the signs columns and popups
-	{ "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-	-- Highlight, edit, and navigate code using a fast incremental parsing library
+	{
+		"lewis6991/gitsigns.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+			},
+			current_line_blame_opts = {
+				delay = 300,
+			},
+			on_attach = function(bufnr)
+				local gs = package.loaded.gitsigns
+				local function map(mode, l, r, opts)
+					opts = opts or {}
+					opts.buffer = bufnr
+					vim.keymap.set(mode, l, r, opts)
+				end
+				-- Navigation
+				map("n", "]c", function()
+					if vim.wo.diff then
+						return "]c"
+					end
+					vim.schedule(function()
+						gs.next_hunk()
+					end)
+					return "<Ignore>"
+				end, { expr = true })
+				map("n", "[c", function()
+					if vim.wo.diff then
+						return "[c"
+					end
+					vim.schedule(function()
+						gs.prev_hunk()
+					end)
+					return "<Ignore>"
+				end, { expr = true })
+				-- Actions
+				map("n", "<leader>gv", gs.preview_hunk)
+				map("n", "<leader>gb", function()
+					gs.blame_line({ full = true })
+				end)
+				map("n", "<leader>gl", gs.toggle_current_line_blame)
+				map("n", "<leader>gt", function()
+					gs.diffthis("~")
+				end)
+				map("n", "<leader>gs", gs.select_hunk)
+			end,
+		},
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
 	},
 	-- AutoPairs
-	"windwp/nvim-autopairs",
+	{ "windwp/nvim-autopairs", config = true },
 	-- LSP
 	{
 		"williamboman/mason.nvim",
@@ -107,7 +198,7 @@ require("lazy").setup({
 		"jose-elias-alvarez/null-ls.nvim",
 	},
 	-- Rust
-	"simrat39/rust-tools.nvim",
+	{ "simrat39/rust-tools.nvim" },
 	-- Autocompletion plugin
 	{
 		"hrsh7th/nvim-cmp",
@@ -120,56 +211,6 @@ require("lazy").setup({
 	"L3MON4D3/LuaSnip", -- Snippets plugin
 	"rafamadriz/friendly-snippets",
 })
--- Clipboard
-vim.cmd([[set clipboard+=unnamedplus]])
---Make line numbers default
-vim.wo.number = true
-
---Enable mouse mode
-vim.o.mouse = "a"
-
--- Disable command line
--- vim.o.ch = 0
-
---Enable break indent
-vim.o.breakindent = true
-
---Save undo history
-vim.opt.undofile = true
-
---Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Tab size
-vim.o.expandtab = 2
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
-
--- Split right
-vim.o.splitright = true
-
---Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = "yes"
-
---Folding
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.o.foldenable = false
-vim.o.foldtext =
-	[[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
-vim.o.fillchars = "fold: ,diff: "
-
---Set colorscheme
-vim.o.termguicolors = true
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = "menuone,noselect"
-
---Set statusbar
-require("lualine").setup({})
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -181,68 +222,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
 })
 
---Map blankline
--- vim.cmd([[highlight IndentBlanklineContextStart guisp=#ffffff gui=underdot cterm=underdot]])
-require("indent_blankline").setup({
-	char = "┊",
-	space_char_blankline = " ",
-	show_current_context_start = true,
-})
-
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "Jenkinsfile*" },
 	command = "setf groovy",
-})
--- Gitsigns
-require("gitsigns").setup({
-	signs = {
-		add = { text = "+" },
-		change = { text = "~" },
-		delete = { text = "_" },
-		topdelete = { text = "‾" },
-		changedelete = { text = "~" },
-	},
-	current_line_blame_opts = {
-		delay = 300,
-	},
-	on_attach = function(bufnr)
-		local gs = package.loaded.gitsigns
-		local function map(mode, l, r, opts)
-			opts = opts or {}
-			opts.buffer = bufnr
-			vim.keymap.set(mode, l, r, opts)
-		end
-
-		-- Navigation
-		map("n", "]c", function()
-			if vim.wo.diff then
-				return "]c"
-			end
-			vim.schedule(function()
-				gs.next_hunk()
-			end)
-			return "<Ignore>"
-		end, { expr = true })
-		map("n", "[c", function()
-			if vim.wo.diff then
-				return "[c"
-			end
-			vim.schedule(function()
-				gs.prev_hunk()
-			end)
-			return "<Ignore>"
-		end, { expr = true })
-		-- Actions
-		map("n", "<leader>gv", gs.preview_hunk)
-		map("n", "<leader>gb", function()
-			gs.blame_line({ full = true })
-		end)
-		map("n", "<leader>gl", gs.toggle_current_line_blame)
-		map("n", "<leader>gt", function()
-			gs.diffthis("~")
-		end)
-		map("n", "<leader>gs", gs.select_hunk)
-	end,
 })
 
 -- Treesitter configuration
@@ -359,7 +341,7 @@ local lspconfig = require("lspconfig")
 for _, server_name in pairs(ensure_installed) do
 	-- //todo
 	local opts = {}
-	if server_name == "sumneko_lua" then
+	if server_name == "lua_ls" then
 		opts.settings = {
 			Lua = {
 				diagnostics = { globals = { "vim" } },
@@ -512,11 +494,9 @@ require("telescope").setup({
 -- Enable telescope fzf native
 require("telescope").load_extension("fzf")
 
--- Marks
-require("marks").setup({})
-
--- Pairs
-require("nvim-autopairs").setup({})
+----------------------------------------
+----------------- MAPS -----------------
+----------------------------------------
 
 --Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "TODO" })
