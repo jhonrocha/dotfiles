@@ -64,6 +64,7 @@ local ls_installed = {
 	"yamlls",
 	"terraformls",
 	"groovyls",
+	"rust_analyzer",
 }
 
 -- Highlight on yank
@@ -92,6 +93,12 @@ require("lazy").setup({
 			vim.g.tokyonight_colors = { border = "orange" }
 			vim.cmd([[colorscheme tokyonight-night]])
 		end,
+	},
+	{
+		"glepnir/dashboard-nvim",
+		event = "VimEnter",
+		config = true,
+		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 	{
 		"tpope/vim-fugitive",
@@ -123,8 +130,168 @@ require("lazy").setup({
 		},
 	},
 	{ "numToStr/Comment.nvim", config = true },
-	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local actions = require("telescope.actions")
+			local action_layout = require("telescope.actions.layout")
+			require("telescope").setup({
+				defaults = {
+					vimgrep_arguments = {
+						"rg",
+						"--hidden",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--glob=!.git",
+						"--column",
+						"--smart-case",
+					},
+					border = true,
+					borderchars = {
+						prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+						results = { " " },
+						preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+					},
+					dynamic_preview_title = false,
+					preview = {
+						hide_on_startup = true,
+					},
+					sorting_strategy = "ascending",
+					layout_strategy = "bottom_pane",
+					layout_config = {
+						bottom_pane = { height = 0.4 },
+						horizontal = {
+							width = 0.95,
+							height = 0.4,
+							preview_width = 0.4,
+							prompt_position = "top",
+							preview_cutoff = 60,
+						},
+						vertical = { mirror = false },
+					},
+					mappings = {
+						n = {
+							["<c-c>"] = actions.close,
+						},
+						i = {
+							["<c-h>"] = actions.which_key,
+							["<c-j>"] = actions.move_selection_next,
+							["<c-k>"] = actions.move_selection_previous,
+							["<tab>"] = actions.add_selection + actions.move_selection_next,
+							["<s-tab>"] = actions.remove_selection + actions.move_selection_previous,
+							["<c-f>"] = action_layout.toggle_preview,
+						},
+					},
+				},
+				pickers = {
+					buffers = {
+						hidden = true,
+						sort_lastused = true,
+						mappings = { i = { ["<c-d>"] = "delete_buffer" } },
+					},
+					find_files = {
+						hidden = true,
+						file_ignore_patterns = { "node_modules", ".git/" },
+						find_command = {
+							"fd",
+							"--type",
+							"f",
+							"--hidden",
+							"--follow",
+							"--no-ignore-vcs",
+							"--exclude",
+							".git/",
+							"--exclude",
+							"node_modules",
+						},
+					},
+				},
+			})
+		end,
+		keys = {
+			{
+				"<leader>,",
+				function()
+					require("telescope.builtin").buffers()
+				end,
+				{ desc = "open bufs" },
+			},
+			{
+				"<leader><space>",
+				function()
+					require("telescope.builtin").find_files()
+				end,
+				{ desc = "go to" },
+			},
+			{
+				"<leader>ff",
+				function()
+					require("telescope.builtin").current_buffer_fuzzy_find()
+				end,
+				{ desc = "search" },
+			},
+			{
+				"<leader>fW",
+				function()
+					require("telescope.builtin").grep_string()
+				end,
+				{ desc = "grep hover" },
+			},
+			{
+				"<leader>fw",
+				function()
+					require("telescope.builtin").live_grep()
+				end,
+				{ desc = "grep all" },
+			},
+			{
+				"<leader>fgc",
+				function()
+					require("telescope.builtin").git_commits()
+				end,
+				{ desc = "git commits" },
+			},
+			{
+				"<leader>fgb",
+				function()
+					require("telescope.builtin").git_branches()
+				end,
+				{ desc = "git branches" },
+			},
+			{
+				"<leader>o",
+				function()
+					require("telescope.builtin").oldfiles()
+				end,
+				{ desc = "recent files" },
+			},
+			{
+				"<leader>fr",
+				function()
+					require("telescope.builtin").lsp_references()
+				end,
+				{ desc = "lsp_references" },
+			},
+			{
+				"<leader>fi",
+				function()
+					require("telescope.builtin").lsp_implementations()
+				end,
+				{ desc = "lsp_implementations" },
+			},
+		},
+	},
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+		dependencies = "nvim-telescope/telescope.nvim",
+		config = function()
+			require("telescope").load_extension("fzf")
+		end,
+	},
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
@@ -249,9 +416,7 @@ require("lazy").setup({
 			}
 		end,
 	},
-	-- AutoPairs
 	{ "windwp/nvim-autopairs", config = true },
-	-- LSP
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -269,6 +434,7 @@ require("lazy").setup({
 					opts.settings = {
 						Lua = {
 							diagnostics = { globals = { "vim" } },
+							hint = { enable = true },
 						},
 					}
 				elseif server_name == "tsserver" then
@@ -284,6 +450,38 @@ require("lazy").setup({
 				require("lspconfig")[server_name].setup(opts)
 			end
 		end,
+		keys = {
+			{ "<leader>cD", vim.lsp.buf.declaration, { desc = "lsp declaration" } },
+			{ "<leader>cd", vim.lsp.buf.definition, { desc = "lsp definition" } },
+			{ "K", vim.lsp.buf.hover, { desc = "lsp hover" } },
+			{ "<leader>ci", vim.lsp.buf.implementation, { desc = "lsp implementation" } },
+			{ "<C-k>", vim.lsp.buf.signature_help, { desc = "lsp signature_help" } },
+			{ "<leader>D", vim.lsp.buf.type_definition, { desc = "lsp type" } },
+			{ "<leader>cw", vim.lsp.buf.rename, { desc = "lsp rename" } },
+			{ "<leader>cr", vim.lsp.buf.references, { desc = "lsp references" } },
+			{ "<leader>ca", vim.lsp.buf.code_action, { desc = "code action" } },
+			{ "<leader>cf", vim.lsp.buf.format, { desc = "code format" } },
+		},
+	},
+	{
+		"lvimuser/lsp-inlayhints.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		config = function()
+			require("lsp-inlayhints").setup({ inlay_hints = { highlight = "Comment" } })
+			vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = "LspAttach_inlayhints",
+				callback = function(args)
+					if not (args.data and args.data.client_id) then
+						return
+					end
+					local bufnr = args.buf
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					require("lsp-inlayhints").on_attach(client, bufnr)
+				end,
+			})
+		end,
+		lazy = false,
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
@@ -308,6 +506,7 @@ require("lazy").setup({
 					null_ls.builtins.diagnostics.pylint.with({ prefer_local = "venv/bin" }),
 					null_ls.builtins.diagnostics.staticcheck,
 					null_ls.builtins.formatting.shfmt,
+					null_ls.builtins.formatting.rustfmt,
 				},
 			})
 			local _border = "single"
@@ -320,19 +519,6 @@ require("lazy").setup({
 			vim.diagnostic.config({
 				float = { border = _border },
 				virtual_text = false,
-			})
-		end,
-	},
-	{
-		"simrat39/rust-tools.nvim",
-		dependencies = "hrsh7th/cmp-nvim-lsp",
-		config = function()
-			require("rust-tools").setup({
-				tools = { autoSetHints = true },
-				server = {
-					capabilities = require("cmp_nvim_lsp").default_capabilities(),
-					settings = { ["rust-analyzer"] = { checkOnSave = { command = "clippy" } } },
-				},
 			})
 		end,
 	},
@@ -406,109 +592,6 @@ require("lazy").setup({
 		dependencies = "rafamadriz/friendly-snippets",
 	},
 })
-
--- LSP settings
-vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { desc = "TODO" })
-vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "TODO" })
-vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "TODO" })
-
-vim.keymap.set("n", "<leader>ci", vim.lsp.buf.implementation, { desc = "TODO" })
-vim.keymap.set({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help, { desc = "TODO" })
-vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "TODO" })
-vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "TODO" })
-vim.keymap.set("n", "<leader>wl", function()
-	vim.inspect(vim.lsp.buf.list_workspace_folders())
-end, { desc = "TODO" })
-vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "TODO" })
-vim.keymap.set("n", "<leader>cw", vim.lsp.buf.rename, { desc = "rename" })
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = "TODO" })
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "TODO" })
-vim.keymap.set("n", "<leader>fl", require("telescope.builtin").lsp_document_symbols, { desc = "TODO" })
-vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "format" })
-vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references, { desc = "lsp_references" })
-vim.keymap.set("n", "<leader>fi", require("telescope.builtin").lsp_implementations, { desc = "lsp_implementations" })
-
--- Telescope
-local actions = require("telescope.actions")
-local action_layout = require("telescope.actions.layout")
-require("telescope").setup({
-	defaults = {
-		vimgrep_arguments = {
-			"rg",
-			"--hidden",
-			"--color=never",
-			"--no-heading",
-			"--with-filename",
-			"--line-number",
-			"--glob=!.git",
-			"--column",
-			"--smart-case",
-		},
-		border = true,
-		borderchars = {
-			prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
-			results = { " " },
-			preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-		},
-		dynamic_preview_title = false,
-		preview = {
-			hide_on_startup = true,
-		},
-		sorting_strategy = "ascending",
-		layout_strategy = "bottom_pane",
-		layout_config = {
-			bottom_pane = { height = 0.4 },
-			horizontal = {
-				width = 0.95,
-				height = 0.4,
-				preview_width = 0.4,
-				prompt_position = "top",
-				preview_cutoff = 60,
-			},
-			vertical = { mirror = false },
-		},
-		mappings = {
-			n = {
-				["<c-c>"] = actions.close,
-			},
-			i = {
-				["<c-h>"] = actions.which_key,
-				["<c-j>"] = actions.move_selection_next,
-				["<c-k>"] = actions.move_selection_previous,
-				["<tab>"] = actions.add_selection + actions.move_selection_next,
-				["<s-tab>"] = actions.remove_selection + actions.move_selection_previous,
-				["<c-f>"] = action_layout.toggle_preview,
-			},
-		},
-	},
-	pickers = {
-		buffers = {
-			hidden = true,
-			sort_lastused = true,
-			mappings = { i = { ["<c-d>"] = "delete_buffer" } },
-		},
-		find_files = {
-			hidden = true,
-			file_ignore_patterns = { "node_modules", ".git/" },
-			find_command = {
-				"fd",
-				"--type",
-				"f",
-				"--hidden",
-				"--follow",
-				"--no-ignore-vcs",
-				"--exclude",
-				".git/",
-				"--exclude",
-				"node_modules",
-			},
-		},
-	},
-})
-
--- Enable telescope fzf native
-require("telescope").load_extension("fzf")
-
 ----------------------------------------
 ----------------- MAPS -----------------
 ----------------------------------------
@@ -516,16 +599,6 @@ require("telescope").load_extension("fzf")
 --Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "TODO" })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "TODO" })
-
---Add leader shortcuts
-vim.keymap.set("n", "<leader>,", require("telescope.builtin").buffers, { desc = "TODO" })
-vim.keymap.set("n", "<leader><space>", require("telescope.builtin").find_files, { desc = "TODO" })
-vim.keymap.set("n", "<leader>ff", require("telescope.builtin").current_buffer_fuzzy_find, { desc = "TODO" })
-vim.keymap.set("n", "<leader>fW", require("telescope.builtin").grep_string, { desc = "TODO" })
-vim.keymap.set("n", "<leader>fw", require("telescope.builtin").live_grep, { desc = "TODO" })
-vim.keymap.set("n", "<leader>fgc", require("telescope.builtin").git_commits, { desc = "TODO" })
-vim.keymap.set("n", "<leader>fgb", require("telescope.builtin").git_branches, { desc = "TODO" })
-vim.keymap.set("n", "<leader>o", require("telescope.builtin").oldfiles, { desc = "TODO" })
 
 -- My Maps
 vim.keymap.set("n", "<leader>fs", "<Cmd>update!<CR>")
