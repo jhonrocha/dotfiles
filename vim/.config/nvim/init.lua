@@ -52,6 +52,34 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- LSP supported
+local ls_installed = {
+	"bashls",
+	"gopls",
+	"bashls",
+	"jedi_language_server",
+	"jsonls",
+	"lua_ls",
+	"tsserver",
+	"yamlls",
+	"terraformls",
+	"groovyls",
+}
+
+-- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = { "Jenkinsfile*" },
+	command = "setf groovy",
+})
 ----------------------------------------
 --------------- PLUGINS ----------------
 ----------------------------------------
@@ -126,13 +154,11 @@ require("lazy").setup({
 			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
 		},
 	},
-	-- Add indentation guides even on blank lines
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		opts = {
 			char = "┊",
 			space_char_blankline = " ",
-			show_current_context_start = true,
 		},
 	},
 	-- Add marks to the left bar
@@ -149,9 +175,7 @@ require("lazy").setup({
 				topdelete = { text = "‾" },
 				changedelete = { text = "~" },
 			},
-			current_line_blame_opts = {
-				delay = 300,
-			},
+			current_line_blame_opts = { delay = 300 },
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
 				local function map(mode, l, r, opts)
@@ -159,6 +183,7 @@ require("lazy").setup({
 					opts.buffer = bufnr
 					vim.keymap.set(mode, l, r, opts)
 				end
+
 				-- Navigation
 				map("n", "]c", function()
 					if vim.wo.diff then
@@ -194,107 +219,191 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		config = function()
+			-- Treesitter configuration
+			-- Parsers must be installed manually via :TSInstall
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = "all",
+				ignore_install = { "norg", "phpdoc" },
+				highlight = {
+					enable = true, -- false will disable the whole extension
+					disable = { "sql" },
+				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "gnn",
+						node_incremental = "grn",
+						scope_incremental = "grc",
+						node_decremental = "grm",
+					},
+				},
+				indent = {
+					enable = true,
+				},
+			})
+			local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+			parser_configs.hcl = {
+				filetype = "hcl",
+				"terraform",
+			}
+		end,
 	},
 	-- AutoPairs
 	{ "windwp/nvim-autopairs", config = true },
 	-- LSP
 	{
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
-		"jose-elias-alvarez/null-ls.nvim",
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+			dependencies = {
+				"williamboman/mason.nvim",
+				config = true,
+			},
+			opts = { ensure_installed = ls_installed, automatic_installation = true },
+		},
+		config = function()
+			for _, server_name in pairs(ls_installed) do
+				local opts = {}
+				if server_name == "lua_ls" then
+					opts.settings = {
+						Lua = {
+							diagnostics = { globals = { "vim" } },
+						},
+					}
+				elseif server_name == "tsserver" then
+					opts.on_attach = function(client)
+						client.server_capabilities.document_formatting = false
+					end
+				elseif server_name == "gopls" then
+					opts.init_options = {
+						buildFlags = { "-tags=integration" },
+					}
+				end
+				opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+				require("lspconfig")[server_name].setup(opts)
+			end
+		end,
 	},
-	-- Rust
-	{ "simrat39/rust-tools.nvim" },
-	-- Autocompletion plugin
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		config = function()
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.diagnostics.eslint.with({
+						condition = function(utils)
+							return utils.root_has_file({
+								".eslintrc.js",
+								".eslintrc.cjs",
+								".eslintrc.yaml",
+								".eslintrc.yml",
+								".eslintrc.json",
+							})
+						end,
+					}),
+					null_ls.builtins.formatting.prettier,
+					null_ls.builtins.formatting.stylua,
+					null_ls.builtins.formatting.black.with({ prefer_local = "venv/bin" }),
+					null_ls.builtins.diagnostics.pylint.with({ prefer_local = "venv/bin" }),
+					null_ls.builtins.diagnostics.staticcheck,
+					null_ls.builtins.formatting.shfmt,
+				},
+			})
+			local _border = "single"
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = _border,
+			})
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+				border = _border,
+			})
+			vim.diagnostic.config({
+				float = { border = _border },
+				virtual_text = false,
+			})
+		end,
+	},
+	{
+		"simrat39/rust-tools.nvim",
+		dependencies = "hrsh7th/cmp-nvim-lsp",
+		config = function()
+			require("rust-tools").setup({
+				tools = { autoSetHints = true },
+				server = {
+					capabilities = require("cmp_nvim_lsp").default_capabilities(),
+					settings = { ["rust-analyzer"] = { checkOnSave = { command = "clippy" } } },
+				},
+			})
+		end,
+	},
 	{
 		"hrsh7th/nvim-cmp",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-nvim-lua",
-		"saadparwaiz1/cmp_luasnip",
-	},
-	"L3MON4D3/LuaSnip", -- Snippets plugin
-	"rafamadriz/friendly-snippets",
-})
-
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = highlight_group,
-	pattern = "*",
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = { "Jenkinsfile*" },
-	command = "setf groovy",
-})
-
--- Treesitter configuration
--- Parsers must be installed manually via :TSInstall
-require("nvim-treesitter.configs").setup({
-	ensure_installed = "all",
-	ignore_install = { "norg", "phpdoc" },
-	highlight = {
-		enable = true, -- false will disable the whole extension
-		disable = { "sql" },
-	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "grn",
-			scope_incremental = "grc",
-			node_decremental = "grm",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lua",
+			"saadparwaiz1/cmp_luasnip",
+			"neovim/nvim-lspconfig",
+			"L3MON4D3/LuaSnip",
 		},
-	},
-	indent = {
-		enable = true,
-	},
-})
-local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-parser_configs.hcl = {
-	filetype = "hcl",
-	"terraform",
-}
--- luasnip setup
-local luasnip = require("luasnip")
-require("luasnip.loaders.from_vscode").lazy_load()
+		config = function()
+			local luasnip = require("luasnip")
+			require("luasnip.loaders.from_vscode").lazy_load()
+			-- nvim-cmp setup
+			local cmp = require("cmp")
+			cmp.setup({
+				snippet = {
+					expand = function(args)
+						luasnip.lsp_expand(args.body)
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({
+					["<C-d>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-j>"] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true,
+					}),
+				}),
+				sources = {
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+					{ name = "nvim_lua" },
+					{ name = "path" },
+					{ name = "buffer" },
+				},
+				experimental = { ghost_text = true },
+				formatting = {
+					format = function(_, vim_item)
+						vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
+						return vim_item
+					end,
+				},
+			})
 
--- nvim-cmp setup
-local cmp = require("cmp")
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
+			-- LuaSnip
+			vim.keymap.set({ "s", "i" }, "<Tab>", function()
+				if luasnip.expand_or_jumpable() then
+					luasnip.expand_or_jump()
+				else
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+				end
+			end)
+
+			vim.keymap.set({ "s", "i" }, "<S-Tab>", function()
+				if luasnip.jumpable(-1) then
+					luasnip.jump(-1)
+				else
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, false, true), "n", false)
+				end
+			end)
 		end,
 	},
-	mapping = cmp.mapping.preset.insert({
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-j>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		}),
-	}),
-	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "nvim_lua" },
-		{ name = "path" },
-		{ name = "buffer" },
-	},
-	experimental = { ghost_text = true },
-	formatting = {
-		format = function(_, vim_item)
-			vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
-			return vim_item
-		end,
+	{
+		"L3MON4D3/LuaSnip", -- Snippets plugin
+		dependencies = "rafamadriz/friendly-snippets",
 	},
 })
 
@@ -318,107 +427,6 @@ vim.keymap.set("n", "<leader>fl", require("telescope.builtin").lsp_document_symb
 vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "format" })
 vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references, { desc = "lsp_references" })
 vim.keymap.set("n", "<leader>fi", require("telescope.builtin").lsp_implementations, { desc = "lsp_implementations" })
-
--- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
--- Enable the following language servers
-local ensure_installed = {
-	"bashls",
-	"gopls",
-	"bashls",
-	"jedi_language_server",
-	"jsonls",
-	"lua_ls",
-	"tsserver",
-	"yamlls",
-	"terraformls",
-	"groovyls",
-}
-
-require("mason").setup()
-require("mason-lspconfig").setup({
-	ensure_installed,
-	automatic_installation = true,
-})
-
-local lspconfig = require("lspconfig")
-
-for _, server_name in pairs(ensure_installed) do
-	-- //todo
-	local opts = {}
-	if server_name == "lua_ls" then
-		opts.settings = {
-			Lua = {
-				diagnostics = { globals = { "vim" } },
-			},
-		}
-	elseif server_name == "tsserver" then
-		opts.on_attach = function(client)
-			client.server_capabilities.document_formatting = false
-		end
-	elseif server_name == "gopls" then
-		opts.init_options = {
-			buildFlags = { "-tags=integration" },
-		}
-	end
-	opts.capabilities = capabilities
-	lspconfig[server_name].setup(opts)
-end
-
--- rust-tools options
-require("rust-tools").setup({
-	tools = {
-		autoSetHints = true,
-	},
-	server = {
-		capabilities,
-		settings = {
-			["rust-analyzer"] = {
-				checkOnSave = {
-					command = "clippy",
-				},
-			},
-		},
-	},
-})
-
--- Diagnostic config
-local null_ls = require("null-ls")
-local sources = {
-	null_ls.builtins.diagnostics.eslint.with({
-		condition = function(utils)
-			return utils.root_has_file({
-				".eslintrc.js",
-				".eslintrc.cjs",
-				".eslintrc.yaml",
-				".eslintrc.yml",
-				".eslintrc.json",
-			})
-		end,
-	}),
-	null_ls.builtins.formatting.prettier,
-	null_ls.builtins.formatting.stylua,
-	null_ls.builtins.formatting.black.with({ prefer_local = "venv/bin" }),
-	null_ls.builtins.diagnostics.pylint.with({ prefer_local = "venv/bin" }),
-	null_ls.builtins.diagnostics.staticcheck,
-	null_ls.builtins.formatting.shfmt,
-}
-
-null_ls.setup({ sources = sources })
-
-local _border = "single"
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = _border,
-})
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = _border,
-})
-vim.diagnostic.config({
-	float = { border = _border },
-	virtual_text = false,
-})
 
 -- Telescope
 local actions = require("telescope.actions")
@@ -569,20 +577,3 @@ vim.keymap.set("n", "<leader>qq", "<Cmd>copen<CR>", { desc = "quick open" })
 vim.keymap.set("n", "<leader>qc", "<Cmd>cclose<CR>", { desc = "quick close" })
 vim.keymap.set("n", "<leader>qj", "<Cmd>cn<CR>", { desc = "quick next" })
 vim.keymap.set("n", "<leader>qk", "<Cmd>cp<CR>", { desc = "quick previous" })
-
--- LuaSnip
-vim.keymap.set({ "s", "i" }, "<Tab>", function()
-	if luasnip.expand_or_jumpable() then
-		luasnip.expand_or_jump()
-	else
-		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-	end
-end)
-
-vim.keymap.set({ "s", "i" }, "<S-Tab>", function()
-	if luasnip.jumpable(-1) then
-		luasnip.jump(-1)
-	else
-		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, false, true), "n", false)
-	end
-end)
