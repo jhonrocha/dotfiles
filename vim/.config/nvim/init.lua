@@ -21,15 +21,15 @@ vim.opt.rtp:prepend(lazypath)
 -- Basic Config
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
---Make line numbers default
+-- Make line numbers default
 vim.wo.number = true
---Enable mouse mode
+-- Enable mouse mode
 vim.o.mouse = "a"
---Enable break indent
+-- Enable break indent
 vim.o.breakindent = true
---Save undo history
+-- Save undo history
 vim.opt.undofile = true
---Case insensitive searching UNLESS /C or capital in search
+-- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
 -- Tab size
@@ -39,15 +39,15 @@ vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 -- Split right
 vim.o.splitright = true
---Decrease update time
+-- Decrease update time
 vim.o.updatetime = 250
---Folding
+-- Folding
 vim.o.foldmethod = "expr"
---Set colorscheme
+-- Set colorscheme
 vim.o.termguicolors = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
---Remap space as leader key
+-- Remap space as leader key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -117,11 +117,7 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {
 			file_panel = {
-				win_config = {
-					position = "left",
-					width = 10,
-					listing_style = "list",
-				},
+				win_config = { position = "left", width = 10, listing_style = "list" },
 			},
 		},
 		keys = {
@@ -156,9 +152,7 @@ require("lazy").setup({
 						preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 					},
 					dynamic_preview_title = false,
-					preview = {
-						hide_on_startup = true,
-					},
+					preview = { hide_on_startup = true },
 					sorting_strategy = "ascending",
 					layout_strategy = "bottom_pane",
 					layout_config = {
@@ -173,9 +167,7 @@ require("lazy").setup({
 						vertical = { mirror = false },
 					},
 					mappings = {
-						n = {
-							["<c-c>"] = actions.close,
-						},
+						n = { ["<c-c>"] = actions.close },
 						i = {
 							["<c-h>"] = actions.which_key,
 							["<c-j>"] = actions.move_selection_next,
@@ -323,14 +315,9 @@ require("lazy").setup({
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		opts = {
-			char = "┊",
-			space_char_blankline = " ",
-		},
-	},
-	-- Add marks to the left bar
-	{ "chentoast/marks.nvim", config = true },
-	-- Add git related info in the signs columns and popups
+		opts = { char = "┊", space_char_blankline = " " },
+	}, -- Add marks to the left bar
+	{ "chentoast/marks.nvim", config = true }, -- Add git related info in the signs columns and popups
 	{
 		"lewis6991/gitsigns.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -405,15 +392,10 @@ require("lazy").setup({
 						node_decremental = "grm",
 					},
 				},
-				indent = {
-					enable = true,
-				},
+				indent = { enable = true },
 			})
 			local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-			parser_configs.hcl = {
-				filetype = "hcl",
-				"terraform",
-			}
+			parser_configs.hcl = { filetype = "hcl", "terraform" }
 		end,
 	},
 	{ "windwp/nvim-autopairs", config = true },
@@ -421,10 +403,7 @@ require("lazy").setup({
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
-			dependencies = {
-				"williamboman/mason.nvim",
-				config = true,
-			},
+			dependencies = { "williamboman/mason.nvim", config = true },
 			opts = { ensure_installed = ls_installed, automatic_installation = true },
 		},
 		config = function()
@@ -432,19 +411,14 @@ require("lazy").setup({
 				local opts = {}
 				if server_name == "lua_ls" then
 					opts.settings = {
-						Lua = {
-							diagnostics = { globals = { "vim" } },
-							hint = { enable = true },
-						},
+						Lua = { diagnostics = { globals = { "vim" } }, hint = { enable = true } },
 					}
 				elseif server_name == "tsserver" then
 					opts.on_attach = function(client)
 						client.server_capabilities.document_formatting = false
 					end
 				elseif server_name == "gopls" then
-					opts.init_options = {
-						buildFlags = { "-tags=integration" },
-					}
+					opts.init_options = { buildFlags = { "-tags=integration" } }
 				end
 				opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
 				require("lspconfig")[server_name].setup(opts)
@@ -510,16 +484,9 @@ require("lazy").setup({
 				},
 			})
 			local _border = "single"
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = _border,
-			})
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				border = _border,
-			})
-			vim.diagnostic.config({
-				float = { border = _border },
-				virtual_text = false,
-			})
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
+			vim.diagnostic.config({ float = { border = _border }, virtual_text = false })
 		end,
 	},
 	{
@@ -596,7 +563,7 @@ require("lazy").setup({
 ----------------- MAPS -----------------
 ----------------------------------------
 
---Remap for dealing with word wrap
+-- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "TODO" })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "TODO" })
 
