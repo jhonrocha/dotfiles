@@ -28,7 +28,6 @@ vim.g.maplocalleader = " "
 local ls_installed = {
   "bashls",
   "gopls",
-  "bashls",
   "jedi_language_server",
   "jsonls",
   "lua_ls",
@@ -263,7 +262,6 @@ require("lazy").setup({
   },
   {
     "nvim-tree/nvim-tree.lua",
-    commit = "8b8d457",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       actions = { open_file = { quit_on_open = true } },
