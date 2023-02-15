@@ -613,7 +613,7 @@ vim.keymap.set("n", "c", '"vc')
 vim.keymap.set("n", "C", '"vC')
 vim.keymap.set("n", "s", '"vs')
 vim.keymap.set("n", "S", '"vS')
-
+-- Original copy paste
 vim.keymap.set("n", "<leader>p", '"vp')
 vim.keymap.set("n", "<leader>P", '"vP')
 
