@@ -358,8 +358,8 @@ require("lazy").setup({
         },
         indent = { enable = true },
       })
-      local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_configs.hcl = { filetype = "hcl", "terraform" }
+      -- local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+      -- parser_configs.hcl = { filetype = "hcl", "terraform" }
     end,
   },
   { "windwp/nvim-autopairs", config = true },
