@@ -50,6 +50,36 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+		opts = {
+			options = { globalstatus = true },
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { { "filename", path = 1 }, "diff", "diagnostics" },
+				lualine_c = { "branch" },
+				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
+			},
+			extensions = { "quickfix", "nvim-tree" },
+		},
+	},
+	{
+		"nvim-tree/nvim-tree.lua",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			actions = { open_file = { quit_on_open = true } },
+			update_focused_file = { enable = true },
+			renderer = { highlight_opened_files = "icon" },
+			git = { ignore = false },
+		},
+		keys = {
+			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
+		},
+		lazy = true,
+	},
+	{
 		"glepnir/dashboard-nvim",
 		event = "VimEnter",
 		opts = {
@@ -250,34 +280,10 @@ require("lazy").setup({
 		lazy = true,
 	},
 	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
-		opts = {
-			options = { globalstatus = true },
-			sections = {
-				lualine_a = { "mode" },
-				lualine_b = { { "filename", path = 1 }, "diff", "diagnostics" },
-				lualine_c = { "branch" },
-				lualine_x = { "encoding", "fileformat", "filetype" },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
-			},
-			extensions = { "quickfix", "nvim-tree" },
-		},
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			actions = { open_file = { quit_on_open = true } },
-			update_focused_file = { enable = true },
-			renderer = { highlight_opened_files = "icon" },
-			git = { ignore = false },
-		},
-		keys = {
-			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
-		},
-		lazy = true,
+		"ggandor/leap.nvim",
+		config = function()
+			require("leap").add_default_mappings(true)
+		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -618,8 +624,8 @@ vim.keymap.set("n", "x", '"vx')
 vim.keymap.set("n", "X", '"vX')
 vim.keymap.set("n", "c", '"vc')
 vim.keymap.set("n", "C", '"vC')
-vim.keymap.set("n", "s", '"vs')
-vim.keymap.set("n", "S", '"vS')
+-- vim.keymap.set("n", "s", '"vs')
+-- vim.keymap.set("n", "S", '"vS')
 -- Original copy paste
 vim.keymap.set("n", "<leader>p", '"vp')
 vim.keymap.set("n", "<leader>P", '"vP')
