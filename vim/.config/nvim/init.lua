@@ -302,6 +302,10 @@ require("lazy").setup({
 				changedelete = { text = "~" },
 			},
 			current_line_blame_opts = { delay = 300 },
+			signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
+			numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
+			linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+			word_diff = false,
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
 				local function map(mode, l, r, opts)
@@ -566,7 +570,8 @@ vim.o.termguicolors = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 -- Show signcolumn
-vim.wo.signcolumn = "yes:1"
+-- vim.wo.signcolumn = "yes:1"
+vim.wo.signcolumn = "number"
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
