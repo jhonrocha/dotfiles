@@ -565,6 +565,8 @@ vim.o.foldmethod = "expr"
 vim.o.termguicolors = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
+-- Show signcolumn
+vim.wo.signcolumn = "yes:1"
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
