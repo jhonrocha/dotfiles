@@ -1,5 +1,3 @@
--- To get this config:
--- curl --create-dirs https://raw.githubusercontent.com/jhonrocha/dotfiles/master/vim/.config/nvim/init.lua -o ~/.config/nvim/init.lua
 ----------------------------------------
 ------------ Plugin Manager ------------
 ----------------------------------------
