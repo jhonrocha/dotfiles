@@ -36,6 +36,7 @@ return {
         keys = {
             { "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
         },
+        cmd = "NvimTreeOpen",
         lazy = true,
     },
     {
