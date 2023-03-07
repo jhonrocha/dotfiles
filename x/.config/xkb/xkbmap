@@ -8,6 +8,7 @@ xkb_keymap {
     key <LCTL> { [ backslash, bar ] };
     key <AB03> { [ c, C, ccedilla, Ccedilla ]};
     key <AC10> { [ Control_R, ccedilla ] };
+    key <ESC> { [   apostrophe,       quotedbl,       notsign,         notsign ] };
   };
   xkb_geometry  { include "pc(pc105)"     };
 };
