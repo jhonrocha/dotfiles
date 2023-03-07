@@ -6,7 +6,7 @@
 # \___/|_| |_|_| \_\___/ \___|_| |_|\__,_|
 
 ##### Keyboard Settings
-xkbcomp ~/.config/xkb/xkbmap $DISPLAY &> /dev/null
+# xkbcomp ~/.config/xkb/xkbmap $DISPLAY &> /dev/null
 
 ##### Xrandr screen
 monitors=$(xrandr | awk '/ connected/ { print "->" $1 }')

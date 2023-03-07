@@ -3,12 +3,14 @@ xkb_keymap {
   xkb_types     { include "complete"      };
   xkb_compat    { include "complete"      };
   xkb_symbols   {
-    include "pc+br(thinkpad)+inet(evdev)+capslock(swapescape)"
+    include "pc+br(thinkpad)+inet(evdev)"
     key <LSGT> { [ Control_L ] };
     key <LCTL> { [ backslash, bar ] };
     key <AB03> { [ c, C, ccedilla, Ccedilla ]};
     key <AC10> { [ Control_R, ccedilla ] };
+    key <CAPS> { [ Escape ] };
     key <ESC> { [   apostrophe,       quotedbl,       notsign,         notsign ] };
   };
   xkb_geometry  { include "pc(pc105)"     };
 };
+
