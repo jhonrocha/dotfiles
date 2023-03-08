@@ -3,14 +3,14 @@
 ----------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -22,21 +22,23 @@ vim.g.maplocalleader = " "
 ----------------------------------------
 --------------- PLUGINS ----------------
 ----------------------------------------
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+	change_detection = { enabled = false },
+})
 
 ----------------------------------------
 ---------------- SETUP -----------------
 ----------------------------------------
 local signs = {
-  Error = "",
-  Warn = "",
-  Hint = "",
-  Info = "",
+	Error = "",
+	Warn = "",
+	Hint = "",
+	Info = "",
 }
 
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
@@ -73,16 +75,16 @@ vim.wo.signcolumn = "yes:1"
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = "*",
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
 })
 -- A Jenkinsfile is a Groovy file
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = { "Jenkinsfile*" },
-  command = "setf groovy",
+	pattern = { "Jenkinsfile*" },
+	command = "setf groovy",
 })
 
 ----------------------------------------
@@ -99,12 +101,12 @@ vim.keymap.set("n", "<leader>fk", "<Cmd>bd<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
 vim.keymap.set("n", "]k", function()
-  vim.diagnostic.goto_prev({ float = true })
+	vim.diagnostic.goto_prev({ float = true })
 end)
 vim.keymap.set("n", "]j", function()
-  vim.diagnostic.goto_next({ float = true })
+	vim.diagnostic.goto_next({ float = true })
 end)
-vim.keymap.set("n", "<leader>cq", vim.diagnostic.setloclist)
+-- vim.keymap.set("n", "<leader>ci", vim.diagnostic.setloclist)
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader>j", "<Cmd>bn<CR>", { desc = "next buf" })

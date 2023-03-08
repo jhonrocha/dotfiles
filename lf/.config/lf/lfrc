@@ -141,6 +141,7 @@ cmd fzf_search ${{
 map gs :fzf_search
 
 # Preview
-set previewer stpv
-set cleaner stpvimgclr
-&stpvimg --listen $id
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
