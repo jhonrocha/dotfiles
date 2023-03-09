@@ -12,6 +12,9 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
 		opts = {
+			options = {
+				globalstatus = true,
+			},
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { { "filename", path = 1 }, "diff", "diagnostics" },

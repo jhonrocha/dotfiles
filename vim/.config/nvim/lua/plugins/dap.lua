@@ -20,8 +20,17 @@ return {
 				"mfussenegger/nvim-dap",
 				config = function()
 					vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+					local dap = require("dap")
+					dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 				end,
 				keys = {
+					{
+						"<Leader>ic",
+						function()
+							require("dap").continue()
+						end,
+						desc = "DAP continue",
+					},
 					{
 						"<Leader>il",
 						function()
@@ -64,10 +73,53 @@ return {
 						end,
 						desc = "DAP preview",
 					},
+					{
+						"<Leader>ie",
+						function()
+							require("dap").close()
+						end,
+						desc = "DAP end",
+					},
 				},
 			},
 		},
-		config = true,
+		opts = {
+			controls = {
+				element = "console",
+			},
+			layouts = {
+				{
+					elements = {
+						{
+							id = "scopes",
+							size = 0.25,
+						},
+						{
+							id = "breakpoints",
+							size = 0.25,
+						},
+						{
+							id = "stacks",
+							size = 0.25,
+						},
+						{
+							id = "watches",
+							size = 0.25,
+						},
+					},
+					position = "left",
+					size = 40,
+				},
+				{
+					elements = { {
+						id = "console",
+						size = 1,
+					} },
+					position = "bottom",
+					size = 10,
+				},
+			},
+		},
 		keys = {
 			{
 				"<Leader>ii",
@@ -78,14 +130,14 @@ return {
 				desc = "DAP Continue",
 			},
 			{
-				"<Leader>io",
+				"<Leader>it",
 				function()
 					require("dapui").toggle()
 				end,
-				desc = "DAP toggle",
+				desc = "DAPUI toggle",
 			},
 			{
-				"<Leader>ic",
+				"<Leader>iq",
 				function()
 					require("dap").close()
 					require("dapui").close()
