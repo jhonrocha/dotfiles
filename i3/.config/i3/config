@@ -222,8 +222,8 @@ bindsym $mod+F7 exec playerctl play-pause
 bindsym $mod+F6 exec playerctl previous
 bindsym $mod+F8 exec playerctl next
 bindsym $mod+F9 exec pavucontrol
-bindsym $mod+F11 exec volume -5%
-bindsym $mod+F12 exec volume +5%
+bindsym $mod+minus exec volume -5%
+bindsym $mod+plus exec volume +5%
 bindsym $mod+Shift+F11 exec volume -2%
 bindsym $mod+Shift+F12 exec volume +2%
 

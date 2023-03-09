@@ -9,7 +9,7 @@ xkb_keymap {
     key <AB03> { [ c, C, ccedilla, Ccedilla ]};
     key <AC10> { [ Control_R, ccedilla ] };
     key <CAPS> { [ Escape ] };
-    key <ESC> { [   apostrophe,       quotedbl,       notsign,         notsign ] };
+    key <ESC>  { [ apostrophe, quotedbl, notsign, notsign ] };
   };
   xkb_geometry  { include "pc(pc105)"     };
 };

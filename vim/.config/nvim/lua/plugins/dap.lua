@@ -27,42 +27,42 @@ return {
 						function()
 							require("dap").step_into()
 						end,
-						{ desc = "DAP step_into" },
+						desc = "DAP step_into",
 					},
 					{
 						"<Leader>ij",
 						function()
 							require("dap").step_over()
 						end,
-						{ desc = "DAP setp_over" },
+						desc = "DAP setp_over",
 					},
 					{
 						"<Leader>ik",
 						function()
 							require("dap").step_out()
 						end,
-						{ desc = "DAP step_out" },
+						desc = "DAP step_out",
 					},
 					{
 						"<Leader>ib",
 						function()
 							require("dap").toggle_breakpoint()
 						end,
-						{ desc = "DAP breakpoint" },
+						desc = "DAP breakpoint",
 					},
 					{
 						"<Leader>ir",
 						function()
 							require("dap").run_last()
 						end,
-						{ desc = "DAP run last" },
+						desc = "DAP run last",
 					},
 					{
 						"<Leader>ip",
 						function()
 							require("dap.ui.widgets").preview()
 						end,
-						{ desc = "DAP preview" },
+						desc = "DAP preview",
 					},
 				},
 			},
@@ -75,14 +75,14 @@ return {
 					require("dap").continue()
 					require("dapui").open()
 				end,
-				{ desc = "DAP Continue" },
+				desc = "DAP Continue",
 			},
 			{
 				"<Leader>io",
 				function()
 					require("dapui").toggle()
 				end,
-				{ desc = "DAP toggle" },
+				desc = "DAP toggle",
 			},
 			{
 				"<Leader>ic",
@@ -90,14 +90,14 @@ return {
 					require("dap").close()
 					require("dapui").close()
 				end,
-				{ desc = "DAP quit" },
+				desc = "DAP quit",
 			},
 			{
 				"<Leader>ih",
 				function()
 					require("dapui").eval()
 				end,
-				{ desc = "DAP hover" },
+				desc = "DAP hover",
 			},
 		},
 	},
