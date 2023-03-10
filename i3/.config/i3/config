@@ -122,7 +122,7 @@ bindsym $mod+x mode "resize"
 # Start a terminal
 bindsym $mod+Return exec $term
 # rambox ScratchPad
-bindsym $mod+u exec "i3-msg [class=\\"rambox\\"] scratchpad show || rambox"
+bindsym $mod+u exec "i3-msg \[class=\\"rambox\\"\] scratchpad show || rambox"
 # Terminal ScratchPad
 bindsym $mod+i exec "i3-msg \[class=\\"termscratch\\"\] scratchpad show || $term --class termscratch"
 bindsym $mod+n exec "i3-msg \[class=\\"term-nf\\"\] scratchpad show || $term --class term-nf zsh -c 'cd ~/notes/nf && nvim main.md'"
@@ -218,14 +218,14 @@ bindsym $mod+s sticky toggle
 # Media Control
 bindsym $mod+F1 exec xbacklight -dec 10
 bindsym $mod+F2 exec xbacklight -inc 10
-bindsym $mod+F7 exec playerctl play-pause
-bindsym $mod+F6 exec playerctl previous
-bindsym $mod+F8 exec playerctl next
+bindsym $mod+dead_acute exec playerctl play-pause
+bindsym $mod+bracketleft exec playerctl previous
+bindsym $mod+bracketright exec playerctl next
 bindsym $mod+F9 exec pavucontrol
 bindsym $mod+minus exec volume -5%
 bindsym $mod+plus exec volume +5%
-bindsym $mod+Shift+F11 exec volume -2%
-bindsym $mod+Shift+F12 exec volume +2%
+bindsym $mod+Shift+minus exec volume -2%
+bindsym $mod+Shift+plus exec volume +2%
 
 # Scratchpad:
 bindsym $mod+Shift+y move scratchpad
