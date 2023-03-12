@@ -5,23 +5,15 @@ return {
 		priority = 1000,
 		config = function()
 			vim.g.tokyonight_colors = { border = "orange" }
-			-- vim.cmd([[colorscheme tokyonight-night]])
+			vim.cmd([[colorscheme tokyonight-night]])
+			vim.api.nvim_set_hl(0, "@neorg.tags.ranged_verbatim.code_block", { bg = "#002244" })
 		end,
 	},
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		config = function()
-			require("catppuccin").setup({
-				color_overrides = {
-					mocha = {
-						-- base = "#1a1b26",
-						-- mantle = "#242424",
-						-- crust = "#474747",
-					},
-				},
-			})
-			vim.cmd.colorscheme("catppuccin-mocha")
+			-- vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 	},
 	{
