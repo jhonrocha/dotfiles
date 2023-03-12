@@ -144,3 +144,6 @@ vim.keymap.set("n", "<leader>qq", "<Cmd>copen<CR>", { desc = "quick open" })
 vim.keymap.set("n", "<leader>qc", "<Cmd>cclose<CR>", { desc = "quick close" })
 vim.keymap.set("n", "<leader>qj", "<Cmd>cn<CR>", { desc = "quick next" })
 vim.keymap.set("n", "<leader>qk", "<Cmd>cp<CR>", { desc = "quick previous" })
+--
+-- Terminal
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "normal mode" })

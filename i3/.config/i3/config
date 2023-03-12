@@ -40,7 +40,7 @@ for_window [class="gradius"] floating enable
 for_window [class="rambox"] move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [class="termscratch"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 for_window [class="obsidian"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
-for_window [class="term-nf"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
+for_window [class="term-nf"] move scratchpad,  scratchpad show, resize set width 70 ppt height 70 ppt, move position center
 for_window [class="term-aj"] move scratchpad,  scratchpad show, resize set width 50 ppt height 70 ppt, move position center
 for_window [class="join?"] floating enable
 # Font
@@ -125,8 +125,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+u exec "i3-msg \[class=\\"rambox\\"\] scratchpad show || rambox"
 # Terminal ScratchPad
 bindsym $mod+i exec "i3-msg \[class=\\"termscratch\\"\] scratchpad show || $term --class termscratch"
-bindsym $mod+n exec "i3-msg \[class=\\"term-nf\\"\] scratchpad show || $term --class term-nf zsh -c 'cd ~/notes/nf && nvim main.md'"
-bindsym $mod+a exec "i3-msg \[class=\\"term-aj\\"\] scratchpad show || $term --class term-aj zsh -c 'cd ~/notes/aj && nvim main.md'"
+bindsym $mod+n exec "i3-msg \[class=\\"term-nf\\"\] scratchpad show || $term --class term-nf zsh -c 'cd ~/notes/nf && nvim main.norg'"
 # bindsym $mod+n exec "i3-msg [class=\\"obsidian\\"] scratchpad show || obsidian"
 # Kill focused window
 bindsym $mod+F4 kill

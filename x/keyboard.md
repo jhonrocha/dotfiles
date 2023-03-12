@@ -38,7 +38,7 @@ sudoedit /usr/share/X11/xkb/rules/base.xml
 ```
 Insert under BR layout variantList:
 
-```
+```xml
         <variant>
           <configItem>
             <name>jhon</name>

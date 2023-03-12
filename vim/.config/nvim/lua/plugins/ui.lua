@@ -8,6 +8,7 @@ return {
 			vim.cmd([[colorscheme tokyonight-night]])
 		end,
 	},
+	{ "catppuccin/nvim", name = "catppuccin" },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },

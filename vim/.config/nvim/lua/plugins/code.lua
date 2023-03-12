@@ -88,6 +88,7 @@ return {
 					{ name = "nvim_lua" },
 					{ name = "path" },
 					{ name = "buffer" },
+					{ name = "neorg" },
 				},
 				experimental = { ghost_text = true },
 				formatting = {
