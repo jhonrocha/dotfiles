@@ -24,11 +24,13 @@ return {
 		opts = {
 			options = {
 				globalstatus = true,
+				theme = "catppuccin",
+				section_separators = { left = "", right = "" },
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { { "filename", path = 1 }, "diff", "diagnostics" },
-				lualine_c = { "branch" },
+				lualine_b = {},
+				lualine_c = { { "filename", path = 1 }, "diff", "diagnostics", "branch" },
 				lualine_x = { "encoding", "fileformat", "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },

@@ -41,6 +41,8 @@ return {
 					opts.settings = {
 						["rust-analyzer"] = { check = { command = { "clippy" } } },
 					}
+				elseif server_name == "yamlls" then
+					opts.settings = { yaml = { keyOrdering = false } }
 				end
 				require("lspconfig")[server_name].setup(opts)
 			end
@@ -81,7 +83,9 @@ return {
 		"jose-elias-alvarez/null-ls.nvim",
 		config = function()
 			local null_ls = require("null-ls")
+			local helpers = require("null-ls.helpers")
 			null_ls.setup({
+				debug = true,
 				sources = {
 					null_ls.builtins.diagnostics.eslint.with({
 						condition = function(utils)
@@ -102,6 +106,10 @@ return {
 					null_ls.builtins.formatting.shfmt,
 					null_ls.builtins.formatting.rustfmt,
 					null_ls.builtins.formatting.clang_format,
+					null_ls.builtins.diagnostics.sqlfluff,
+					null_ls.builtins.formatting.sqlfluff.with({
+						extra_args = { "--dialect", "postgres" }, -- change to your dialect
+					}),
 				},
 			})
 			local _border = "single"
