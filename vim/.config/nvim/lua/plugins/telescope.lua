@@ -15,6 +15,7 @@ return {
 						"--with-filename",
 						"--line-number",
 						"--glob=!.git",
+						"--glob=!node_modules",
 						"--column",
 						"--smart-case",
 					},
