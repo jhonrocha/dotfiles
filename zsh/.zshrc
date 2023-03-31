@@ -20,30 +20,30 @@ init-i3 () {
   export WM=i3
   exec startx >> ~/.cache/xinit.log 2>&1
 }
-init-xmonad () {
-  export WM=xmonad
-  exec startx >> ~/.cache/xinit.log 2>&1
-}
+
 init-sway () {
+  # export LIBSEAT_BACKEND=logind
+  # export WLR_NO_HARDWARE_CURSORS=1
+  # export QT_AUTO_SCREEN_SCALE_FACTOR=1
+  # export QT_QPA_PLATFORM=wayland
+  # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+  # export GDK_BACKEND=wayland
+  # export GBM_BACKEND=nvidia-drm
+  # export __GLX_VENDOR_LIBRARY_NAME=nvidia
   export WM=sway
   export MOZ_ENABLE_WAYLAND=1
+  export WLR_RENDERER=vulkan
+  export WLR_NO_HARDWARE_CURSORS=1 
+  export XWAYLAND_NO_GLAMOR=1
+  export XDG_CURRENT_DESKTOP=sway
   exec sway --unsupported-gpu >> ~/.cache/sway.log 2>&1
 }
 
 machine=$(uname -n)
 if [[ ! $DISPLAY && (($XDG_VTNR -eq 1) || ($XDG_VTNR -eq 6)) ]]; then
   if [ $machine = "tiamat" ]; then
-    # export LIBSEAT_BACKEND=logind
-    # export WLR_NO_HARDWARE_CURSORS=1
-    # export QT_AUTO_SCREEN_SCALE_FACTOR=1
-    # export QT_QPA_PLATFORM=wayland
-    # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-    # export GDK_BACKEND=wayland
-    # export XDG_CURRENT_DESKTOP=sway
-    # export GBM_BACKEND=nvidia-drm
-    # export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    # init-sway
     init-i3
+    # init-sway
   elif [ $machine = "drogon" ]; then
     # init-sway
     init-i3

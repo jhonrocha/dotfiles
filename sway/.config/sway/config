@@ -40,7 +40,7 @@ floating_modifier $mod normal
 for_window [app_id="zoom"] floating enable
 for_window [class="zoom"] floating enable
 for_window [app_id="pavucontrol"] floating enable
-for_window [class="rambox"] floating enable, move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
+for_window [class="Ferdium"] floating enable, move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 # Font
 font Cantarell 0
@@ -172,8 +172,8 @@ bindsym $mod+s mode "pwd"
 # Basics:
 # Start a terminal
 bindsym $mod+Return exec $term
-# rambox ScratchPad
-bindsym $mod+u exec 'swaymsg [class="rambox"] scratchpad show || rambox'
+# Ferdium ScratchPad
+bindsym $mod+u exec 'swaymsg [class="Ferdium"] scratchpad show || ferdium'
 # Terminal ScratchPad
 bindsym $mod+i exec 'swaymsg [app_id="termpad"] scratchpad show || $term --class termpad'
 
@@ -187,6 +187,7 @@ bindsym $mod+r exec rofi -show run
 
 # Reload the configuration file
 bindsym $mod+z reload
+bindsym $mod+Shift+z exit
 
 # Exit sway (logs you out of your Wayland session)
 # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will
@@ -273,12 +274,14 @@ bindsym $mod+period focus child
 # Media Control
 bindsym $mod+F1 exec xbacklight -dec 10
 bindsym $mod+F2 exec xbacklight -inc 10
-bindsym $mod+F7 exec playerctl play-pause
-bindsym $mod+F6 exec playerctl previous
-bindsym $mod+F8 exec playerctl next
+bindsym $mod+dead_acute exec playerctl play-pause
+bindsym $mod+bracketleft exec playerctl previous
+bindsym $mod+bracketright exec playerctl next
 bindsym $mod+F9 exec pavucontrol
-bindsym $mod+F11 exec amixer sset Master 5%-
-bindsym $mod+F12 exec amixer sset Master 5%+
+bindsym $mod+minus exec volume -5%
+bindsym $mod+equal exec volume +5%
+bindsym $mod+Shift+minus exec volume -2%
+bindsym $mod+Shift+plus exec volume +2%
 
 # Scratchpad:
 bindsym $mod+Shift+y move scratchpad
