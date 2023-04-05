@@ -55,7 +55,7 @@ return {
 						gs.next_hunk()
 					end)
 					return "<Ignore>"
-				end, { expr = true })
+				end, { expr = true, desc = "next hunk" })
 				map("n", "[c", function()
 					if vim.wo.diff then
 						return "[c"
@@ -64,17 +64,17 @@ return {
 						gs.prev_hunk()
 					end)
 					return "<Ignore>"
-				end, { expr = true })
+				end, { expr = true, desc = "prev hunk" })
 				-- Actions
-				map("n", "<leader>gv", gs.preview_hunk)
+				map("n", "<leader>gv", gs.preview_hunk, { desc = "preview hunk" })
 				map("n", "<leader>gb", function()
 					gs.blame_line({ full = true })
-				end)
-				map("n", "<leader>gl", gs.toggle_current_line_blame)
+				end, { desc = "blame full" })
+				map("n", "<leader>gl", gs.toggle_current_line_blame, { desc = "blame line" })
 				map("n", "<leader>gt", function()
 					gs.diffthis("~")
-				end)
-				map("n", "<leader>gs", gs.select_hunk)
+				end, { desc = "diff this" })
+				map("n", "<leader>gs", gs.select_hunk, { desc = "select hunk" })
 			end,
 		},
 	},

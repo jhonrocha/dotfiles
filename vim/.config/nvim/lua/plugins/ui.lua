@@ -67,7 +67,7 @@ return {
 			local wk = require("which-key")
 			wk.register({
 				c = { name = "code" },
-				f = { name = "file" },
+				f = { name = "file", g = { name = "git"} },
 				g = { name = "git" },
 				i = { name = "debug" },
 				q = { name = "quicklist" },
