@@ -9,8 +9,12 @@ return {
 			require("mason-nvim-dap").setup({
 				ensure_installed = { "js" },
 				automatic_setup = true,
+				handlers = {
+					function(config)
+						require("mason-nvim-dap").default_setup(config)
+					end,
+				},
 			})
-			require("mason-nvim-dap").setup_handlers({})
 		end,
 	},
 	{
