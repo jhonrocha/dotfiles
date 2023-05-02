@@ -28,12 +28,12 @@ battery all {
 }
 
 memory {
-  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> %used </span>"
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> 󰍛 %used </span>"
   separator_block_width = 0
 }
 
 volume master {
-  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> 奔 %volume </span>"
+  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> 󰕾 %volume </span>"
   format_muted = "<span foreground='#d670d6' background='#3b8eea' weight='bold'></span><span background='#d670d6' foreground='#000000' weight='bold'>   %volume </span>"
   device = "default"
   mixer = "Master"
@@ -42,24 +42,24 @@ volume master {
 }
 
 cpu_usage {
-  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> ﬙ %usage </span>"
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> 󰓅 %usage </span>"
   separator_block_width = 0
 }
 
 
 cpu_temperature 0 {
-  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> %degrees °C </span>"
+  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> 󰔄 %degrees </span>"
   separator_block_width = 0
 }
 
 
 tztime est {
-  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> %H:%M %Z </span>"
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> 󱉊  %H:%M %Z </span>"
   timezone = "America/New_York"
   separator_block_width = 0
 }
 
 time {
-  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> %b %d, %H:%M</span><span foreground='#d670d6'></span>"
+  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> 󱑒  %b %d, %H:%M</span><span foreground='#d670d6'></span>"
   separator_block_width = 1 
 }
