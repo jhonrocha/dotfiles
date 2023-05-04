@@ -10,7 +10,6 @@ local lsp_installed = {
 	"terraformls",
 	"rust_analyzer",
 	"clangd",
-	"sqlfluff",
 }
 
 return {

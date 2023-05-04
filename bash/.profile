@@ -54,7 +54,6 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 # Shortcuts
 alias gw="cd ~/workspace"
-alias gh="cd ~/homefree"
 alias ga="cd ~/anjuna/"
 alias gj="cd /data"
 alias g.="cd /data/dotfiles"
