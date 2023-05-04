@@ -9,7 +9,7 @@ local lsp_installed = {
 	"yamlls",
 	"terraformls",
 	"rust_analyzer",
-	"clangd",
+	"omnisharp"
 }
 
 return {
@@ -42,6 +42,20 @@ return {
 					}
 				elseif server_name == "yamlls" then
 					opts.settings = { yaml = { keyOrdering = false } }
+				elseif server_name == "omnisharp" then
+					opts.on_attach = function(client)
+						-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
+						local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
+						for i, v in ipairs(tokenModifiers) do
+							local tmp = string.gsub(v, " ", "_")
+							tokenModifiers[i] = string.gsub(tmp, "-_", "")
+						end
+						local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+						for i, v in ipairs(tokenTypes) do
+							local tmp = string.gsub(v, " ", "_")
+							tokenTypes[i] = string.gsub(tmp, "-_", "")
+						end
+					end
 				end
 				require("lspconfig")[server_name].setup(opts)
 			end
@@ -88,7 +102,6 @@ return {
 		"jose-elias-alvarez/null-ls.nvim",
 		config = function()
 			local null_ls = require("null-ls")
-			local helpers = require("null-ls.helpers")
 			null_ls.setup({
 				debug = true,
 				sources = {
@@ -110,7 +123,6 @@ return {
 					null_ls.builtins.diagnostics.staticcheck,
 					null_ls.builtins.formatting.shfmt,
 					null_ls.builtins.formatting.rustfmt,
-					null_ls.builtins.formatting.clang_format,
 					null_ls.builtins.diagnostics.sqlfluff.with({
 						extra_args = { "--dialect", "postgres" }, -- change to your dialect
 					}),
@@ -127,3 +139,4 @@ return {
 		end,
 	},
 }
+
