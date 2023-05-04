@@ -22,7 +22,7 @@ order += "tztime est"
 order += "time"
 
 battery all {
-  format ="<span foreground='#d670d6'></span><span background='#d670d6' foreground='#000000' weight='bold'>  %percentage </span>"
+  format ="<span foreground='#d670d6'></span><span background='#d670d6' foreground='#000000' weight='bold'>   %percentage </span>"
   format_down="<span foreground='#d670d6'></span>"
   separator_block_width = 0
 }
