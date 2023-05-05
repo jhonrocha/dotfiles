@@ -2,7 +2,7 @@
 local lsp_installed = {
 	"bashls",
 	"gopls",
-	"jedi_language_server",
+	"pylsp",
 	"jsonls",
 	"lua_ls",
 	"tsserver",
@@ -117,7 +117,6 @@ return {
 					}),
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.stylua,
-					null_ls.builtins.formatting.black.with({ prefer_local = "venv/bin" }),
 					null_ls.builtins.diagnostics.pylint.with({ prefer_local = "venv/bin" }),
 					null_ls.builtins.diagnostics.staticcheck,
 					null_ls.builtins.formatting.shfmt,
