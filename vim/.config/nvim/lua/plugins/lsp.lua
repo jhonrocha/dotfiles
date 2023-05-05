@@ -44,7 +44,6 @@ return {
 					opts.settings = { yaml = { keyOrdering = false } }
 				elseif server_name == "omnisharp" then
 					opts.on_attach = function(client)
-						-- https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1492605642
 						local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
 						for i, v in ipairs(tokenModifiers) do
 							local tmp = string.gsub(v, " ", "_")

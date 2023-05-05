@@ -30,7 +30,7 @@ require("lazy").setup("plugins", {
 ---------------- SETUP -----------------
 ----------------------------------------
 local signs = {
-	Error = "",
+	Error = "",
 	Warn = "",
 	Hint = "",
 	Info = "",

@@ -7,6 +7,11 @@ return {
 			local action_layout = require("telescope.actions.layout")
 			require("telescope").setup({
 				defaults = {
+					file_ignore_patterns = {
+						"node_modules",
+						"venv",
+						".git",
+					},
 					vimgrep_arguments = {
 						"rg",
 						"--hidden",
@@ -14,8 +19,6 @@ return {
 						"--no-heading",
 						"--with-filename",
 						"--line-number",
-						"--glob=!.git",
-						"--glob=!node_modules",
 						"--column",
 						"--smart-case",
 					},
@@ -57,22 +60,15 @@ return {
 						hidden = true,
 						sort_lastused = true,
 						mappings = { i = { ["<c-d>"] = "delete_buffer" } },
+						no_ignore = true,
 					},
 					find_files = {
 						hidden = true,
-						file_ignore_patterns = { "node_modules", ".git/" },
-						find_command = {
-							"fd",
-							"--type",
-							"f",
-							"--hidden",
-							"--follow",
-							"--no-ignore-vcs",
-							"--exclude",
-							".git/",
-							"--exclude",
-							"node_modules",
-						},
+						no_ignore = true,
+					},
+					live_grep = {
+						hidden = true,
+						no_ignore = true,
 					},
 				},
 			})
