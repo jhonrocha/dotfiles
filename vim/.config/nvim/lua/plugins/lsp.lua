@@ -64,7 +64,6 @@ return {
 			{ "<leader>cd", vim.lsp.buf.definition, desc = "lsp definition" },
 			{ "K", vim.lsp.buf.hover, desc = "lsp hover" },
 			{ "<leader>ci", vim.lsp.buf.implementation, desc = "lsp implementation" },
-			{ "<C-k>", vim.lsp.buf.signature_help, desc = "lsp signature_help" },
 			{ "<leader>D", vim.lsp.buf.type_definition, desc = "lsp type" },
 			{ "<leader>cw", vim.lsp.buf.rename, desc = "lsp rename" },
 			{ "<leader>cr", vim.lsp.buf.references, desc = "lsp references" },
@@ -132,7 +131,7 @@ return {
 			})
 			local _border = "single"
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
+			-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
 			vim.diagnostic.config({ float = { border = _border }, virtual_text = false })
 		end,
 	},
