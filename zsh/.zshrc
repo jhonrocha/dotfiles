@@ -125,3 +125,9 @@ fi
 [ -f /opt/asdf-vm/asdf.sh ] && . /opt/asdf-vm/asdf.sh
 # AZ
 [ -f /opt/azure-cli/az.completion ] && . /opt/azure-cli/az.completion
+
+YAY_PATH="${HOME}/.cache/yay"
+GCP_INC="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli/completion.zsh.inc";
+GCP_PATH="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli/path.zsh.inc"
+[ -f ${GCP_INC} ] && . ${GCP_INC}
+[ -f ${GCP_PATH} ] && . ${GCP_PATH}
