@@ -106,6 +106,7 @@ return {
 					null_ls.builtins.diagnostics.eslint.with({
 						condition = function(utils)
 							return utils.root_has_file({
+								".eslintrc",
 								".eslintrc.js",
 								".eslintrc.cjs",
 								".eslintrc.yaml",
