@@ -1,4 +1,4 @@
-return {
+local ui = {
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -44,18 +44,80 @@ return {
 		},
 	},
 	{
-		"nvim-tree/nvim-tree.lua",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		-- "nvim-tree/nvim-tree.lua",
+		-- dependencies = { "nvim-tree/nvim-web-devicons" },
+		-- opts = {
+		-- 	actions = { open_file = { quit_on_open = true } },
+		-- 	update_focused_file = { enable = true },
+		-- 	renderer = { highlight_opened_files = "name" },
+		-- 	git = { ignore = false },
+		-- },
+		-- keys = {
+		-- 	{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
+		-- },
+		-- cmd = "NvimTreeOpen",
+		-- lazy = true,
+	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		},
 		opts = {
-			actions = { open_file = { quit_on_open = true } },
-			update_focused_file = { enable = true },
-			renderer = { highlight_opened_files = "name" },
-			git = { ignore = false },
+			default_component_configs = {
+				icon = {
+					folder_empty = "󰜌",
+					folder_empty_open = "󰜌",
+				},
+				git_status = {
+					symbols = {
+						renamed = "󰁕",
+						unstaged = "✗",
+					},
+				},
+			},
+			document_symbols = {
+				kinds = {
+					File = { icon = "󰈙", hl = "Tag" },
+					Namespace = { icon = "󰌗", hl = "Include" },
+					Package = { icon = "󰏖", hl = "Label" },
+					Class = { icon = "󰌗", hl = "Include" },
+					Property = { icon = "󰆧", hl = "@property" },
+					Enum = { icon = "󰒻", hl = "@number" },
+					Function = { icon = "󰊕", hl = "Function" },
+					String = { icon = "󰀬", hl = "String" },
+					Number = { icon = "󰎠", hl = "Number" },
+					Array = { icon = "󰅪", hl = "Type" },
+					Object = { icon = "󰅩", hl = "Type" },
+					Key = { icon = "󰌋", hl = "" },
+					Struct = { icon = "󰌗", hl = "Type" },
+					Operator = { icon = "󰆕", hl = "Operator" },
+					TypeParameter = { icon = "󰊄", hl = "Type" },
+					StaticMethod = { icon = "󰠄 ", hl = "Function" },
+				},
+			},
+      filesystem = {
+        filtered_items = {
+          visible = true
+        },
+        follow_current_file = true
+      },
+			source_selector = {
+				winbar = true,
+				sources = {
+					{ source = "filesystem", display_name = " 󰉓 Files " },
+					{ source = "git_status", display_name = " 󰊢 Git " },
+					{ source = "buffers", display_name = " 󰈙 Buffers " },
+				},
+			},
 		},
 		keys = {
-			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
+			{ "<leader>d", "<Cmd>NeoTreeFocusToggle<CR>", desc = "file drawer" },
 		},
-		cmd = "NvimTreeOpen",
+		cmd = "NeoTreeFocusToggle",
 		lazy = true,
 	},
 	{
@@ -67,7 +129,7 @@ return {
 			local wk = require("which-key")
 			wk.register({
 				c = { name = "code" },
-				f = { name = "file", g = { name = "git"} },
+				f = { name = "file", g = { name = "git" } },
 				g = { name = "git" },
 				i = { name = "debug" },
 				q = { name = "quicklist" },
@@ -77,7 +139,10 @@ return {
 	},
 	{
 		"glepnir/dashboard-nvim",
-		event = "VimEnter",
+		-- event = "VimEnter",
+		theme = "doom",
+		lazy = true,
+		enable = false,
 		opts = {
 			config = {
 				week_header = {
@@ -90,3 +155,4 @@ return {
 	{ "chentoast/marks.nvim", config = true },
 	{ "NvChad/nvim-colorizer.lua", config = true, cmd = "ColorizerToggle" },
 }
+return ui
