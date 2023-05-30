@@ -31,9 +31,9 @@ require("lazy").setup("plugins", {
 ----------------------------------------
 local signs = {
 	Error = "",
-	Warn = "",
-	Hint = "",
-	Info = "",
+	Warn = "",
+	Hint = "",
+	Info = "",
 }
 
 for type, icon in pairs(signs) do
