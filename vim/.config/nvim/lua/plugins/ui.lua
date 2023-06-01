@@ -18,6 +18,7 @@ local ui = {
 			require("catppuccin").setup({
 				integrations = {
 					leap = true,
+          neotree = true
 				},
 			})
 			vim.cmd.colorscheme("catppuccin-mocha")
@@ -42,21 +43,6 @@ local ui = {
 			},
 			extensions = { "quickfix", "nvim-tree" },
 		},
-	},
-	{
-		-- "nvim-tree/nvim-tree.lua",
-		-- dependencies = { "nvim-tree/nvim-web-devicons" },
-		-- opts = {
-		-- 	actions = { open_file = { quit_on_open = true } },
-		-- 	update_focused_file = { enable = true },
-		-- 	renderer = { highlight_opened_files = "name" },
-		-- 	git = { ignore = false },
-		-- },
-		-- keys = {
-		-- 	{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
-		-- },
-		-- cmd = "NvimTreeOpen",
-		-- lazy = true,
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -99,18 +85,28 @@ local ui = {
 					StaticMethod = { icon = "󰠄 ", hl = "Function" },
 				},
 			},
-      filesystem = {
-        filtered_items = {
-          visible = true
-        },
-        follow_current_file = true
-      },
+			filesystem = {
+				filtered_items = {
+					visible = true,
+				},
+				follow_current_file = true,
+			},
 			source_selector = {
 				winbar = true,
 				sources = {
 					{ source = "filesystem", display_name = " 󰉓 Files " },
 					{ source = "git_status", display_name = " 󰊢 Git " },
 					{ source = "buffers", display_name = " 󰈙 Buffers " },
+				},
+			},
+			event_handlers = {
+
+				{
+					event = "file_opened",
+					handler = function(file_path)
+						--auto close
+						require("neo-tree").close_all()
+					end,
 				},
 			},
 		},

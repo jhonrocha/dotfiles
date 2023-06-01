@@ -29,7 +29,7 @@ return {
 						preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 					},
 					dynamic_preview_title = false,
-					preview = { hide_on_startup = true },
+					-- preview = { hide_on_startup = true },
 					sorting_strategy = "ascending",
 					layout_strategy = "bottom_pane",
 					layout_config = {
