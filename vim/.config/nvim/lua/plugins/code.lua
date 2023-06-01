@@ -125,4 +125,33 @@ return {
 			end)
 		end,
 	},
+	{
+		"kevinhwang91/nvim-ufo",
+    lazy = false,
+		dependencies = {
+			"kevinhwang91/promise-async",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = {
+			provider_selector = function(bufnr, filetype, buftype)
+				return { "treesitter", "indent" }
+			end,
+		},
+		keys = {
+			{
+				"zR",
+				function()
+					require("ufo").openAllFolds()
+				end,
+				desc = "open all",
+			},
+			{
+				"zM",
+				function()
+					require("ufo").closeAllFolds()
+				end,
+				desc = "close all",
+			},
+		},
+	},
 }
