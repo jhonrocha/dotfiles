@@ -61,14 +61,17 @@ return {
 						sort_lastused = true,
 						mappings = { i = { ["<c-d>"] = "delete_buffer" } },
 						no_ignore = true,
+            previewer = false
 					},
 					find_files = {
 						hidden = true,
 						no_ignore = true,
+            previewer = false
 					},
 					live_grep = {
 						hidden = true,
 						no_ignore = true,
+            previewer = false
 					},
 				},
 			})

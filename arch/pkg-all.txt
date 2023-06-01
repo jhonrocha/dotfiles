@@ -89,3 +89,4 @@ luarocks
 ttf-iosevka-nerd
 ttf-jetbrains-mono-nerd
 ttf-ubuntu-nerd
+git-delta
