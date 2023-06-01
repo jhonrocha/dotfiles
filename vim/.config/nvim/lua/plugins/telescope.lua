@@ -11,6 +11,7 @@ return {
 						"node_modules",
 						"venv",
 						".git",
+            "dist"
 					},
 					vimgrep_arguments = {
 						"rg",
