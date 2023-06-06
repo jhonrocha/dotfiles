@@ -145,6 +145,15 @@ local code = {
 			},
 		},
 	},
-	-- { "Exafunction/codeium.vim" },
+	{
+		"ray-x/lsp_signature.nvim",
+		enabled = false,
+		opts = {
+			hint_enable = false,
+			toggle_key = "<C-k>",
+			floating_window = true,
+			toggle_key_flip_floatwin_setting = true,
+		},
+	},
 }
-return code;
+return code
