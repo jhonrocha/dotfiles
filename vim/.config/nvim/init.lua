@@ -99,8 +99,8 @@ vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "TODO" })
 
 -- My Maps
-vim.keymap.set("n", "<leader>fs", "<Cmd>update!<CR>", { desc = "save" })
-vim.keymap.set("n", "<leader>fk", "<Cmd>bd<CR>", { desc = "kill file" })
+vim.keymap.set("n", "<leader>fs", "<Cmd>update!<CR>", { desc = "file save" })
+vim.keymap.set("n", "<leader>fk", "<Cmd>bd<CR>", { desc = "file kill" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })

@@ -83,7 +83,7 @@ return {
 				function()
 					require("telescope.builtin").buffers()
 				end,
-				desc = "open bufs",
+				desc = "buffers",
 			},
 			{
 				"<leader><space>",
@@ -97,42 +97,42 @@ return {
 				function()
 					require("telescope.builtin").current_buffer_fuzzy_find()
 				end,
-				desc = "search",
+				desc = "buffer search",
 			},
 			{
 				"<leader>fW",
 				function()
 					require("telescope.builtin").grep_string()
 				end,
-				desc = "grep hover",
+				desc = "hover grep",
 			},
 			{
 				"<leader>fw",
 				function()
 					require("telescope.builtin").live_grep()
 				end,
-				desc = "grep all",
+				desc = "word(grep)",
 			},
 			{
 				"<leader>fgc",
 				function()
 					require("telescope.builtin").git_commits()
 				end,
-				desc = "git commits",
+				desc = "commits",
+			},
+			{
+				"<leader>fgh",
+				function()
+					require("telescope.builtin").git_bcommits()
+				end,
+				desc = "file commits",
 			},
 			{
 				"<leader>fgb",
 				function()
 					require("telescope.builtin").git_branches()
 				end,
-				desc = "git branches",
-			},
-			{
-				"<leader>o",
-				function()
-					require("telescope.builtin").oldfiles()
-				end,
-				desc = "recent files",
+				desc = "branches",
 			},
 			{
 				"<leader>fr",
@@ -147,6 +147,13 @@ return {
 					require("telescope.builtin").lsp_implementations()
 				end,
 				desc = "lsp_implementations",
+			},
+			{
+				"<leader>fc",
+				function()
+					require("telescope.builtin").resume()
+				end,
+				desc = "resume find",
 			},
 		},
 		lazy = true,

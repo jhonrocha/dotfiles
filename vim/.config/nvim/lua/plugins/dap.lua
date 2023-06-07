@@ -1,6 +1,7 @@
 return {
 	{
 		"jay-babu/mason-nvim-dap.nvim",
+    lazy = true,
 		dependencies = {
 			"williamboman/mason.nvim",
 			"mfussenegger/nvim-dap",
@@ -19,6 +20,7 @@ return {
 	},
 	{
 		"rcarriga/nvim-dap-ui",
+    lazy = true,
 		dependencies = {
 			{
 				"mfussenegger/nvim-dap",
@@ -160,6 +162,7 @@ return {
 
 	{
 		"mxsdev/nvim-dap-vscode-js",
+    lazy = true,
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = function()
 			require("dap-vscode-js").setup({

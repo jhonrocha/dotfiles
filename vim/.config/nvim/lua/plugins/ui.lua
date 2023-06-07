@@ -125,7 +125,7 @@ local ui = {
 			local wk = require("which-key")
 			wk.register({
 				c = { name = "code" },
-				f = { name = "file", g = { name = "git" } },
+				f = { name = "finder", g = { name = "git" } },
 				g = { name = "git" },
 				i = { name = "debug" },
 				q = { name = "quicklist" },
@@ -135,7 +135,7 @@ local ui = {
 	},
 	{
 		"glepnir/dashboard-nvim",
-		-- event = "VimEnter",
+		event = "VimEnter",
 		theme = "doom",
 		lazy = true,
 		enable = false,

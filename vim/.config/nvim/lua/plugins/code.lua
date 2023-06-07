@@ -46,6 +46,7 @@ local code = {
 	{
 		"folke/trouble.nvim",
 		config = true,
+    lazy = true,
 		keys = {
 			{ "<leader>t", "<Cmd>TroubleToggle<CR>", { desc = "trouble" } },
 		},
@@ -118,7 +119,7 @@ local code = {
 	},
 	{
 		"kevinhwang91/nvim-ufo",
-		lazy = false,
+		lazy = true,
 		dependencies = {
 			"kevinhwang91/promise-async",
 			"nvim-treesitter/nvim-treesitter",
