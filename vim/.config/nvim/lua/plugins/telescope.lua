@@ -153,7 +153,7 @@ return {
 				function()
 					require("telescope.builtin").resume()
 				end,
-				desc = "resume find",
+				desc = "current find",
 			},
 		},
 		lazy = true,

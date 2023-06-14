@@ -135,7 +135,7 @@ local ui = {
 	},
 	{
 		"glepnir/dashboard-nvim",
-		event = "VimEnter",
+		-- event = "VimEnter",
 		theme = "doom",
 		lazy = true,
 		enable = false,
