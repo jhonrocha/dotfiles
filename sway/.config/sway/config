@@ -10,7 +10,7 @@ set $right l
 # Your preferred terminal emulator
 set $term kitty
 # Your preferred application launcher
-set $menu rofi -show drun -columns 2
+set $menu wofi --show drun
 # GAPS
 set $gIn 8
 set $gOut 0
@@ -173,7 +173,8 @@ bindsym $mod+s mode "pwd"
 # Start a terminal
 bindsym $mod+Return exec $term
 # Ferdium ScratchPad
-bindsym $mod+u exec 'swaymsg [class="Ferdium"] scratchpad show || ferdium'
+bindsym $mod+u exec 'swaymsg [class="Rambox"] scratchpad show || rambox'
+bindsym $mod+n exec 'swaymsg [class="Ferdium"] scratchpad show || ferdium'
 # Terminal ScratchPad
 bindsym $mod+i exec 'swaymsg [app_id="termpad"] scratchpad show || $term --class termpad'
 
@@ -183,7 +184,7 @@ bindsym $mod+q kill
 
 # Start your launcher
 bindsym $mod+d exec $menu
-bindsym $mod+r exec rofi -show run
+bindsym $mod+r exec wofi --show run
 
 # Reload the configuration file
 bindsym $mod+z reload
@@ -218,8 +219,6 @@ bindsym $mod+Shift+Right move right
 # Monitos
 bindsym $mod+Mod1+h move workspace to output left
 bindsym $mod+Mod1+l move workspace to output right
-bindsym $mod+m focus output left
-bindsym $mod+n focus output right
 
 # Switch to workspace
 bindsym $mod+1 workspace number 1
