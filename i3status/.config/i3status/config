@@ -18,7 +18,8 @@ order += "memory"
 order += "volume master"
 order += "cpu_usage"
 order += "cpu_temperature 0"
-order += "tztime est"
+order += "tztime edt"
+order += "tztime eet"
 order += "time"
 
 battery all {
@@ -53,13 +54,19 @@ cpu_temperature 0 {
 }
 
 
-tztime est {
-  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'> 󱉊  %H:%M %Z </span>"
+tztime edt {
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'>🇺🇸%H:%M </span>"
   timezone = "America/New_York"
   separator_block_width = 0
 }
 
+tztime eet {
+  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'>🇪🇺%H:%M </span>"
+  timezone = "Europe/Athens"
+  separator_block_width = 0
+}
+
 time {
-  format = "<span foreground='#d670d6' background='#3b8eea'></span><span background='#d670d6' foreground='#000000' weight='bold'> 󱑒  %b %d, %H:%M</span><span foreground='#d670d6'></span>"
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'>🇧🇷%b %d, %H:%M</span><span foreground='#3b8eea'></span>"
   separator_block_width = 1 
 }

@@ -2,9 +2,15 @@ local code = {
 	{ "numToStr/Comment.nvim", config = true },
 	{
 		"ggandor/leap.nvim",
-		config = function()
-			require("leap").add_default_mappings(true)
-		end,
+		keys = {
+			{
+				"s",
+				function()
+					require("leap").leap({ target_windows = { vim.fn.win_getid() } })
+				end,
+				{ desc = "leap" },
+			},
+		},
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -46,7 +52,7 @@ local code = {
 	{
 		"folke/trouble.nvim",
 		config = true,
-    lazy = true,
+		lazy = true,
 		keys = {
 			{ "<leader>t", "<Cmd>TroubleToggle<CR>", { desc = "trouble" } },
 		},
