@@ -40,6 +40,7 @@ for_window [app_id="zoom"] floating enable
 for_window [class="zoom"] floating enable
 for_window [app_id="pavucontrol"] floating enable
 for_window [class="Ferdium"] floating enable, move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
+for_window [class="rambox"] floating enable, move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
 # Font
 font Cantarell 0
@@ -95,7 +96,7 @@ mode "apps" {
   bindsym b exec "$term nvim ~/.config/favs.txt"; mode "default"
   bindsym u unmark; mode "default"
 # Change Wallpaper
-  bindsym w exec "swaybg -m $(find ~/.config/wallpapers/ -type f | shuf -n 1) -m fill"
+  bindsym w output * bg $(find ~/.config/wallpapers/ -type f | shuf -n 1) fill
 # Screenshot
   bindsym p exec grim -g "$(slurp)" - | swappy -f -; mode "default"
   bindsym Shift+p exec import -frame -window "$(xdo id)" ~/Pictures/screenshot_$(date +%s).png; mode "default"
@@ -172,7 +173,7 @@ bindsym $mod+s mode "pwd"
 # Start a terminal
 bindsym $mod+Return exec $term
 # Ferdium ScratchPad
-bindsym $mod+u exec 'swaymsg [class="Rambox"] scratchpad show || rambox'
+bindsym $mod+u exec 'swaymsg [class="rambox"] scratchpad show || rambox'
 bindsym $mod+n exec 'swaymsg [class="Ferdium"] scratchpad show || ferdium'
 # Terminal ScratchPad
 bindsym $mod+i exec 'swaymsg [app_id="termpad"] scratchpad show || $term --class termpad'
