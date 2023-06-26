@@ -8,3 +8,4 @@ fish_variables
 vifminfo.json
 gtk/.config/gtk-3.0/bookmarks
 vim/.config/nvim/lazy-lock.json
+tmux/.config/tmux/plugins/
