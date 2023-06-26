@@ -1,0 +1,20 @@
+xkb_keymap {
+  xkb_keycodes  { include "evdev+aliases(qwerty)" };
+  xkb_types     { include "complete"      };
+  xkb_compat    { include "complete"      };
+  xkb_symbols   {
+    include "pc+br(thinkpad)+inet(evdev)"
+    key <LSGT> { [ Control_L ] };
+    key <LCTL> { [ backslash, bar ] };
+    key <AB03> { [ c, C, ccedilla, Ccedilla ]};
+    key <AC10> { [ Control_R, ccedilla ] };
+    key <CAPS> { [ Escape ] };
+    key <ESC>  { [ apostrophe, quotedbl, notsign, notsign ] };
+    key <AC06>	{ [ h, H, Left,  Hstroke   ] };
+    key <AC07>	{ [ j, J, Down,  dead_horn ] };
+    key <AC08>	{ [ k, K, Up,    ampersand ] };
+    key <AC09>	{ [ l, L, Right, Lstroke   ] };
+  };
+  xkb_geometry  { include "pc(pc105)"     };
+};
+

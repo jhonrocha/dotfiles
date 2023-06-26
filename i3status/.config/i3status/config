@@ -67,6 +67,6 @@ tztime eet {
 }
 
 time {
-  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'>🇧🇷%b %d, %H:%M</span><span foreground='#3b8eea'></span>"
+  format = "<span foreground='#3b8eea' background='#d670d6'></span><span background='#3b8eea' foreground='#000000' weight='bold'>🇧🇷%b %d, %H:%M</span><span foreground='#3b8eea' background='#d670d6'></span><span foreground='#d670d6'></span>"
   separator_block_width = 1 
 }

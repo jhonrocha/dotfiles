@@ -6,8 +6,3 @@ sudo pacman --noconfirm --needed -S \
     swappy mako polkit-gnome \
     gtk3 gtk4 xdg-desktop-portal-wlr \
     qt5-wayland qt6-wayland
-
-#### STOW THE PACKAGES
-cd /data/dotfiles
-stow sway -t ~/
-stow i3-status -t ~/

@@ -38,6 +38,10 @@ shopt -s checkwinsize
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
 # Check for cargo
 [ -f ~/.cargo/env ] && . ~/.cargo/env
+# ASDF
+[ -f /opt/asdf-vm/asdf.sh ] && . /opt/asdf-vm/asdf.sh
+# AZ
+[ -f /opt/azure-cli/az.completion ] && . /opt/azure-cli/az.completion
 
 eval "$(starship init bash)"
 

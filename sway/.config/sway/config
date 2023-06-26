@@ -10,7 +10,7 @@ set $right l
 # Your preferred terminal emulator
 set $term kitty
 # Your preferred application launcher
-set $menu wofi --show drun
+set $menu rofi -show drun
 # GAPS
 set $gIn 8
 set $gOut 0
@@ -29,7 +29,6 @@ focus_on_window_activation focus
 default_border pixel 1
 default_floating_border pixel 1
 smart_borders on
-titlebar_padding 2 2
 # class                 border      backgr.     text    indicator child_border
 client.focused          #c678dd     #c678dd     $fg     $id       $br
 client.unfocused        #000000     #000000     $fg     $id       #000000
@@ -52,7 +51,7 @@ gaps inner $gIn
 # Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg $(find ~/.config/wallpapers -type f | shuf -n 1) fill
+output * bg $(find ~/.config/wallpapers/ -type f | shuf -n 1) fill
 # output HDMI-A-2 pos 0 -1440
 # output eDP-1 pos 0 0
 # output DP-1 res 1400 1050 pos 1920 0
@@ -61,7 +60,7 @@ output * bg $(find ~/.config/wallpapers -type f | shuf -n 1) fill
 # Input configuration
 #
 input type:keyboard {
-  xkb_layout "br-jh"
+  xkb_file "~/.config/xkb/xkbmap"
   xkb_options "caps:swapescape"
 }
 
@@ -96,7 +95,7 @@ mode "apps" {
   bindsym b exec "$term nvim ~/.config/favs.txt"; mode "default"
   bindsym u unmark; mode "default"
 # Change Wallpaper
-  bindsym w exec "swaybg -m $(find ~/.config/wallpapers -type f | shuf -n 1) -m fill"
+  bindsym w exec "swaybg -m $(find ~/.config/wallpapers/ -type f | shuf -n 1) -m fill"
 # Screenshot
   bindsym p exec grim -g "$(slurp)" - | swappy -f -; mode "default"
   bindsym Shift+p exec import -frame -window "$(xdo id)" ~/Pictures/screenshot_$(date +%s).png; mode "default"
@@ -184,7 +183,7 @@ bindsym $mod+q kill
 
 # Start your launcher
 bindsym $mod+d exec $menu
-bindsym $mod+r exec wofi --show run
+bindsym $mod+r exec rofi -show run
 
 # Reload the configuration file
 bindsym $mod+z reload
@@ -318,7 +317,8 @@ bar {
 include /etc/sway/config.d/*
 
 # Initializing
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+# exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec dbus-update-activation-environment --all
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec mako
 

@@ -22,28 +22,21 @@ init-i3 () {
 }
 
 init-sway () {
-  # export LIBSEAT_BACKEND=logind
-  # export WLR_NO_HARDWARE_CURSORS=1
-  # export QT_AUTO_SCREEN_SCALE_FACTOR=1
-  # export QT_QPA_PLATFORM=wayland
-  # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-  # export GDK_BACKEND=wayland
-  # export GBM_BACKEND=nvidia-drm
-  # export __GLX_VENDOR_LIBRARY_NAME=nvidia
   export WM=sway
-  export MOZ_ENABLE_WAYLAND=1
-  export WLR_RENDERER=vulkan
-  export WLR_NO_HARDWARE_CURSORS=1 
-  export XWAYLAND_NO_GLAMOR=1
-  export XDG_CURRENT_DESKTOP=sway
-  exec sway --unsupported-gpu >> ~/.cache/sway.log 2>&1
+  # export MOZ_ENABLE_WAYLAND=1
+  # export WLR_RENDERER=vulkan
+  # export WLR_NO_HARDWARE_CURSORS=1 
+  # export XWAYLAND_NO_GLAMOR=1
+  # export XDG_CURRENT_DESKTOP=sway
+  exec sway >> ~/.cache/sway.log 2>&1
 }
 
+echo ZSHHH
 machine=$(uname -n)
 if [[ ! $DISPLAY && (($XDG_VTNR -eq 1) || ($XDG_VTNR -eq 6)) ]]; then
-  if [ $machine = "tiamat" ]; then
-    init-i3
-    # init-sway
+  if [ $machine = "tiamarch" ]; then
+    # init-i3
+    init-sway
   elif [ $machine = "drogon" ]; then
     # init-sway
     init-i3
