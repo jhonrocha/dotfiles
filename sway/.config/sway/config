@@ -98,7 +98,7 @@ mode "apps" {
 # Change Wallpaper
   bindsym w output * bg $(find ~/.config/wallpapers/ -type f | shuf -n 1) fill
 # Screenshot
-  bindsym p exec grim -g "$(slurp)" - | swappy -f -; mode "default"
+  bindsym p exec flameshot gui; mode "default"
   bindsym Shift+p exec import -frame -window "$(xdo id)" ~/Pictures/screenshot_$(date +%s).png; mode "default"
 # Return to default mode
   bindsym Return mode "default"
@@ -318,7 +318,12 @@ bar {
 include /etc/sway/config.d/*
 
 # Initializing
-exec dbus-update-activation-environment --all
+# exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+# exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
+# exec dbus-update-activation-environment --all
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec mako
 
