@@ -1,4 +1,4 @@
-# Load Profile
+# vim:ft=bash
 [ -f ~/.profile ] && . ~/.profile
 [ -f ~/.config/.prvenvs ] && . ~/.config/.prvenvs
 
@@ -22,24 +22,28 @@ init-i3 () {
 }
 
 init-sway () {
-  export WM=sway
+  eval $(gnome-keyring-daemon --start --components="pkcs11,secrets,ssh")
+  export SSH_AUTH_SOCK
   # export MOZ_ENABLE_WAYLAND=1
   # export WLR_RENDERER=vulkan
   # export WLR_NO_HARDWARE_CURSORS=1 
   # export XWAYLAND_NO_GLAMOR=1
-  # export XDG_CURRENT_DESKTOP=sway
+  export SDL_VIDEODRIVER=wayland
+  export _JAVA_AWT_WM_NONREPARENTING=1
+  export QT_QPA_PLATFORM=wayland
+  export XDG_CURRENT_DESKTOP=sway
+  export XDG_SESSION_DESKTOP=sway
   exec sway >> ~/.cache/sway.log 2>&1
 }
 
-echo ZSHHH
 machine=$(uname -n)
 if [[ ! $DISPLAY && (($XDG_VTNR -eq 1) || ($XDG_VTNR -eq 6)) ]]; then
   if [ $machine = "tiamarch" ]; then
     # init-i3
     init-sway
   elif [ $machine = "drogon" ]; then
-    # init-sway
-    init-i3
+    init-sway
+    # init-i3
   else
     init-i3
   fi

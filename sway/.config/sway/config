@@ -173,10 +173,10 @@ bindsym $mod+s mode "pwd"
 # Start a terminal
 bindsym $mod+Return exec $term
 # Ferdium ScratchPad
-bindsym $mod+u exec 'swaymsg [class="rambox"] scratchpad show || rambox'
-bindsym $mod+n exec 'swaymsg [class="Ferdium"] scratchpad show || ferdium'
+bindsym $mod+u exec 'swaymsg "[class=rambox]" scratchpad show || rambox'
+bindsym $mod+n exec 'swaymsg "[class=Ferdium]" scratchpad show || ferdium'
 # Terminal ScratchPad
-bindsym $mod+i exec 'swaymsg [app_id="termpad"] scratchpad show || $term --class termpad'
+bindsym $mod+i exec 'swaymsg "[app_id=termpad]" scratchpad show || $term --class termpad'
 
 # Kill focused window
 bindsym $mod+F4 kill
