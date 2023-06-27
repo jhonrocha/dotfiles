@@ -300,8 +300,9 @@ bindsym $mod+Control+0 exec "wm-scratch mark0"
 bar {
   position top
   font pango:Iosevka Nerd Font 14
+  swaybar_command waybar
 # status_command while ~/.config/sway/status.sh; do sleep 1; done
-  status_command i3status
+  # status_command i3status
   pango_markup enabled
   status_padding 0
   separator_symbol ""
