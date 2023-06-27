@@ -1,7 +1,8 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-family: Iosevka Nerd Font, FontAwesome, Roboto, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 window#waybar {
@@ -280,7 +281,7 @@ label:focus {
 }
 
 #scratchpad {
-  background: rgba(0, 0, 0, 0.2);
+  background-color: #24292e;
 }
 
 #scratchpad.empty {
