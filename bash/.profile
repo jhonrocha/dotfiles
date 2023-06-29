@@ -1,18 +1,18 @@
+# XDG Standard
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local"
+export XDG_STATE_HOME="$HOME/.local/state"
+
 # PATH
-PATH="$HOME/go/bin:$PATH"
 PATH="$HOME/.config/dotbin:$PATH"
-PATH="$HOME/.config/prvbin:$PATH"
-PATH="$HOME/.config/npm-global/bin:$PATH"
-PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
-PATH="/usr/local/opt/node@8/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/node@8/lib"
-export CPPFLAGS="-I/usr/local/opt/node@8/include"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+PATH="$XDG_DATA_HOME/venv/bin:$PATH"
+
+
+# Applications
 export EDITOR="nvim"
 export FILE=ranger
-
 export BROWSER=brave
 export BROWSER_NAME=brave
 export SXHKD_SHELL=/bin/sh
@@ -29,20 +29,16 @@ export FZF_DEFAULT_OPTS="--layout=reverse
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export BAT_THEME="gruvbox-dark"
 
-# XDG Standard
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local"
-export XDG_STATE_HOME="$HOME/.local/state"
-
 export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
 export ASDF_DATA_DIR="$XDG_CONFIG_HOME/.asdf"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship.toml
 export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
 export CARGO_HOME="$XDG_CONFIG_HOME/.cargo"
+PATH="$CARGO_HOME/bin:$PATH"
 export GNUPGHOME="$XDG_CONFIG_HOME/.gnupg"
 export MOZILLA_CONFIG="$XDG_CONFIG_HOME/.mozilla"
 export GOPATH="$XDG_DATA_HOME"/go
+PATH="$GOPATH/bin:$PATH"
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export HISTFILE="$XDG_STATE_HOME"/bash/history
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
