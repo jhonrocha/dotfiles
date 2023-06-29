@@ -1,10 +1,15 @@
+set viminfo+=~/.cache/vim/viminfo
+set backupdir=$HOME/.cache/vim/backup | call mkdir(&backupdir, 'p', 0700)
+set directory=$HOME/.cache/vim/swap   | call mkdir(&directory, 'p', 0700)
+set viewdir=$HOME/.cache/vim/view     | call mkdir(&viewdir, 'p', 0700)
+set undodir=$HOME/.cache/vim/undo     | call mkdir(&undodir, 'p', 0700)
 "# Plug For Managing Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('nvim')
   let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
   let g:vim_bootstrap_editor = "nvim"				" nvim or vim
 else
-  let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+  let vimplug_exists=expand('~/.config/vim/autoload/plug.vim')
   let g:vim_bootstrap_editor = "vim"				" nvim or vim
 endif
 
@@ -23,7 +28,7 @@ endif
 
 "# Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#begin(expand('~/.vim/plugged'))
+call plug#begin(expand('~/.config/.vim/plugged'))
 " NERDTree
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -51,7 +56,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf', { 'dir': '~/.config/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
 endif
 let g:make = 'gmake'

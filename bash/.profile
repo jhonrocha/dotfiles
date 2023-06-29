@@ -27,8 +27,31 @@ export FZF_DEFAULT_OPTS="--layout=reverse
 --bind 'ctrl-alt-y:execute-silent(xclip -selection clipboard {})'
 --bind ctrl-a:toggle-all,ctrl-u:preview-up,ctrl-d:preview-down,ctrl-s:toggle-preview"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
-export XDG_CONFIG_HOME="$HOME/.config"
 export BAT_THEME="gruvbox-dark"
+
+# XDG Standard
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
+export ASDF_DATA_DIR="$XDG_CONFIG_HOME/.asdf"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship.toml
+export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
+export CARGO_HOME="$XDG_CONFIG_HOME/.cargo"
+export GNUPGHOME="$XDG_CONFIG_HOME/.gnupg"
+export MOZILLA_CONFIG="$XDG_CONFIG_HOME/.mozilla"
+export GOPATH="$XDG_DATA_HOME"/go
+export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
+export HISTFILE="$XDG_STATE_HOME"/bash/history
+export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
+export PYTHONUSERBASE=$XDG_DATA_HOME/python
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 ## Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
