@@ -14,7 +14,7 @@ border-size=2
 border-radius=4
 
 ignore-timeout=0
-default-timeout=5000
+default-timeout=1000
 
 icons=1
 icon-path=/usr/share/icons/Arc:/usr/share/icons/Adwaita
