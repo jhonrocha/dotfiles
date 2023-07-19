@@ -14,8 +14,10 @@ xkb_keymap {
     key <AC07>	{ [ j, J, Down,  dead_horn ] };
     key <AC08>	{ [ k, K, Up,    ampersand ] };
     key <AC09>	{ [ l, L, Right, Lstroke   ] };
-    key <KPDV>	{[ question, slash ]};
+    key <KPDV>	{ [ slash ] };
+    key <KPSU> { [ question ] };
     key <KPMU> { [ ccedilla	] };
+    key <KP1>  { [ j ] };
   };
   xkb_geometry  { include "pc(pc105)"     };
 };

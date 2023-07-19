@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $WM == "sway" ]]; then
+if [[ $XDG_CURRENT_DESKTOP == "sway" ]]; then
   # Sway
   if [[ $(swaymsg -t get_marks) == *"$1"* ]]; then
     swaymsg [con_mark="$1"] scratchpad show 
