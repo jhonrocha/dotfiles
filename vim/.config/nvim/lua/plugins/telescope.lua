@@ -5,24 +5,23 @@ return {
 		config = function()
 			local actions = require("telescope.actions")
 			local action_layout = require("telescope.actions.layout")
+			local telescopeConfig = require("telescope.config")
+			-- Clone the default Telescope configuration
+			local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+			-- I want to search in hidden/dot files.
+			table.insert(vimgrep_arguments, "--hidden")
+			-- I don't want to search in the `.git` directory.
+			table.insert(vimgrep_arguments, "--glob")
+			table.insert(vimgrep_arguments, "!**/.git/*")
 			require("telescope").setup({
 				defaults = {
 					file_ignore_patterns = {
 						"node_modules",
 						"venv",
 						".git",
-            "dist"
+						"dist",
 					},
-					vimgrep_arguments = {
-						"rg",
-						"--hidden",
-						"--color=never",
-						"--no-heading",
-						"--with-filename",
-						"--line-number",
-						"--column",
-						"--smart-case",
-					},
+					vimgrep_arguments = vimgrep_arguments,
 					border = true,
 					borderchars = {
 						prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
@@ -62,17 +61,18 @@ return {
 						sort_lastused = true,
 						mappings = { i = { ["<c-d>"] = "delete_buffer" } },
 						no_ignore = true,
-            previewer = false
+						previewer = false,
 					},
 					find_files = {
 						hidden = true,
 						no_ignore = true,
-            previewer = false
+						previewer = false,
+						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 					},
 					live_grep = {
 						hidden = true,
 						no_ignore = true,
-            previewer = false
+						previewer = false,
 					},
 				},
 			})

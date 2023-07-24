@@ -29,6 +29,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export BAT_THEME="gruvbox-dark"
 
+# XDGG
 export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
 export ASDF_DATA_DIR="$XDG_CONFIG_HOME/.asdf"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship.toml
@@ -46,6 +47,10 @@ export PYTHONUSERBASE=$XDG_DATA_HOME/python
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
+export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
+export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
 
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
