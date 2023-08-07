@@ -157,15 +157,7 @@ mode "resize" {
 }
 bindsym $mod+x mode "resize"
 
-
-mode "pwd" {
-  bindsym s exec pss; mode "default"
-    bindsym g exec "pss g"; mode "default"
-# Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+s mode "pwd"
+bindsym $mod+s sticky toggle
 
 # Basics:
 # Start a terminal

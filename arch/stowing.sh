@@ -1,7 +1,7 @@
 #!/bin/bash -v
 
 rm ~/.bash*
-cd /data/dotfiles
+cd /data/dotfiles > /dev/null 2>&1 || cd ~/dotfiles
 stow editor -t ~/
 stow fd -t ~/
 stow git-config -t ~/

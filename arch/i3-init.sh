@@ -7,7 +7,7 @@ sudo pacman --noconfirm --needed -S \
     xterm xclip xdo i3 picom
 
 #### STOW THE PACKAGES
-cd /data/dotfiles
+cd /data/dotfiles > /dev/null 2>&1 || cd ~/dotfiles
 stow dunst -t ~/
 stow picom -t ~/
 stow x -t ~/

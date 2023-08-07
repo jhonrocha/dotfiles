@@ -104,10 +104,10 @@ vim.keymap.set("n", "<leader>fk", "<Cmd>bd<CR>", { desc = "file kill" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })
-vim.keymap.set("n", "]k", function()
+vim.keymap.set("n", "<leader>n", function()
 	vim.diagnostic.goto_prev({ float = true })
 end, { desc = "prev diagnostic" })
-vim.keymap.set("n", "]j", function()
+vim.keymap.set("n", "<leader>m", function()
 	vim.diagnostic.goto_next({ float = true })
 end, { desc = "next diagnostic" })
 -- vim.keymap.set("n", "<leader>ci", vim.diagnostic.setloclist)
