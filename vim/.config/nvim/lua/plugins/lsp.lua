@@ -34,6 +34,11 @@ local lsp = {
 					opts.on_attach = function(client)
 						client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
 					end
+          opts.settings = {
+            implicitProjectConfiguration = {
+              checkJs = true
+            },
+          }
 				elseif server_name == "gopls" then
 					opts.init_options = { buildFlags = { "-tags=integration" } }
 				elseif server_name == "clangd" then
