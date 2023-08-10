@@ -10,5 +10,5 @@ indent_style = space
 indent_size = 2
 
 # El files
-[*.{el,css,rs}]
+[*.{el,css,rs,py}]
 indent_size = 4
