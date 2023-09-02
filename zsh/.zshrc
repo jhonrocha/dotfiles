@@ -128,3 +128,6 @@ GCP_INC="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli/
 GCP_PATH="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli/path.zsh.inc"
 [ -f ${GCP_INC} ] && . ${GCP_INC}
 [ -f ${GCP_PATH} ] && . ${GCP_PATH}
+
+# check venv
+[ -f ./env/bin/activate ] && source ./env/bin/activate

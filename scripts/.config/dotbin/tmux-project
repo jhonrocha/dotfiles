@@ -4,9 +4,10 @@ launcher_cmd() {
   fzf-tmux -xC -yC --multi -w 90% -h 50% --exit-0 --cycle --reverse --bind='ctrl-r:toggle-all' --bind='ctrl-s:toggle-sort' --no-preview --header="Launch project"
 }
 
+cmd='zsh -c nvim'
 # Choose Project
 awk -F "|" '{ print $1 $2 }' ~/.config/projects.txt | launcher_cmd | { read -r path name
   if [[ -n $path ]]; then
-    ((tmux switch-client -t code:$name) || (tmux new-window -c $path -t code: -n $name 'nvim' && tmux switch-client -t code:$name) || (tmux new-session -c $path -d -s code -n $name 'nvim' && tmux switch-client -t code:$name))
+    ((tmux switch-client -t code:$name) || (tmux new-window -c $path -t code: -n $name "$cmd" && tmux switch-client -t code:$name) || (tmux new-session -c $path -d -s code -n $name "$cmd" && tmux switch-client -t code:$name))
   fi
-}
+} || $SHELL
