@@ -3,7 +3,7 @@
 ### Get the repo
 [ ! -d "~/dotfiles" ] && git clone https://github.com/jhonrocha/dotfiles.git ~/dotfiles
 ### Go to the repo
-cd /data/dotfiles > /dev/null 2>&1 || cd ~/dotfiles
+cd ~/dotfiles
 ##### INSTALL PKGS
 sudo pacman --noconfirm --needed -S - < pkg-all.txt
 
@@ -16,7 +16,7 @@ then
 fi
 
 ### Install from AUR
-cd /data/dotfiles/arch > /dev/null 2>&1 || cd ~/dotfiles/arch
+cd ~/dotfiles/arch
 yay -S --answerclean None --answerdiff None --answeredit None --noprovides --norebuild --needed - < pkg-aur.txt
 
 #### STOW THE PACKAGES

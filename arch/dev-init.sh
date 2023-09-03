@@ -2,8 +2,7 @@
 
 ##### INSTALL PKGS
 sudo pacman --noconfirm --needed -S \
-    docker docker-compose nodejs npm \
-    redis mariadb mysql-workbench \
+    docker docker-compose redis \
     code openconnect gnome-keyring \
     seahorse aws-cli lua-language-server \
     efm-langserver luarocks 
