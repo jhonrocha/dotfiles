@@ -95,6 +95,7 @@ mode "apps" {
   bindsym u unmark; mode "default"
 # Change Wallpaper
   bindsym w output * bg $(find ~/.config/wallpapers/ -type f | shuf -n 1) fill
+  bindsym Shift+w output * bg $(find ~/.config/anime/ -type f | shuf -n 1) fill
 # Screenshot
   bindsym p exec flameshot gui; mode "default"
   bindsym Shift+p exec import -frame -window "$(xdo id)" ~/Pictures/screenshot_$(date +%s).png; mode "default"
