@@ -15,12 +15,6 @@ return {
 			table.insert(vimgrep_arguments, "!**/.git/*")
 			require("telescope").setup({
 				defaults = {
-					file_ignore_patterns = {
-						"node_modules",
-						"venv",
-						".git",
-						"dist",
-					},
 					vimgrep_arguments = vimgrep_arguments,
 					border = true,
 					borderchars = {
@@ -65,7 +59,6 @@ return {
 					},
 					find_files = {
 						hidden = true,
-						no_ignore = true,
 						previewer = false,
 						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 					},

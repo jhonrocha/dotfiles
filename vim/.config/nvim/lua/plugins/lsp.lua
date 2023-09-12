@@ -129,14 +129,7 @@ local lsp = {
 					null_ls.builtins.diagnostics.ruff,
 					null_ls.builtins.diagnostics.staticcheck,
 					null_ls.builtins.formatting.shfmt,
-					null_ls.builtins.formatting.rustfmt,
-					null_ls.builtins.diagnostics.sqlfluff.with({
-						extra_args = { "--dialect", "postgres" }, -- change to your dialect
-					}),
-					null_ls.builtins.formatting.sqlfluff.with({
-						extra_args = { "--dialect", "postgres" }, -- change to your dialect
-						timeout = -1,
-					}),
+					null_ls.builtins.formatting.rustfmt
 				},
 			})
 			local _border = "single"

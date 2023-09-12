@@ -131,3 +131,6 @@ GCP_PATH="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli
 
 # check venv
 [ -f ./env/bin/activate ] && source ./env/bin/activate
+
+# bun completions
+[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"

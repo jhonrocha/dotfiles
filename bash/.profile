@@ -8,7 +8,9 @@ export XDG_STATE_HOME="$HOME/.local/state"
 PATH="$HOME/.config/dotbin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$XDG_DATA_HOME/venv/bin:$PATH"
-
+# bun
+export BUN_INSTALL="$XDG_CONFIG_HOME/bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Applications
 export EDITOR="nvim"
@@ -98,7 +100,7 @@ alias ec="emacsclient -n"
 # pwd
 alias p=pwd
 # tmux aliases
-alias t='tmux new-session -A -s code "tmux-project 2>/dev/null; bash"'
+alias t='tmux new-session -A -s code "tmux-project 2>/dev/null; zsh"'
 alias ta='tmux attach'
 alias tls='tmux ls'
 alias t1='tmux new-session -A -s 1'
