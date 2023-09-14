@@ -16,6 +16,7 @@ local ui = {
 		name = "catppuccin",
 		config = function()
 			require("catppuccin").setup({
+        transparent_background = true,
 				integrations = {
 					leap = true,
 					neotree = true,
