@@ -30,6 +30,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse
 --bind ctrl-a:toggle-all,ctrl-u:preview-up,ctrl-d:preview-down,ctrl-s:toggle-preview"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export BAT_THEME="gruvbox-dark"
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 # XDGG
 export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
@@ -47,6 +48,7 @@ export HISTFILE="$XDG_STATE_HOME"/bash/history
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export PYTHONUSERBASE=$XDG_DATA_HOME/python
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+PATH="~/.config/npm-global/bin:$PATH"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
