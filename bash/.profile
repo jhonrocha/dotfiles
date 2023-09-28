@@ -9,8 +9,8 @@ PATH="$HOME/.config/dotbin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$XDG_DATA_HOME/venv/bin:$PATH"
 # bun
-export BUN_INSTALL="$XDG_CONFIG_HOME/bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+BUN_INSTALL="$XDG_CONFIG_HOME/bun"
+PATH="$BUN_INSTALL/bin:$PATH"
 
 # Applications
 export EDITOR="nvim"
@@ -48,7 +48,6 @@ export HISTFILE="$XDG_STATE_HOME"/bash/history
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export PYTHONUSERBASE=$XDG_DATA_HOME/python
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-PATH="~/.config/npm-global/bin:$PATH"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
@@ -132,6 +131,7 @@ alias kpa="kubectl --context prod-admin"
 
 ##### BASHSMS #####
 # Print each PATH entry on a separate line
+export PATH="$XDG_CONFIG_HOME/npm-global/bin:$PATH"
 alias path='echo -e ${PATH//:/\\n}'
 
 [ -f ~/.config/.prvenvs ] && . ~/.config/.prvenvs
