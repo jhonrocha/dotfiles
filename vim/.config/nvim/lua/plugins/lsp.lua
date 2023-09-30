@@ -122,18 +122,18 @@ local lsp = {
               })
             end,
           }),
-          null_ls.builtins.formatting.eslint.with({
-            condition = function(utils)
-              return utils.root_has_file({
-                ".eslintrc",
-                ".eslintrc.js",
-                ".eslintrc.cjs",
-                ".eslintrc.yaml",
-                ".eslintrc.yml",
-                ".eslintrc.json",
-              })
-            end,
-          }),
+          -- null_ls.builtins.formatting.eslint.with({
+          --   condition = function(utils)
+          --     return utils.root_has_file({
+          --       ".eslintrc",
+          --       ".eslintrc.js",
+          --       ".eslintrc.cjs",
+          --       ".eslintrc.yaml",
+          --       ".eslintrc.yml",
+          --       ".eslintrc.json",
+          --     })
+          --   end,
+          -- }),
           null_ls.builtins.formatting.prettier.with({
             condition = function(utils)
               return utils.root_has_file({ ".prettierrc" })

@@ -14,7 +14,15 @@ local code = {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		opts = { char = "┊", space_char_blankline = " ", filetype_exclude = { "dashboard" } },
+		main = "ibl",
+		opts = {
+			char = "┊",
+			space_char_blankline = " ",
+			filetype_exclude = { "dashboard" },
+      scope = {
+        enabled = false
+      }
+		},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -48,13 +56,17 @@ local code = {
 	{
 		"L3MON4D3/LuaSnip", -- Snippets plugin
 		dependencies = "rafamadriz/friendly-snippets",
+    keys = {
+			{ "<C-J>", function() require("luasnip").jump(-1) end, mode="i",  desc = "jump" },
+			{ "<C-L>", function() require("luasnip").jump(1) end, mode="i",  desc = "jumpback" },
+    }
 	},
 	{
 		"folke/trouble.nvim",
 		config = true,
 		lazy = true,
 		keys = {
-			{ "<leader>t", "<Cmd>TroubleToggle<CR>", { desc = "trouble" } },
+			{ "<leader>t", "<Cmd>TroubleToggle<CR>", desc = "trouble" },
 		},
 	},
 	{
@@ -83,10 +95,7 @@ local code = {
 					["<C-d>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
-					["<TAB>"] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
-					}),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = {
 					{ name = "nvim_lsp" },
@@ -104,23 +113,6 @@ local code = {
 					end,
 				},
 			})
-
-			-- LuaSnip
-			vim.keymap.set({ "s", "i" }, "<Tab>", function()
-				if luasnip.expand_or_jumpable() then
-					luasnip.expand_or_jump()
-				else
-					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-				end
-			end)
-
-			vim.keymap.set({ "s", "i" }, "<S-Tab>", function()
-				if luasnip.jumpable(-1) then
-					luasnip.jump(-1)
-				else
-					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, false, true), "n", false)
-				end
-			end)
 		end,
 	},
 	{
