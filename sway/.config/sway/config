@@ -36,6 +36,7 @@ floating_modifier $mod normal
 # Window Rules
 for_window [app_id="zoom"] floating enable
 for_window [class="zoom"] floating enable
+for_window [class="Vial"] floating enable
 for_window [app_id="pavucontrol"] floating enable
 for_window [class="Ferdium"] floating enable, move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
 for_window [class="rambox"] floating enable, move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
@@ -98,7 +99,8 @@ mode "apps" {
   bindsym w output * bg $(find ~/.config/wallpapers/ -type f | shuf -n 1) fill
   bindsym Shift+w output * bg $(find ~/.config/anime/ -type f | shuf -n 1) fill
 # Screenshot
-  bindsym p exec flameshot gui; mode "default"
+  # bindsym p exec flameshot gui; mode "default"
+  bindsym p exec 'grim -g "$(slurp)" - | swappy -f -'; mode "default"
   bindsym Shift+p exec import -frame -window "$(xdo id)" ~/Pictures/screenshot_$(date +%s).png; mode "default"
 # Return to default mode
   bindsym Return mode "default"

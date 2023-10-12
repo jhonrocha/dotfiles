@@ -23,6 +23,7 @@ local lsp = {
       },
     },
     config = function()
+      require('lspconfig.ui.windows').default_options.border = 'single'
       require("mason-lspconfig").setup_handlers({
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
@@ -44,7 +45,7 @@ local lsp = {
           local opts = {}
           opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
           opts.on_attach = function(client)
-            client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+            client.server_capabilities.documentFormattingProvider = false
           end
           opts.settings = {
             implicitProjectConfiguration = {
