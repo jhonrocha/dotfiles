@@ -30,6 +30,13 @@ set clipboard+=unnamedplus
 map <leader>cf <Action>(ReformatCode)
 map <leader>fs <Action>(SaveAll)
 map <leader>fk <Action>(CloseEditor)
+map <leader><leader> <Action>(SearchEverywhere)
+map <leader>r <Action>(RunnerActions)
+""                      RunnerLayoutActions
+""                      RunTargetAction                                    <M-S-F10>
+""                      RunToCursor                                        <A-F9>
+""                      SafeDelete                                         <M-Del>
+""                      SaveAll
 
 "" Map <leader>d to start debug
 "map <leader>d <Action>(Debug)
