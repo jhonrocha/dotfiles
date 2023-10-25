@@ -2,7 +2,6 @@
 local lsp_installed = {
   "bashls",
   "gopls",
-  "pyright",
   "jsonls",
   "lua_ls",
   "tsserver",
@@ -150,6 +149,7 @@ local lsp = {
           null_ls.builtins.formatting.stylua,
           -- null_ls.builtins.diagnostics.pylint.with({ prefer_local = "venv/bin" }),
           null_ls.builtins.diagnostics.ruff,
+          null_ls.builtins.formatting.black,
           null_ls.builtins.diagnostics.staticcheck,
           null_ls.builtins.formatting.shfmt,
           null_ls.builtins.formatting.rustfmt,
