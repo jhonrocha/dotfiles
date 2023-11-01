@@ -24,6 +24,9 @@ vim.g.maplocalleader = " "
 ----------------------------------------
 require("lazy").setup("plugins", {
 	change_detection = { enabled = false },
+	ui = {
+		border = "single",
+	},
 })
 
 ----------------------------------------

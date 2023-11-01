@@ -110,8 +110,12 @@ local lsp = {
       })
     end,
   },
+  -- {
+  --   "windwp/nvim-ts-autotag",
+  --   config = true
+  -- },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     config = function()
       local null_ls = require("null-ls")
       null_ls.setup({
