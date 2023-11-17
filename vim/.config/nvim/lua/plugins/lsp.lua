@@ -121,7 +121,7 @@ local lsp = {
       null_ls.setup({
         debug = true,
         sources = {
-          null_ls.builtins.diagnostics.eslint.with({
+          null_ls.builtins.diagnostics.eslint_d.with({
             condition = function(utils)
               return utils.root_has_file({
                 ".eslintrc",
@@ -147,7 +147,7 @@ local lsp = {
           -- }),
           null_ls.builtins.formatting.prettier.with({
             condition = function(utils)
-              return utils.root_has_file({ ".prettierrc" })
+              return utils.root_has_file({ ".prettierrc", ".prettierrc.js" })
             end,
           }),
           null_ls.builtins.formatting.stylua,
