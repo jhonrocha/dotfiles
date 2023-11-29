@@ -136,6 +136,7 @@ local code = {
     end,
   },
   {
+    -- Folding!
     "kevinhwang91/nvim-ufo",
     lazy = true,
     dependencies = {

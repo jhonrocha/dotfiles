@@ -44,6 +44,7 @@ for_window {
   [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
   [class="GalaxyBudsClient"] floating enable
   [class="galaxybudsclient"] floating enable
+  [class="Spotify"] floating enable
 }
 # Font
 font Cantarell 0
@@ -120,14 +121,14 @@ mode "gaps" {
   bindsym k gaps vertical current minus 10
 # Inner
   bindsym u gaps inner current minus 5
-  bindsym Shift+u gaps inner current minus 10
   bindsym i gaps inner current plus  5
-  bindsym Shift+i gaps inner current plus  10
+  bindsym Shift+u gaps inner all minus 5
+  bindsym Shift+i gaps inner all plus  5
 # Outer
   bindsym o gaps outer current minus 5
-  bindsym Shift+o gaps outer current minus 10
   bindsym p gaps outer current plus  5
-  bindsym Shift+p gaps outer current plus  10
+  bindsym Shift+o gaps outer all minus 5
+  bindsym Shift+p gaps outer all plus  5
 # Setups
   bindsym equal gaps outer all set $gOut; gaps inner all set $gIn; mode "default"
   bindsym Shift+equal gaps outer current set $gOut; gaps inner current set $gIn; mode "default"

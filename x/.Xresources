@@ -32,7 +32,7 @@ URxvt*background: #282828
 URxvt*buffered: true
 URxvt*cursorBlink: true
 URxvt*underlineColor: yellow
-URxvt.font: xft:Iosevka Nerd Font:pixelsize=15:antialias=true:autohint=true
+URxvt.font: xft:Iosevka NF:pixelsize=15:antialias=true:autohint=true
 URxvt*depth: 32
 URxvt*borderless: 1
 URxvt*scrollBar: false
@@ -49,5 +49,5 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 URxvt.internalBorder:  0
 ! ST Font
-st.font: Iosevka Nerd Font:pixelsize=16:antialias=true:autohint=true
+st.font: Iosevka NF:pixelsize=16:antialias=true:autohint=true
 

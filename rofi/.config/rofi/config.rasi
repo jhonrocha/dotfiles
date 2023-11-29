@@ -1,6 +1,6 @@
 configuration {
   modi: "drun,window,run,ssh";
-  font: "Iosevka Nerd Font 16";
+  font: "Iosevka NF 16";
   show-icons: true;
   matching: "fuzzy";
   kb-remove-to-eol: "";

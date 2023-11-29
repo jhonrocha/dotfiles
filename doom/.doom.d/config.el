@@ -23,7 +23,7 @@
 ;;
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-(setq doom-font (font-spec :family "Iosevka" :size 24 :weight 'semi-light)
+(setq doom-font (font-spec :family "Iosevka NF" :size 24 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "sans" :size 25))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
