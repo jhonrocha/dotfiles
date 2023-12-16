@@ -56,7 +56,11 @@ local code = {
   },
   { "windwp/nvim-autopairs", config = true },
   {
-    "L3MON4D3/LuaSnip", -- Snippets plugin
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
     dependencies = "rafamadriz/friendly-snippets",
     keys = {
       {
@@ -86,6 +90,9 @@ local code = {
     },
   },
   {
+    "saadparwaiz1/cmp_luasnip",
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
@@ -94,11 +101,9 @@ local code = {
       "hrsh7th/cmp-nvim-lua",
       "saadparwaiz1/cmp_luasnip",
       "neovim/nvim-lspconfig",
-      "L3MON4D3/LuaSnip",
     },
     config = function()
       local luasnip = require("luasnip")
-      require("luasnip.loaders.from_vscode").lazy_load()
       -- nvim-cmp setup
       local cmp = require("cmp")
       cmp.setup({
@@ -107,9 +112,9 @@ local code = {
           documentation = cmp.config.window.bordered(),
         },
         snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
+        	expand = function(args)
+        		require("luasnip").lsp_expand(args.body)
+        	end,
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -119,11 +124,10 @@ local code = {
         }),
         sources = {
           { name = "nvim_lsp" },
-          { name = "luasnip" },
+          -- { name = "luasnip" },
           { name = "nvim_lua" },
           { name = "path" },
           { name = "buffer" },
-          { name = "neorg" },
         },
         experimental = { ghost_text = true },
         formatting = {
