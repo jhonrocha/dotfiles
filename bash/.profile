@@ -135,7 +135,6 @@ alias kpa="kubectl --context prod-admin"
 export PATH="$XDG_CONFIG_HOME/npm-global/bin:$PATH"
 alias path='echo -e ${PATH//:/\\n}'
 
-[ -f ~/.config/.prvenvs ] && . ~/.config/.prvenvs
 [ -x "$(command -v rustc)" ] && export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library;
 
 function notify() {
