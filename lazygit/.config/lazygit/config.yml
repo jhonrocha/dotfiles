@@ -1,0 +1,5 @@
+git:
+  commitPrefixes:
+    api2: # This is repository folder name
+      pattern: "^\\w+\\/(\\w+).*"
+      replace: '[$1] '

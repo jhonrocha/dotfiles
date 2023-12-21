@@ -53,12 +53,12 @@ history = ctrl+Escape
 context = ctrl+shift+period
 
 [urgency_low]
-timeout = 3
+timeout = 3000
 background = "#f9f9f9"
 foreground = "#373e4d"
 
 [urgency_normal]
-timeout = 6
+timeout = 6000
 background = "#f9f9f9"
 foreground = "#373e4d"
 

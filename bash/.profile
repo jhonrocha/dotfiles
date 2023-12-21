@@ -129,6 +129,9 @@ alias kt="kubectl --context test"
 alias kta="kubectl --context test-admin"
 alias kp="kubectl --context prod"
 alias kpa="kubectl --context prod-admin"
+alias nvm="echo"
+
+alias lg=lazygit
 
 ##### BASHSMS #####
 # Print each PATH entry on a separate line
