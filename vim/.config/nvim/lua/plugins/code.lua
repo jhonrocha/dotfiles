@@ -103,7 +103,6 @@ local code = {
       "neovim/nvim-lspconfig",
     },
     config = function()
-      local luasnip = require("luasnip")
       -- nvim-cmp setup
       local cmp = require("cmp")
       cmp.setup({
@@ -124,7 +123,7 @@ local code = {
         }),
         sources = {
           { name = "nvim_lsp" },
-          -- { name = "luasnip" },
+          { name = "luasnip" },
           { name = "nvim_lua" },
           { name = "path" },
           { name = "buffer" },

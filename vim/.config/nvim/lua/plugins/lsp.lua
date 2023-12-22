@@ -18,7 +18,7 @@ local lsp = {
 				dependencies = {
 					{ "williamboman/mason.nvim", opts = { ui = { border = "rounded" } } },
 				},
-				opts = { ensure_installed = lsp_installed, automatic_installation = true },
+				opts = { ensure_installed = lsp_installed },
 			},
 		},
 		config = function()
@@ -72,7 +72,9 @@ local lsp = {
 					require("lspconfig")["rust_analyzer"].setup(opts)
 				end,
 			})
-			require("lspconfig").tailwindcss.setup({})
+      local opts = {}
+      opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+			require("lspconfig").tailwindcss.setup(opts)
 		end,
 		keys = {
 			{ "<leader>cD", vim.lsp.buf.declaration, desc = "lsp declaration" },
