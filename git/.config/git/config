@@ -14,3 +14,7 @@
 
 [diff]
     colorMoved = default
+[init]
+	defaultBranch = main
+[user]
+	name = Jhon Rocha
