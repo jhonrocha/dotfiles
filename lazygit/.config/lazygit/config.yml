@@ -3,3 +3,6 @@ git:
     api2: # This is repository folder name
       pattern: "^\\w+\\/(\\w+).*"
       replace: '[$1] '
+    web: # This is repository folder name
+      pattern: "^\\w+\\/(\\w+).*"
+      replace: '[$1] '

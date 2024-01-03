@@ -117,9 +117,6 @@ alias v='vim'
 alias tre='tree -a -I ".git|node_modules"'
 # BRoot
 alias b='br -h'
-# NVM Init
-alias nvm-init=". /usr/share/nvm/init-nvm.sh"
-alias nvm="echo"
 # kubectl
 alias kd="kubectl --context dev"
 alias kda="kubectl --context dev-admin"
@@ -129,7 +126,6 @@ alias kt="kubectl --context test"
 alias kta="kubectl --context test-admin"
 alias kp="kubectl --context prod"
 alias kpa="kubectl --context prod-admin"
-alias nvm="echo"
 
 alias lg=lazygit
 

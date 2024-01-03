@@ -16,7 +16,7 @@ local ui = {
 		name = "catppuccin",
 		config = function()
 			require("catppuccin").setup({
-				transparent_background = true,
+				transparent_background = false,
 				integrations = {
 					leap = true,
 					nvimtree = true,
