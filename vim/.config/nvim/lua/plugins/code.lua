@@ -43,8 +43,8 @@ local code = {
           enable = true,
           keymaps = {
             init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
+            node_incremennal = "grn",
+            scope_incrementcl = "grc",
             node_decremental = "grm",
           },
         },
@@ -147,7 +147,7 @@ local code = {
       "nvim-treesitter/nvim-treesitter",
     },
     config = {
-      provider_selector = function(bufnr, filetype, buftype)
+      provider_selector = function()
         return { "treesitter", "indent" }
       end,
     },
