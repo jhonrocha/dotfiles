@@ -58,8 +58,8 @@ gaps inner $gIn
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $(find ~/.config/wallpapers/ -type f | shuf -n 1) fill
 # output HDMI-A-2 pos 0 -1440
-# output eDP-1 pos 0 0
-# output DP-1 res 1400 1050 pos 1920 0
+output DP-3 pos 0 0
+output eDP-1 pos 2560 0
 
 #
 # Input configuration
