@@ -3,6 +3,15 @@ git:
     api2: # This is repository folder name
       pattern: "^\\w+\\/(\\w+).*"
       replace: '[$1] '
-    web: # This is repository folder name
+    web:
+      pattern: "^\\w+\\/(\\w+).*"
+      replace: '[$1] '
+    method-integration-impls:
+      pattern: "^\\w+\\/(\\w+).*"
+      replace: '[$1] '
+    integs:
+      pattern: "^\\w+\\/(\\w+).*"
+      replace: '[$1] '
+    chromeext:
       pattern: "^\\w+\\/(\\w+).*"
       replace: '[$1] '
