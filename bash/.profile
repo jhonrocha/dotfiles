@@ -15,8 +15,8 @@ PATH="$BUN_INSTALL/bin:$PATH"
 # Applications
 export EDITOR="nvim"
 export FILE=ranger
-export BROWSER=brave
-export BROWSER_NAME=brave
+export BROWSER=google-chrome-stable
+export BROWSER_NAME=google-chrome
 export SXHKD_SHELL=/bin/sh
 
 # CONFIGS

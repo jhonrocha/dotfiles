@@ -9,7 +9,6 @@ xkb_keymap {
     key <AB03> { [ c, C, ccedilla, Ccedilla ]};
     key <AC10> { [ Control_R, ccedilla ] };
     key <CAPS> { [ Escape ] };
-    key <ESC>  { [ apostrophe, quotedbl, notsign, notsign ] };
     key <AC06>	{ [ h, H, Left,  Hstroke   ] };
     key <AC07>	{ [ j, J, Down,  dead_horn ] };
     key <AC08>	{ [ k, K, Up,    ampersand ] };
@@ -22,7 +21,7 @@ xkb_keymap {
     key <KPDV>	{ [ slash ] };
     key <KPSU> { [ question ] };
     key <KPMU> { [ ccedilla	] };
-    key <KP1>  { [ j ] };
+    key <KP1>  { [ apostrophe, quotedbl, notsign, notsign ] };
   };
   xkb_geometry  { include "pc(pc105)"     };
 };
