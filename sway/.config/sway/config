@@ -183,6 +183,9 @@ bindsym $mod+q kill
 bindsym $mod+d exec $menu
 bindsym $mod+r exec rofi -show run
 
+# Clean notifications
+bindsym $mod+0 exec makoctl dismiss -a
+
 # Reload the configuration file
 bindsym $mod+z reload
 bindsym $mod+Shift+z exit
@@ -227,7 +230,6 @@ bindsym $mod+6 workspace number 6
 bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
@@ -238,7 +240,6 @@ bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
 
 # Next/Prior
 bindsym $mod+o workspace prev_on_output
@@ -292,7 +293,6 @@ bindsym $mod+Control+6 exec "wm-scratch mark6"
 bindsym $mod+Control+7 exec "wm-scratch mark7"
 bindsym $mod+Control+8 exec "wm-scratch mark8"
 bindsym $mod+Control+9 exec "wm-scratch mark9"
-bindsym $mod+Control+0 exec "wm-scratch mark0"
 
 # Status bar
 bar {
