@@ -22,9 +22,9 @@ cd ~/dotfiles/
 ./stowing.sh
 
 #### Setup Defaults
-xdg-mime default brave-broswer.desktop  x-scheme-handler/http
-xdg-mime default brave-browser.desktop x-scheme-handler/https
-xdg-settings set default-web-browser brave-browser.desktop
+xdg-mime default google-chrome.desktop  x-scheme-handler/http
+xdg-mime default google-chrome.desktop x-scheme-handler/https
+BROWSER= && xdg-settings set default-web-browser google-chrome.desktop
 xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 #### GIT Store

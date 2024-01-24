@@ -9,9 +9,9 @@ git:
     method-integration-impls:
       pattern: "^\\w+\\/(\\w+).*"
       replace: '[$1] '
-    integs:
+    method-integration-api:
       pattern: "^\\w+\\/(\\w+).*"
       replace: '[$1] '
-    chromeext:
+    method-chrome-extension-server:
       pattern: "^\\w+\\/(\\w+).*"
       replace: '[$1] '
