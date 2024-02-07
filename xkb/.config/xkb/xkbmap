@@ -7,7 +7,7 @@ xkb_keymap {
     key <LSGT> { [ Control_L ] };
     key <LCTL> { [ backslash, bar ] };
     key <AB03> { [ c, C, ccedilla, Ccedilla ]};
-    key <AC10> { [ Control_R, ccedilla ] };
+    key <AC10> { [ Control_R, Control_R, Control_R, Control_R  ] };
     key <CAPS> { [ Escape ] };
     key <AC06>	{ [ h, H, Left,  Hstroke   ] };
     key <AC07>	{ [ j, J, Down,  dead_horn ] };

@@ -134,3 +134,4 @@ GCP_PATH="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli
 
 # bun completions
 [ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
+source /usr/share/nvm/init-nvm.sh

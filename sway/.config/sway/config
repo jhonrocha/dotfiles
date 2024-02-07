@@ -8,7 +8,7 @@ set $right l
 # Your preferred terminal emulator
 set $term kitty
 # Your preferred application launcher
-set $menu rofi -show drun
+set $menu wofi --show drun -a
 # GAPS
 set $gIn 8
 set $gOut 0
@@ -44,7 +44,7 @@ for_window {
   [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
   [class="GalaxyBudsClient"] floating enable
   [class="galaxybudsclient"] floating enable
-  [class="Spotify"] floating enable
+  [app_id="Spotify"] floating enable
 }
 # Font
 font Cantarell 0
@@ -59,7 +59,7 @@ gaps inner $gIn
 output * bg $(find ~/.config/wallpapers/ -type f | shuf -n 1) fill
 # output HDMI-A-2 pos 0 -1440
 # output DP-3 pos 0 0
-# output eDP-1 pos 2560 0
+output DP-1 scale 2
 
 #
 # Input configuration
@@ -181,7 +181,7 @@ bindsym $mod+q kill
 
 # Start your launcher
 bindsym $mod+d exec $menu
-bindsym $mod+r exec rofi -show run
+bindsym $mod+r exec wofi --show run
 
 # Clean notifications
 bindsym $mod+0 exec makoctl dismiss -a
