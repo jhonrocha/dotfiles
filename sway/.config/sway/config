@@ -60,6 +60,7 @@ output * bg $(find ~/.config/wallpapers/ -type f | shuf -n 1) fill
 # output HDMI-A-2 pos 0 -1440
 # output DP-3 pos 0 0
 output DP-1 scale 2
+output DP-2 scale 2
 
 #
 # Input configuration
