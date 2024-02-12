@@ -1,4 +1,0 @@
-#!/bin/sh
-
-##### Keyboard Settings
-setxkbmap -layout br -variant thinkpad -option caps:escape

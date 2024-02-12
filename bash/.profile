@@ -129,6 +129,8 @@ alias kpa="kubectl --context prod-admin"
 
 alias lg=lazygit
 
+alias nvm="fnm"
+
 ##### BASHSMS #####
 # Print each PATH entry on a separate line
 export PATH="$XDG_CONFIG_HOME/npm-global/bin:$PATH"
@@ -140,3 +142,5 @@ function notify() {
   notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')"
   aplay -q -N ~/Music/notification.wav &
 }
+
+eval "$(fnm env --use-on-cd)"

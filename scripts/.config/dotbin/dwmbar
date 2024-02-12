@@ -1,5 +1,0 @@
-#!/bin/sh
-while true; do
-	xsetroot -name "$(dwmstatus)"
-	sleep 1m
-done
