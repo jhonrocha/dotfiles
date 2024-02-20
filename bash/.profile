@@ -143,4 +143,3 @@ function notify() {
   aplay -q -N ~/Music/notification.wav &
 }
 
-eval "$(fnm env --use-on-cd)"

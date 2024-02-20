@@ -1,5 +1,0 @@
-#!/bin/bash
-
-sudo umount /dev/sdc1
-sudo mkfs.ntfs -I /dev/sdc1
-
