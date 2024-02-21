@@ -6,8 +6,8 @@ init-i3 () {
   exec startx >> ~/.cache/xinit.log 2>&1
 }
 init-sway () {
-  eval $(gnome-keyring-daemon --start --components="pkcs11,secrets,ssh")
-  export SSH_AUTH_SOCK
+  # eval $(gnome-keyring-daemon --start --components="pkcs11,secrets,ssh")
+  # export SSH_AUTH_SOCK
   # export MOZ_ENABLE_WAYLAND=1
   # export WLR_RENDERER=vulkan
   # export WLR_NO_HARDWARE_CURSORS=1 

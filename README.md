@@ -4,9 +4,14 @@ My Customizations on Arch
 ## How to use it
 Use `stow` to manage these files.
 
-## Tips:
-mkdir /data
-sudo chown :users /data
-sudo chmod 2775 /data
-sudo setfacl -d -m g::rwx /data
-convert lotr.jpg -bordercolor "#0d1118" -border 20 kitty.png
+## Keyring:
+Update the `/etc/pam.d/login`: https://wiki.archlinux.org/title/GNOME/Keyring#Using_the_keyring:
+```
+auth optional pam_gnome_keyring.so
+session optional pam_gnome_keyring.so auto_start
+```
+
+Start gcr:
+```
+systemctl --user enable gcr-ssh-agent.service
+```
