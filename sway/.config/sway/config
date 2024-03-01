@@ -47,7 +47,7 @@ for_window {
   [app_id="Spotify"] floating enable
 }
 # Font
-font Cantarell 0
+# font Cantarell 0
 # Gaps
 gaps inner $gIn
 # gaps horizontal $gHorz
