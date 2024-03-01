@@ -25,7 +25,7 @@ local code = {
 			vim.keymap.set("n", "<leader>a", function()
 				harpoon:list():append()
 			end)
-			vim.keymap.set("n", "<leader>,", function()
+			vim.keymap.set("n", "<leader>ll", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())
 			end)
 
