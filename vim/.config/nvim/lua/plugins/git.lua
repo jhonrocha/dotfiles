@@ -82,7 +82,7 @@ return {
 		"almo7aya/openingh.nvim",
 		config = true,
 		keys = {
-			{ "<leader>gf", "<Cmd>OpenInGHFileLines<CR>", desc = "open in gh" },
+			{ "<leader>go", "<Cmd>OpenInGHFileLines<CR>", desc = "open in gh" },
 		},
 		lazy = true,
 	},

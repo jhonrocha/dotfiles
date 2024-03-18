@@ -40,6 +40,7 @@ export ASDF_DATA_DIR="$XDG_CONFIG_HOME/.asdf"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship.toml
 export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
 export CARGO_HOME="$XDG_CONFIG_HOME/.cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 PATH="$CARGO_HOME/bin:$PATH"
 export GNUPGHOME="$XDG_CONFIG_HOME/.gnupg"
 export MOZILLA_CONFIG="$XDG_CONFIG_HOME/.mozilla"

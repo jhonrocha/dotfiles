@@ -6,7 +6,6 @@ local lsp_installed = {
   "lua_ls",
   "tsserver",
   "yamlls",
-  "rust_analyzer",
 }
 
 local lsp = {
@@ -31,6 +30,11 @@ local lsp = {
           local opts = {}
           opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
           require("lspconfig")[server_name].setup(opts)
+          opts.on_attach = function(client, bufnr)
+              if client.server_capabilities.inlayHintProvider then
+                  vim.lsp.inlay_hint(bufnr, true)
+              end
+          end
         end,
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, a handler override for the `rust_analyzer`:
@@ -43,8 +47,11 @@ local lsp = {
         ["tsserver"] = function()
           local opts = {}
           opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
-          opts.on_attach = function(client)
+          opts.on_attach = function(client, bufnr)
             client.server_capabilities.documentFormattingProvider = false
+            if client.server_capabilities.inlayHintProvider then
+                vim.lsp.inlay_hint(bufnr, true)
+            end
           end
           opts.settings = {
             implicitProjectConfiguration = {
@@ -59,12 +66,6 @@ local lsp = {
           opts.init_options = { buildFlags = { "-tags=integration" } }
           require("lspconfig")["gopls"].setup(opts)
         end,
-        ["rust_analyzer"] = function()
-          local opts = {}
-          opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
-          opts.settings = { ["rust-analyzer"] = { check = { command = { "clippy" } } } }
-          require("lspconfig")["rust_analyzer"].setup(opts)
-        end,
         ["yamlls"] = function()
           local opts = {}
           opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -74,7 +75,6 @@ local lsp = {
         ["eslint"] = function()
           local opts = {}
           opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
-          -- opts.settings = { ["rust-analyzer"] = { check = { command = { "clippy" } } } }
           require("lspconfig")["eslint"].setup(opts)
         end,
       })
@@ -100,25 +100,25 @@ local lsp = {
       },
     },
   },
-  {
-    "lvimuser/lsp-inlayhints.nvim",
-    dependencies = "neovim/nvim-lspconfig",
-    config = function()
-      require("lsp-inlayhints").setup({ inlay_hints = { highlight = "Comment" } })
-      vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = "LspAttach_inlayhints",
-        callback = function(args)
-          if not (args.data and args.data.client_id) then
-            return
-          end
-          local bufnr = args.buf
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          require("lsp-inlayhints").on_attach(client, bufnr)
-        end,
-      })
-    end,
-  },
+  -- {
+  --   "lvimuser/lsp-inlayhints.nvim",
+  --   dependencies = "neovim/nvim-lspconfig",
+  --   config = function()
+  --     require("lsp-inlayhints").setup({ inlay_hints = { highlight = "Comment" } })
+  --     vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+  --     vim.api.nvim_create_autocmd("LspAttach", {
+  --       group = "LspAttach_inlayhints",
+  --       callback = function(args)
+  --         if not (args.data and args.data.client_id) then
+  --           return
+  --         end
+  --         local bufnr = args.buf
+  --         local client = vim.lsp.get_client_by_id(args.data.client_id)
+  --         require("lsp-inlayhints").on_attach(client, bufnr)
+  --       end,
+  --     })
+  --   end,
+  -- },
   -- {
   --   "windwp/nvim-ts-autotag",
   --   config = true
