@@ -2,7 +2,8 @@
 fzf_branch() {
   git branch --color=always --all |
       grep -v HEAD |
-      fzf --ansi --no-multi --preview-window right:65% \
+      fzf --ansi --no-multi --preview-window down:50% \
+          --bind 'ctrl-f:change-preview-window(right|hidden|)' \
           --preview 'git log -n 20 --color=always --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed "s/.* //" <<< {})' |
       sed "s/.* //"
 }
