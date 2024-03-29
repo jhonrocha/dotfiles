@@ -135,3 +135,9 @@ GCP_PATH="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli
 [ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
 # source /usr/share/nvm/init-nvm.sh
 eval "$(fnm env --use-on-cd --log-level error)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc"; fi

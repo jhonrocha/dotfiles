@@ -121,14 +121,8 @@ alias tre='tree -a -I ".git|node_modules"'
 # BRoot
 alias b='br -h'
 # kubectl
-alias kd="kubectl --context dev"
-alias kda="kubectl --context dev-admin"
-alias ke="kubectl --context e2e"
-alias kea="kubectl --context e2e-admin"
-alias kt="kubectl --context test"
-alias kta="kubectl --context test-admin"
-alias kp="kubectl --context prod"
-alias kpa="kubectl --context prod-admin"
+alias kd="KUBECONFIG=~/.kube/dev.yaml kubectl"
+alias kprod="KUBECONFIG=~/.kube/prod.yaml kubectl"
 
 alias lg=lazygit
 
