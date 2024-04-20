@@ -22,6 +22,7 @@ xkb_keymap {
     key <KPSU> { [ question ] };
     key <KPMU> { [ ccedilla	] };
     key <KP1>  { [ apostrophe, quotedbl, notsign, notsign ] };
+    key <KP2>  { [ backslash, bar ] };
   };
   xkb_geometry  { include "pc(pc105)"     };
 };
