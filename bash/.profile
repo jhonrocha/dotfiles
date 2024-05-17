@@ -1,3 +1,4 @@
+export ENV="$HOME/.profile"
 # XDG Standard
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -57,6 +58,7 @@ export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
 export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
+export PATH="$XDG_CONFIG_HOME/npm-global/bin:$PATH"
 
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
@@ -130,13 +132,11 @@ alias nvm="fnm"
 
 ##### BASHSMS #####
 # Print each PATH entry on a separate line
-export PATH="$XDG_CONFIG_HOME/npm-global/bin:$PATH"
 alias path='echo -e ${PATH//:/\\n}'
 
 [ -x "$(command -v rustc)" ] && export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library;
 
-function notify() {
-  notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')"
-  aplay -q -N ~/Music/notification.wav &
-}
-
+# RUST
+[ -f ~/.cargo/env ] && . ~/.cargo/env
+# source /usr/share/nvm/init-nvm.sh
+eval "$(fnm env --use-on-cd --log-level error)"

@@ -1,8 +1,21 @@
 return {
 	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		tag = "v0.0.1",
+		config = true,
+		keys = {
+			{ "<leader>gg", "<Cmd>Neogit<CR>", desc = "Git" },
+		},
+	},
+	{
 		"tpope/vim-fugitive",
 		keys = {
-			{ "<leader>gg", "<Cmd>Git<CR>", desc = "Git" },
+			-- { "<leader>gg", "<Cmd>Git<CR>", desc = "Git" },
 			{ "<leader>gy", "<Cmd>!gy<CR><CR>", desc = "yank branch" },
 			{
 				"<leader>gp",

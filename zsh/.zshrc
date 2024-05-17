@@ -1,5 +1,4 @@
 [ -f ~/.profile ] && . ~/.profile
-[ -f ~/.config/.prvenvs ] && . ~/.config/.prvenvs
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.cache/.zsh_history
@@ -105,39 +104,21 @@ bindkey  "^[[F"   end-of-line
 [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
-# fzf support
+# Zsh fzf support
 [ -f /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && . /usr/share/fzf/completion.zsh
-# RUST
-[ -f ~/.cargo/env ] && . ~/.cargo/env
-# Starship
-precmd_functions=
 
+# Zsh Starship
+precmd_functions=
 if  command -v starship &> /dev/null
 then
     eval "$(starship init zsh)"
 fi
-# ASDF
-[ -f /opt/asdf-vm/asdf.sh ] && . /opt/asdf-vm/asdf.sh
-# AZ
-[ -f /opt/azure-cli/az.completion ] && . /opt/azure-cli/az.completion
 
-YAY_PATH="${HOME}/.cache/yay"
+# Zsh GCP Support
 GCP_INC="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli/completion.zsh.inc";
 GCP_PATH="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli/path.zsh.inc"
 [ -f ${GCP_INC} ] && . ${GCP_INC}
 [ -f ${GCP_PATH} ] && . ${GCP_PATH}
-
-# check venv
-[ -f ./env/bin/activate ] && source ./env/bin/activate
-
-# bun completions
-[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
-# source /usr/share/nvm/init-nvm.sh
-eval "$(fnm env --use-on-cd --log-level error)"
-
-# The next line updates PATH for the Google Cloud SDK.
 if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
 if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc"; fi
