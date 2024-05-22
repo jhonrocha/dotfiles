@@ -31,9 +31,9 @@ local lsp = {
           opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
           require("lspconfig")[server_name].setup(opts)
           opts.on_attach = function(client, bufnr)
-              if client.server_capabilities.inlayHintProvider then
-                  vim.lsp.inlay_hint(bufnr, true)
-              end
+            if client.server_capabilities.inlayHintProvider then
+              vim.lsp.inlay_hint.enable(true, {bufnr})
+            end
           end
         end,
         -- Next, you can provide a dedicated handler for specific servers.
@@ -50,7 +50,7 @@ local lsp = {
           opts.on_attach = function(client, bufnr)
             client.server_capabilities.documentFormattingProvider = false
             if client.server_capabilities.inlayHintProvider then
-                vim.lsp.inlay_hint(bufnr, true)
+              vim.lsp.inlay_hint.enable(true, {bufnr})
             end
           end
           opts.settings = {

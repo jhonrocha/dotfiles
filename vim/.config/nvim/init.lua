@@ -57,7 +57,7 @@ vim.opt.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 -- Tab size
-vim.o.expandtab = 2
+vim.o.expandtab = true
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2

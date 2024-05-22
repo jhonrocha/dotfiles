@@ -4,7 +4,7 @@ launcher_cmd() {
   fzf-tmux -xC -yC --multi -w 90% -h 50% --exit-0 --cycle --reverse --bind='ctrl-r:toggle-all' --bind='ctrl-s:toggle-sort' --no-preview --header="Launch project"
 }
 
-cmd="ENV=$HOME/.profile zsh -c nvim"
+cmd="zsh -c nvim"
 # Choose Project
 awk -F "|" '{ print $1 $2 }' ~/.config/projects.txt | launcher_cmd | { read -r path name
   if [[ -n $path ]]; then
