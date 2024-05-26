@@ -2,6 +2,7 @@
 local lsp_installed = {
   "bashls",
   "gopls",
+  "pyright",
   "jsonls",
   "lua_ls",
   "tsserver",
