@@ -122,3 +122,6 @@ GCP_PATH="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli
 [ -f ${GCP_PATH} ] && . ${GCP_PATH}
 if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc"; fi
 if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc"; fi
+
+# .env
+if [ -f ".env/bin/activate" ]; then . ".env/bin/activate"; fi
