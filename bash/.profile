@@ -74,7 +74,8 @@ export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
 export WINEPREFIX=~/.config/wine
 
 # JAVA
-# export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
+export JAVA_FONTS=/usr/share/fonts/TTF
 
 # Alias definitions.
 alias ..="cd .."

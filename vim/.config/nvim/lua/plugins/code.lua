@@ -78,6 +78,7 @@ local code = {
 					"go",
 					"gomod",
 					"html",
+					"java",
 					"javascript",
 					"jsdoc",
 					"json",

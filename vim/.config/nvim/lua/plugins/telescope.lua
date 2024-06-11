@@ -23,17 +23,15 @@ return {
 						preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 					},
 					dynamic_preview_title = false,
-					layout_strategy = "bottom_pane",
 					sorting_strategy = "ascending",
+					layout_strategy = "horizontal",
 					layout_config = {
-						bottom_pane = { height = 0.4 },
+						prompt_position = "top",
 						horizontal = {
 							width = 0.95,
-							height = 0.4,
-							preview_width = 0.5,
-							prompt_position = "top",
-							preview_cutoff = 60,
+							height = 0.95,
 						},
+						bottom_pane = { height = 0.4 },
 						vertical = { mirror = false },
 					},
 					mappings = {
@@ -50,6 +48,7 @@ return {
 				},
 				pickers = {
 					buffers = {
+						layout_strategy = "bottom_pane",
 						hidden = true,
 						sort_lastused = true,
 						mappings = { i = { ["<c-d>"] = "delete_buffer" } },
@@ -57,6 +56,7 @@ return {
 						previewer = false,
 					},
 					find_files = {
+						layout_strategy = "bottom_pane",
 						hidden = true,
 						previewer = false,
 						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
@@ -64,13 +64,6 @@ return {
 					live_grep = {
 						hidden = true,
 						no_ignore = true,
-						layout_strategy = "horizontal",
-						layout_config = {
-							horizontal = {
-								width = 0.95,
-								height = 0.95,
-							},
-						},
 					},
 					current_buffer_fuzzy_find = {
 						previewer = false,
