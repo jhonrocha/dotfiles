@@ -262,9 +262,7 @@ bindsym $mod+f floating toggle
 bindsym $mod+t focus mode_toggle
 # Make the current focus fullscreen
 bindsym $mod+Shift+f fullscreen
-# bindsym $mod+b bar mode toggle
-bindsym $mod+b bar mode invisible
-bindsym $mod+Shift+b bar mode dock
+bindsym $mod+b exec killall -SIGUSR1 waybar
 
 # Media Control
 bindsym $mod+F1 exec xbacklight -dec 10
