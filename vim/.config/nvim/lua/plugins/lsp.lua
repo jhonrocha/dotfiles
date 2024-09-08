@@ -143,11 +143,7 @@ local lsp = {
 					-- 		})
 					-- 	end,
 					-- }),
-					null_ls.builtins.formatting.prettier.with({
-						condition = function(utils)
-							return utils.root_has_file({ ".prettierrc", ".prettierrc.js" })
-						end,
-					}),
+					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.stylua,
 					-- null_ls.builtins.diagnostics.pylint.with({ prefer_local = "venv/bin" }),
 					-- null_ls.builtins.diagnostics.ruff,
