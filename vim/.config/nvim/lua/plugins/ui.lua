@@ -42,9 +42,9 @@ local ui = {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = {},
-        lualine_c = { { "filename", path = 1 }, "diff", "diagnostics" },
-        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_b = { "buffers" },
+        lualine_c = {},
+        lualine_x = { "filetype" },
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },
