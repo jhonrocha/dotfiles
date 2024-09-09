@@ -30,9 +30,18 @@ return {
 						horizontal = {
 							width = 0.95,
 							height = 0.95,
+							preview_cutoff = 0,
 						},
-						bottom_pane = { height = 0.4 },
-						vertical = { mirror = false },
+						bottom_pane = {
+							height = 0.4,
+							preview_cutoff = 0,
+						},
+						vertical = {
+							mirror = false,
+							preview_cutoff = 0,
+							width = 0.95,
+							height = 0.95,
+						},
 					},
 					mappings = {
 						i = {
@@ -62,6 +71,7 @@ return {
 						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 					},
 					live_grep = {
+						layout_strategy = "vertical",
 						hidden = true,
 						no_ignore = true,
 					},
