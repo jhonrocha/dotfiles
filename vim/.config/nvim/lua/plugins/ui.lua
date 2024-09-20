@@ -1,43 +1,43 @@
 local ui = {
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("tokyonight").setup()
-      vim.cmd.colorscheme("tokyonight-moon")
-    end,
-  },
   -- {
-  --   "catppuccin/nvim",
+  --   "folke/tokyonight.nvim",
   --   lazy = false,
-  --   enable = false,
   --   priority = 1000,
-  --   name = "catppuccin",
   --   config = function()
-  --     require("catppuccin").setup({
-  --       transparent_background = false,
-  --       integrations = {
-  --         neogit = true,
-  --         leap = true,
-  --         nvimtree = true,
-  --         cmp = true,
-  --         gitsigns = true,
-  --         treesitter = true,
-  --         mason = true,
-  --       },
-  --     })
-  --     vim.cmd.colorscheme("catppuccin-mocha")
+  --     require("tokyonight").setup()
+  --     vim.cmd.colorscheme("tokyonight-moon")
   --   end,
   -- },
+  {
+    "catppuccin/nvim",
+    lazy = false,
+    enable = false,
+    priority = 1000,
+    name = "catppuccin",
+    config = function()
+      require("catppuccin").setup({
+        transparent_background = false,
+        integrations = {
+          neogit = true,
+          leap = true,
+          nvimtree = true,
+          cmp = true,
+          gitsigns = true,
+          treesitter = true,
+          mason = true,
+        },
+      })
+      vim.cmd.colorscheme("catppuccin-mocha")
+    end,
+  },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
     opts = {
       options = {
         globalstatus = true,
-        -- theme = "catppuccin",
-        theme = "tokyonight",
+        theme = "catppuccin",
+        -- theme = "tokyonight",
         section_separators = { left = "", right = "" },
       },
       sections = {

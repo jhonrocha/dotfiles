@@ -15,31 +15,18 @@ set incsearch
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 
-" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
-
-" Highlight copied text
-Plug 'machakann/vim-highlightedyank'
-" Commentary plugin
-Plug 'tpope/vim-commentary'
-
 let mapleader=" "
 set clipboard+=unnamedplus
 
-"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
-"" Map \r to the Reformat Code action
 map <leader>cf <Action>(ReformatCode)
 map <leader>fs <Action>(SaveAll)
 map <leader>fk <Action>(CloseEditor)
-map <leader><leader> <Action>(SearchEverywhere)
+map <leader><Space> <Action>(GotoFile)
 map <leader>r <Action>(RunnerActions)
-""                      RunnerLayoutActions
-""                      RunTargetAction                                    <M-S-F10>
-""                      RunToCursor                                        <A-F9>
-""                      SafeDelete                                         <M-Del>
-""                      SaveAll
+map <leader>fi <Action>(GotoImplementation)
+map <leader>cd <Action>(GotoDeclaration)
 
-"" Map <leader>d to start debug
-"map <leader>d <Action>(Debug)
+" Use ctrl-c as an ide shortcut in normal and visual modes
+sethandler <C-C> a:ide
+sethandler <C-O> a:vim
 
-"" Map \b to toggle the breakpoint on the current line
-"map \b <Action>(ToggleLineBreakpoint)
