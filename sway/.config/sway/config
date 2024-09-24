@@ -40,7 +40,8 @@ for_window {
   [class="Vial"] floating enable
   [app_id="pavucontrol"] floating enable
   [class="Ferdium"] floating enable, move scratchpad, scratchpad show, resize set width 90 ppt height 90 ppt, move position center
-  [class="Slack"] floating enable, move scratchpad, scratchpad show
+  # [class="Slack"] floating enable, move scratchpad, scratchpad show
+  [app_id="Slack"] floating enable, move scratchpad, scratchpad show
   [app_id="termpad"] move scratchpad,  scratchpad show, resize set width 70 ppt height 90 ppt, move position center
   [class="GalaxyBudsClient"] floating enable
   [class="galaxybudsclient"] floating enable
@@ -171,8 +172,8 @@ bindsym $mod+s sticky toggle
 # Basics:
 # Start a terminal
 bindsym $mod+Return exec $term
-# bindsym $mod+u exec 'swaymsg "[app_id=Slack]" scratchpad show || slack --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer --ozone-platform-hint=auto'
-bindsym $mod+u exec 'swaymsg "[class=Slack]" scratchpad show || slack'
+bindsym $mod+u exec 'swaymsg "[app_id=Slack]" scratchpad show || slack --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer --ozone-platform-hint=auto'
+# bindsym $mod+u exec 'swaymsg "[class=Slack]" scratchpad show || slack'
 # Terminal ScratchPad
 bindsym $mod+i exec 'swaymsg "[app_id=termpad]" scratchpad show || $term --class termpad'
 
