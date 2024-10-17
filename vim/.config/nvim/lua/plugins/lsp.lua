@@ -5,7 +5,7 @@ local lsp_installed = {
 	"pyright",
 	"jsonls",
 	"lua_ls",
-	"tsserver",
+	"ts_ls",
 	"yamlls",
 }
 
@@ -45,7 +45,7 @@ local lsp = {
 					opts.settings = { Lua = { diagnostics = { globals = { "vim" } }, hint = { enable = true } } }
 					require("lspconfig")["lua_ls"].setup(opts)
 				end,
-				["tsserver"] = function()
+				["ts_ls"] = function()
 					local opts = {}
 					opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
 					opts.on_attach = function(client, bufnr)
@@ -59,7 +59,7 @@ local lsp = {
 							checkJs = true,
 						},
 					}
-					require("lspconfig")["tsserver"].setup(opts)
+					require("lspconfig")["ts_ls"].setup(opts)
 				end,
 				["gopls"] = function()
 					local opts = {}
