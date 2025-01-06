@@ -1,7 +1,7 @@
 [ -f ~/.profile ] && . ~/.profile
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.cache/.zsh_history
+HISTFILE=~/.config/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 # History in cache directory:
@@ -24,7 +24,7 @@ init-sway () {
   # export SSH_AUTH_SOCK
   # export MOZ_ENABLE_WAYLAND=1
   # export WLR_RENDERER=vulkan
-  # export WLR_NO_HARDWARE_CURSORS=1 
+  # export WLR_NO_HARDWARE_CURSORS=1
   # export XWAYLAND_NO_GLAMOR=1
   export SDL_VIDEODRIVER=wayland
   export _JAVA_AWT_WM_NONREPARENTING=1
@@ -55,7 +55,7 @@ autoload -U +X bashcompinit && bashcompinit
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/jh/.zshrc'
 autoload -Uz compinit
-zstyle ':completion:*' menu select 
+zstyle ':completion:*' menu select
 zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
 zmodload zsh/complist
 setopt COMPLETE_ALIASES

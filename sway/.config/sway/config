@@ -67,9 +67,15 @@ output HDMI-A-1 scale 2
 #
 # Input configuration
 #
-input type:keyboard {
-  xkb_file "~/.config/xkb/xkbmap"
-  xkb_options "caps:swapescape"
+
+# input type:keyboard {
+#   xkb_file "~/.config/xkb/xkbmap"
+#   xkb_options "caps:swapescape"
+# }
+
+input "64562:647:Tergo_Tergo_Sofle" {
+  xkb_layout us
+  xkb_variant intl
 }
 
 input type:pointer {
