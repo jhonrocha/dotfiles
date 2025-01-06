@@ -103,7 +103,7 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- My Maps
 vim.keymap.set("n", "<leader>fs", "<Cmd>update!<CR>", { desc = "file save" })
-vim.keymap.set("n", "<leader>fk", "<Cmd>bd<CR>", { desc = "file kill" })
+vim.keymap.set("n", "<leader>fk", "<Cmd>bn|bd#<CR>", { desc = "file kill" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })
