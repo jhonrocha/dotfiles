@@ -1,13 +1,4 @@
 local ui = {
-	-- {
-	--   "folke/tokyonight.nvim",
-	--   lazy = false,
-	--   priority = 1000,
-	--   config = function()
-	--     require("tokyonight").setup()
-	--     vim.cmd.colorscheme("tokyonight-moon")
-	--   end,
-	-- },
 	{
 		"catppuccin/nvim",
 		lazy = false,
@@ -42,7 +33,7 @@ local ui = {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { { "buffers", show_filename_only = false } },
+				lualine_b = { { "buffers", show_filename_only = true } },
 				lualine_c = {},
 				lualine_x = { "filetype" },
 				lualine_y = { "progress" },

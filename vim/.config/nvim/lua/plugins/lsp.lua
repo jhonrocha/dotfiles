@@ -29,7 +29,7 @@ local lsp = {
 				-- a dedicated handler.
 				function(server_name) -- default handler (optional)
 					local opts = {}
-					opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+					-- opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
 					require("lspconfig")[server_name].setup(opts)
 					opts.on_attach = function(client, bufnr)
 						if client.server_capabilities.inlayHintProvider then
@@ -41,13 +41,13 @@ local lsp = {
 				-- For example, a handler override for the `rust_analyzer`:
 				["lua_ls"] = function()
 					local opts = {}
-					opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+					-- opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
 					opts.settings = { Lua = { diagnostics = { globals = { "vim" } }, hint = { enable = true } } }
 					require("lspconfig")["lua_ls"].setup(opts)
 				end,
 				["ts_ls"] = function()
 					local opts = {}
-					opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+					-- opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
 					opts.on_attach = function(client, bufnr)
 						client.server_capabilities.documentFormattingProvider = false
 						if client.server_capabilities.inlayHintProvider then
@@ -63,24 +63,24 @@ local lsp = {
 				end,
 				["gopls"] = function()
 					local opts = {}
-					opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+					-- opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
 					opts.init_options = { buildFlags = { "-tags=integration" } }
 					require("lspconfig")["gopls"].setup(opts)
 				end,
 				["yamlls"] = function()
 					local opts = {}
-					opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+					-- opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
 					opts.settings = { yaml = { keyOrdering = false } }
 					require("lspconfig")["yamlls"].setup(opts)
 				end,
 				["eslint"] = function()
 					local opts = {}
-					opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+					-- opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
 					require("lspconfig")["eslint"].setup(opts)
 				end,
 			})
 			local opts = {}
-			opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
 			require("lspconfig").tailwindcss.setup(opts)
 		end,
 		keys = {
