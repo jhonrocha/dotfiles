@@ -113,9 +113,31 @@ local code = {
     opts = {
       close_fold_kinds_for_ft = {
         javascript = { "imports", "method_definition" },
+        typescript = { "imports", "method_definition" },
       },
       provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
       fold_virt_text_handler = handler,
+    },
+  },
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      -- "ibhagwan/fzf-lua",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {
+      ---@type lc.lang
+      lang = "python3", -- configuration goes here
+      picker = { provider = "telescope" },
+    },
+    keys = {
+      { "<leader>ll", "<Cmd>Leet<CR>",   desc = "leet" },
+      { "<leader>le", "<Cmd>Leet list difficulty=easy<CR>",   desc = "easy" },
+      { "<leader>lm", "<Cmd>Leet list difficulty=medium<CR>", desc = "medium" },
+      { "<leader>lh", "<Cmd>Leet list difficulty=hard<CR>",   desc = "hard" },
     },
   },
 }

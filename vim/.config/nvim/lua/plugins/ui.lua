@@ -79,19 +79,14 @@ local ui = {
 			wk.add({
 				{ "<leader>c", group = "code" },
 				{ "<leader>f", group = "finder" },
-				{ "<leader>fg", group = "fgit" },
+				{ "<leader>s", group = "search" },
 				{ "<leader>g", group = "git" },
 				{ "<leader>i", group = "debug" },
 				{ "<leader>q", group = "quicklist" },
 				{ "<leader>r", group = "replace" },
+				{ "<leader>l", group = "leetcode" },
 			})
 		end,
 	},
-	-- {
-	-- 	"chentoast/marks.nvim",
-	-- 	opts = {
-	-- 		default_mappings = true,
-	-- 	},
-	-- },
 }
 return ui
