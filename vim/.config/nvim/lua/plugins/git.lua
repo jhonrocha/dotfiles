@@ -7,18 +7,18 @@ return {
 			"nvim-telescope/telescope.nvim",
 		},
 		opts = {
-        disable_signs = true,
+			disable_signs = true,
 		},
 		keys = {
 			{ "<leader>gg", "<Cmd>Neogit<CR>", desc = "Git" },
 		},
 	},
-	{
-		"almo7aya/openingh.nvim",
-		config = true,
-		keys = {
-			{ "<leader>go", "<Cmd>OpenInGHFileLines<CR>", desc = "open in gh" },
-		},
-		lazy = true,
-	},
+	-- {
+	-- 	"almo7aya/openingh.nvim",
+	-- 	config = true,
+	-- 	keys = {
+	-- 		{ "<leader>go", "<Cmd>OpenInGHFileLines<CR>", desc = "open in gh" },
+	-- 	},
+	-- 	lazy = true,
+	-- },
 }

@@ -1,4 +1,13 @@
 local ui = {
+	-- {
+	-- 	"folke/tokyonight.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("tokyonight").setup()
+	-- 		vim.cmd.colorscheme("tokyonight-moon")
+	-- 	end,
+	-- },
 	{
 		"catppuccin/nvim",
 		lazy = false,
@@ -9,13 +18,12 @@ local ui = {
 			require("catppuccin").setup({
 				transparent_background = false,
 				integrations = {
-					neogit = true,
 					leap = true,
 					nvimtree = true,
-					cmp = true,
-					gitsigns = true,
+					blink_cmp = true,
 					treesitter = true,
 					mason = true,
+          snacks = true
 				},
 			})
 			vim.cmd.colorscheme("catppuccin-mocha")
@@ -27,8 +35,6 @@ local ui = {
 		opts = {
 			options = {
 				globalstatus = true,
-				theme = "catppuccin",
-				-- theme = "tokyonight",
 				section_separators = { left = "", right = "" },
 			},
 			sections = {
@@ -65,7 +71,9 @@ local ui = {
 		config = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
-			require("which-key").setup({})
+			require("which-key").setup({
+        delay = 500
+      })
 			local wk = require("which-key")
 			wk.add({
 				{ "<leader>c", group = "code" },

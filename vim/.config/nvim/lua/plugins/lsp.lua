@@ -20,6 +20,7 @@ local lsp = {
         },
         opts = { ensure_installed = lsp_installed },
       },
+      "saghen/blink.cmp",
     },
     lazy = false,
     config = function()
@@ -40,7 +41,7 @@ local lsp = {
             capabilities,
             settings = {
               Lua = {
-                diagnostics = { globals = { "vim" } },
+                diagnostics = { globals = { "vim", "Snacks" } },
                 hint = { enable = true },
               },
             },
@@ -60,9 +61,7 @@ local lsp = {
           require("lspconfig")["ts_ls"].setup({
             capabilities,
 
-            on_attach = function(client, bufnr)
-              client.server_capabilities.documentFormattingProvider = false
-            end,
+            on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false end,
 
             settings = {
               implicitProjectConfiguration = {
@@ -96,9 +95,7 @@ local lsp = {
       { "<leader>ca", vim.lsp.buf.code_action,     desc = "code action" },
       {
         "<leader>cf",
-        function()
-          vim.lsp.buf.format({ timeout_ms = 10000 })
-        end,
+        function() vim.lsp.buf.format({ timeout_ms = 10000 }) end,
         desc = "code format",
       },
     },

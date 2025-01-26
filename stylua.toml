@@ -1,2 +1,3 @@
 column_width = 200
 indent_type = "Tabs"
+collapse_simple_statement = "Always"
