@@ -1,34 +1,35 @@
 local ui = {
-	-- {
-	-- 	"folke/tokyonight.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		require("tokyonight").setup()
-	-- 		vim.cmd.colorscheme("tokyonight-moon")
-	-- 	end,
-	-- },
 	{
-		"catppuccin/nvim",
+		"folke/tokyonight.nvim",
 		lazy = false,
-		enable = false,
 		priority = 1000,
-		name = "catppuccin",
+    enable = true,
 		config = function()
-			require("catppuccin").setup({
-				transparent_background = false,
-				integrations = {
-					leap = true,
-					nvimtree = true,
-					blink_cmp = true,
-					treesitter = true,
-					mason = true,
-          snacks = true
-				},
-			})
-			vim.cmd.colorscheme("catppuccin-mocha")
+			require("tokyonight").setup()
+			vim.cmd.colorscheme("tokyonight-moon")
 		end,
 	},
+	-- {
+	-- 	"catppuccin/nvim",
+	-- 	lazy = false,
+	-- 	enable = false,
+	-- 	priority = 1000,
+	-- 	name = "catppuccin",
+	-- 	config = function()
+	-- 		require("catppuccin").setup({
+	-- 			transparent_background = false,
+	-- 			integrations = {
+	-- 				leap = true,
+	-- 				nvimtree = true,
+	-- 				blink_cmp = true,
+	-- 				treesitter = true,
+	-- 				mason = true,
+	-- 				snacks = true,
+	-- 			},
+	-- 		})
+	-- 		vim.cmd.colorscheme("catppuccin-mocha")
+	-- 	end,
+	-- },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
@@ -72,8 +73,8 @@ local ui = {
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 			require("which-key").setup({
-        delay = 500
-      })
+				delay = 500,
+			})
 			local wk = require("which-key")
 			wk.add({
 				{ "<leader>c", group = "code" },
@@ -86,11 +87,11 @@ local ui = {
 			})
 		end,
 	},
-	{
-		"chentoast/marks.nvim",
-		opts = {
-			default_mappings = true,
-		},
-	},
+	-- {
+	-- 	"chentoast/marks.nvim",
+	-- 	opts = {
+	-- 		default_mappings = true,
+	-- 	},
+	-- },
 }
 return ui

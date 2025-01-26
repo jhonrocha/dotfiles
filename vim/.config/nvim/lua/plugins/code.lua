@@ -47,7 +47,7 @@ local code = {
       -- parser_configs.hcl = { filetype = "hcl", "terraform" }
     end,
   },
-  { "windwp/nvim-autopairs",  config = true },
+  { "windwp/nvim-autopairs", config = true },
   {
     "saghen/blink.cmp",
     dependencies = "rafamadriz/friendly-snippets",
@@ -81,6 +81,17 @@ local code = {
     },
     opts_extend = { "sources.default" },
   },
-  { "sindrets/diffview.nvim", config = true },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    opts = {
+      close_fold_kinds_for_ft = {
+        default = { "imports", "comment" },
+        typescript = { "imports", "method_definition" },
+        javascript = { "imports", "method_definition" },
+      },
+      provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "lsp" } end,
+    },
+  },
 }
 return code
