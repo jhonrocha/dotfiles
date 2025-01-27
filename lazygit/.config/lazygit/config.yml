@@ -15,3 +15,6 @@ git:
     method-chrome-extension-server:
       pattern: "^\\w+\\/(\\w+).*"
       replace: '[$1] '
+    method-pubsub:
+      pattern: "^\\w+\\/(\\w+).*"
+      replace: '[$1] '

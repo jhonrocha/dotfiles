@@ -55,7 +55,7 @@ local ui = {
 			sort_by = "case_sensitive",
 			view = { width = 30 },
 			renderer = {
-				group_empty = true,
+				group_empty = false,
 				highlight_opened_files = "icon",
 			},
 			actions = { open_file = { quit_on_open = true } },
