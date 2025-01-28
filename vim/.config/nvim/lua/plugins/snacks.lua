@@ -42,9 +42,7 @@ return {
         win = {
           input = { keys = { ["<Esc>"] = { "close", mode = "i" } } },
         },
-        layout = {
-          preset = "ivy",
-        },
+        -- layout = { preset = "ivy" },
       },
       quickfile = { enabled = true },
       scratch = {

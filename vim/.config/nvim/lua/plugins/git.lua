@@ -12,11 +12,15 @@ return {
         view = {
           ["q"] = "<Cmd>DiffviewClose<CR>",
         },
+        file_history_panel = {
+          ["q"] = "<Cmd>DiffviewClose<CR>",
+        },
       },
     },
     keys = {
-      { "<leader>gg", "<Cmd>DiffviewOpen<CR>",        desc = "open in gh" },
-      { "<leader>gh", "<Cmd>DiffviewFileHistory<CR>", desc = "open in gh" },
+      { "<leader>gg", "<Cmd>DiffviewOpen<CR>",          desc = "diff" },
+      { "<leader>gh", "<Cmd>DiffviewFileHistory<CR>",   desc = "history" },
+      { "<leader>gH", "<Cmd>DiffviewFileHistory %<CR>", desc = "history file" },
     },
   },
   {
