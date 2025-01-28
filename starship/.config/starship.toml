@@ -3,11 +3,10 @@ add_newline = false
 command_timeout = 10000
 
 [character]
-# success_symbol = "[](bold green)"
-# error_symbol = "[](bold red)"
-# vicmd_symbol = "[>](bold purple)"
+success_symbol = "[](bold green)"
+error_symbol = "[](bold red)"
+vicmd_symbol = "[>](bold purple)"
 
-# Disable the package module, hiding it from the prompt completely
 [aws]
 disabled = true
 [gcloud]
