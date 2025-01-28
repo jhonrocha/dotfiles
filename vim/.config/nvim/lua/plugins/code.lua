@@ -1,4 +1,4 @@
-local handler = function(virtText, lnum, endLnum, width, truncate)
+local ufo_handle = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
   local suffix = (" 󰁂 %d "):format(endLnum - lnum)
   local sufWidth = vim.fn.strdisplaywidth(suffix)
@@ -97,12 +97,12 @@ local code = {
       completion = {
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 500,
+          auto_show_delay_ms = 200,
         },
       },
       signature = { enabled = true },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "lsp", "snippets", "path", "buffer" },
       },
     },
     opts_extend = { "sources.default" },
@@ -116,7 +116,7 @@ local code = {
         typescript = { "imports", "method_definition" },
       },
       provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
-      fold_virt_text_handler = handler,
+      fold_virt_text_handler = ufo_handle,
     },
   },
   {
@@ -129,15 +129,17 @@ local code = {
       "MunifTanjim/nui.nvim",
     },
     opts = {
-      ---@type lc.lang
       lang = "python3", -- configuration goes here
       picker = { provider = "telescope" },
     },
     keys = {
-      { "<leader>ll", "<Cmd>Leet<CR>",   desc = "leet" },
-      { "<leader>le", "<Cmd>Leet list difficulty=easy<CR>",   desc = "easy" },
-      { "<leader>lm", "<Cmd>Leet list difficulty=medium<CR>", desc = "medium" },
-      { "<leader>lh", "<Cmd>Leet list difficulty=hard<CR>",   desc = "hard" },
+      { "<leader>ll", "<Cmd>Leet<CR>",                                    desc = "leet" },
+      { "<leader>le", "<Cmd>Leet list difficulty=easy status=todo<CR>",   desc = "easy" },
+      { "<leader>lm", "<Cmd>Leet list difficulty=medium status=todo<CR>", desc = "medium" },
+      { "<leader>lh", "<Cmd>Leet list difficulty=hard status=todo<CR>",   desc = "hard" },
+      { "<leader>lr", "<Cmd>Leet run<CR>",                                desc = "run" },
+      { "<leader>ls", "<Cmd>Leet submit<CR>",                             desc = "submit" },
+      { "<leader>lo", "<Cmd>Leet open<CR>",                               desc = "open" },
     },
   },
 }
