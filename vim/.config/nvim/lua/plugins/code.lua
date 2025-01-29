@@ -112,10 +112,9 @@ local code = {
     dependencies = "kevinhwang91/promise-async",
     opts = {
       close_fold_kinds_for_ft = {
-        javascript = { "imports", "method_definition" },
-        typescript = { "imports", "method_definition" },
+        default = { "imports" },
       },
-      provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
+      provider_selector = function(bufnr, filetype, buftype) return { "lsp", "indent" } end,
       fold_virt_text_handler = ufo_handle,
     },
   },
