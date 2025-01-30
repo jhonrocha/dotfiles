@@ -2,16 +2,14 @@
 ------------ Plugin Manager ------------
 ----------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	})
-end
+if not vim.loop.fs_stat(lazypath) then vim.fn.system({
+	"git",
+	"clone",
+	"--filter=blob:none",
+	"https://github.com/folke/lazy.nvim.git",
+	"--branch=stable",
+	lazypath,
+}) end
 vim.opt.rtp:prepend(lazypath)
 
 -- Remap space as leader key
@@ -82,16 +80,18 @@ vim.wo.signcolumn = "yes:1"
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+	callback = function() vim.highlight.on_yank() end,
 	group = highlight_group,
 	pattern = "*",
 })
--- A Jenkinsfile is a Groovy file
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = { "Jenkinsfile*" },
-	command = "setf groovy",
+
+vim.filetype.add({
+	pattern = {
+		[".*/waybar/config"] = "jsonc",
+		[".*/mako/config"] = "dosini",
+		[".*/kitty/*.conf"] = "bash",
+		[".*/hypr/.*%.conf"] = "hyprlang",
+	},
 })
 
 ----------------------------------------
@@ -106,12 +106,8 @@ vim.keymap.set("n", "<leader>fs", "<Cmd>update!<CR>", { desc = "file save" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })
-vim.keymap.set("n", "<leader>n", function()
-	vim.diagnostic.goto_prev({ float = true })
-end, { desc = "prev diagnostic" })
-vim.keymap.set("n", "<leader>m", function()
-	vim.diagnostic.goto_next({ float = true })
-end, { desc = "next diagnostic" })
+vim.keymap.set("n", "<leader>n", function() vim.diagnostic.goto_prev({ float = true }) end, { desc = "prev diagnostic" })
+vim.keymap.set("n", "<leader>m", function() vim.diagnostic.goto_next({ float = true }) end, { desc = "next diagnostic" })
 -- vim.keymap.set("n", "<leader>ci", vim.diagnostic.setloclist)
 
 -- Buffer navigation

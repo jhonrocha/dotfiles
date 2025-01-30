@@ -34,6 +34,10 @@ init-sway () {
   exec sway >> ~/.cache/sway.log 2>&1
 }
 
+init-hyprland () {
+  exec Hyprland >> ~/.cache/hyprland.log 2>&1
+}
+
 machine=$(uname -n)
 if [[ ! $DISPLAY && (($XDG_VTNR -eq 1) || ($XDG_VTNR -eq 6)) ]]; then
   if [ $machine = "tiamat" ]; then
