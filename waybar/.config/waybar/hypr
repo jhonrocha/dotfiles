@@ -6,35 +6,32 @@
   // "width": 1280, // Waybar width
   "spacing": 4, // Gaps between modules
   // Choose the order of the modules
-  //"modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+  "modules-left": [
+    "custom/wofi",
+    "hyprland/workspaces",
+    "hyprland/mode"
+  ],
   "modules-center": [],
-  "modules-right": ["pulseaudio", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock#us", "clock#eu", "clock", "sway/scratchpad", "tray"],
-  // Modules configuration
-  "sway/workspaces": {
-    "disable-scroll": false,
-    "all-outputs": true,
-    // "format": "{name}: {icon}",
-    // "format-icons": {
-    //     "1": "",
-    //     "2": "",
-    //     "3": "",
-    //     "4": "",
-    //     "5": "",
-    //     "urgent": "",
-    //     "focused": "",
-    //     "default": ""
-    // }
+  "modules-right": [
+    "pulseaudio",
+    "cpu",
+    "memory",
+    "temperature",
+    "battery",
+    "battery#bat2",
+    "clock#us",
+    "clock#eu",
+    "clock",
+    "tray",
+    "custom/close"
+  ],
+  "custom/wofi": {
+    "format": "󰣇",
+    "on-click": "wofi --show drun -a"
   },
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
-  },
-  "sway/scratchpad": {
-    "format": "{icon} {count}",
-    "show-empty": false,
-    "format-icons": ["", ""],
-    "tooltip": true,
-    "tooltip-format": "{app}: {title}"
+  "custom/close": {
+    "format": "󰅗",
+    "on-click": "hyprctl dispatch killactive"
   },
   "tray": {
     // "icon-size": 21,
@@ -46,7 +43,7 @@
     "format": "🇧🇷 {:%H:%M [%b %d]}"
   },
   "clock#us": {
-    "timezone":  "America/New_York",
+    "timezone": "America/New_York",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}",
     "format": "🇺🇸 {:%H:%M}"
@@ -71,12 +68,26 @@
     "critical-threshold": 80,
     // "format-critical": "{temperatureC}°C {icon}",
     "format": "{temperatureC}°C {icon}",
-    "format-icons": ["", "", ""]
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
   },
   "backlight": {
     // "device": "acpi_video1",
     "format": "{percent}% {icon}",
-    "format-icons": ["", "", "", "", "", "", "", "", ""]
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
   },
   "battery": {
     "states": {
@@ -90,7 +101,13 @@
     "format-alt": "{time} {icon}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
   },
   "battery#bat2": {
     "bat": "BAT2"
@@ -110,8 +127,12 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
     "on-click": "pavucontrol"
-  },
+  }
 }

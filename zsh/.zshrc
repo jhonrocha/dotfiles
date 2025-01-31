@@ -42,7 +42,7 @@ machine=$(uname -n)
 if [[ ! $DISPLAY && (($XDG_VTNR -eq 1)) ]]; then
   if [ $machine = "tiamat" ]; then
     # init-i3
-    init-sway
+    init-hyprland
   elif [ $machine = "drogon" ]; then
     init-sway
     # init-i3
