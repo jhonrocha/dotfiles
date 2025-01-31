@@ -7,8 +7,7 @@
   "spacing": 4, // Gaps between modules
   // Choose the order of the modules
   "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/mode"
+    "hyprland/workspaces"
   ],
   "modules-center": [],
   "modules-right": [
