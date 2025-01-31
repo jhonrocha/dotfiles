@@ -49,7 +49,7 @@ if [[ ! $DISPLAY && (($XDG_VTNR -eq 1)) ]]; then
   else
     init-i3
   fi
-eliif [[ ! $DISPLAY && (($XDG_VTNR -eq 2)) ]]; then
+elif [[ ! $DISPLAY && (($XDG_VTNR -eq 2)) ]]; then
   init-hyprland
 fi
 

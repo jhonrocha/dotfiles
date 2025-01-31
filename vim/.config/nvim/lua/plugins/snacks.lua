@@ -67,7 +67,7 @@ return {
       { "<leader><space>", function() Snacks.picker.files({ hidden = true, layout = { preview = false } }) end,                 desc = "Find Files" },
       { "<leader>fr",      function() Snacks.picker.resume() end,                                                               desc = "Resume" },
       -- find
-      { "<leader>f",       function() Snacks.picker.files({ hidden = true, ignored = true, layout = { preview = false } }) end, desc = "Find Files+" },
+      { "<leader>ff",       function() Snacks.picker.files({ hidden = true, ignored = true, layout = { preview = false } }) end, desc = "Find Files+" },
       { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config"), hidden = true }) end,               desc = "Find Config File" },
       { "<leader>fg",      function() Snacks.picker.git_files() end,                                                            desc = "Find Git Files" },
       { "<leader>fR",      function() Snacks.picker.recent() end,                                                               desc = "Recent" },
