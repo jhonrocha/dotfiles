@@ -7,12 +7,12 @@
   "spacing": 4, // Gaps between modules
   // Choose the order of the modules
   "modules-left": [
-    "custom/wofi",
     "hyprland/workspaces",
     "hyprland/mode"
   ],
   "modules-center": [],
   "modules-right": [
+    "custom/wofi",
     "pulseaudio",
     "cpu",
     "memory",
