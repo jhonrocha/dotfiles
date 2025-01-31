@@ -39,7 +39,7 @@ init-hyprland () {
 }
 
 machine=$(uname -n)
-if [[ ! $DISPLAY && (($XDG_VTNR -eq 1) || ($XDG_VTNR -eq 6)) ]]; then
+if [[ ! $DISPLAY && (($XDG_VTNR -eq 1)) ]]; then
   if [ $machine = "tiamat" ]; then
     # init-i3
     init-sway
@@ -49,7 +49,10 @@ if [[ ! $DISPLAY && (($XDG_VTNR -eq 1) || ($XDG_VTNR -eq 6)) ]]; then
   else
     init-i3
   fi
+eliif [[ ! $DISPLAY && (($XDG_VTNR -eq 2)) ]]; then
+  init-hyprland
 fi
+
 # Enable colors and change prompt:
 autoload -U colors && colors
 stty stop undef		# Disable ctrl-s to freeze terminal.
