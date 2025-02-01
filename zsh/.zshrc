@@ -44,7 +44,7 @@ if [[ ! $DISPLAY && (($XDG_VTNR -eq 1)) ]]; then
     # init-i3
     init-hyprland
   elif [ $machine = "drogon" ]; then
-    init-sway
+    init-hyprland
     # init-i3
   else
     init-i3
