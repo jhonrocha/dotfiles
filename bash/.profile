@@ -58,6 +58,8 @@ export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
 export PATH="$XDG_CONFIG_HOME/npm-global/bin:$PATH"
+export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+
 
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
