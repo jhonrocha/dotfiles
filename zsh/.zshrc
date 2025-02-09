@@ -29,12 +29,17 @@ init-sway () {
   export SDL_VIDEODRIVER=wayland
   export _JAVA_AWT_WM_NONREPARENTING=1
   export QT_QPA_PLATFORM=wayland
-  export XDG_CURRENT_DESKTOP=sway
-  export XDG_SESSION_DESKTOP=sway
+  export XDG_CURRENT_DESKTOP=Hyprland
+  export XDG_SESSION_DESKTOP=Hyprland
   exec sway >> ~/.cache/sway.log 2>&1
 }
 
 init-hyprland () {
+  export SDL_VIDEODRIVER=wayland
+  export _JAVA_AWT_WM_NONREPARENTING=1
+  export QT_QPA_PLATFORM=wayland
+  export XDG_CURRENT_DESKTOP=sway
+  export XDG_SESSION_DESKTOP=sway
   exec Hyprland >> ~/.cache/hyprland.log 2>&1
 }
 

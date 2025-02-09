@@ -53,10 +53,8 @@ local lsp = {
 				end,
 				["ts_ls"] = function()
 					require("lspconfig")["ts_ls"].setup({
-						capabilities = capabilities,
-
-						on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false end,
-
+						-- capabilities = capabilities,
+						-- on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false end,
 						settings = {
 							implicitProjectConfiguration = {
 								checkJs = true,

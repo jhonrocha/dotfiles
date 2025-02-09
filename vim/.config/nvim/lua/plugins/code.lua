@@ -76,7 +76,7 @@ local code = {
   { "windwp/nvim-autopairs", config = true },
   {
     "saghen/blink.cmp",
-    dependencies = "rafamadriz/friendly-snippets",
+    dependencies = { "rafamadriz/friendly-snippets" },
     version = "*",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -102,7 +102,7 @@ local code = {
       },
       signature = { enabled = true },
       sources = {
-        default = { "lsp", "snippets", "path", "buffer" },
+        default = { "lsp", "buffer", "snippets", "path" },
       },
     },
     opts_extend = { "sources.default" },
@@ -133,9 +133,12 @@ local code = {
     },
     keys = {
       { "<leader>ll", "<Cmd>Leet<CR>",                                    desc = "leet" },
-      { "<leader>le", "<Cmd>Leet list difficulty=easy status=todo<CR>",   desc = "easy" },
-      { "<leader>lm", "<Cmd>Leet list difficulty=medium status=todo<CR>", desc = "medium" },
-      { "<leader>lh", "<Cmd>Leet list difficulty=hard status=todo<CR>",   desc = "hard" },
+      { "<leader>le", "<Cmd>Leet random difficulty=easy status=todo<CR>",   desc = "easy" },
+      { "<leader>lm", "<Cmd>Leet random difficulty=medium status=todo<CR>", desc = "medium" },
+      { "<leader>lh", "<Cmd>Leet random difficulty=hard status=todo<CR>",   desc = "hard" },
+      { "<leader>lE", "<Cmd>Leet list difficulty=easy status=todo<CR>",   desc = "easy" },
+      { "<leader>lM", "<Cmd>Leet list difficulty=medium status=todo<CR>", desc = "medium" },
+      { "<leader>lH", "<Cmd>Leet list difficulty=hard status=todo<CR>",   desc = "hard" },
       { "<leader>lr", "<Cmd>Leet run<CR>",                                desc = "run" },
       { "<leader>ls", "<Cmd>Leet submit<CR>",                             desc = "submit" },
       { "<leader>lo", "<Cmd>Leet open<CR>",                               desc = "open" },

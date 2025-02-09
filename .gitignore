@@ -10,3 +10,4 @@ gtk/.config/gtk-3.0/bookmarks
 vim/.config/nvim/lazy-lock.json
 vim/.config/vim/autoload
 tmux/.config/tmux/plugins/
+.private_env

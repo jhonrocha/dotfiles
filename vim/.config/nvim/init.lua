@@ -47,6 +47,8 @@ vim.opt.clipboard = "unnamedplus"
 vim.wo.number = true
 -- Enable mouse mode
 vim.o.mouse = "a"
+-- Keep the view when switching buffers
+vim.o.jumpoptions = "view"
 -- Enable break indent
 vim.o.breakindent = true
 -- Save undo history
