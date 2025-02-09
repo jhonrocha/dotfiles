@@ -1,0 +1,6 @@
+#!/bin/bash
+
+path=$(pwd)
+name=$1
+
+echo "$path | $name" >> ~/.config/projects.txt
