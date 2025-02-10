@@ -29,8 +29,8 @@ init-sway () {
   export SDL_VIDEODRIVER=wayland
   export _JAVA_AWT_WM_NONREPARENTING=1
   export QT_QPA_PLATFORM=wayland
-  export XDG_CURRENT_DESKTOP=Hyprland
-  export XDG_SESSION_DESKTOP=Hyprland
+  export XDG_CURRENT_DESKTOP=sway
+  export XDG_SESSION_DESKTOP=sway
   exec sway >> ~/.cache/sway.log 2>&1
 }
 
@@ -38,24 +38,20 @@ init-hyprland () {
   export SDL_VIDEODRIVER=wayland
   export _JAVA_AWT_WM_NONREPARENTING=1
   export QT_QPA_PLATFORM=wayland
-  export XDG_CURRENT_DESKTOP=sway
-  export XDG_SESSION_DESKTOP=sway
+  export XDG_CURRENT_DESKTOP=Hyprland
+  export XDG_SESSION_DESKTOP=Hyprland
   exec Hyprland >> ~/.cache/hyprland.log 2>&1
 }
 
 machine=$(uname -n)
 if [[ ! $DISPLAY && (($XDG_VTNR -eq 1)) ]]; then
   if [ $machine = "tiamat" ]; then
-    # init-i3
     init-hyprland
   elif [ $machine = "drogon" ]; then
     init-hyprland
-    # init-i3
-  else
-    init-i3
   fi
 elif [[ ! $DISPLAY && (($XDG_VTNR -eq 2)) ]]; then
-  init-hyprland
+  init-sway
 fi
 
 # Enable colors and change prompt:

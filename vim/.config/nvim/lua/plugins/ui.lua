@@ -58,7 +58,7 @@ local ui = {
 				group_empty = false,
 				highlight_opened_files = "icon",
 			},
-			actions = { open_file = { quit_on_open = true } },
+			-- actions = { open_file = { quit_on_open = true } },
 			update_focused_file = { enable = true },
 			git = { ignore = false },
 		},
