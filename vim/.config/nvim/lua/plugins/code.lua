@@ -86,7 +86,10 @@ local code = {
         ["<Up>"] = { "select_prev", "fallback" },
         ["<Down>"] = { "select_next", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
-        cmdline = {
+      },
+      cmdline = {
+        keymap = {
+
           preset = "super-tab",
         },
       },
