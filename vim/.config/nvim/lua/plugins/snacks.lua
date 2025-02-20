@@ -43,8 +43,9 @@ return {
           input = {
             keys = {
               ["<Esc>"] = { "close", mode = "i" },
-              ["<c-d>"] = { "bufdelete", mode = { "n", "i" } }
-            }
+              ["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
+              ["<c-p>"] = { "toggle_preview", mode = { "i", "n" } },
+            },
           },
         },
         layout = { preset = "ivy" },
