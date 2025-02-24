@@ -89,7 +89,6 @@ local code = {
       },
       cmdline = {
         keymap = {
-
           preset = "super-tab",
         },
       },
