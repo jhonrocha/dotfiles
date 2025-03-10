@@ -1,8 +1,8 @@
 return {
   {
     "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
+    -- event = "VeryLazy",
+    lazy = true,
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
     opts = {
       provider = "claude",
@@ -30,7 +30,6 @@ return {
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
         opts = {
           -- recommended settings
           default = {

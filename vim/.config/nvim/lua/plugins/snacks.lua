@@ -5,7 +5,6 @@ return {
     lazy = false,
     dependencies = {
       "lewis6991/gitsigns.nvim",
-      "kevinhwang91/nvim-ufo",
     },
     ---@type snacks.Config
     opts = {

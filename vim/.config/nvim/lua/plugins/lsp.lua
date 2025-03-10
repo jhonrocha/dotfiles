@@ -59,20 +59,20 @@ local lsp = {
               implicitProjectConfiguration = {
                 checkJs = true,
               },
-              inlayHints = { enable = true },
-              typescript = {
-                inlayHints = {
-                  -- You can set this to 'all' or 'literals' to enable more hints
-                  includeInlayParameterNameHints = "none", -- 'none' | 'literals' | 'all'
-                  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                  includeInlayFunctionParameterTypeHints = false,
-                  includeInlayVariableTypeHints = false,
-                  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-                  includeInlayPropertyDeclarationTypeHints = false,
-                  includeInlayFunctionLikeReturnTypeHints = true,
-                  includeInlayEnumMemberValueHints = true,
-                },
-              },
+              -- inlayHints = { enable = true },
+              -- typescript = {
+              --   inlayHints = {
+              --     -- You can set this to 'all' or 'literals' to enable more hints
+              --     includeInlayParameterNameHints = "none", -- 'none' | 'literals' | 'all'
+              --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              --     includeInlayFunctionParameterTypeHints = false,
+              --     includeInlayVariableTypeHints = false,
+              --     includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+              --     includeInlayPropertyDeclarationTypeHints = false,
+              --     includeInlayFunctionLikeReturnTypeHints = true,
+              --     includeInlayEnumMemberValueHints = true,
+              --   },
+              -- },
               -- javascript = {
               -- 	inlayHints = {
               -- 		-- You can set this to 'all' or 'literals' to enable more hints
