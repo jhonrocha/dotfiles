@@ -103,16 +103,14 @@ local code = {
 				},
 			},
 			signature = { enabled = true },
-			sources = {
-				default = { "lsp", "buffer", "snippets", "path" },
-			},
+			sources = { default = { "lsp", "path", "snippets", "buffer" } },
 		},
 		opts_extend = { "sources.default" },
 	},
 	{
 		"kawre/leetcode.nvim",
 		build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
-    lazy = true,
+		lazy = true,
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 			-- "ibhagwan/fzf-lua",
