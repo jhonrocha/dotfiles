@@ -5,7 +5,7 @@ local lsp_installed = {
   "pyright",
   "jsonls",
   "lua_ls",
-  "ts_ls",
+  -- "ts_ls",
   "yamlls",
 }
 
@@ -51,44 +51,44 @@ local lsp = {
             },
           })
         end,
-        ["ts_ls"] = function()
-          require("lspconfig")["ts_ls"].setup({
-            capabilities = capabilities,
-            on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false end,
-            settings = {
-              implicitProjectConfiguration = {
-                checkJs = true,
-              },
-              -- inlayHints = { enable = true },
-              -- typescript = {
-              --   inlayHints = {
-              --     -- You can set this to 'all' or 'literals' to enable more hints
-              --     includeInlayParameterNameHints = "none", -- 'none' | 'literals' | 'all'
-              --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-              --     includeInlayFunctionParameterTypeHints = false,
-              --     includeInlayVariableTypeHints = false,
-              --     includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-              --     includeInlayPropertyDeclarationTypeHints = false,
-              --     includeInlayFunctionLikeReturnTypeHints = true,
-              --     includeInlayEnumMemberValueHints = true,
-              --   },
-              -- },
-              -- javascript = {
-              -- 	inlayHints = {
-              -- 		-- You can set this to 'all' or 'literals' to enable more hints
-              -- 		includeInlayParameterNameHints = "none", -- 'none' | 'literals' | 'all'
-              -- 		includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-              -- 		includeInlayVariableTypeHints = false,
-              -- 		includeInlayFunctionParameterTypeHints = false,
-              -- 		includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-              -- 		includeInlayPropertyDeclarationTypeHints = false,
-              -- 		includeInlayFunctionLikeReturnTypeHints = true,
-              -- 		includeInlayEnumMemberValueHints = true,
-              -- 	},
-              -- },
-            },
-          })
-        end,
+        -- ["ts_ls"] = function()
+        --   require("lspconfig")["ts_ls"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false end,
+        --     settings = {
+        --       -- implicitProjectConfiguration = {
+        --       --   checkJs = true,
+        --       -- },
+        --       -- inlayHints = { enable = true },
+        --       -- typescript = {
+        --       --   inlayHints = {
+        --       --     -- You can set this to 'all' or 'literals' to enable more hints
+        --       --     includeInlayParameterNameHints = "none", -- 'none' | 'literals' | 'all'
+        --       --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        --       --     includeInlayFunctionParameterTypeHints = false,
+        --       --     includeInlayVariableTypeHints = false,
+        --       --     includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        --       --     includeInlayPropertyDeclarationTypeHints = false,
+        --       --     includeInlayFunctionLikeReturnTypeHints = true,
+        --       --     includeInlayEnumMemberValueHints = true,
+        --       --   },
+        --       -- },
+        --       -- javascript = {
+        --       -- 	inlayHints = {
+        --       -- 		-- You can set this to 'all' or 'literals' to enable more hints
+        --       -- 		includeInlayParameterNameHints = "none", -- 'none' | 'literals' | 'all'
+        --       -- 		includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        --       -- 		includeInlayVariableTypeHints = false,
+        --       -- 		includeInlayFunctionParameterTypeHints = false,
+        --       -- 		includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        --       -- 		includeInlayPropertyDeclarationTypeHints = false,
+        --       -- 		includeInlayFunctionLikeReturnTypeHints = true,
+        --       -- 		includeInlayEnumMemberValueHints = true,
+        --       -- 	},
+        --       -- },
+        --     },
+        --   })
+        -- end,
         ["yamlls"] = function()
           require("lspconfig")["yamlls"].setup({
             capabilities = capabilities,
@@ -146,6 +146,11 @@ local lsp = {
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
       vim.diagnostic.config({ float = { border = _border }, virtual_text = false })
     end,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
 }
 return lsp
