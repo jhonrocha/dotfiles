@@ -24,6 +24,10 @@ export BROWSER=google-chrome-stable
 export BROWSER_NAME=google-chrome
 export SXHKD_SHELL=/bin/sh
 
+#TFENV
+export TFENV_TERRAFORM_VERSION=1.8.4
+
+
 # CONFIGS
 export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
 export LC_ALL=en_US.UTF-8
