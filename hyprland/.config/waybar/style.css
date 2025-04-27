@@ -1,7 +1,7 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family:
-    Iosevka NF,
+    JetBrainsMono NF,
     FontAwesome,
     Roboto,
     Helvetica,
@@ -73,6 +73,14 @@ button:hover {
 .modules-right {
   border: 1px solid #7287fd;
   border-radius: 10;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modules-left {
+  font-weight: 700;
+  border: 1px solid #7287fd;
+  border-radius: 5;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 #custom-launcher,
