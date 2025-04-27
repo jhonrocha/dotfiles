@@ -2,9 +2,9 @@
 {
   // "layer": "top", // Waybar at top layer
   // "position": "bottom", // Waybar position (top|bottom|left|right)
-  "height": 30, // Waybar height (to be removed for auto height)
+  "height": 20, // Waybar height (to be removed for auto height)
   // "width": 1280, // Waybar width
-  "spacing": 4, // Gaps between modules
+  "spacing": 0, // Gaps between modules
   // Choose the order of the modules
   "modules-left": [
     "hyprland/workspaces",
@@ -12,7 +12,7 @@
   ],
   "modules-center": [],
   "modules-right": [
-    "custom/wofi",
+    "custom/launcher",
     "pulseaudio",
     "cpu",
     "memory",
@@ -25,9 +25,14 @@
     "tray",
     "custom/close"
   ],
-  "custom/wofi": {
+  "hyprland/workspaces": {
+    "all-outputs": false,
+    "show-special": true,
+    "special-visible-only": true
+  },
+  "custom/launcher": {
     "format": "󰣇",
-    "on-click": "wofi --show drun -a"
+    "on-click": "launcher --show drun -a"
   },
   "custom/close": {
     "format": "󰅗",
