@@ -59,7 +59,7 @@ vim.diagnostic.config({
     -- },
   },
   float = { border = "single" },
-  virtual_text = true,
+  -- virtual_text = true,
 })
 
 -- Clipboard

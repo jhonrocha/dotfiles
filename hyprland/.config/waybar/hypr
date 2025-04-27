@@ -32,11 +32,13 @@
   },
   "custom/launcher": {
     "format": "󰣇",
-    "on-click": "launcher --show drun -a"
+    "tooltip": false,
+    "on-click": "wofi --show drun -a"
   },
   "custom/close": {
     "format": "󰅗",
-    "on-click": "hyprctl kill"
+    "tooltip": false,
+    "on-click": "hyprctl killactive"
   },
   "tray": {
     // "icon-size": 21,
