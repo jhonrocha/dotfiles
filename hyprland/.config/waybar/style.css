@@ -72,7 +72,7 @@ button:hover {
 
 .modules-right {
   border: 1px solid #7287fd;
-  border-radius: 10;
+  border-radius: 10px 0px 0px 10px;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
