@@ -2,14 +2,16 @@
 ------------ Plugin Manager ------------
 ----------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then vim.fn.system({
-	"git",
-	"clone",
-	"--filter=blob:none",
-	"https://github.com/folke/lazy.nvim.git",
-	"--branch=stable",
-	lazypath,
-}) end
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
 vim.opt.rtp:prepend(lazypath)
 
 -- Remap space as leader key
@@ -21,26 +23,45 @@ vim.g.maplocalleader = " "
 --------------- PLUGINS ----------------
 ----------------------------------------
 require("lazy").setup("plugins", {
-	change_detection = { enabled = false },
-	ui = {
-		border = "single",
-	},
+  change_detection = { enabled = false },
+  ui = {
+    border = "single",
+  },
 })
 
 ----------------------------------------
 ---------------- SETUP -----------------
 ----------------------------------------
 local signs = {
-	Error = "",
-	Warn = "",
-	Hint = "",
-	Info = "",
+  Error = "",
+  Warn = "",
+  Hint = "",
+  Info = "",
 }
 
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+-- for type, icon in pairs(signs) do
+-- 	local hl = "DiagnosticSign" .. type
+-- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+-- end
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.INFO] = "",
+    },
+    -- linehl = {
+    --     [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+    -- },
+    -- numhl = {
+    --     [vim.diagnostic.severity.WARN] = 'WarningMsg',
+    -- },
+  },
+  float = { border = "single" },
+  virtual_text = true,
+})
+
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
 -- Make line numbers default
@@ -82,18 +103,18 @@ vim.wo.signcolumn = "yes:1"
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function() vim.highlight.on_yank() end,
-	group = highlight_group,
-	pattern = "*",
+  callback = function() vim.highlight.on_yank() end,
+  group = highlight_group,
+  pattern = "*",
 })
 
 vim.filetype.add({
-	pattern = {
-		[".*/waybar/config"] = "jsonc",
-		[".*/mako/config"] = "dosini",
-		[".*/kitty/*.conf"] = "bash",
-		[".*/hypr/.*%.conf"] = "hyprlang",
-	},
+  pattern = {
+    [".*/waybar/config"] = "jsonc",
+    [".*/mako/config"] = "dosini",
+    [".*/kitty/*.conf"] = "bash",
+    [".*/hypr/.*%.conf"] = "hyprlang",
+  },
 })
 
 ----------------------------------------

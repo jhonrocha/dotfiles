@@ -56,7 +56,7 @@ local code = {
     ---@type blink.cmp.Config
     opts = {
       keymap = {
-        preset = "super-tab",
+        preset = "default",
         ["<Up>"] = { "select_prev", "fallback" },
         ["<Down>"] = { "select_next", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
