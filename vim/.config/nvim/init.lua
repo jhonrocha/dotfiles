@@ -62,6 +62,8 @@ vim.diagnostic.config({
   -- virtual_text = true,
 })
 
+vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl")
+
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
 -- Make line numbers default

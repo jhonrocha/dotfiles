@@ -60,6 +60,15 @@ local code = {
         ["<Up>"] = { "select_prev", "fallback" },
         ["<Down>"] = { "select_next", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
+        -- ["<ESC>"] = {
+        --   function(cmp)
+        --     if cmp.is_visible() then
+        --       cmp.cancel()
+        --     else
+        --       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
+        --     end
+        --   end,
+        -- },
       },
       cmdline = {
         keymap = {
