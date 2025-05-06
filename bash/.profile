@@ -13,6 +13,7 @@ export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 PATH="$HOME/.config/dotbin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$XDG_DATA_HOME/venv/bin:$PATH"
+PATH="$HOME/bin:$PATH"
 # bun
 BUN_INSTALL="$XDG_CONFIG_HOME/bun"
 PATH="$BUN_INSTALL/bin:$PATH"
