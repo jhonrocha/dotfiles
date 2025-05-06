@@ -28,8 +28,6 @@ export SXHKD_SHELL=/bin/sh
 #TFENV
 export TFENV_TERRAFORM_VERSION=1.8.4
 
-export GEMINI_API_KEY="12345"
-
 # CONFIGS
 export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
 export LC_ALL=en_US.UTF-8

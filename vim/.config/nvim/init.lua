@@ -32,12 +32,9 @@ require("lazy").setup("plugins", {
 ----------------------------------------
 ---------------- SETUP -----------------
 ----------------------------------------
-local signs = {
-  Error = "",
-  Warn = "",
-  Hint = "",
-  Info = "",
-}
+
+-- Add border to all float windows
+vim.o.winborder = 'rounded'
 
 -- for type, icon in pairs(signs) do
 -- 	local hl = "DiagnosticSign" .. type

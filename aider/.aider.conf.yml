@@ -1,0 +1,11 @@
+## Enable/disable adding .aider* to .gitignore (default: True)
+gitignore: false
+
+## Enable/disable auto commit of LLM changes (default: True)
+auto-commits: false
+
+## Enable/disable automatic linting after changes (default: True)
+auto-lint: true
+
+## Use VI editing mode in the terminal (default: False)
+vim: true
