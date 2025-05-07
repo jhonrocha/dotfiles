@@ -24,7 +24,7 @@ local ai = {
   },
   {
     "olimorris/codecompanion.nvim",
-    lazy = false,
+    lazy = true,
     opts = {
       strategies = {
         chat = {
