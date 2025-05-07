@@ -53,6 +53,10 @@ return {
 						win = { input = { keys = { ["<Esc>"] = "cancel" } } },
 						layout = {
 							hidden = { "input" },
+							layout = {
+								width = 30,
+								min_width = 30,
+							},
 						},
 					},
 				},
@@ -73,7 +77,7 @@ return {
 			words = { enabled = false },
 		},
 		keys = {
-			{ "<leader>b", function() Snacks.explorer() end, desc = "File Explorer" },
+			{ "<leader>d", function() Snacks.explorer() end, desc = "File Explorer" },
 			{ "<leader>fk", function() Snacks.bufdelete() end, desc = "file kill" },
 			{ "<leader>go", function() Snacks.gitbrowse() end, desc = "browser" },
 			-- Fuzzy Find

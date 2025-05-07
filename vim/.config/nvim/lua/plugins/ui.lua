@@ -63,7 +63,7 @@ local ui = {
 			git = { ignore = false },
 		},
 		keys = {
-			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
+			{ "<leader>b", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
 		},
 		lazy = true,
 	},

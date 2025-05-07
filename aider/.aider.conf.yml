@@ -1,3 +1,5 @@
+# https://aider.chat/docs/config/aider_conf.html
+
 ## Enable/disable adding .aider* to .gitignore (default: True)
 gitignore: false
 
@@ -9,3 +11,6 @@ auto-lint: true
 
 ## Use VI editing mode in the terminal (default: False)
 vim: true
+
+## Specify which editor to use for the /editor command
+editor: nvim
