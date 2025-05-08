@@ -14,3 +14,9 @@ vim: true
 
 ## Specify which editor to use for the /editor command
 editor: nvim
+
+## Set the markdown code theme (default: default, other options include monokai, solarized-dark, solarized-light, or a Pygments builtin style, see https://pygments.org/styles for available themes)
+code-theme: monokai
+
+## Specify the model to use for the main chat
+# model: gemini/gemini-2.5-pro-preview-03-25
