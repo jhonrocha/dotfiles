@@ -19,4 +19,4 @@ editor: nvim
 code-theme: monokai
 
 ## Specify the model to use for the main chat
-# model: gemini/gemini-2.5-pro-preview-03-25
+model: gemini/gemini-2.5-pro-preview-03-25

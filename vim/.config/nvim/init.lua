@@ -2,16 +2,14 @@
 ------------ Plugin Manager ------------
 ----------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
-end
+if not vim.loop.fs_stat(lazypath) then vim.fn.system({
+	"git",
+	"clone",
+	"--filter=blob:none",
+	"https://github.com/folke/lazy.nvim.git",
+	"--branch=stable",
+	lazypath,
+}) end
 vim.opt.rtp:prepend(lazypath)
 
 -- Remap space as leader key
@@ -23,10 +21,10 @@ vim.g.maplocalleader = " "
 --------------- PLUGINS ----------------
 ----------------------------------------
 require("lazy").setup("plugins", {
-  change_detection = { enabled = false },
-  ui = {
-    border = "single",
-  },
+	change_detection = { enabled = false },
+	ui = {
+		border = "single",
+	},
 })
 
 ----------------------------------------
@@ -34,29 +32,29 @@ require("lazy").setup("plugins", {
 ----------------------------------------
 
 -- Add border to all float windows
-vim.o.winborder = 'rounded'
+vim.o.winborder = "rounded"
 
 -- for type, icon in pairs(signs) do
 -- 	local hl = "DiagnosticSign" .. type
 -- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 -- end
 vim.diagnostic.config({
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.HINT] = "",
-      [vim.diagnostic.severity.INFO] = "",
-    },
-    -- linehl = {
-    --     [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-    -- },
-    -- numhl = {
-    --     [vim.diagnostic.severity.WARN] = 'WarningMsg',
-    -- },
-  },
-  float = { border = "single" },
-  -- virtual_text = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+		-- linehl = {
+		--     [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+		-- },
+		-- numhl = {
+		--     [vim.diagnostic.severity.WARN] = 'WarningMsg',
+		-- },
+	},
+	float = { border = "single" },
+	-- virtual_text = true,
 })
 
 vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl")
@@ -102,18 +100,18 @@ vim.wo.signcolumn = "yes:1"
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function() vim.highlight.on_yank() end,
-  group = highlight_group,
-  pattern = "*",
+	callback = function() vim.highlight.on_yank() end,
+	group = highlight_group,
+	pattern = "*",
 })
 
 vim.filetype.add({
-  pattern = {
-    [".*/waybar/config"] = "jsonc",
-    [".*/mako/config"] = "dosini",
-    [".*/kitty/*.conf"] = "bash",
-    [".*/hypr/.*%.conf"] = "hyprlang",
-  },
+	pattern = {
+		[".*/waybar/config"] = "jsonc",
+		[".*/mako/config"] = "dosini",
+		[".*/kitty/*.conf"] = "bash",
+		[".*/hypr/.*%.conf"] = "hyprlang",
+	},
 })
 
 ----------------------------------------
@@ -148,12 +146,15 @@ vim.keymap.set("v", "<", "<gv", { desc = "indent right" })
 vim.keymap.set("v", ">", ">gv", { desc = "indent left" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv")
-vim.keymap.set("n", "d", '"vd')
-vim.keymap.set("n", "D", '"vD')
-vim.keymap.set("n", "x", '"vx')
-vim.keymap.set("n", "X", '"vX')
-vim.keymap.set("n", "c", '"vc')
-vim.keymap.set("n", "C", '"vC')
+
+-- Delete, not cut
+vim.keymap.set({ "n", "v" }, "d", '"vd')
+vim.keymap.set({ "n", "v" }, "D", '"vD')
+vim.keymap.set({ "n", "v" }, "x", '"vx')
+vim.keymap.set({ "n", "v" }, "X", '"vX')
+vim.keymap.set({ "n", "v" }, "c", '"vc')
+vim.keymap.set({ "n", "v" }, "C", '"vC')
+
 -- vim.keymap.set("n", "s", '"vs')
 -- vim.keymap.set("n", "S", '"vS')
 -- Original copy paste

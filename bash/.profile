@@ -148,5 +148,6 @@ alias path='echo -e ${PATH//:/\\n}'
 [ -f ~/.cargo/env ] && . ~/.cargo/env
 # Private envs
 [ -f ~/.config/.private_env ] && . ~/.config/.private_env
-# source /usr/share/nvm/init-nvm.sh
+# [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 eval "$(fnm env --use-on-cd --log-level error)"
+
