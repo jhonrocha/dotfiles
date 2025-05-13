@@ -11,6 +11,10 @@ local ai = {
         virtual_text = {
           enabled = true,
           filetypes = {
+            ['snacks_input'] = false,
+            ['snacks_terminal'] = false,
+            ['snacks_dashboard'] = false,
+            ['snacks_notif_history'] = false,
             ['snacks.picker'] = false,
             ['snacks_picker_list'] = false,
           },
