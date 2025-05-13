@@ -19,7 +19,7 @@
 [user]
 	name = Jhon Rocha
 
-[includeIf "gitdir/i:~/workspace/method/"]
+[includeIf "gitdir/i:~/workspace/mt/"]
     path = ~/workspace/mt/.gitconfig
 
 [includeIf "gitdir/i:~/workspace/method/"]
