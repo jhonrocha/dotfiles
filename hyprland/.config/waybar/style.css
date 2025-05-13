@@ -9,7 +9,7 @@
   font-size: 1em;
   /* font-size: 12px; */
   font-weight: bold;
-  color: #85c1dc;
+  color: #93d0db;
 }
 
 window#waybar {
@@ -116,6 +116,14 @@ button:hover {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+#tray,
+# tray menu,
+#tray > .passive,
+#tray > .active,
+#tray > .needs-attention {
+  color: #000000;
 }
 
 #tray > .passive {
