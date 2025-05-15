@@ -151,3 +151,5 @@ alias path='echo -e ${PATH//:/\\n}'
 # [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 eval "$(fnm env --use-on-cd --log-level error)"
 
+
+. "$HOME/.local/../bin/env"

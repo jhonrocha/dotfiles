@@ -124,13 +124,11 @@ then
 fi
 
 # Zsh GCP Support
-GCP_INC="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli/completion.zsh.inc";
-GCP_PATH="${YAY_PATH}/google-cloud-cli/pkg/google-cloud-cli/opt/google-cloud-cli/path.zsh.inc"
-[ -f ${GCP_INC} ] && . ${GCP_INC}
-[ -f ${GCP_PATH} ] && . ${GCP_PATH}
 if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc"; fi
 if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc"; fi
 
 # .env
 if [ -f ".env/bin/activate" ]; then . ".env/bin/activate"; fi
 if [ -f ".venv/bin/activate" ]; then . ".venv/bin/activate"; fi
+
+. "$HOME/.local/../bin/env"

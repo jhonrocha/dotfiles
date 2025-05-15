@@ -7,7 +7,7 @@ cd ~/dotfiles
 ##### INSTALL PKGS
 sudo pacman --noconfirm --needed -S - < pkg-all.txt
 
-#### Installing yay
+#### Installing paru
 if ! command -v paru &> /dev/null
 then
   sudo pacman -S --needed base-devel

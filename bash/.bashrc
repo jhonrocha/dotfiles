@@ -45,3 +45,5 @@ shopt -s checkwinsize
 
 eval "$(starship init bash)"
 
+
+. "$HOME/.local/../bin/env"
