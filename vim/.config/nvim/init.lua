@@ -123,6 +123,7 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- My Maps
 vim.keymap.set("n", "<leader>fs", "<Cmd>update!<CR>", { desc = "file save" })
+vim.keymap.set("n", "<leader>r", "<Cmd>e<CR>", { desc = "file reload" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })
@@ -134,8 +135,8 @@ vim.keymap.set("n", "<leader>m", function() vim.diagnostic.goto_next({ float = t
 vim.keymap.set("n", "<leader>j", "<Cmd>bn<CR>", { desc = "next buf" })
 vim.keymap.set("n", "<leader>k", "<Cmd>bp<CR>", { desc = "prev buf" })
 vim.keymap.set("n", "<leader><TAB>", "<C-^>", { desc = "alt buf" })
-vim.keymap.set("n", "<leader>fp", "<Cmd>let @+=@%<CR>", { desc = "copy path" })
-vim.keymap.set("n", "<leader>fP", "<Cmd>let @+=expand('%:t')<CR>", { desc = "copy full" })
+vim.keymap.set("n", "<leader>yp", "<Cmd>let @+=@%<CR>", { desc = "copy path" })
+vim.keymap.set("n", "<leader>yP", "<Cmd>let @+=expand('%:t')<CR>", { desc = "copy full" })
 
 -- Replacers
 vim.keymap.set("n", "<leader>rr", ":%s//gc<left><left><left>", { desc = "replace all" })

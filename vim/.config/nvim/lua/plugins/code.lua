@@ -57,18 +57,9 @@ local code = {
 		opts = {
 			keymap = {
 				preset = "default",
-				["<Up>"] = { "select_prev", "fallback" },
-				["<Down>"] = { "select_next", "fallback" },
+				-- ["<Up>"] = { "select_prev", "fallback" },
+				-- ["<Down>"] = { "select_next", "fallback" },
 				["<CR>"] = { "accept", "fallback" },
-				-- ["<ESC>"] = {
-				--   function(cmp)
-				--     if cmp.is_visible() then
-				--       cmp.cancel()
-				--     else
-				--       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
-				--     end
-				--   end,
-				-- },
 			},
 			cmdline = {
 				keymap = {
@@ -101,10 +92,13 @@ local code = {
 				per_filetype = {
 					codecompanion = { "codecompanion" },
 				},
+				providers = {
+					lsp = { fallbacks = {} },
+				},
 			},
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
 		opts_extend = { "sources.default" },
-	}
+	},
 }
 return code

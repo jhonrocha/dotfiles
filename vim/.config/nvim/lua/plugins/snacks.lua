@@ -121,7 +121,7 @@ local snacks = {
 			{ "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
 			{ "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
 			{ "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-			{ "<leader>fs", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+			{ "<leader>fS", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
 			-- scracth
 			{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
 			{ "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },

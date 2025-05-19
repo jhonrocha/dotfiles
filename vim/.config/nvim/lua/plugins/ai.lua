@@ -39,13 +39,13 @@ local ai = {
     opts = {
       strategies = {
         chat = {
-          adapter = "gemini",
+          adapter = "copilot",
         },
         inline = {
-          adapter = "gemini",
+          adapter = "copilot",
         },
         cmd = {
-          adapter = "gemini",
+          adapter = "copilot",
         },
       },
     },

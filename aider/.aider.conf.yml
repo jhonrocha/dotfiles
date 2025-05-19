@@ -1,5 +1,5 @@
-# https://aider.chat/docs/config/aider_conf.html
 
+# https://aider.chat/docs/config/aider_conf.html
 ## Enable/disable adding .aider* to .gitignore (default: True)
 gitignore: false
 
@@ -15,8 +15,15 @@ vim: true
 ## Specify which editor to use for the /editor command
 editor: nvim
 
+##################
+# Output settings:
+
+## Use colors suitable for a dark terminal background (default: False)
+dark-mode: true
 ## Set the markdown code theme (default: default, other options include monokai, solarized-dark, solarized-light, or a Pygments builtin style, see https://pygments.org/styles for available themes)
-code-theme: monokai
+code-theme: github-dark
 
 ## Specify the model to use for the main chat
-model: gemini/gemini-2.5-pro-preview-03-25
+# model: gemini/gemini-2.5-pro-preview-03-25
+model: openai/claude-3.7-sonnet-thought
+# model: openai/claude-3.7-sonnet
