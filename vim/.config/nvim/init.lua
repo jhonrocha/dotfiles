@@ -123,7 +123,7 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- My Maps
 vim.keymap.set("n", "<leader>fs", "<Cmd>update!<CR>", { desc = "file save" })
-vim.keymap.set("n", "<leader>r", "<Cmd>e<CR>", { desc = "file reload" })
+vim.keymap.set("n", "<leader>R", "<Cmd>e<CR>", { desc = "file reload" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })
