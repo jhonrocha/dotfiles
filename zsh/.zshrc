@@ -130,5 +130,3 @@ if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${XD
 # .env
 if [ -f ".env/bin/activate" ]; then . ".env/bin/activate"; fi
 if [ -f ".venv/bin/activate" ]; then . ".venv/bin/activate"; fi
-
-. "$HOME/.local/../bin/env"

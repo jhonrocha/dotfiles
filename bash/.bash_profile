@@ -30,5 +30,3 @@ if systemctl -q is-active graphical.target && [[ ! $DISPLAY && ! $WAYLAND_DISPLA
 else
   [ -f ~/.bashrc ] && . "$HOME"/.bashrc
 fi
-
-. "$HOME/.local/../bin/env"
