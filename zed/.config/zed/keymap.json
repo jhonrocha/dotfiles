@@ -10,7 +10,8 @@
     "context": "Workspace",
     "bindings": {
       // "shift shift": "file_finder::Toggle"
-      "alt-d": "terminal_panel::ToggleFocus"
+      "alt-d": "terminal_panel::ToggleFocus",
+      "ctrl-b": "workspace::ToggleLeftDock"
     }
   },
   {
@@ -25,6 +26,14 @@
     "context": "Editor",
     "bindings": {
       // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward",
+      "ctrl-b": "workspace::ToggleLeftDock"
     }
   }
 ]
