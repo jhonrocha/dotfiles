@@ -7,9 +7,9 @@ local ui = {
     config = function()
       -- load the colorscheme here
       -- vim.cmd.colorscheme('tokyonight')
-      -- vim.cmd.colorscheme('catppuccin-mocha')
+      vim.cmd.colorscheme('catppuccin-macchiato')
       vim.g.gruvbox_material_background = "dark"
-      vim.cmd.colorscheme('gruvbox-material')
+      -- vim.cmd.colorscheme('gruvbox-material')
     end,
   },
   {

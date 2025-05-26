@@ -8,8 +8,16 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 // vim: https://zed.dev/docs/vim#zed-specific-features
 {
+  "icon_theme": "Catppuccin Macchiato",
   "vim_mode": true,
+  "soft_wrap": "editor_width",
+  "tab_bar": { "show": false },
+  "toolbar": {
+    // "breadcrumbs": false,
+    "quick_actions": false
+  },
   "agent": {
+    "always_allow_tool_actions": true,
     "model_parameters": [],
     "default_model": {
       "provider": "copilot_chat",
@@ -17,12 +25,12 @@
     },
     "version": "2"
   },
-  "ui_font_size": 16,
+  "ui_font_size": 14,
   "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_size": 16,
+  "buffer_font_size": 14,
   "theme": {
     "mode": "system",
-    "light": "One Dark",
+    "light": "Catppuccin Macchiato",
     "dark": "One Dark"
   }
 }

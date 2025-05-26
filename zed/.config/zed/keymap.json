@@ -11,7 +11,8 @@
     "bindings": {
       // "shift shift": "file_finder::Toggle"
       "alt-d": "terminal_panel::ToggleFocus",
-      "ctrl-b": "workspace::ToggleLeftDock"
+      "alt-b": "workspace::ToggleLeftDock",
+      "alt-a": "workspace::ToggleRightDock"
     }
   },
   {
@@ -31,9 +32,16 @@
   {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
-      "s": "vim::PushSneak",
-      "shift-s": "vim::PushSneakBackward",
-      "ctrl-b": "workspace::ToggleLeftDock"
+      "alt-b": "workspace::ToggleLeftDock",
+      "space space": "file_finder::Toggle",
+      "space tab": "pane::AlternateFile",
+      "space ,": "tab_switcher::ToggleAll",
+      "space c f": "editor::Format",
+      "space f s": "workspace::Save",
+      "space f k": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "space k": "pane::ActivatePreviousItem",
+      "space j": "pane::ActivateNextItem",
+      "ctrl-w o": "pane::JoinAll"
     }
   }
 ]
