@@ -120,6 +120,8 @@ alias t3='tmux new-session -A -s 3'
 alias fm='ranger'
 # Neovim
 alias n='nvim'
+# Helix
+alias hx='helix'
 # Vim
 alias v='vim'
 # Tree
