@@ -12,7 +12,8 @@
       // "shift shift": "file_finder::Toggle"
       "alt-d": "terminal_panel::ToggleFocus",
       "alt-b": "workspace::ToggleLeftDock",
-      "alt-a": "workspace::ToggleRightDock"
+      "alt-a": "workspace::ToggleRightDock",
+      "alt-e": "pane::RevealInProjectPanel"
     }
   },
   {
@@ -32,7 +33,7 @@
   {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
-      "alt-b": "workspace::ToggleLeftDock",
+      "space b": "pane::RevealInProjectPanel",
       "space space": "file_finder::Toggle",
       "space tab": "pane::AlternateFile",
       "space ,": "tab_switcher::ToggleAll",

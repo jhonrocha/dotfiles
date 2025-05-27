@@ -11,9 +11,9 @@
   "icon_theme": "Catppuccin Macchiato",
   "vim_mode": true,
   "soft_wrap": "editor_width",
-  "tab_bar": { "show": false },
+  "tab_bar": { "show": true },
   "toolbar": {
-    // "breadcrumbs": false,
+    "breadcrumbs": false,
     "quick_actions": false
   },
   "agent": {
