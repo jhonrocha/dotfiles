@@ -31,6 +31,10 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true'
 #TFENV
 export TFENV_TERRAFORM_VERSION=1.8.4
 
+# UI
+export GDK_SCALE=2
+
+
 # CONFIGS
 export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
 export LC_ALL=en_US.UTF-8
