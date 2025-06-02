@@ -25,6 +25,9 @@ export BROWSER=google-chrome-stable
 export BROWSER_NAME=google-chrome
 export SXHKD_SHELL=/bin/sh
 
+# Fix Java Fonts: https://wiki.archlinux.org/title/Java_Runtime_Environment_fonts
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true'
+
 #TFENV
 export TFENV_TERRAFORM_VERSION=1.8.4
 

@@ -21,7 +21,9 @@
     "bindings": {
       // "shift shift": "file_finder::Toggle"
       "alt-d": "workspace::ToggleBottomDock",
-      "ctrl-t": "workspace::NewTerminal"
+      "ctrl-t": "workspace::NewTerminal",
+      "alt-u": "pane::ActivatePreviousItem",
+      "alt-i": "pane::ActivateNextItem"
     }
   },
   {
@@ -39,6 +41,14 @@
       "space ,": "tab_switcher::ToggleAll",
       "space c f": "editor::Format",
       "space f s": "workspace::Save",
+      "space f f": [
+        "task::Spawn",
+        { "task_name": "File Finder", "reveal_target": "center" }
+      ],
+      "space f w": [
+        "task::Spawn",
+        { "task_name": "Find in Files", "reveal_target": "center" }
+      ],
       "space f k": ["pane::CloseActiveItem", { "close_pinned": false }],
       "space k": "pane::ActivatePreviousItem",
       "space j": "pane::ActivateNextItem",

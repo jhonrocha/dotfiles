@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh:*)",
+      "Bash(find:*)",
+      "Bash(npm:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(ls:*)",
+      "Bash(node:*)",
+      "Bash(nvm:*)",
+      "Bash(fnm:*)",
+      "Bash(yarn:*)",
+      "Bash(which:*)",
+      "Bash(echo:*)",
+      "Bash(timeout:*)",
+      "Bash(webpack:*)",
+      "Bash(npx:*)",
+      "Bash(for:*)",
+      "Bash(wc:*)",
+      "Bash(chmod:*)",
+      "Bash(xargs:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(sed:*)",
+      "WebFetch"
+    ],
+    "deny": []
+  }
+}

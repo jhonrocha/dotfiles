@@ -81,5 +81,23 @@ local ui = {
       })
     end,
   },
+	{
+		"nvim-tree/nvim-tree.lua",
+		opts = {
+			sort_by = "case_sensitive",
+			view = { width = 30 },
+			renderer = {
+				group_empty = false,
+				highlight_opened_files = "icon",
+			},
+			-- actions = { open_file = { quit_on_open = true } },
+			update_focused_file = { enable = true },
+			git = { ignore = false },
+		},
+		keys = {
+			{ "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", desc = "file drawer" },
+		},
+		lazy = true,
+	},
 }
 return ui
