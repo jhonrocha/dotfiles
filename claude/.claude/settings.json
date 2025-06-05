@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(gh:*)",
+      "Bash(cat:*)",
+      "Bash(jq:*)",
       "Bash(find:*)",
       "Bash(npm:*)",
       "Bash(grep:*)",

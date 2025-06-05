@@ -8,6 +8,7 @@ markup=1
 
 background-color=#282c34
 text-color=#eeffff
+output = "HDMI-A-1"
 
 border-color=#3b8eea
 border-size=2
