@@ -51,7 +51,6 @@ local code = {
 			-- parser_configs.hcl = { filetype = "hcl", "terraform" }
 		end,
 	},
-	{ "windwp/nvim-autopairs", config = true },
 	{
 		"saghen/blink.cmp",
 		dependencies = { "rafamadriz/friendly-snippets" },

@@ -33,31 +33,31 @@ local ai = {
     --   { "<leader>a", "<Cmd>Codeium Chat<CR>", desc = "ai chat" },
     -- },
   },
-  {
-    "olimorris/codecompanion.nvim",
-    lazy = true,
-    opts = {
-      strategies = {
-        chat = {
-          adapter = "copilot",
-        },
-        inline = {
-          adapter = "copilot",
-        },
-        cmd = {
-          adapter = "copilot",
-        },
-      },
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    keys = {
-      { "<leader>a", "<Cmd>CodeCompanionChat Toggle<CR>", desc = "ai chat" },
-      { "<leader>A", "<Cmd>CodeCompanionActions<CR>",     desc = "ai actions" },
-    },
-  },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   lazy = true,
+  --   opts = {
+  --     strategies = {
+  --       chat = {
+  --         adapter = "copilot",
+  --       },
+  --       inline = {
+  --         adapter = "copilot",
+  --       },
+  --       cmd = {
+  --         adapter = "copilot",
+  --       },
+  --     },
+  --   },
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   keys = {
+  --     { "<leader>a", "<Cmd>CodeCompanionChat Toggle<CR>", desc = "ai chat" },
+  --     { "<leader>A", "<Cmd>CodeCompanionActions<CR>",     desc = "ai actions" },
+  --   },
+  -- },
 }
 
 return ai
