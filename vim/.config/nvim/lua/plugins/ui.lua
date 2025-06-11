@@ -1,6 +1,7 @@
 -- local theme = "catppuccin-macchiato"
 -- local theme = "eldritch"
-local theme = "kanagawa-wave"
+-- local theme = "kanagawa-wave"
+local theme = "tokyonight-night"
 local ui = {
 	{
 		"folke/tokyonight.nvim",
@@ -56,26 +57,27 @@ local ui = {
 			transparent = false, -- do not set background color
 		},
 	},
-	-- {
-	-- 	"nvim-lualine/lualine.nvim",
-	-- 	dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
-	-- 	opts = {
-	-- 		options = {
-	-- 			globalstatus = true,
-	-- 			section_separators = { left = "", right = "" },
-	-- 			theme,
-	-- 		},
-	-- 		sections = {
-	-- 			lualine_a = { "mode" },
-	-- 			lualine_b = { { "buffers", show_filename_only = true } },
-	-- 			lualine_c = {},
-	-- 			lualine_x = { "filetype" },
-	-- 			lualine_y = { "progress" },
-	-- 			lualine_z = { "location" },
-	-- 		},
-	-- 		extensions = { "quickfix", "nvim-tree" },
-	-- 	},
-	-- },
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+		opts = {
+			options = {
+				-- globalstatus = true,
+				-- section_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				theme,
+			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = {},
+				lualine_c = { { "buffers", show_filename_only = true } },
+				lualine_x = { "filetype" },
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
+			},
+			extensions = { "quickfix", "nvim-tree" },
+		},
+	},
 	{
 		"folke/which-key.nvim",
 		config = function()

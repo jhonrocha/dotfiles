@@ -97,6 +97,9 @@ vim.o.completeopt = "menuone,noselect"
 -- vim.wo.signcolumn = "yes:1"
 vim.wo.signcolumn = "yes:1"
 
+-- Disable cmdline
+vim.o.cmdheight = 0
+
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
