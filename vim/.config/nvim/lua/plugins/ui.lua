@@ -31,6 +31,22 @@ local ui = {
 			},
 		},
 	},
+	-- lazy.nvim
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- add any options here
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	},
 	{
 		"sainnhe/gruvbox-material",
 		lazy = false,
@@ -69,12 +85,23 @@ local ui = {
 			},
 			sections = {
 				lualine_a = { "mode" },
+				-- lualine_b = { "branch", "diff", "diagnostics" },
 				lualine_b = {},
 				lualine_c = { { "buffers", show_filename_only = true } },
-				lualine_x = { "filetype" },
+				-- lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_x = { "diff", "diagnostics", "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
+			inactive_sections = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = { "filename" },
+				lualine_x = { "location" },
+				lualine_y = {},
+				lualine_z = {},
+			},
+			winbar = {},
 			extensions = { "quickfix", "nvim-tree" },
 		},
 	},

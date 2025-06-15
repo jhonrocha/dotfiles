@@ -18,6 +18,8 @@ xkb_keymap {
     key <AC02>	{ [ s, S, bracketleft, braceleft ]	};
     key <AC03>	{ [ d, D, bracketright, braceright ]	};
     key <AD04>	{ [ r, R, equal, plus ]	};
+    key <AD05> { [ t, T, backslash, backslash ] };
+    key <AD06> { [ y, Y, bar, bar ] };
     key <KPDV>	{ [ slash ] };
     key <KPSU> { [ question ] };
     key <KPMU> { [ ccedilla	] };

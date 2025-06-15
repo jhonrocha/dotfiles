@@ -32,7 +32,7 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true'
 export TFENV_TERRAFORM_VERSION=1.8.4
 
 # UI
-export GDK_SCALE=2
+# export GDK_SCALE=2
 
 
 # CONFIGS
