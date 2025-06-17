@@ -24,7 +24,7 @@ local snacks = {
       indent = { enabled = true, animate = { enabled = false } },
       input = { enabled = true },
       lazygit = { enabled = true },
-      notifier = { enabled = true },
+      notifier = { enabled = false },
       picker = {
         enabled = true,
         win = {

@@ -107,20 +107,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = highlight_group,
 	pattern = "*",
 })
---
--- -- Temporarily set cmdheight=1 when entering the command line
--- -- au CmdlineEnter * setlocal cmdheight=1
--- vim.api.nvim_create_autocmd("CmdlineEnter", {
--- 	callback = function() vim.o.cmdheight=1 end,
--- 	pattern = "*",
--- })
---
--- -- 1ms after leaving, set it back to 0.
--- -- au CmdlineLeave * call timer_start(1, { tid -> execute('setlocal cmdheight=0')})
--- vim.api.nvim_create_autocmd("CmdlineLeave", {
--- 	callback = function() vim.o.cmdheight=0 end,
--- 	pattern = "*",
--- })
 
 vim.filetype.add({
 	pattern = {

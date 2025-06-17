@@ -1,5 +1,5 @@
 font-family = "JetBrainsMono NF"
-theme = catppuccin-mocha
+theme = tokyonight_moon
 cursor-style = block
 window-decoration = false
 font-size = 12
