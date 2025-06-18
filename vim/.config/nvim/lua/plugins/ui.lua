@@ -72,10 +72,17 @@ local ui = {
       sections = {
         lualine_a = { "mode" },
         -- lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_b = {},
+        -- lualine_b = {},
         lualine_c = { { "buffers", show_filename_only = true } },
         -- lualine_x = { "encoding", "fileformat", "filetype" },
         lualine_x = { "diff", "diagnostics", "filetype" },
+        lualine_b = {
+          {
+            require("noice").api.statusline.mode.get,
+            cond = require("noice").api.statusline.mode.has,
+            color = { fg = "#ff9e64" },
+          },
+        },
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },
