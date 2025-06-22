@@ -24,7 +24,7 @@ local lsp = {
 		},
 		lazy = true,
 		config = function()
-			vim.lsp.inlay_hint.enable()
+			-- vim.lsp.inlay_hint.enable()
 			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
