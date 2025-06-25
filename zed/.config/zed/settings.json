@@ -26,12 +26,14 @@
     },
     "version": "2"
   },
-  "ui_font_size": 14,
+
+  "ui_font_family": "Cantarell",
+  "ui_font_size": 18,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_size": 14,
   "theme": {
     "mode": "system",
-    "light": "Catppuccin Macchiato",
+    "light": "One Dark",
     "dark": "One Dark"
   },
   "experimental.theme_overrides": {
