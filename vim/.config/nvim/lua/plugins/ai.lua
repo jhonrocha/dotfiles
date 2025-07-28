@@ -1,38 +1,38 @@
 local ai = {
-  {
-    "Exafunction/windsurf.nvim",
-    lazy = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("codeium").setup({
-        enable_cmp_source = false,
-        virtual_text = {
-          enabled = true,
-          filetypes = {
-            lua = true,
-            javascript = true,
-            typescript = true,
-            typescriptreact = true,
-            javascriptreact = true,
-            html = true,
-            css = true,
-            scss = true,
-            markdown = true,
-            json = true,
-            yaml = true,
-            toml = true,
-            go = true,
-          },
-          default_filetype_enabled = false,
-        },
-      })
-    end,
-    -- keys = {
-    --   { "<leader>a", "<Cmd>Codeium Chat<CR>", desc = "ai chat" },
-    -- },
-  },
+  -- {
+  --   "Exafunction/windsurf.nvim",
+  --   lazy = false,
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   config = function()
+  --     require("codeium").setup({
+  --       enable_cmp_source = false,
+  --       virtual_text = {
+  --         enabled = true,
+  --         filetypes = {
+  --           lua = true,
+  --           javascript = true,
+  --           typescript = true,
+  --           typescriptreact = true,
+  --           javascriptreact = true,
+  --           html = true,
+  --           css = true,
+  --           scss = true,
+  --           markdown = true,
+  --           json = true,
+  --           yaml = true,
+  --           toml = true,
+  --           go = true,
+  --         },
+  --         default_filetype_enabled = false,
+  --       },
+  --     })
+  --   end,
+  --   -- keys = {
+  --   --   { "<leader>a", "<Cmd>Codeium Chat<CR>", desc = "ai chat" },
+  --   -- },
+  -- },
   -- {
   --   "olimorris/codecompanion.nvim",
   --   lazy = true,
