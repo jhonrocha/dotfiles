@@ -5,6 +5,6 @@ window-decoration = false
 font-size = 12
 
 confirm-close-surface = false
-background-opacity = 0.9
+background-opacity = 1.0
 keybind = shift+enter=text:\n
 

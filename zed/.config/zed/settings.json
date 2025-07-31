@@ -28,7 +28,7 @@
   },
 
   "ui_font_family": "Cantarell",
-  "ui_font_size": 18,
+  "ui_font_size": 16,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_size": 14,
   "theme": {

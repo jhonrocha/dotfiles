@@ -25,10 +25,34 @@
     "tray",
     "custom/close"
   ],
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": {},
+    "icon-theme": "${i_theme}",
+    "spacing": 0,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "on-click-right": "fullscreen"
+  },
   "hyprland/workspaces": {
     "all-outputs": false,
     "show-special": true,
-    "special-visible-only": true
+    "special-visible-only": true,
+    "format": "{name} {windows}",
+    "format-window-separator": " ",
+    "window-rewrite-default": "",
+    // Icons References: https://www.nerdfonts.com/cheat-sheet
+    "window-rewrite": {
+      "chrome": "",
+      "code": "󰨞",
+      "datagrip": "󱙋",
+      "ghostty": "",
+      "postman": "",
+      "slack": "",
+      "zed": "",
+      "zen": ""
+    }
   },
   "custom/launcher": {
     "format": "󰣇",

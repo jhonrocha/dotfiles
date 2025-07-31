@@ -22,7 +22,7 @@ local lsp = {
 				lazy = true,
 			},
 		},
-		lazy = true,
+		lazy = false,
 		config = function()
 			-- vim.lsp.inlay_hint.enable()
 			vim.lsp.config("lua_ls", {
@@ -36,6 +36,19 @@ local lsp = {
 			vim.lsp.config("yamlls", {
 				settings = { yaml = { keyOrdering = false } },
 			})
+			vim.lsp.config("ts_go_ls", {
+				cmd = { "tsgo", "--lsp", "--stdio" },
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"javascript.jsx",
+					"typescript",
+					"typescriptreact",
+					"typescript.tsx",
+				},
+				root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+			})
+			-- vim.lsp.enable("ts_go_ls")
 		end,
 		keys = {
 			{ "<leader>ca", vim.lsp.buf.code_action, desc = "code action" },
@@ -89,6 +102,7 @@ local lsp = {
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    enabled = true,
 		opts = {
 			settings = {
 				tsserver_file_preferences = {

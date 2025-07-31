@@ -120,14 +120,9 @@ local snacks = {
 			{ "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
 			-- LSP
 			{ "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
-			{
-				"gr",
-				function() Snacks.picker.lsp_references() end,
-				nowait = true,
-				desc = "References",
-			},
+			{ "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
 			{ "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-			{ "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+			{ "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
 			{ "<leader>fS", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
 			-- scracth
 			{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
