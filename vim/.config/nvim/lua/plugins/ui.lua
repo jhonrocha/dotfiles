@@ -1,7 +1,7 @@
--- local theme = "catppuccin-macchiato"
+local theme = "catppuccin-macchiato"
 -- local theme = "eldritch"
 -- local theme = "kanagawa-wave"
-local theme = "tokyonight-night"
+-- local theme = "tokyonight-night"
 local ui = {
   {
     "folke/tokyonight.nvim",
