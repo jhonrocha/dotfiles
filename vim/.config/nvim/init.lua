@@ -139,7 +139,7 @@ vim.keymap.set("n", "<leader>j", "<Cmd>bn<CR>", { desc = "next buf" })
 vim.keymap.set("n", "<leader>k", "<Cmd>bp<CR>", { desc = "prev buf" })
 vim.keymap.set("n", "<leader><TAB>", "<C-^>", { desc = "alt buf" })
 vim.keymap.set("n", "<leader>yp", "<Cmd>let @+=expand('%:p:.')<CR>", { desc = "copy path" })
-vim.keymap.set("n", "<leader>yP", "<Cmd>let @+=expand('%:t')<CR>", { desc = "copy full" })
+vim.keymap.set("n", "<leader>yP", "<Cmd>let @+=expand('%:t')<CR>", { desc = "copy filename" })
 
 -- Replacers
 vim.keymap.set("n", "<leader>rr", ":%s//gc<left><left><left>", { desc = "replace all" })

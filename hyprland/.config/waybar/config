@@ -44,6 +44,7 @@
     "window-rewrite-default": "",
     // Icons References: https://www.nerdfonts.com/cheat-sheet
     "window-rewrite": {
+      "brave": "󰄛",
       "chrome": "",
       "code": "󰨞",
       "datagrip": "󱙋",

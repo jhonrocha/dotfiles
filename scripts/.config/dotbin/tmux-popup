@@ -7,5 +7,5 @@ path=$3
 if [[ $session = "float" ]]; then
   tmux detach-client
 else
-  tmux popup -E -xC -yC -w 100% -h 90% "(tmux attach -t float:$window &>/dev/null) || (tmux new-window -t float: -n $window -c $path &>/dev/null && tmux attach -t float:$window &>/dev/null) || (tmux new-session -s float -n $window -c $path &>/dev/null)"
+  tmux popup -xC -y 50 -w 100% -h 99% -E "(tmux attach -t float:$window &>/dev/null) || (tmux new-window -t float: -n $window -c $path &>/dev/null && tmux attach -t float:$window &>/dev/null) || (tmux new-session -s float -n $window -c $path &>/dev/null)"
 fi

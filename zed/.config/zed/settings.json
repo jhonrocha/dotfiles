@@ -18,11 +18,12 @@
     "quick_actions": false
   },
   "agent": {
+    "default_profile": "write",
     "always_allow_tool_actions": true,
     "model_parameters": [],
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "provider": "copilot_chat",
+      "model": "gpt-5"
     },
     "version": "2"
   },
