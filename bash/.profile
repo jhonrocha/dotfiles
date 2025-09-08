@@ -84,6 +84,7 @@ export PHP_INI_SCAN_DIR="${XDG_CONFIG_HOME}/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+alias yarn='fnm exec --using .nvmrc yarn'
 
 ## Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
