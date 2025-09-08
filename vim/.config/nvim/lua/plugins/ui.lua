@@ -1,4 +1,4 @@
-local theme = "catppuccin-macchiato"
+local theme = "catppuccin-mocha"
 -- local theme = "eldritch"
 -- local theme = "kanagawa-wave"
 -- local theme = "tokyonight-night"
