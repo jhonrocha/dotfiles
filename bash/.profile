@@ -82,8 +82,10 @@ export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
 export PATH="${XDG_CONFIG_HOME}/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="${XDG_CONFIG_HOME}/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
+# ELECTRON
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
 
-alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+# ALIAS
 alias yarn='fnm exec --using .nvmrc yarn'
 
 ## Less Colors for Man Pages
