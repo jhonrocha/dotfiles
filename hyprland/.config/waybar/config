@@ -1,170 +1,192 @@
 // vim:ft=jsonc
-{
-  // "layer": "top", // Waybar at top layer
-  // "position": "bottom", // Waybar position (top|bottom|left|right)
-  // "height": 20, // Waybar height (to be removed for auto height)
-  // "width": 1280, // Waybar width
-  "spacing": 0, // Gaps between modules
-  // Choose the order of the modules
-  "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/submap"
-  ],
-  "modules-center": [],
-  "modules-right": [
-    "custom/launcher",
-    "pulseaudio",
-    "cpu",
-    "memory",
-    "temperature",
-    "battery",
-    "battery#bat2",
-    "clock#us",
-    "clock#eu",
-    "clock",
-    "tray",
-    "custom/close"
-  ],
-  "wlr/taskbar": {
-    "format": "{icon}",
-    "icon-size": {},
-    "icon-theme": "${i_theme}",
-    "spacing": 0,
-    "tooltip-format": "{title}",
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "on-click-right": "fullscreen"
-  },
-  "hyprland/workspaces": {
-    "all-outputs": false,
-    "show-special": true,
-    "special-visible-only": true,
-    "format": "{name} {windows}",
-    "format-window-separator": " ",
-    "window-rewrite-default": "",
-    // Icons References: https://www.nerdfonts.com/cheat-sheet
-    "window-rewrite": {
-      "brave": "󰄛",
-      "chrome": "",
-      "code": "󰨞",
-      "datagrip": "󱙋",
-      "ghostty": "",
-      "postman": "",
-      "slack": "",
-      "zed": "",
-      "zen": ""
+[
+  {
+    "spacing": 0, // Gaps between modules
+    "modules-left": [
+      "hyprland/workspaces",
+      "hyprland/submap"
+    ],
+    "output": [
+      "HDMI-A-1"
+    ],
+    "modules-center": [],
+    "modules-right": [],
+    "hyprland/workspaces": {
+      "all-outputs": false,
+      "show-special": true,
+      "special-visible-only": true,
+      "format": "{name} {windows}",
+      "format-window-separator": " ",
+      "window-rewrite-default": "",
+      // Icons References: https://www.nerdfonts.com/cheat-sheet
+      "window-rewrite": {
+        "brave": "󰄛",
+        "chrome": "",
+        "code": "󰨞",
+        "datagrip": "󱙋",
+        "ghostty": "",
+        "postman": "",
+        "slack": "",
+        "zed": "",
+        "zen": ""
+      }
     }
   },
-  "custom/launcher": {
-    "format": "󰣇",
-    "tooltip": false,
-    "on-click": "wofi --show drun -a"
-  },
-  "custom/close": {
-    "format": "󰅗",
-    "tooltip": false,
-    "on-click": "hyprctl killactive"
-  },
-  "tray": {
-    // "icon-size": 21,
-    "spacing": 10
-  },
-  "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}",
-    "format": "🇧🇷 {:%H:%M [%b %d]}"
-  },
-  "clock#us": {
-    "timezone": "America/New_York",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}",
-    "format": "🇺🇸 {:%H:%M}"
-  },
-  "clock#eu": {
-    "timezone": "Europe/Athens",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}",
-    "format": "🇪🇺 {:%H:%M}"
-  },
-  "cpu": {
-    "format": "{usage}% ",
-    "tooltip": false
-  },
-  "memory": {
-    "format": "{used} GB 󰍛"
-  },
-  "temperature": {
-    // "thermal-zone": 2,
-    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C {icon}",
-    "format": "{temperatureC}°C {icon}",
-    "format-icons": [
-      "",
-      "",
-      ""
-    ]
-  },
-  "backlight": {
-    // "device": "acpi_video1",
-    "format": "{percent}% {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
-  },
-  "battery": {
-    "states": {
-      // "good": 95,
-      "warning": 30,
-      "critical": 15
+  {
+    "spacing": 0, // Gaps between modules
+    "modules-left": [
+      "hyprland/workspaces",
+      "hyprland/submap"
+    ],
+    "output": [
+      "DP-2"
+    ],
+    "modules-center": [],
+    "modules-right": [
+      "custom/launcher",
+      "pulseaudio",
+      "cpu",
+      "memory",
+      "temperature",
+      "battery",
+      "battery#bat2",
+      "clock#us",
+      "clock#eu",
+      "clock",
+      "tray",
+      "custom/close"
+    ],
+    "hyprland/workspaces": {
+      "all-outputs": false,
+      "show-special": true,
+      "special-visible-only": true,
+      "format": "{name} {windows}",
+      "format-window-separator": " ",
+      "window-rewrite-default": "",
+      // Icons References: https://www.nerdfonts.com/cheat-sheet
+      "window-rewrite": {
+        "brave": "󰄛",
+        "chrome": "",
+        "code": "󰨞",
+        "datagrip": "󱙋",
+        "ghostty": "",
+        "postman": "",
+        "slack": "",
+        "zed": "",
+        "zen": ""
+      }
     },
-    "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% 󰂄",
-    "format-plugged": "{capacity}% ",
-    "format-alt": "{time} {icon}",
-    // "format-good": "", // An empty format will hide the module
-    // "format-full": "",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
-  },
-  "battery#bat2": {
-    "bat": "BAT2"
-  },
-  "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": "󰕾 {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "󰋎",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": [
-        "",
-        "",
-        ""
+    "custom/launcher": {
+      "format": "󰣇",
+      "tooltip": false,
+      "on-click": "wofi --show drun -a"
+    },
+    "custom/close": {
+      "format": "󰅗",
+      "tooltip": false,
+      "on-click": "hyprctl killactive"
+    },
+    "tray": {
+      // "icon-size": 21,
+      "spacing": 10
+    },
+    "clock": {
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": "{:%Y-%m-%d}",
+      "format": "🇧🇷 {:%H:%M [%b %d]}"
+    },
+    "clock#us": {
+      "timezone": "America/New_York",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": "{:%Y-%m-%d}",
+      "format": "🇺🇸 {:%H:%M}"
+    },
+    "clock#eu": {
+      "timezone": "Europe/Athens",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": "{:%Y-%m-%d}",
+      "format": "🇪🇺 {:%H:%M}"
+    },
+    "cpu": {
+      "format": "{usage}% ",
+      "tooltip": false
+    },
+    "memory": {
+      "format": "{used} GB 󰍛"
+    },
+    "temperature": {
+      // "thermal-zone": 2,
+      // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
+      "critical-threshold": 80,
+      // "format-critical": "{temperatureC}°C {icon}",
+      "format": "{temperatureC}°C {icon}",
+      "format-icons": [
+        "",
+        "",
+        ""
       ]
     },
-    "on-click": "pavucontrol"
+    "backlight": {
+      // "device": "acpi_video1",
+      "format": "{percent}% {icon}",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "battery": {
+      "states": {
+        // "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{capacity}% {icon}",
+      "format-charging": "{capacity}% 󰂄",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "{time} {icon}",
+      // "format-good": "", // An empty format will hide the module
+      // "format-full": "",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "battery#bat2": {
+      "bat": "BAT2"
+    },
+    "pulseaudio": {
+      // "scroll-step": 1, // %, can be a float
+      "format": "{volume}% {icon} {format_source}",
+      "format-bluetooth": "{volume}% {icon} {format_source}",
+      "format-bluetooth-muted": " {icon} {format_source}",
+      "format-muted": "󰕾 {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "󰋎",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": [
+          "",
+          "",
+          ""
+        ]
+      },
+      "on-click": "pavucontrol"
+    }
   }
-}
+]
