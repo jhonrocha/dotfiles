@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+fnm exec --using .nvmrc ~/.config/npm-global/bin/yarn $@

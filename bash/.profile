@@ -10,7 +10,6 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # Keyring
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 # PATH
-PATH="$HOME/.config/dotbin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$XDG_DATA_HOME/venv/bin:$PATH"
 PATH="$HOME/bin:$PATH"
@@ -78,6 +77,7 @@ export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
 export PATH="$XDG_CONFIG_HOME/npm-global/bin:$PATH"
 export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+export PATH="$HOME/.config/dotbin:$PATH"
 
 export PATH="${XDG_CONFIG_HOME}/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="${XDG_CONFIG_HOME}/herd-lite/bin:$PHP_INI_SCAN_DIR"
