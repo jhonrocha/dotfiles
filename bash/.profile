@@ -144,7 +144,7 @@ alias kprod="KUBECONFIG=~/.kube/prod.yaml kubectl"
 
 alias lg=lazygit
 
-alias nvm="fnm"
+alias nvm="echo"
 
 ##### BASHSMS #####
 # Print each PATH entry on a separate line
@@ -156,6 +156,5 @@ alias path='echo -e ${PATH//:/\\n}'
 [ -f ~/.cargo/env ] && . ~/.cargo/env
 # Private envs
 [ -f ~/.config/.private_env ] && . ~/.config/.private_env
-# [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 # eval "$(fnm env --use-on-cd --log-level error)"
 eval "$(fnm env --log-level error)"
