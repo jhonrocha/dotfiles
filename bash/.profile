@@ -85,9 +85,6 @@ export PHP_INI_SCAN_DIR="${XDG_CONFIG_HOME}/herd-lite/bin:$PHP_INI_SCAN_DIR"
 # ELECTRON
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
 
-# ALIAS
-alias yarn='fnm exec --using .nvmrc yarn'
-
 ## Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\e[01;38;5;74m'  # begin bold
@@ -144,7 +141,7 @@ alias kprod="KUBECONFIG=~/.kube/prod.yaml kubectl"
 
 alias lg=lazygit
 
-alias nvm="echo"
+# alias nvm="echo"
 
 ##### BASHSMS #####
 # Print each PATH entry on a separate line
