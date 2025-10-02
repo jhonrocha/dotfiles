@@ -4,6 +4,5 @@ env
 .aider*
 !.aider.conf.yml
 git/.config/git/ignore
-build.js
 AGENTS.md
 CLAUDE.md

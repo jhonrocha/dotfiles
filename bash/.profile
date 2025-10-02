@@ -1,6 +1,9 @@
 # AMD/NVIDIA
 export VDPAU_DRIVER=radeonsi
 
+# GTK
+export GTK_IM_MODULE=simple
+
 # XDG Standard
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
