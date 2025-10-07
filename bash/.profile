@@ -101,6 +101,7 @@ export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
 export WINEPREFIX=~/.config/wine
 
 # Alias definitions.
+alias ai="copilot --allow-all-tools --deny-tool 'shell(git add)' --deny-tool 'shell(git commit)' --deny-tool 'shell(git push)' --deny-tool 'shell(git merge)' --deny-tool 'shell(git rebase)' --deny-tool 'shell(git tag)' --deny-tool 'shell(git reset)' --banner"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
