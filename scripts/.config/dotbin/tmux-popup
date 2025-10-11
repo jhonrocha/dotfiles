@@ -5,9 +5,11 @@ session=$1
 current=$2
 window=$3
 path=$4
+width=${5:-50%}
+height=${6:-100%}
 
 if [[ $current = $session ]]; then
   tmux detach-client
 else
-  tmux popup -x 100 -y 50 -w 50% -h 100% -E "(tmux attach -t $session:$window &>/dev/null) || (tmux new-window -t $session: -n $window -c $path &>/dev/null && tmux attach -t $session:$window &>/dev/null) || (tmux new-session -s $session -n $window -c $path &>/dev/null)"
+  tmux popup -x 100 -y 50 -w "$width" -h "$height" -E "(tmux attach -t $session:$window &>/dev/null) || (tmux new-window -t $session: -n $window -c $path &>/dev/null && tmux attach -t $session:$window &>/dev/null) || (tmux new-session -s $session -n $window -c $path &>/dev/null)"
 fi

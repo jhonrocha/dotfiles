@@ -8,7 +8,5 @@ if [[ $session = "debug" ]]; then
   target="code"
 elif [[ $session = "code" ]]; then
   target="debug"
-else
-  exit 0
 fi
 ((tmux switch-client -t "$target":"$window") || (tmux new-window -c $path -t "$target": -n "$window" && tmux switch-client -t "$target":"$window") || (tmux new-session -c $path -d -s "$target" -n "$window" && tmux switch-client -t "$target":"$window"))
