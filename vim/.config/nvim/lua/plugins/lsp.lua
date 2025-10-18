@@ -1,12 +1,12 @@
 -- Supported Language Servers
 local lsp_installed = {
-	"bashls",
-	"gopls",
-	"pyright",
-	"jsonls",
-	"lua_ls",
-	-- "ts_ls",
-	"yamlls",
+	-- "bashls",
+	-- "gopls",
+	-- "pyright",
+	-- "jsonls",
+	-- "lua_ls",
+	-- -- "ts_ls",
+	-- "yamlls",
 }
 
 local lsp = {

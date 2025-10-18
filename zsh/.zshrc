@@ -113,8 +113,10 @@ bindkey  "^[[F"   end-of-line
 bindkey '^ ' autosuggest-accept
 
 # Zsh fzf support
-[ -f /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/fzf/completion.zsh ] && . /usr/share/fzf/completion.zsh
+if  command -v fzf &> /dev/null
+then
+  source <(fzf --zsh)
+fi
 
 # Zsh Starship
 precmd_functions=
@@ -123,9 +125,6 @@ then
     eval "$(starship init zsh)"
 fi
 
-# Zsh GCP Support
-if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/path.zsh.inc"; fi
-if [ -f "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${XDG_CONFIG_HOME}/google-cloud-sdk/completion.zsh.inc"; fi
 
 # .env
 if [ -f ".env/bin/activate" ]; then . ".env/bin/activate"; fi

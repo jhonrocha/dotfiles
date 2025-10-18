@@ -1,3 +1,4 @@
+# git config --global core.excludesfile ~/.config/.gitignore
 .tool-versions
 env
 .idea
@@ -6,3 +7,4 @@ env
 git/.config/git/ignore
 AGENTS.md
 CLAUDE.md
+.DS_Store

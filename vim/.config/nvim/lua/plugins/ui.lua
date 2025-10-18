@@ -31,7 +31,6 @@ local ui = {
       },
     },
   },
-  -- lazy.nvim
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -44,7 +43,10 @@ local ui = {
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+    dependencies = {
+      "folke/noice.nvim",
+      "nvim-tree/nvim-web-devicons"
+    },
     opts = {
       options = {
         globalstatus = true,
@@ -59,10 +61,10 @@ local ui = {
         lualine_c = { "diagnostics" },
         lualine_d = {
           {
-            require("noice").api.statusline.mode.get,
-            cond = require("noice").api.statusline.mode.has,
+            -- require("noice").api.statusline.mode.get,
+            -- cond = require("noice").api.statusline.mode.has,
 
-            color = { fg = "#ff9e64" },
+            -- color = { fg = "#ff9e64" },
           },
         },
         -- lualine_x = { "encoding", "fileformat", "filetype" },
