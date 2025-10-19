@@ -10,6 +10,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# MACOS HOMEBREW
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # Keyring
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 # PATH
