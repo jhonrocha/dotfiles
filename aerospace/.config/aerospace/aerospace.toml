@@ -124,8 +124,10 @@ automatically-unhide-macos-hidden-apps = false
     alt-9 = 'workspace 9'
 
 
-    alt-o = 'workspace prev'
-    alt-p = 'workspace next'
+    # alt-o = 'workspace prev'
+    # alt-p = 'workspace next'
+    alt-o = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace prev'
+    alt-p = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace next'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
@@ -149,7 +151,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-semicolon = 'mode service'
 
     alt-shift-f = 'layout floating tiling'
-    alt-period = 'fullscreen'
+    alt-period = 'fullscreen --no-outer-gaps'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -181,6 +183,10 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'com.apple.AppStore'
+  run = ['layout floating']
+
+[[on-window-detected]]
+  if.app-id = 'com.apple.ActivityMonitor'
   run = ['layout floating']
 
 [[on-window-detected]]
