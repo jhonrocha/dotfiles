@@ -1,0 +1,41 @@
+;; vim: ft=lisp
+;; Basic home row mods example using QWERTY
+;; For a more complex but perhaps usable configuration,
+;; see home-row-mod-advanced.kbd
+
+(defcfg
+  process-unmapped-keys yes
+)
+(defsrc
+  ;;a   s   d   f   j   k   l   ;
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  caps ; tab rmeta ralt
+)
+(defvar
+  ;; Note: consider using different time values for your different fingers.
+  ;; For example, your pinkies might be slower to release keys and index
+  ;; fingers faster.
+  tap-time 200
+  hold-time 150
+)
+(defalias
+  ;; a (tap-hold $tap-time $hold-time a lctl)
+  ;;s (tap-hold $tap-time $hold-time s lalt)
+  ;;d (tap-hold $tap-time $hold-time d lctl)
+  ;;f (tap-hold $tap-time $hold-time f lsft)
+  ;;j (tap-hold $tap-time $hold-time j rsft)
+  ;;k (tap-hold $tap-time $hold-time k ralt)
+  ;;l (tap-hold $tap-time $hold-time l ralt)
+
+  caps (tap-hold $tap-time $hold-time esc lctl)
+  ; (tap-hold $tap-time $hold-time ; rctl)
+  tab (tap-hold $tap-time $hold-time tab (multi rmeta lalt))
+  rmeta (tap-hold $tap-time $hold-time rmeta (multi rmeta lalt))
+  esc (tap-hold $tap-time $hold-time esc (multi rmeta lalt))
+)
+
+(deflayer base
+  @esc  🔅   🔆    ✗    ✗    ✗    ✗    ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
+  ;;@a  @s  @d  @f  @j  @k  @l  @;
+  @caps @; @tab @rmeta lalt
+)
