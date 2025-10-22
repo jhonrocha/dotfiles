@@ -47,6 +47,7 @@
     ],
     "modules-center": [],
     "modules-right": [
+      "custom/ddcutil",
       "custom/launcher",
       "pulseaudio",
       "cpu",
@@ -60,6 +61,12 @@
       "tray",
       "custom/close"
     ],
+    "custom/ddcutil": {
+      "format": "󰃠 {percentage}%",
+      "interval": 2,
+      "exec": "waybar-ddcutil.sh",
+      "return-type": "json"
+    },
     "hyprland/workspaces": {
       "all-outputs": false,
       "show-special": true,

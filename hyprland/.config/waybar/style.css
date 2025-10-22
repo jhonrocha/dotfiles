@@ -80,6 +80,7 @@ button:hover {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+#custom-ddcutil,
 #custom-launcher,
 #pulseaudio,
 #cpu,
