@@ -8,7 +8,8 @@
   fn f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12 bspc
   ◀ ▲ ▼ ▶  
   q w e r
-  f
+  a s d f
+  h j k l
   caps 
   ; 
   rmeta 
@@ -32,7 +33,8 @@
   @fn 🔅    🔆    mctl  sls   dtn   dnd   ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊  bspc
   ◀ ▲ ▼ ▶  
   q w e r 
-  f
+  a s d f
+  h j k l
   @caps
   @;
   @rmeta
@@ -44,7 +46,8 @@
   fn f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12 del
   ⤒ ⇞ ⇟ ⤓ ;; left up down right
   / S-/ - = ;; q w e r
-  S-grv ;; f
+  a [ ] S-grv ;; a s d f
+  left down up right
   lrld ;; caps
   _ ;; ;
   _ ;; rmet
