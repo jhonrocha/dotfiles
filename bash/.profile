@@ -160,5 +160,9 @@ alias path='echo -e ${PATH//:/\\n}'
 [ -f ~/.cargo/env ] && . ~/.cargo/env
 # Private envs
 [ -f ~/.config/.private_env ] && . ~/.config/.private_env
+# rbenv
+[ -f ~/.swiftly/env.sh ] && . ~/.swiftly/env.sh
+[ -x "$(command -v rbenv)" ] && eval "$(rbenv init - --no-rehash zsh)"
+
 # eval "$(fnm env --use-on-cd --log-level error)"
 eval "$(fnm env --log-level error)"
