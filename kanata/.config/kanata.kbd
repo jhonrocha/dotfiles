@@ -7,10 +7,13 @@
 (defsrc
   fn f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12 bspc
   ◀ ▲ ▼ ▶  
+  q w e r
+  f
   caps 
   ; 
   rmeta 
   ralt
+  spc
 )
 (defvar
   tap-time 200
@@ -22,22 +25,29 @@
   caps esc 
   rmeta (tap-hold $tap-time $hold-time rmeta (multi rmeta lalt))
   ; (tap-hold $tap-time $hold-time ; rctl)
+  spc (tap-hold 200 200 spc (layer-toggle fn))
 )
 
 (deflayer base
   @fn 🔅    🔆    mctl  sls   dtn   dnd   ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊  bspc
   ◀ ▲ ▼ ▶  
+  q w e r 
+  f
   @caps
   @;
   @rmeta
   lalt
+  @spc
 )
 
 (deflayer fn
   fn f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12 del
-  ⤒ ⇞ ⇟ ⤓
+  ⤒ ⇞ ⇟ ⤓ ;; left up down right
+  / S-/ - = ;; q w e r
+  S-grv ;; f
   lrld ;; caps
   _ ;; ;
   _ ;; rmet
   _ ;; lalt
+  spc
 )
