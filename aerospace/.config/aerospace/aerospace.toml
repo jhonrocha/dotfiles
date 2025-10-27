@@ -33,7 +33,7 @@ accordion-padding = 30
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
-# Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
+# Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-ctrl-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = false
 
@@ -85,7 +85,7 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
     # You can uncomment the following lines to open up terminal with alt + enter shortcut
     # (like in i3)
-    cmd-alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+    cmd-alt-ctrl-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
     # tell application "Terminal"
     #     do script
     #     activate
@@ -93,65 +93,65 @@ automatically-unhide-macos-hidden-apps = false
     # '''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-    cmd-alt-slash = 'layout tiles horizontal vertical'
-    cmd-alt-comma = 'layout accordion horizontal vertical'
+    cmd-alt-ctrl-slash = 'layout tiles horizontal vertical'
+    cmd-alt-ctrl-comma = 'layout accordion horizontal vertical'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    cmd-alt-h = 'focus left'
-    cmd-alt-j = 'focus down'
-    cmd-alt-k = 'focus up'
-    cmd-alt-l = 'focus right'
+    cmd-alt-ctrl-h = 'focus left'
+    cmd-alt-ctrl-j = 'focus down'
+    cmd-alt-ctrl-k = 'focus up'
+    cmd-alt-ctrl-l = 'focus right'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
-    cmd-alt-shift-h = 'move left'
-    cmd-alt-shift-j = 'move down'
-    cmd-alt-shift-k = 'move up'
-    cmd-alt-shift-l = 'move right'
+    cmd-alt-ctrl-shift-h = 'move left'
+    cmd-alt-ctrl-shift-j = 'move down'
+    cmd-alt-ctrl-shift-k = 'move up'
+    cmd-alt-ctrl-shift-l = 'move right'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-    cmd-alt-minus = 'resize smart -50'
-    cmd-alt-equal = 'resize smart +50'
+    cmd-alt-ctrl-minus = 'resize smart -50'
+    cmd-alt-ctrl-equal = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    cmd-alt-1 = 'workspace 1'
-    cmd-alt-2 = 'workspace 2'
-    cmd-alt-3 = 'workspace 3'
-    cmd-alt-4 = 'workspace 4'
-    cmd-alt-5 = 'workspace 5'
-    cmd-alt-6 = 'workspace 6'
-    cmd-alt-7 = 'workspace 7'
-    cmd-alt-8 = 'workspace 8'
-    cmd-alt-9 = 'workspace 9'
+    cmd-alt-ctrl-1 = 'workspace 1'
+    cmd-alt-ctrl-2 = 'workspace 2'
+    cmd-alt-ctrl-3 = 'workspace 3'
+    cmd-alt-ctrl-4 = 'workspace 4'
+    cmd-alt-ctrl-5 = 'workspace 5'
+    cmd-alt-ctrl-6 = 'workspace 6'
+    cmd-alt-ctrl-7 = 'workspace 7'
+    cmd-alt-ctrl-8 = 'workspace 8'
+    cmd-alt-ctrl-9 = 'workspace 9'
 
 
     # alt-o = 'workspace prev'
     # alt-p = 'workspace next'
-    cmd-alt-o = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace prev'
-    cmd-alt-p = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace next'
+    cmd-alt-ctrl-o = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace prev'
+    cmd-alt-ctrl-p = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace next'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-    cmd-alt-shift-1 = 'move-node-to-workspace 1'
-    cmd-alt-shift-2 = 'move-node-to-workspace 2'
-    cmd-alt-shift-3 = 'move-node-to-workspace 3'
-    cmd-alt-shift-4 = 'move-node-to-workspace 4'
-    cmd-alt-shift-5 = 'move-node-to-workspace 5'
-    cmd-alt-shift-6 = 'move-node-to-workspace 6'
-    cmd-alt-shift-7 = 'move-node-to-workspace 7'
-    cmd-alt-shift-8 = 'move-node-to-workspace 8'
-    cmd-alt-shift-9 = 'move-node-to-workspace 9'
+    cmd-alt-ctrl-shift-1 = 'move-node-to-workspace 1'
+    cmd-alt-ctrl-shift-2 = 'move-node-to-workspace 2'
+    cmd-alt-ctrl-shift-3 = 'move-node-to-workspace 3'
+    cmd-alt-ctrl-shift-4 = 'move-node-to-workspace 4'
+    cmd-alt-ctrl-shift-5 = 'move-node-to-workspace 5'
+    cmd-alt-ctrl-shift-6 = 'move-node-to-workspace 6'
+    cmd-alt-ctrl-shift-7 = 'move-node-to-workspace 7'
+    cmd-alt-ctrl-shift-8 = 'move-node-to-workspace 8'
+    cmd-alt-ctrl-shift-9 = 'move-node-to-workspace 9'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-    cmd-alt-tab = 'workspace-back-and-forth'
+    cmd-alt-ctrl-tab = 'workspace-back-and-forth'
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-    cmd-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+    cmd-alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-    cmd-alt-shift-period = 'reload-config'
+    cmd-alt-ctrl-shift-period = 'reload-config'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-    cmd-alt-shift-semicolon = 'mode service'
+    cmd-alt-ctrl-shift-semicolon = 'mode service'
 
-    cmd-alt-shift-f = 'layout floating tiling'
-    cmd-alt-period = 'fullscreen --no-outer-gaps'
+    cmd-alt-ctrl-shift-f = 'layout floating tiling'
+    cmd-alt-ctrl-period = 'fullscreen --no-outer-gaps'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -164,10 +164,10 @@ automatically-unhide-macos-hidden-apps = false
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
     #s = ['layout sticky tiling', 'mode main']
 
-    cmd-alt-shift-h = ['join-with left', 'mode main']
-    cmd-alt-shift-j = ['join-with down', 'mode main']
-    cmd-alt-shift-k = ['join-with up', 'mode main']
-    cmd-alt-shift-l = ['join-with right', 'mode main']
+    cmd-alt-ctrl-shift-h = ['join-with left', 'mode main']
+    cmd-alt-ctrl-shift-j = ['join-with down', 'mode main']
+    cmd-alt-ctrl-shift-k = ['join-with up', 'mode main']
+    cmd-alt-ctrl-shift-l = ['join-with right', 'mode main']
 
     down = 'volume down'
     up = 'volume up'

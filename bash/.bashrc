@@ -11,8 +11,6 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
-# cd using names
-shopt -s autocd
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=99999
@@ -44,6 +42,3 @@ shopt -s checkwinsize
 [ -f /opt/azure-cli/az.completion ] && . /opt/azure-cli/az.completion
 
 eval "$(starship init bash)"
-
-
-. "$HOME/.local/../bin/env"

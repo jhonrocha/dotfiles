@@ -21,7 +21,7 @@ init-sway () {
 }
 
 machine=$(uname -n)
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && ! $WAYLAND_DISPLAY && $XDG_VTNR -eq 1 ]]; then
+if [[ -x "$(command -v systemctl)" ]] && systemctl -q is-active graphical.target && [[ ! $DISPLAY && ! $WAYLAND_DISPLAY && $XDG_VTNR -eq 1 ]]; then
   if [ $machine = "tiamarch" ]; then
     init-sway
   elif [ $machine = "drogon" ]; then
