@@ -47,8 +47,8 @@
     ],
     "modules-center": [],
     "modules-right": [
-      "custom/ddcutil",
       "custom/launcher",
+      "custom/ddcutil",
       "pulseaudio",
       "cpu",
       "memory",
