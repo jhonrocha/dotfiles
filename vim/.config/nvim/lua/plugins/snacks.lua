@@ -9,7 +9,7 @@ local snacks = {
 		---@type snacks.Config
 		opts = {
 			explorer = { enabled = false },
-			bigfile = { enabled = true },
+			bigfile = { enabled = true, line_length = 100000 },
 			bufdelete = { enable = true },
 			dashboard = {
 				enabled = true,

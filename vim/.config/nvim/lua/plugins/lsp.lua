@@ -5,7 +5,7 @@ local lsp_installed = {
 	-- "pyright",
 	-- "jsonls",
 	-- "lua_ls",
-	-- -- "ts_ls",
+	-- "ts_ls",
 	-- "yamlls",
 }
 
@@ -48,7 +48,6 @@ local lsp = {
 				},
 				root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
 			})
-			-- vim.lsp.enable("ts_go_ls")
 		end,
 		keys = {
 			{ "<leader>ca", vim.lsp.buf.code_action, desc = "code action" },
@@ -88,7 +87,7 @@ local lsp = {
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.stylua,
 					-- null_ls.builtins.diagnostics.pylint.with({ prefer_local = "venv/bin" }),
-					-- null_ls.builtins.diagnostics.ruff,
+					null_ls.builtins.formatting.sql_formatter,
 					-- null_ls.builtins.formatting.black,
 					-- null_ls.builtins.diagnostics.staticcheck,
 					-- null_ls.builtins.formatting.shfmt,
