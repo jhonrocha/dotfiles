@@ -1,7 +1,6 @@
 [ -f ~/.profile ] && . ~/.profile
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.config/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 # History in cache directory:
