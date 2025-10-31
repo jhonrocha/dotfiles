@@ -12,6 +12,8 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 # MACOS HOMEBREW
 export HOMEBREW_NO_AUTO_UPDATE=1
+# TEMP FOLDER
+export TMPDIR=/tmp
 
 # Keyring
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
