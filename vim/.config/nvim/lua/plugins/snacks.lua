@@ -3,9 +3,7 @@ local snacks = {
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
-		dependencies = {
-			"lewis6991/gitsigns.nvim",
-		},
+		dependencies = {},
 		---@type snacks.Config
 		opts = {
 			explorer = { enabled = false },
