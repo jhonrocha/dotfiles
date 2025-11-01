@@ -167,4 +167,4 @@ alias path='echo -e ${PATH//:/\\n}'
 [ -x "$(command -v rbenv)" ] && eval "$(rbenv init - --no-rehash zsh)"
 
 # eval "$(fnm env --use-on-cd --log-level error)"
-eval "$(fnm env --log-level error)"
+# eval "$(fnm env --log-level error)"
