@@ -3,7 +3,9 @@
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+    'exec-and-forget sudo -b /opt/homebrew/bin/kanata -c /Users/jhon/.config/kanata.kbd >> /Users/jhon/.cache/kanata.logs 2>&1',
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -192,4 +194,3 @@ automatically-unhide-macos-hidden-apps = false
 [[on-window-detected]]
   if.app-id = 'com.spotify.client'
   run = ['layout floating']
-
