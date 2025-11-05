@@ -1,4 +1,4 @@
 git:
   commitPrefix:
-      - pattern: "^\\w+\\/(\\w+)\\/.*"
+      - pattern: ".*\\w+\\/(\\w+)\\/.*$"
         replace : '[$1] '
