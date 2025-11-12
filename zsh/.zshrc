@@ -128,3 +128,10 @@ fi
 # .env
 if [ -f ".env/bin/activate" ]; then . ".env/bin/activate"; fi
 if [ -f ".venv/bin/activate" ]; then . ".venv/bin/activate"; fi
+
+# bun completions
+[ -s "/Users/jhon/.bun/_bun" ] && source "/Users/jhon/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

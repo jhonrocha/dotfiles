@@ -1,4 +1,4 @@
-# git config --global core.excludesfile ~/.config/.gitignore
+# git config --global core.excludesfile ~/.config/git-ignore
 .tool-versions
 env
 .idea
@@ -8,3 +8,4 @@ git/.config/git/ignore
 AGENTS.md
 CLAUDE.md
 .DS_Store
+bun.lock

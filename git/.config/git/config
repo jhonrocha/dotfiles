@@ -1,6 +1,6 @@
 [core]
   pager = delta
-	excludesfile = /home/jhon/.config/git-ignore
+	excludesfile = ~/.config/git-ignore
 
 [interactive]
     diffFilter = delta --color-only
