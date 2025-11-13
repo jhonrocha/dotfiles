@@ -4,7 +4,7 @@
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget sudo -b /opt/homebrew/bin/kanata -c /Users/jhon/.config/kanata.kbd >> /Users/jhon/.cache/kanata.logs 2>&1',
+    # 'exec-and-forget sudo -b /opt/homebrew/bin/kanata -c /Users/jhon/.config/kanata.kbd >> /Users/jhon/.cache/kanata.logs 2>&1',
 ]
 
 # Start AeroSpace at login
@@ -97,6 +97,12 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     cmd-alt-ctrl-slash = 'layout tiles horizontal vertical'
     cmd-alt-ctrl-comma = 'layout accordion horizontal vertical'
+
+    # See: https://nikitabobko.github.io/AeroSpace/commands#focus
+    cmd-alt-ctrl-a = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.jetbrains.datagrip'
+    cmd-alt-ctrl-s = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.tinyspeck.slackmacgap'
+    cmd-alt-ctrl-d = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.google.Chrome'
+    cmd-alt-ctrl-f = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.mitchellh.ghostty'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
     cmd-alt-ctrl-h = 'focus left'
@@ -197,4 +203,8 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'com.colliderli.iina'
+  run = ['layout floating']
+
+[[on-window-detected]]
+  if.app-id = 'notion.id'
   run = ['layout floating']

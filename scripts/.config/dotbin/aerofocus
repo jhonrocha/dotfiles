@@ -1,0 +1,4 @@
+#!/bin/sh
+
+APP_ID=$1
+aerospace list-windows --app-bundle-id  $APP_ID --monitor focused --format "%{window-id}" | head -n 1 | xargs -I % aerospace focus --window-id %
