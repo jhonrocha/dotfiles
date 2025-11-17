@@ -1,0 +1,12 @@
+#!/bin/bash -x
+NEW_BRANCH=$1
+FOLDER=$2
+CURRENT_DIR=$(pwd)
+PARENT_DIR=$(cd .. && pwd)
+
+git worktree add -b $NEW_BRANCH ../$FOLDER
+ln -s "$CURRENT_DIR/node_modules" "$PARENT_DIR/$FOLDER/node_modules"
+ln -s "$CURRENT_DIR/.env" "$PARENT_DIR/$FOLDER/.env"
+
+cd "$PARENT_DIR/$FOLDER"
+project $FOLDER
