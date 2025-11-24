@@ -31,7 +31,8 @@
         "postman": "",
         "slack": "",
         "zed": "",
-        "zen": ""
+        "zen": "",
+        "obsidian": ""
       }
     }
   },
@@ -85,7 +86,8 @@
         "postman": "",
         "slack": "",
         "zed": "",
-        "zen": ""
+        "zen": "",
+        "obsidian": ""
       }
     },
     "custom/launcher": {

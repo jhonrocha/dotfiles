@@ -2,7 +2,10 @@
 export VDPAU_DRIVER=radeonsi
 
 # GTK
-export GTK_IM_MODULE=simple
+# export GTK_IM_MODULE=simple
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
 
 # XDG Standard
 export XDG_CONFIG_HOME="$HOME/.config"
