@@ -7,8 +7,3 @@ confirm-close-surface = false
 background-opacity = 1.0
 keybind = shift+enter=text:\n
 
-macos-titlebar-style = hidden
-macos-option-as-alt = left
-
-keybind = global:command+slash=toggle_quick_terminal
-
