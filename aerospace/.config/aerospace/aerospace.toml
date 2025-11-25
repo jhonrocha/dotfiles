@@ -134,8 +134,8 @@ automatically-unhide-macos-hidden-apps = false
 
     # alt-o = 'workspace prev'
     # alt-p = 'workspace next'
-    cmd-alt-ctrl-o = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace prev'
-    cmd-alt-ctrl-p = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace next'
+    cmd-alt-ctrl-o = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace prev --stdin'
+    cmd-alt-ctrl-p = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace next --stdin'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     cmd-alt-ctrl-shift-1 = 'move-node-to-workspace 1'
@@ -158,7 +158,7 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     cmd-alt-ctrl-shift-semicolon = 'mode service'
 
-    cmd-alt-ctrl-shift-f = 'layout floating tiling'
+    cmd-alt-ctrl-t = 'layout floating tiling'
     cmd-alt-ctrl-period = 'fullscreen --no-outer-gaps'
 
 # 'service' binding mode declaration.
