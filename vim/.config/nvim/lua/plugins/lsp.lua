@@ -13,7 +13,7 @@ local lsp = {
     },
     lazy = false,
     config = function()
-      -- vim.lsp.inlay_hint.enable()
+      vim.lsp.inlay_hint.enable()
       vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
@@ -21,31 +21,6 @@ local lsp = {
             hint = { enable = true },
           },
         },
-      })
-      vim.lsp.config("yamlls", {
-        settings = { yaml = { keyOrdering = false } },
-      })
-      vim.lsp.config("tsgo", {
-        cmd = { "tsgo", "--lsp", "--stdio" },
-        filetypes = {
-          "javascript",
-          "javascriptreact",
-          "javascript.jsx",
-          "typescript",
-          "typescriptreact",
-          "typescript.tsx",
-        },
-        root_markers = {
-          "tsconfig.json",
-          "jsconfig.json",
-          "package.json",
-          ".git",
-          "tsconfig.base.json",
-        },
-        on_attach = function(client)
-          client.server_capabilities.documentFormattingProvider = false
-          client.server_capabilities.documentRangeFormattingProvider = false
-        end,
       })
       vim.lsp.enable("tsgo")
     end,
@@ -85,38 +60,5 @@ local lsp = {
       },
     }
   }
-  -- {
-  --   "nvimtools/none-ls.nvim",
-  --   config = function()
-  --     local null_ls = require("null-ls")
-  --     null_ls.setup({
-  --       debug = true,
-  --       sources = {
-  --         -- null_ls.builtins.diagnostics.eslint.with({
-  --         -- 	condition = function(utils)
-  --         -- 		return utils.root_has_file({
-  --         -- 			".eslintrc",
-  --         -- 			".eslintrc.js",
-  --         -- 			".eslintrc.cjs",
-  --         -- 			".eslintrc.yaml",
-  --         -- 			".eslintrc.yml",
-  --         -- 			".eslintrc.json",
-  --         -- 		})
-  --         -- 	end,
-  --         -- }),
-  --         null_ls.builtins.formatting.prettier,
-  --         -- null_ls.builtins.formatting.stylua,
-  --         -- null_ls.builtins.diagnostics.pylint.with({ prefer_local = "venv/bin" }),
-  --         null_ls.builtins.formatting.sql_formatter,
-  --         -- null_ls.builtins.formatting.black,
-  --         -- null_ls.builtins.diagnostics.staticcheck,
-  --         -- null_ls.builtins.formatting.shfmt,
-  --         -- null_ls.builtins.formatting.rustfmt,
-  --       },
-  --     })
-  --     local _border = "single"
-  --     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
-  --   end,
-  -- },
 }
 return lsp
