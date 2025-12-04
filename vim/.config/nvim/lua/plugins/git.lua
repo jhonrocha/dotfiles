@@ -1,9 +1,6 @@
 local git = {
   {
     "sindrets/diffview.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
     opts = {
       keymaps = {
         file_panel = {
