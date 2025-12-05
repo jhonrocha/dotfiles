@@ -107,6 +107,7 @@ automatically-unhide-macos-hidden-apps = false
     cmd-alt-ctrl-s = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.tinyspeck.slackmacgap'
     cmd-alt-ctrl-d = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.google.Chrome'
     cmd-alt-ctrl-f = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.mitchellh.ghostty'
+    cmd-alt-ctrl-g = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.postmanlabs.mac'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
     cmd-alt-ctrl-h = 'focus left'
