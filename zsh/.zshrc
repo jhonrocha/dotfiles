@@ -1,9 +1,11 @@
 [ -f ~/.profile ] && . ~/.profile
 
 # Lines configured by zsh-newuser-install
-HISTSIZE=1000000
-SAVEHIST=1000000
+HISTSIZE=500000
+SAVEHIST=500000
 # History in cache directory:
+setopt appendhistory
+setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt autocd notify
 unsetopt beep extendedglob
@@ -116,6 +118,14 @@ if  command -v fzf &> /dev/null
 then
   source <(fzf --zsh)
 fi
+# # McFly
+# if  command -v mcfly &> /dev/null
+# then
+#   export MCFLY_LIGHT=FALSE
+#   export MCFLY_KEY_SCHEME=vim
+#   export MCFLY_FUZZY=2
+#   eval "$(mcfly init zsh)"
+# fi
 
 # Zsh Starship
 precmd_functions=
@@ -135,3 +145,4 @@ if [ -f ".venv/bin/activate" ]; then . ".venv/bin/activate"; fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
