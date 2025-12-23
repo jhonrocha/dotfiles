@@ -15,41 +15,20 @@ local code = {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
-    config = function()
-      -- Treesitter configuration
-      -- Parsers must be installed manually via :TSInstall
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "bash",
-          "c",
-          "cpp",
-          "css",
-          "go",
-          "gomod",
-          "html",
-          "hurl",
-          "java",
-          "javascript",
-          "jsdoc",
-          "json",
-          "lua",
-          "python",
-          "query",
-          "rust",
-          "tsx",
-          "typescript",
-          "vim",
-          "vimdoc",
-        },
-        highlight = {
-          enable = true, -- false will disable the whole extension
-        },
-        indent = { enable = true },
+    config = function(_, opts)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "*",
+        callback = function(args)
+          local ft = vim.bo[args.buf].filetype
+          local ok, lang = pcall(vim.treesitter.language.get_lang, ft)
+          if ok and lang then
+            pcall(vim.treesitter.start, args.buf, lang)
+          end
+        end,
       })
-      -- local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-      -- parser_configs.hcl = { filetype = "hcl", "terraform" }
-    end,
+    end
   },
   {
     "saghen/blink.cmp",

@@ -11,3 +11,4 @@ vim/.config/nvim/lazy-lock.json
 vim/.config/vim/autoload
 tmux/.config/tmux/plugins/
 .private_env
+claude/
