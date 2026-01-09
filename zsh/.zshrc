@@ -41,7 +41,7 @@ init-hyprland () {
   export QT_QPA_PLATFORM=wayland
   export XDG_CURRENT_DESKTOP=Hyprland
   export XDG_SESSION_DESKTOP=Hyprland
-  exec Hyprland >> ~/.cache/hyprland.log 2>&1
+  exec start-hyprland >> ~/.cache/hyprland.log 2>&1
 }
 
 machine=$(uname -n)
