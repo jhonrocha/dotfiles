@@ -11,6 +11,7 @@ sudo pacman --noconfirm --needed -S \
     wofi wl-clipboard hyprlock hyprpicker \
     waybar  swww  ghostty  nemo
 
+
 # HYPRLAND RELATED
 paru -S --needed hyprshot vicinae-bin
 
@@ -19,7 +20,12 @@ sudo pacman --noconfirm --needed -S \
   git gh nvim tmux stow zsh ripgrep fzf eza \
   ttf-iosevka-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji 
 
-
 # Fancy
 sudo pacman --noconfirm --needed -S \
   lazygit
+
+### AMD SPECIFIC: REQUIRES MULTLIB TO BE ENABLED!
+# https://wiki.archlinux.org/title/Official_repositories
+# Default GitHub account
+sudo pacman -S \
+  mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
