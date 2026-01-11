@@ -4,7 +4,7 @@
 sudo pacman --noconfirm --needed -S \
     hyprland hyprpolkitagent hyprpaper \
     xdg-desktop-portal-hyprland \
-    mako polkit-gnome gnome-keyring \
+    mako \
     gtk3 gtk4 qt5-wayland qt6-wayland \
     seahorse xorg-xwayland \
     xdg-desktop-portal xdg-desktop-portal-gtk \
