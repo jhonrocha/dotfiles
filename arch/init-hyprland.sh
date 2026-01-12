@@ -17,16 +17,16 @@ paru -S --needed hyprshot vicinae-bin
 
 # Basic
 sudo pacman --noconfirm --needed -S \
-  git gh nvim tmux stow zsh ripgrep fzf eza \
+  git github-cli nvim tmux stow zsh ripgrep fzf eza \
   ttf-iosevka-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji \
   tree-sitter tree-sitter-cli terminus-font
 
 # Fancy
 sudo pacman --noconfirm --needed -S \
-  lazygit
+  lazygit git-delta
 
 ### AMD SPECIFIC: REQUIRES MULTLIB TO BE ENABLED!
 # https://wiki.archlinux.org/title/Official_repositories
 # Default GitHub account
-sudo pacman -S \
+sudo pacman --needed -S \
   mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
