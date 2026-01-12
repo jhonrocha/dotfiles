@@ -9,11 +9,12 @@ sudo pacman --noconfirm --needed -S \
     seahorse xorg-xwayland \
     xdg-desktop-portal xdg-desktop-portal-gtk \
     wofi wl-clipboard hyprlock hyprpicker \
-    waybar  swww  ghostty  nemo
+    waybar  swww  ghostty  nemo \
+    pipewire wirepumbler
 
 
 # HYPRLAND RELATED
-paru -S --needed hyprshot vicinae-bin fnm
+paru -S --needed hyprshot vicinae-bin fnm pavucontrol
 
 # Basic
 sudo pacman --noconfirm --needed -S \
