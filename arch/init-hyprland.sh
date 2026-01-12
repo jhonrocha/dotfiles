@@ -13,13 +13,14 @@ sudo pacman --noconfirm --needed -S \
 
 
 # HYPRLAND RELATED
-paru -S --needed hyprshot vicinae-bin
+paru -S --needed hyprshot vicinae-bin fnm
 
 # Basic
 sudo pacman --noconfirm --needed -S \
   git github-cli nvim tmux stow zsh ripgrep fzf eza \
   ttf-iosevka-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji \
-  tree-sitter tree-sitter-cli terminus-font
+  tree-sitter tree-sitter-cli terminus-font \
+  nodejs npm
 
 # Fancy
 sudo pacman --noconfirm --needed -S \
