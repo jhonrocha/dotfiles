@@ -28,7 +28,7 @@ sudo pacman --noconfirm --needed -S \
   git github-cli nvim tmux stow zsh ripgrep fzf eza \
   ttf-iosevka-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji \
   tree-sitter tree-sitter-cli terminus-font \
-  nodejs npm unzip
+  nodejs npm unzip fd
 
 # Fancy
 sudo pacman --noconfirm --needed -S \
