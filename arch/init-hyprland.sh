@@ -15,7 +15,7 @@ sudo pacman --noconfirm --needed -S \
 
 
 # HYPRLAND RELATED
-paru -S --needed hyprshot vicinae-bin fnm pavucontrol grimblast
+paru -S --needed hyprshot vicinae-bin fnm pavucontrol grimblast-git
 
 ## LIGHT: desktop
 # sudo pacman --noconfirm --needed -S ddcutil
@@ -28,7 +28,7 @@ sudo pacman --noconfirm --needed -S \
   git github-cli nvim tmux stow zsh ripgrep fzf eza \
   ttf-iosevka-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji \
   tree-sitter tree-sitter-cli terminus-font \
-  nodejs npm
+  nodejs npm unzip
 
 # Fancy
 sudo pacman --noconfirm --needed -S \
