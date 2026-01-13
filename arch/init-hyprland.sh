@@ -9,8 +9,9 @@ sudo pacman --noconfirm --needed -S \
     seahorse xorg-xwayland \
     xdg-desktop-portal xdg-desktop-portal-gtk \
     wofi wl-clipboard hyprlock hyprpicker \
-    waybar  swww  ghostty  nemo \
-    pipewire wirepumbler
+    waybar  swww  ghostty  \
+    pipewire wireplumber \
+    nemo nemo-fileroller nemo-compare nemo-terminal
 
 
 # HYPRLAND RELATED
