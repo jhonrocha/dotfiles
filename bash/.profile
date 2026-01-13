@@ -1,7 +1,3 @@
-# TERMINAL
-export TERMINAL=ghostty
-export TERM=ghostty
-
 # AMD/NVIDIA
 export VDPAU_DRIVER=radeonsi
 
