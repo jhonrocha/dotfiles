@@ -9,13 +9,19 @@ sudo pacman --noconfirm --needed -S \
     seahorse xorg-xwayland \
     xdg-desktop-portal xdg-desktop-portal-gtk \
     wofi wl-clipboard hyprlock hyprpicker \
-    waybar  swww  ghostty  \
+    waybar  swww  ghostty swappy \
     pipewire wireplumber \
     nemo nemo-fileroller nemo-compare nemo-terminal
 
 
 # HYPRLAND RELATED
-paru -S --needed hyprshot vicinae-bin fnm pavucontrol
+paru -S --needed hyprshot vicinae-bin fnm pavucontrol grimblast
+
+## LIGHT: desktop
+# sudo pacman --noconfirm --needed -S ddcutil
+
+## LIGHT: notebook
+# paru -S --needed acpilight
 
 # Basic
 sudo pacman --noconfirm --needed -S \
@@ -26,7 +32,7 @@ sudo pacman --noconfirm --needed -S \
 
 # Fancy
 sudo pacman --noconfirm --needed -S \
-  lazygit git-delta
+  lazygit git-delta csvlens
 
 ### AMD SPECIFIC: REQUIRES MULTLIB TO BE ENABLED!
 # https://wiki.archlinux.org/title/Official_repositories
