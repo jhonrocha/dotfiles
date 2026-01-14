@@ -45,6 +45,7 @@ local lsp = {
         -- You can customize some of the format options for the filetype (:help conform.format)
         rust = { "rustfmt", lsp_format = "fallback" },
         -- Conform will run the first available formatter
+        json = { "prettier", lsp_format = "never" },
         javascript = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
         javascriptreact = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
         typescript = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
