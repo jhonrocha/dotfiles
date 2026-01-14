@@ -1,3 +1,6 @@
+# TERMINAL
+export TERMINAL=/usr/bin/ghostty
+
 # AMD/NVIDIA
 export VDPAU_DRIVER=radeonsi
 

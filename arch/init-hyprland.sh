@@ -23,11 +23,16 @@ paru -S --needed hyprshot vicinae-bin fnm pavucontrol grimblast-git
 ## LIGHT: notebook
 # paru -S --needed acpilight
 
-# Basic
+## FONTS
+sudo pacman --noconfirm --needed -S \
+  ttf-iosevka-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji \
+  ttf-nerd-fonts-symbols  ttf-nerd-fonts-symbols-common \
+  terminus-font noto-fonts ttf-liberation ttf-croscore
+
+## BASIC
 sudo pacman --noconfirm --needed -S \
   vi vim git github-cli nvim tmux stow zsh ripgrep fzf eza \
-  ttf-iosevka-nerd ttf-jetbrains-mono-nerd noto-fonts-emoji \
-  tree-sitter tree-sitter-cli terminus-font \
+  tree-sitter tree-sitter-cli \
   nodejs npm unzip fd
 
 # Fancy
