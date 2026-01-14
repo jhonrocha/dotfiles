@@ -49,6 +49,7 @@ local lsp = {
         javascriptreact = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
         typescript = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
         typescriptreact = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
+        sh = { "shfmt", lsp_format = "first" },
       },
       -- format_on_save = {
       --   -- These options will be passed to conform.format()

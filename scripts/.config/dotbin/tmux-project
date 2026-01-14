@@ -1,13 +1,20 @@
 #!/bin/bash
 # List options to pen a new session, window, pane or horizontal pane by location
+
 launcher_cmd() {
   fzf-tmux -xC -yC --multi -w 90% -h 50% --exit-0 --cycle --reverse --bind='ctrl-r:toggle-all' --bind='ctrl-s:toggle-sort' --no-preview --header="Launch project"
 }
 
 cmd="zsh -c nvim"
 # Choose Project
-awk -F "|" '{ print $1 $2 }' ~/.config/projects.txt | launcher_cmd | { read -r path name
+awk -F "|" '{ print $1 $2 }' ~/.config/projects.txt | launcher_cmd | {
+  read -r path name
   if [[ -n $path ]]; then
+    # Check if current session starts with "pop" and detach if so
+    current_session=$(tmux display-message -p '#S' 2>/dev/null)
+    if [[ $current_session == pop* ]]; then
+      tmux detach-client
+    fi
     ((tmux switch-client -t code:$name) || (tmux new-window -c "$path" -t code: -n $name "$cmd" && tmux switch-client -t code:$name) || (tmux new-session -c "$path" -d -s code -n $name "$cmd" && tmux switch-client -t code:$name))
   fi
 } || $SHELL

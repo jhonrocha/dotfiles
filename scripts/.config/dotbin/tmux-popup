@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 session=$1
 current=$2
 window=$3
