@@ -11,8 +11,15 @@ sudo pacman --noconfirm --needed -S \
     wofi wl-clipboard hyprlock hyprpicker \
     waybar  swww  ghostty swappy \
     pipewire wireplumber \
-    nemo nemo-fileroller nemo-compare nemo-terminal
+    nemo nemo-fileroller nemo-compare nemo-terminal \
+    networkmanager network-manager-applet
 
+## NETWORK
+# systemctl enable NetworkManager.service
+# systemctl start NetworkManager.service
+## ADD to /etc/NetworkManager/conf.d/wifi_backend.conf
+# [device]
+# wifi.backend=iwd
 
 # HYPRLAND RELATED
 paru -S --needed hyprshot vicinae-bin fnm pavucontrol grimblast-git
