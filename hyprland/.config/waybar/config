@@ -33,7 +33,8 @@
         "slack": "",
         "zed": "",
         "zen": "",
-        "obsidian": ""
+        "obsidian": "",
+        "helium": ""
       }
     },
     "pulseaudio": {
@@ -111,7 +112,8 @@
         "slack": "",
         "zed": "",
         "zen": "",
-        "obsidian": ""
+        "obsidian": "",
+        "helium": ""
       }
     },
     "custom/launcher": {
