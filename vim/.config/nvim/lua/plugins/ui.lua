@@ -161,5 +161,11 @@ local ui = {
       -- vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
     end,
   },
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = { -- set to setup table
+    },
+  }
 }
 return ui
