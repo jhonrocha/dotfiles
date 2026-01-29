@@ -2,3 +2,9 @@ git:
   commitPrefix:
       - pattern: ".*\\w+\\/(\\w+)\\/.*$"
         replace : '[$1] '
+customCommands:
+  - key: "C"
+    context: "files"
+    description: "Generate commit message with Claude Code"
+    command: "git diff --staged | claude -p 'Generate a concise git commit message for these staged changes. Output ONLY the raw commit message, a single line with no markdown, no code blocks, no backticks, no explanations' --model sonnet --output-format text > /tmp/commit_msg && git commit -e -F /tmp/commit_msg"
+    output: terminal
