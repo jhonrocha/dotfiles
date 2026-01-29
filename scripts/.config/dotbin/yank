@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
+input=$(cat)
+
 if [ "$(uname)" == "Darwin" ]; then
-  pbcopy
+  printf '%s' "$input" | pbcopy
 elif [ "$WM" == "sway" ] || [ "$XDG_SESSION_TYPE" == "wayland" ]; then
-  wl-copy "$@"
+  printf '%s' "$input" | wl-copy "$@"
 else
-  xclip -in -selection clipboard
+  printf '%s' "$input" | xclip -in -selection clipboard
 fi
