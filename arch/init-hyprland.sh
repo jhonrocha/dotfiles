@@ -8,7 +8,7 @@ sudo pacman --noconfirm --needed -S \
     gtk3 gtk4 qt5-wayland qt6-wayland \
     seahorse xorg-xwayland \
     xdg-desktop-portal xdg-desktop-portal-gtk \
-    wofi wl-clipboard hyprlock hyprpicker \
+    rofi wl-clipboard hyprlock hyprpicker \
     waybar  swww  ghostty swappy \
     pipewire wireplumber \
     nemo nemo-fileroller nemo-compare nemo-terminal \

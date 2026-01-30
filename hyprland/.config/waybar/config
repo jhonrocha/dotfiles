@@ -119,7 +119,7 @@
     "custom/launcher": {
       "format": "󰣇",
       "tooltip": false,
-      "on-click": "wofi --show drun -a"
+      "on-click": "rofi -show drun"
     },
     "custom/close": {
       "format": "󰅗",

@@ -8,7 +8,7 @@ set $right l
 # Your preferred terminal emulator
 set $term ghostty
 # Your preferred application launcher
-set $menu wofi --show drun -a
+set $menu rofi -show drun
 # GAPS
 set $gIn 8
 set $gOut 0
@@ -191,7 +191,7 @@ bindsym $mod+q kill
 
 # Start your launcher
 bindsym $mod+d exec $menu
-bindsym $mod+r exec wofi --show run
+bindsym $mod+r exec rofi -show run
 
 # Clean notifications
 bindsym $mod+0 exec makoctl dismiss -a
