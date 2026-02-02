@@ -175,4 +175,4 @@ vim.keymap.set("n", "<leader>qj", "<Cmd>cn<CR>", { desc = "quick next" })
 vim.keymap.set("n", "<leader>qk", "<Cmd>cp<CR>", { desc = "quick previous" })
 --
 -- Terminal
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "normal mode" })
+vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { desc = "normal mode" })
