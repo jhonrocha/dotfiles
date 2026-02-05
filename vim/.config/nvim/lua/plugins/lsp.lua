@@ -46,10 +46,10 @@ local lsp = {
         rust = { "rustfmt", lsp_format = "fallback" },
         -- Conform will run the first available formatter
         json = { "prettier", lsp_format = "never" },
-        javascript = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
-        javascriptreact = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
-        typescript = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
-        typescriptreact = { "eslint_d", "prettier", stop_after_first = false, lsp_format = "never" },
+        javascript = { "prettier", stop_after_first = false, lsp_format = "never" },
+        javascriptreact = { "prettier", stop_after_first = false, lsp_format = "never" },
+        typescript = { "prettier", stop_after_first = false, lsp_format = "never" },
+        typescriptreact = { "prettier", stop_after_first = false, lsp_format = "never" },
         sh = { "shfmt", lsp_format = "first" },
       },
       -- format_on_save = {

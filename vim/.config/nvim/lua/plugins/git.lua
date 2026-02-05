@@ -25,8 +25,9 @@ local git = {
     lazy = false,
     config = true,
     keys = {
-      { "<leader>gn", "<Cmd>Gitsigns next_hunk<CR>", desc = "next_hunk" },
-      { "<leader>gp", "<Cmd>Gitsigns prev_hunk<CR>", desc = "prev_hunk" },
+      { "<leader>gj", "<Cmd>Gitsigns next_hunk<CR>", desc = "next_hunk" },
+      { "<leader>gk", "<Cmd>Gitsigns prev_hunk<CR>", desc = "prev_hunk" },
+      { "<leader>gp", "<Cmd>Gitsigns preview_hunk<CR>", desc = "prev_hunk" },
     },
   },
 }

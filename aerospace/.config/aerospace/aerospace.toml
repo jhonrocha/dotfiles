@@ -103,17 +103,17 @@ automatically-unhide-macos-hidden-apps = false
     cmd-alt-ctrl-comma = 'layout accordion horizontal vertical'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    cmd-alt-ctrl-a = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.jetbrains.datagrip'
+    cmd-alt-ctrl-a = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.openai.codex'
     cmd-alt-ctrl-s = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.tinyspeck.slackmacgap'
     cmd-alt-ctrl-d = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.google.Chrome'
     cmd-alt-ctrl-f = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.mitchellh.ghostty'
     cmd-alt-ctrl-g = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.postmanlabs.mac'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    cmd-alt-ctrl-h = 'focus left'
-    cmd-alt-ctrl-j = 'focus down'
-    cmd-alt-ctrl-k = 'focus up'
-    cmd-alt-ctrl-l = 'focus right'
+    cmd-alt-ctrl-h = 'focus left --boundaries all-monitors-outer-frame'
+    cmd-alt-ctrl-j = 'focus down --boundaries all-monitors-outer-frame'
+    cmd-alt-ctrl-k = 'focus up --boundaries all-monitors-outer-frame'
+    cmd-alt-ctrl-l = 'focus right --boundaries all-monitors-outer-frame'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
     cmd-alt-ctrl-shift-h = 'move left'
@@ -164,7 +164,8 @@ automatically-unhide-macos-hidden-apps = false
     cmd-alt-ctrl-shift-semicolon = 'mode service'
 
     cmd-alt-ctrl-t = 'layout floating tiling'
-    cmd-alt-ctrl-period = 'fullscreen --no-outer-gaps'
+    cmd-alt-ctrl-shift-f = 'fullscreen --no-outer-gaps'
+    cmd-alt-ctrl-q = 'close'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -213,3 +214,14 @@ automatically-unhide-macos-hidden-apps = false
 [[on-window-detected]]
   if.app-id = 'notion.id'
   run = ['layout floating']
+
+[[on-window-detected]]
+  if.app-id = 'com.google.Chrome'
+  run = ['layout floating']
+
+[[on-window-detected]]
+  if.app-id = 'com.apple.Preview'
+  run = ['layout floating']
+
+[workspace-to-monitor-force-assignment]
+    9 = 'secondary'
