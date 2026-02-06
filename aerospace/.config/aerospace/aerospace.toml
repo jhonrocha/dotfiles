@@ -135,6 +135,7 @@ automatically-unhide-macos-hidden-apps = false
     cmd-alt-ctrl-7 = 'workspace 7'
     cmd-alt-ctrl-8 = 'workspace 8'
     cmd-alt-ctrl-9 = 'workspace 9'
+    cmd-alt-ctrl-0 = 'workspace 10'
 
 
     # alt-o = 'workspace prev'
@@ -152,6 +153,7 @@ automatically-unhide-macos-hidden-apps = false
     cmd-alt-ctrl-shift-7 = 'move-node-to-workspace 7'
     cmd-alt-ctrl-shift-8 = 'move-node-to-workspace 8'
     cmd-alt-ctrl-shift-9 = 'move-node-to-workspace 9'
+    cmd-alt-ctrl-shift-0 = 'move-node-to-workspace 10'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     cmd-alt-ctrl-tab = 'workspace-back-and-forth'
@@ -165,7 +167,7 @@ automatically-unhide-macos-hidden-apps = false
 
     cmd-alt-ctrl-t = 'layout floating tiling'
     cmd-alt-ctrl-shift-f = 'fullscreen --no-outer-gaps'
-    cmd-alt-ctrl-q = 'close'
+    cmd-alt-ctrl-w = 'close'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -224,4 +226,6 @@ automatically-unhide-macos-hidden-apps = false
   run = ['layout floating']
 
 [workspace-to-monitor-force-assignment]
+    8 = 'secondary'
     9 = 'secondary'
+    10 = 'secondary'
