@@ -225,6 +225,10 @@ automatically-unhide-macos-hidden-apps = false
   if.app-id = 'com.apple.Preview'
   run = ['layout floating']
 
+[[on-window-detected]]
+  if.app-id = 'cc.ffitch.shottr'
+  run = ['layout floating']
+
 [workspace-to-monitor-force-assignment]
     8 = 'secondary'
     9 = 'secondary'
