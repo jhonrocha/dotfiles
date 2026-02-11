@@ -136,6 +136,9 @@ automatically-unhide-macos-hidden-apps = false
     cmd-alt-ctrl-8 = 'workspace 8'
     cmd-alt-ctrl-9 = 'workspace 9'
     cmd-alt-ctrl-0 = 'workspace 10'
+    cmd-alt-ctrl-c = 'workspace C'
+    cmd-alt-ctrl-v = 'workspace V'
+    cmd-alt-ctrl-b = 'workspace B'
 
 
     # alt-o = 'workspace prev'
@@ -154,6 +157,9 @@ automatically-unhide-macos-hidden-apps = false
     cmd-alt-ctrl-shift-8 = 'move-node-to-workspace 8'
     cmd-alt-ctrl-shift-9 = 'move-node-to-workspace 9'
     cmd-alt-ctrl-shift-0 = 'move-node-to-workspace 10'
+    cmd-alt-ctrl-shift-c = 'move-node-to-workspace C'
+    cmd-alt-ctrl-shift-v = 'move-node-to-workspace V'
+    cmd-alt-ctrl-shift-b = 'move-node-to-workspace B'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     cmd-alt-ctrl-tab = 'workspace-back-and-forth'
@@ -230,6 +236,6 @@ automatically-unhide-macos-hidden-apps = false
   run = ['layout floating']
 
 [workspace-to-monitor-force-assignment]
-    8 = 'secondary'
-    9 = 'secondary'
-    10 = 'secondary'
+    C = 'secondary'
+    V = 'secondary'
+    B = 'secondary'
