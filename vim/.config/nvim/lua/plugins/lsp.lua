@@ -51,6 +51,7 @@ local lsp = {
         typescript = { "prettier", stop_after_first = false, lsp_format = "never" },
         typescriptreact = { "prettier", stop_after_first = false, lsp_format = "never" },
         sh = { "shfmt", lsp_format = "first" },
+        sql = { "sqfluff", lsp_format = "never" },
       },
       -- format_on_save = {
       --   -- These options will be passed to conform.format()
