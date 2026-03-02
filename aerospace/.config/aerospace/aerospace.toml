@@ -99,15 +99,8 @@ automatically-unhide-macos-hidden-apps = false
     # '''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-    cmd-alt-ctrl-slash = 'layout tiles horizontal vertical'
+    cmd-alt-ctrl-period = 'layout tiles horizontal vertical'
     cmd-alt-ctrl-comma = 'layout accordion horizontal vertical'
-
-    # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    cmd-alt-ctrl-a = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.openai.codex'
-    cmd-alt-ctrl-s = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.tinyspeck.slackmacgap'
-    cmd-alt-ctrl-d = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.google.Chrome'
-    cmd-alt-ctrl-f = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.mitchellh.ghostty'
-    cmd-alt-ctrl-g = 'exec-and-forget $HOME/.config/dotbin/aerofocus com.postmanlabs.mac'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
     cmd-alt-ctrl-h = 'focus left --boundaries all-monitors-outer-frame'
@@ -166,34 +159,29 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
     cmd-alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-    cmd-alt-ctrl-shift-period = 'reload-config'
-
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-    cmd-alt-ctrl-shift-semicolon = 'mode service'
+    cmd-alt-ctrl-space = 'mode apps'
 
     cmd-alt-ctrl-t = 'layout floating tiling'
     cmd-alt-ctrl-shift-f = 'fullscreen --no-outer-gaps'
     cmd-alt-ctrl-w = 'close'
 
-# 'service' binding mode declaration.
+# 'apps' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-[mode.service.binding]
+[mode.apps.binding]
     esc = ['reload-config', 'mode main']
-    r = ['flatten-workspace-tree', 'mode main'] # reset layout
-    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-    backspace = ['close-all-windows-but-current', 'mode main']
 
-    # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-    #s = ['layout sticky tiling', 'mode main']
-
-    cmd-alt-ctrl-shift-h = ['join-with left', 'mode main']
-    cmd-alt-ctrl-shift-j = ['join-with down', 'mode main']
-    cmd-alt-ctrl-shift-k = ['join-with up', 'mode main']
-    cmd-alt-ctrl-shift-l = ['join-with right', 'mode main']
+    # See: https://nikitabobko.github.io/AeroSpace/commands#focus
+    a = ['exec-and-forget $HOME/.config/dotbin/aerofocus com.openai.codex', 'mode main']
+    s = ['exec-and-forget $HOME/.config/dotbin/aerofocus com.tinyspeck.slackmacgap', 'mode main']
+    b = ['exec-and-forget $HOME/.config/dotbin/aerofocus com.google.Chrome', 'mode main']
+    c = ['exec-and-forget $HOME/.config/dotbin/aerofocus com.mitchellh.ghostty', 'mode main']
+    p = ['exec-and-forget $HOME/.config/dotbin/aerofocus com.postmanlabs.mac', 'mode main']
+    d = ['exec-and-forget $HOME/.config/dotbin/aerofocus com.jetbrains.datagrip', 'mode main']
+    z = ['exec-and-forget $HOME/.config/dotbin/aerofocus dev.zed.Zed', 'mode main']
 
     down = 'volume down'
     up = 'volume up'
-    shift-down = ['volume set 0', 'mode main']
 
 # make every newly-detected window float
 # [[on-window-detected]]

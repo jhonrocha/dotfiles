@@ -97,6 +97,9 @@ export PATH="$HOME/.config/dotbin:$PATH"
 export PATH="${XDG_CONFIG_HOME}/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="${XDG_CONFIG_HOME}/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
+# HOMEBREW
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
 # ELECTRON
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
 
@@ -120,8 +123,6 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 # Shortcuts
 alias g.="cd /data/dotfiles > /dev/null 2>&1 || cd ~/dotfiles"
-# Make
-alias m="make"
 # List all files
 alias l="eza --group-directories-first --icons"
 alias la="eza -a --group-directories-first --icons"
@@ -157,6 +158,9 @@ alias kprod="KUBECONFIG=~/.kube/prod.yaml kubectl"
 
 alias lg=lazygit
 
+# MISE
+alias m='mise exec --'
+
 # alias nvm="echo"
 
 ##### BASHSMS #####
@@ -173,5 +177,5 @@ alias path='echo -e ${PATH//:/\\n}'
 [ -f ~/.swiftly/env.sh ] && . ~/.swiftly/env.sh
 [ -x "$(command -v rbenv)" ] && eval "$(rbenv init - --no-rehash zsh)"
 
-eval "$(fnm env --use-on-cd --log-level error)"
+# eval "$(fnm env --use-on-cd --log-level error)"
 # eval "$(fnm env --log-level error)"

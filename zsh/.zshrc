@@ -145,5 +145,3 @@ if [ -f ".venv/bin/activate" ]; then . ".venv/bin/activate"; fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

@@ -1,5 +1,9 @@
 ;; vim: ft=lisp
 (defcfg
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+    "Karabiner DriverKit VirtualHIDKeyboard 1.8.0"
+  )
   process-unmapped-keys yes
   concurrent-tap-hold yes
 )
@@ -14,6 +18,7 @@
   ; 
   rmeta 
   ralt
+  spc
 )
 (defvar
   tap-time 200
@@ -25,6 +30,7 @@
   caps esc 
   rmeta (tap-hold $tap-time $hold-time rmeta (multi rmeta lalt lctl))
   ; (tap-hold $tap-time $hold-time ; rctl)
+  spc (tap-hold 200 200 spc (layer-toggle fn))
 )
 
 (deflayer base
@@ -36,7 +42,8 @@
   @caps
   @;
   @rmeta
-  @fn
+  lalt
+  @spc
 )
 
 (deflayer fn
@@ -49,4 +56,5 @@
   _ ;; ;
   _ ;; rmet
   _ ;; lalt
+  spc
 )
