@@ -1,9 +1,13 @@
 gui:
   showCommandLog: false
   showFileTree: false
+  sidePanelWidth: 0.2
+  expandFocusedSidePanel: true
+  expandedSidePanelWeight: 10
 git:
   pagers:
-    - pager: delta --dark --paging=never --line-numbers 
+    - pager: delta --dark --paging=never --line-numbers
+    - pager: delta --dark --paging=never --line-numbers -s
     # - pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
   commitPrefix:
       - pattern: ".*\\w+\\/(\\w+)\\/.*$"
