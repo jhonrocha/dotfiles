@@ -23,6 +23,14 @@ local snacks = {
 			input = { enabled = true },
 			lazygit = {
 				enabled = true,
+				configure = true,
+				config = {
+					os = {
+						editPreset = "nvim-remote",
+						edit = 'nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}}',
+						editAtLine = 'nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>"',
+					},
+				},
 				win = { width = 0, height = 0, keys = { ["q"] = { "hide", mode = { "t", "i", "n" } } } },
 			},
 			notifier = { enabled = true },
@@ -32,6 +40,7 @@ local snacks = {
 					input = {
 						keys = {
 							["<Esc>"] = { "close", mode = "i" },
+
 							["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
 							["<c-p>"] = { "toggle_preview", mode = { "i", "n" } },
 						},
