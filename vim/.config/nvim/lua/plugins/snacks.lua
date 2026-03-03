@@ -21,7 +21,7 @@ local snacks = {
 			gitbrowse = { enabled = true },
 			indent = { enabled = true, animate = { enabled = false } },
 			input = { enabled = true },
-			lazygit = { enabled = true },
+			lazygit = { enabled = true, win = { width = 0, height = 0 } },
 			notifier = { enabled = true },
 			picker = {
 				enabled = true,

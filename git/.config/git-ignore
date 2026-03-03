@@ -12,3 +12,5 @@ bun.lock
 claude
 .claude
 mise.local.toml
+.ai
+.zed

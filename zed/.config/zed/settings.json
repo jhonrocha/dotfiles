@@ -6,42 +6,46 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
-// vim: https://zed.dev/docs/vim#zed-specific-features
 {
-  "icon_theme": "Catppuccin Macchiato",
-  "selection_highlight": false,
-  "vim_mode": true,
-  "soft_wrap": "editor_width",
-  "tab_bar": { "show": true },
-  "toolbar": {
-    "breadcrumbs": false,
-    "quick_actions": false
-  },
   "agent": {
-    "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "gemini-2.5-pro"
-    },
-    "default_profile": "write",
-    "always_allow_tool_actions": true,
-    "model_parameters": [],
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5"
+      "model": "claude-opus-4.6",
+      "enable_thinking": false,
     },
-    "version": "2"
+    "favorite_models": [],
+    "model_parameters": [],
   },
-
-  "ui_font_family": "Cantarell",
-  "ui_font_size": 16,
+  "edit_predictions": {
+    "provider": "copilot",
+  },
+  "git_panel": {
+    "tree_view": true,
+  },
+  "tab_bar": {
+    "show": true,
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+  },
+  "vim_mode": true,
+  "agent_servers": {
+    "claude": {
+      "default_config_options": {
+        "mode": "plan",
+        "model": "opusplan",
+      },
+    },
+  },
+  "show_wrap_guides": true,
+  "ui_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_size": 14,
-  "theme": {
+  "icon_theme": {
     "mode": "system",
-    "light": "One Dark",
-    "dark": "One Dark"
+    "light": "Catppuccin Mocha",
+    "dark": "Catppuccin Macchiato",
   },
-  "experimental.theme_overrides": {
-    "editor.document_highlight.read_background": "#00000000"
-  }
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": "Catppuccin Macchiato",
 }

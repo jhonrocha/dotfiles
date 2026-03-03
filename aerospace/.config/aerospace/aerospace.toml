@@ -223,6 +223,10 @@ automatically-unhide-macos-hidden-apps = false
   if.app-id = 'cc.ffitch.shottr'
   run = ['layout floating']
 
+[[on-window-detected]]
+  if.window-title-regex-substring = 'Settings'
+  run = ['layout floating']
+
 [workspace-to-monitor-force-assignment]
     C = 'secondary'
     V = 'secondary'
