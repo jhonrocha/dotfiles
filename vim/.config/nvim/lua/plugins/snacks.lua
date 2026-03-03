@@ -21,7 +21,10 @@ local snacks = {
 			gitbrowse = { enabled = true },
 			indent = { enabled = true, animate = { enabled = false } },
 			input = { enabled = true },
-			lazygit = { enabled = true, win = { width = 0, height = 0 } },
+			lazygit = {
+				enabled = true,
+				win = { width = 0, height = 0, keys = { ["q"] = { "hide", mode = { "t", "i", "n" } } } },
+			},
 			notifier = { enabled = true },
 			picker = {
 				enabled = true,
@@ -31,11 +34,6 @@ local snacks = {
 							["<Esc>"] = { "close", mode = "i" },
 							["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
 							["<c-p>"] = { "toggle_preview", mode = { "i", "n" } },
-						},
-					},
-					lazygit = {
-						keys = {
-							["<c-j>"] =  {"hide", mode = { "t", "i", "n" } },
 						},
 					},
 				},
