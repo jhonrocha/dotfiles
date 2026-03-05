@@ -31,7 +31,7 @@ local snacks = {
 						editAtLine = 'nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>"',
 					},
 				},
-				win = { width = 0, height = 0, keys = { ["q"] = { "hide", mode = { "t", "i", "n" } } } },
+				win = { width = 0, height = 0, keys = { ["<c-c>"] = { "hide", mode = { "t" } } } },
 			},
 			notifier = { enabled = true },
 			picker = {
@@ -83,6 +83,23 @@ local snacks = {
 			statuscolumn = { enabled = true, refresh = 50 },
 			words = { enabled = false },
 		},
+		init = function()
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "VeryLazy",
+				once = true,
+				callback = function()
+					local resume = require("snacks.picker.resume")
+					local original_add = resume.add
+					resume.add = function(picker)
+						original_add(picker)
+						local source = picker.opts.source or "custom"
+						if resume.state[source] then
+							resume.state[source].items = picker.finder.items
+						end
+					end
+				end,
+			})
+		end,
 		keys = {
 			-- { "<leader>d",       function() Snacks.explorer() end,                                                                    desc = "File Explorer" },
 			{
