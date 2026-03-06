@@ -5,6 +5,8 @@ config-version = 2
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
+# kanata needs sudo for key interception; requires NOPASSWD entry in /etc/sudoers.d/kanata:
+#   jhon ALL=(ALL) NOPASSWD: /opt/homebrew/bin/kanata
 after-startup-command = [
   'exec-and-forget sudo -b /opt/homebrew/bin/kanata -c /Users/jhon/.config/kanata.kbd >> /Users/jhon/.cache/kanata.logs 2>&1',
 ]
