@@ -19,6 +19,7 @@
 	defaultBranch = main
 [user]
 	name = Jhon Rocha
+	email = jhmrocha@gmail.com
 
 [includeIf "gitdir/i:~/workspace/mt/"]
     path = ~/workspace/mt/.gitconfig

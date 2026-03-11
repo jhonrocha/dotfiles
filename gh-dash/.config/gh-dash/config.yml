@@ -1,10 +1,9 @@
 prSections:
     - title: Needs My Review
-      filters: is:open review-requested:@me
+      # filters: is:open review-requested:@me
+      filters: is:open repo:Denteva/denteva-api2 repo:Denteva/denteva-web repo:Denteva/method-integration-impls
     - title: My Pull Requests
       filters: is:open author:@me
-    - title: API2
-      filters: is:open repo:Denteva/denteva-api2
 issuesSections:
     - title: My Issues
       filters: is:open author:@me
