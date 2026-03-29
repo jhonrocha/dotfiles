@@ -1,6 +1,6 @@
 gui:
   showCommandLog: false
-  showFileTree: false
+  showFileTree: true
   sidePanelWidth: 0.2
   expandFocusedSidePanel: true
   expandedSidePanelWeight: 10

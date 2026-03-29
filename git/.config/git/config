@@ -17,6 +17,7 @@
     colorMoved = default
 [init]
 	defaultBranch = main
+
 [user]
 	name = Jhon Rocha
 	email = jhmrocha@gmail.com

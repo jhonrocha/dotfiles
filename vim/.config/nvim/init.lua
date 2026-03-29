@@ -2,16 +2,19 @@
 ------------ Plugin Manager ------------
 ----------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then vim.fn.system({
-	"git",
-	"clone",
-	"--filter=blob:none",
-	"https://github.com/folke/lazy.nvim.git",
-	"--branch=stable",
-	lazypath,
-}) end
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
+end
 vim.opt.rtp:prepend(lazypath)
-
+-- TODO:
+-- vim.pack.add({ "https://github.com/folke/lazy.nvim" })
 -- Remap space as leader key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
@@ -103,7 +106,9 @@ vim.o.cmdheight = 0
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function() vim.highlight.on_yank() end,
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 	group = highlight_group,
 	pattern = "*",
 })
@@ -130,8 +135,12 @@ vim.keymap.set("n", "<leader>R", "<Cmd>e<CR>", { desc = "file reload" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })
-vim.keymap.set("n", "<leader>n", function() vim.diagnostic.goto_prev({ float = true }) end, { desc = "prev diagnostic" })
-vim.keymap.set("n", "<leader>m", function() vim.diagnostic.goto_next({ float = true }) end, { desc = "next diagnostic" })
+vim.keymap.set("n", "<leader>n", function()
+	vim.diagnostic.goto_prev({ float = true })
+end, { desc = "prev diagnostic" })
+vim.keymap.set("n", "<leader>m", function()
+	vim.diagnostic.goto_next({ float = true })
+end, { desc = "next diagnostic" })
 -- vim.keymap.set("n", "<leader>ci", vim.diagnostic.setloclist)
 
 -- Buffer navigation
