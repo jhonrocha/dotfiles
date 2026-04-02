@@ -10,7 +10,7 @@ local snacks = {
 			bigfile = { enabled = true, line_length = 100000 },
 			bufdelete = { enable = true },
 			dashboard = {
-				enabled = true,
+				enabled = false,
 				sections = {
 					{ section = "header" },
 					{ section = "keys", gap = 1, padding = 1 },
