@@ -213,9 +213,9 @@ automatically-unhide-macos-hidden-apps = false
   if.app-id = 'notion.id'
   run = ['layout floating']
 
-# [[on-window-detected]]
-#   if.app-id = 'com.google.Chrome'
-#   run = ['layout floating']
+[[on-window-detected]]
+  if.app-id = 'com.google.Chrome'
+  run = ['layout floating']
 
 [[on-window-detected]]
   if.app-id = 'com.apple.Notes'

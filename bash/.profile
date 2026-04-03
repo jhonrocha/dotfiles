@@ -160,6 +160,7 @@ alias lg=lazygit
 
 # MISE
 alias m='mise exec --'
+alias ma='eval "$(mise activate bash)"'
 
 # alias nvm="echo"
 

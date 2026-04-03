@@ -207,7 +207,7 @@ local snacks = {
 			{
 				"<leader>gL",
 				function()
-					Snacks.lazygit.log()
+					Snacks.lazygit.log_file()
 				end,
 				desc = "log file",
 			},

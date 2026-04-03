@@ -13,7 +13,7 @@ vim.g.maplocalleader = " "
 require("lazy").setup("plugins", {
 	change_detection = { enabled = false },
 	ui = {
-		border = "single",
+		border = "rounded",
 	},
 })
 
@@ -24,10 +24,6 @@ require("lazy").setup("plugins", {
 -- Add border to all float windows
 vim.o.winborder = "rounded"
 
--- for type, icon in pairs(signs) do
--- 	local hl = "DiagnosticSign" .. type
--- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
--- end
 vim.diagnostic.config({
 	signs = {
 		text = {
@@ -36,15 +32,7 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.HINT] = "",
 			[vim.diagnostic.severity.INFO] = "",
 		},
-		-- linehl = {
-		--     [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-		-- },
-		-- numhl = {
-		--     [vim.diagnostic.severity.WARN] = 'WarningMsg',
-		-- },
 	},
-	float = { border = "single" },
-	-- virtual_text = true,
 })
 
 vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl")
@@ -52,7 +40,7 @@ vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl")
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
 -- Make line numbers default
-vim.wo.number = true
+vim.o.number = true
 -- Enable mouse mode
 vim.o.mouse = "a"
 -- Keep the view when switching buffers
@@ -79,13 +67,8 @@ vim.o.splitright = true
 -- vim.o.foldlevelstart = 99
 -- vim.o.foldenable = true
 -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
--- Set colorscheme
-vim.o.termguicolors = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
--- Show signcolumn
--- vim.wo.signcolumn = "yes:1"
--- vim.wo.signcolumn = "yes:1"
 
 -- Disable cmdline
 vim.o.cmdheight = 0
@@ -113,8 +96,8 @@ vim.filetype.add({
 ----------------- MAPS -----------------
 ----------------------------------------
 -- Remap for dealing with word wrap
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "TODO" })
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "TODO" })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "move up (wrap)" })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "move down (wrap)" })
 
 -- My Maps
 vim.keymap.set("n", "<leader>fs", "<Cmd>update!<CR>", { desc = "file save" })

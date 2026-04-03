@@ -7,7 +7,7 @@ local ui = {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    enable = true,
+    enabled = true,
     config = function()
       -- vim.g.gruvbox_material_background = "dark"
       vim.cmd.colorscheme(theme)
@@ -16,7 +16,7 @@ local ui = {
   {
     "catppuccin/nvim",
     lazy = false,
-    enable = false,
+    enabled = false,
     name = "catppuccin",
     priority = 1001,
     opts = {
@@ -59,21 +59,7 @@ local ui = {
         lualine_a = { "mode" },
         lualine_b = { { "filename", path = 1 } },
         lualine_c = { "diagnostics" },
-        lualine_d = {
-          {
-            -- require("noice").api.statusline.mode.get,
-            -- cond = require("noice").api.statusline.mode.has,
-
-            -- color = { fg = "#ff9e64" },
-          },
-        },
-        -- lualine_x = { "encoding", "fileformat", "filetype" },
         lualine_x = { "searchcount", "diff", "filetype" },
-        -- lualine_b = { "branch", "diff", "diagnostics" },
-        -- lualine_b = {},
-        -- lualine_c = { { "buffers", show_filename_only = true } },
-        -- lualine_c = { "location" },
-        -- lualine_x = { "encoding", "fileformat", "filetype" },
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },
@@ -87,29 +73,6 @@ local ui = {
       },
       winbar = {},
       inactive_winbar = {},
-      -- winbar = {
-      -- 	lualine_a = {},
-      -- 	-- lualine_b = { { "filetype", icon_only = true } },
-      -- 	lualine_b = {},
-      -- 	lualine_c = {
-      -- 		{ "filetype", icon_only = true, padding = { left = 1, right = 0 } },
-      -- 		{ "filename", path = 1, padding = { left = 0 }, shorting_target = 10 },
-      -- 	},
-      -- 	lualine_x = {},
-      -- 	lualine_y = {},
-      -- 	lualine_z = {},
-      -- },
-      -- inactive_winbar = {
-      -- 	lualine_a = {},
-      -- 	lualine_b = {},
-      -- 	lualine_c = {
-      -- 		{ "filetype", icon_only = true, padding = { left = 1, right = 0 } },
-      -- 		{ "filename", path = 1, padding = { left = 0 }, shorting_target = 10 },
-      -- 	},
-      -- 	lualine_x = {},
-      -- 	lualine_y = {},
-      -- 	lualine_z = {},
-      -- },
       extensions = { "quickfix", "nvim-tree" },
     },
   },
