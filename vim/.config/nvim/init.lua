@@ -70,9 +70,6 @@ vim.o.splitright = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
--- Disable cmdline
-vim.o.cmdheight = 0
-
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -155,3 +152,52 @@ vim.keymap.set("n", "<leader>qk", "<Cmd>cp<CR>", { desc = "quick previous" })
 --
 -- Terminal
 vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { desc = "normal mode" })
+-- Experimental UI2: floating cmdline and messages
+-- Disable cmdline
+vim.o.cmdheight = 0
+require('vim._core.ui2').enable({
+  enable = true,
+  msg = {
+    targets = {
+      [''] = 'msg',
+      empty = 'cmd',
+      bufwrite = 'msg',
+      confirm = 'cmd',
+      emsg = 'pager',
+      echo = 'msg',
+      echomsg = 'msg',
+      echoerr = 'pager',
+      completion = 'cmd',
+      list_cmd = 'pager',
+      lua_error = 'pager',
+      lua_print = 'msg',
+      progress = 'pager',
+      rpc_error = 'pager',
+      quickfix = 'msg',
+      search_cmd = 'cmd',
+      search_count = 'cmd',
+      shell_cmd = 'pager',
+      shell_err = 'pager',
+      shell_out = 'pager',
+      shell_ret = 'msg',
+      undo = 'msg',
+      verbose = 'pager',
+      wildlist = 'cmd',
+      wmsg = 'msg',
+      typed_cmd = 'cmd',
+    },
+    cmd = {
+      height = 0.5,
+    },
+    dialog = {
+      height = 0.5,
+    },
+    msg = {
+      height = 0.3,
+      timeout = 5000,
+    },
+    pager = {
+      height = 0.5,
+    },
+  },
+})
