@@ -11,10 +11,10 @@ vim.g.maplocalleader = " "
 --------------- PLUGINS ----------------
 ----------------------------------------
 require("lazy").setup("plugins", {
-	change_detection = { enabled = false },
-	ui = {
-		border = "rounded",
-	},
+  change_detection = { enabled = false },
+  ui = {
+    border = "rounded",
+  },
 })
 
 ----------------------------------------
@@ -25,14 +25,14 @@ require("lazy").setup("plugins", {
 vim.o.winborder = "rounded"
 
 vim.diagnostic.config({
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "",
-			[vim.diagnostic.severity.WARN] = "",
-			[vim.diagnostic.severity.HINT] = "",
-			[vim.diagnostic.severity.INFO] = "",
-		},
-	},
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.INFO] = "",
+    },
+  },
 })
 
 vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl")
@@ -71,12 +71,12 @@ vim.o.splitright = true
 vim.o.completeopt = "menuone,noselect"
 
 vim.filetype.add({
-	pattern = {
-		[".*/waybar/config"] = "jsonc",
-		[".*/mako/config"] = "dosini",
-		[".*/kitty/*.conf"] = "bash",
-		[".*/hypr/.*%.conf"] = "hyprlang",
-	},
+  pattern = {
+    [".*/waybar/config"] = "jsonc",
+    [".*/mako/config"] = "dosini",
+    [".*/kitty/*.conf"] = "bash",
+    [".*/hypr/.*%.conf"] = "hyprlang",
+  },
 })
 
 ----------------------------------------
@@ -86,12 +86,21 @@ vim.filetype.add({
 -- LSP Configuration (native Neovim 0.12 API)
 vim.lsp.inlay_hint.enable()
 vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			diagnostics = { globals = { "vim", "Snacks" } },
-			hint = { enable = true },
-		},
-	},
+  settings = {
+    Lua = {
+      diagnostics = { globals = { "vim", "Snacks" } },
+      hint = { enable = true },
+      format = {
+        enable = true,
+        -- Put format options here
+        -- NOTE: the value should be String!
+        defaultConfig = {
+          quote_style = "double",
+          max_line_length = "200",
+        }
+      },
+    },
+  },
 })
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0, desc = "code action" })
@@ -118,10 +127,10 @@ vim.keymap.set("n", "<leader>R", "<Cmd>e<CR>", { desc = "file reload" })
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })
 vim.keymap.set("n", "<leader>n", function()
-	vim.diagnostic.jump({ count = -1, float = true })
+  vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "prev diagnostic" })
 vim.keymap.set("n", "<leader>m", function()
-	vim.diagnostic.jump({ count = 1, float = true })
+  vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "next diagnostic" })
 -- vim.keymap.set("n", "<leader>ci", vim.diagnostic.setloclist)
 
@@ -174,19 +183,19 @@ vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { desc = "normal mode" })
 vim.o.laststatus = 3
 
 local modes = {
-	n = "NORMAL",
-	i = "INSERT",
-	v = "VISUAL",
-	V = "V-LINE",
-	["\22"] = "V-BLOCK",
-	c = "COMMAND",
-	R = "REPLACE",
-	t = "TERM",
+  n = "NORMAL",
+  i = "INSERT",
+  v = "VISUAL",
+  V = "V-LINE",
+  ["\22"] = "V-BLOCK",
+  c = "COMMAND",
+  R = "REPLACE",
+  t = "TERM",
 }
 
 function Mode()
-	local m = vim.api.nvim_get_mode().mode
-	return modes[m] or modes[m:sub(1, 1)] or m:upper()
+  local m = vim.api.nvim_get_mode().mode
+  return modes[m] or modes[m:sub(1, 1)] or m:upper()
 end
 
 -- vim.o.statusline = " %#ModeMsg#%{v:lua.Mode()}%#StatusLine#  %f%m %=  %{&filetype}  %l:%c  %p%% "
@@ -195,48 +204,48 @@ end
 -- Disable cmdline
 vim.o.cmdheight = 0
 require("vim._core.ui2").enable({
-	enable = true,
-	msg = {
-		targets = {
-			[""] = "msg",
-			empty = "cmd",
-			bufwrite = "msg",
-			confirm = "cmd",
-			emsg = "pager",
-			echo = "msg",
-			echomsg = "msg",
-			echoerr = "pager",
-			completion = "cmd",
-			list_cmd = "pager",
-			lua_error = "pager",
-			lua_print = "msg",
-			progress = "pager",
-			rpc_error = "pager",
-			quickfix = "msg",
-			search_cmd = "cmd",
-			search_count = "cmd",
-			shell_cmd = "pager",
-			shell_err = "pager",
-			shell_out = "pager",
-			shell_ret = "msg",
-			undo = "msg",
-			verbose = "pager",
-			wildlist = "cmd",
-			wmsg = "msg",
-			typed_cmd = "cmd",
-		},
-		cmd = {
-			height = 0.5,
-		},
-		dialog = {
-			height = 0.5,
-		},
-		msg = {
-			height = 0.3,
-			timeout = 5000,
-		},
-		pager = {
-			height = 0.5,
-		},
-	},
+  enable = true,
+  msg = {
+    targets = {
+      [""] = "msg",
+      empty = "cmd",
+      bufwrite = "msg",
+      confirm = "cmd",
+      emsg = "pager",
+      echo = "msg",
+      echomsg = "msg",
+      echoerr = "pager",
+      completion = "cmd",
+      list_cmd = "pager",
+      lua_error = "pager",
+      lua_print = "msg",
+      progress = "pager",
+      rpc_error = "pager",
+      quickfix = "msg",
+      search_cmd = "cmd",
+      search_count = "cmd",
+      shell_cmd = "pager",
+      shell_err = "pager",
+      shell_out = "pager",
+      shell_ret = "msg",
+      undo = "msg",
+      verbose = "pager",
+      wildlist = "cmd",
+      wmsg = "msg",
+      typed_cmd = "cmd",
+    },
+    cmd = {
+      height = 0.5,
+    },
+    dialog = {
+      height = 0.5,
+    },
+    msg = {
+      height = 0.3,
+      timeout = 5000,
+    },
+    pager = {
+      height = 0.5,
+    },
+  },
 })
