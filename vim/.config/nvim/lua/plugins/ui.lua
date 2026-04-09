@@ -32,19 +32,9 @@ local ui = {
 		},
 	},
 	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts = {
-			messages = {
-				view_search = false,
-			},
-		},
-		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-	},
-	{
 		"nvim-lualine/lualine.nvim",
+		enabled = true,
 		dependencies = {
-			"folke/noice.nvim",
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
@@ -59,7 +49,18 @@ local ui = {
 				lualine_a = { "mode" },
 				lualine_b = { { "filename", path = 1 } },
 				lualine_c = { "diagnostics" },
-				lualine_x = { "searchcount", "diff", "filetype" },
+				lualine_x = {
+				{
+					function()
+						local reg = vim.fn.reg_recording()
+						return reg ~= "" and "recording @" .. reg or ""
+					end,
+					color = { fg = "#f7768e" },
+				},
+				"searchcount",
+				"diff",
+				"filetype",
+			},
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
@@ -117,11 +118,16 @@ local ui = {
 	{
 		"Bekaboo/dropbar.nvim",
 		config = function()
-			-- require("dropbar").setup();
-			-- local dropbar_api = require("dropbar.api")
-			-- vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
-			-- vim.keymap.set("n", "[;", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
-			-- vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
+			require("dropbar").setup()
+			local dropbar_api = require("dropbar.api")
+			vim.keymap.set("n", "<Leader>cp", dropbar_api.pick, { desc = "Pick symbols in winbar" })
+			vim.keymap.set(
+				"n",
+				"<Leader>ck",
+				dropbar_api.goto_context_start,
+				{ desc = "Go to start of current context" }
+			)
+			vim.keymap.set("n", "<Leader>cj", dropbar_api.select_next_context, { desc = "Select next context" })
 		end,
 	},
 }

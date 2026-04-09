@@ -70,16 +70,6 @@ vim.o.splitright = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = highlight_group,
-	pattern = "*",
-})
-
 vim.filetype.add({
 	pattern = {
 		[".*/waybar/config"] = "jsonc",
@@ -88,6 +78,31 @@ vim.filetype.add({
 		[".*/hypr/.*%.conf"] = "hyprlang",
 	},
 })
+
+----------------------------------------
+----------------- LSP ------------------
+----------------------------------------
+
+-- LSP Configuration (native Neovim 0.12 API)
+vim.lsp.inlay_hint.enable()
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			diagnostics = { globals = { "vim", "Snacks" } },
+			hint = { enable = true },
+		},
+	},
+})
+
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0, desc = "code action" })
+vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { buffer = 0, desc = "lsp declaration" })
+vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { buffer = 0, desc = "lsp definition" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0, desc = "lsp hover" })
+vim.keymap.set("n", "<leader>ci", vim.lsp.buf.implementation, { buffer = 0, desc = "lsp implementation" })
+vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = 0, desc = "lsp type" })
+vim.keymap.set("n", "<leader>cw", vim.lsp.buf.rename, { buffer = 0, desc = "lsp rename" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { buffer = 0, desc = "lsp references" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0, desc = "lsp hover" })
 
 ----------------------------------------
 ----------------- MAPS -----------------
@@ -103,10 +118,10 @@ vim.keymap.set("n", "<leader>R", "<Cmd>e<CR>", { desc = "file reload" })
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })
 vim.keymap.set("n", "<leader>n", function()
-	vim.diagnostic.goto_prev({ float = true })
+	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "prev diagnostic" })
 vim.keymap.set("n", "<leader>m", function()
-	vim.diagnostic.goto_next({ float = true })
+	vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "next diagnostic" })
 -- vim.keymap.set("n", "<leader>ci", vim.diagnostic.setloclist)
 
@@ -152,52 +167,76 @@ vim.keymap.set("n", "<leader>qk", "<Cmd>cp<CR>", { desc = "quick previous" })
 --
 -- Terminal
 vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { desc = "normal mode" })
+
+----------------------------------------
+------------------ UI ------------------
+----------------------------------------
+vim.o.laststatus = 3
+
+local modes = {
+	n = "NORMAL",
+	i = "INSERT",
+	v = "VISUAL",
+	V = "V-LINE",
+	["\22"] = "V-BLOCK",
+	c = "COMMAND",
+	R = "REPLACE",
+	t = "TERM",
+}
+
+function Mode()
+	local m = vim.api.nvim_get_mode().mode
+	return modes[m] or modes[m:sub(1, 1)] or m:upper()
+end
+
+-- vim.o.statusline = " %#ModeMsg#%{v:lua.Mode()}%#StatusLine#  %f%m %=  %{&filetype}  %l:%c  %p%% "
+
 -- Experimental UI2: floating cmdline and messages
 -- Disable cmdline
 vim.o.cmdheight = 0
-require('vim._core.ui2').enable({
-  enable = true,
-  msg = {
-    targets = {
-      [''] = 'msg',
-      empty = 'cmd',
-      bufwrite = 'msg',
-      confirm = 'cmd',
-      emsg = 'pager',
-      echo = 'msg',
-      echomsg = 'msg',
-      echoerr = 'pager',
-      completion = 'cmd',
-      list_cmd = 'pager',
-      lua_error = 'pager',
-      lua_print = 'msg',
-      progress = 'pager',
-      rpc_error = 'pager',
-      quickfix = 'msg',
-      search_cmd = 'cmd',
-      search_count = 'cmd',
-      shell_cmd = 'pager',
-      shell_err = 'pager',
-      shell_out = 'pager',
-      shell_ret = 'msg',
-      undo = 'msg',
-      verbose = 'pager',
-      wildlist = 'cmd',
-      wmsg = 'msg',
-      typed_cmd = 'cmd',
-    },
-    cmd = {
-      height = 0.5,
-    },
-    dialog = {
-      height = 0.5,
-    },
-    msg = {
-      height = 0.3,
-      timeout = 5000,
-    },
-    pager = {
-      height = 0.5,
-    },
-  },
+require("vim._core.ui2").enable({
+	enable = true,
+	msg = {
+		targets = {
+			[""] = "msg",
+			empty = "cmd",
+			bufwrite = "msg",
+			confirm = "cmd",
+			emsg = "pager",
+			echo = "msg",
+			echomsg = "msg",
+			echoerr = "pager",
+			completion = "cmd",
+			list_cmd = "pager",
+			lua_error = "pager",
+			lua_print = "msg",
+			progress = "pager",
+			rpc_error = "pager",
+			quickfix = "msg",
+			search_cmd = "cmd",
+			search_count = "cmd",
+			shell_cmd = "pager",
+			shell_err = "pager",
+			shell_out = "pager",
+			shell_ret = "msg",
+			undo = "msg",
+			verbose = "pager",
+			wildlist = "cmd",
+			wmsg = "msg",
+			typed_cmd = "cmd",
+		},
+		cmd = {
+			height = 0.5,
+		},
+		dialog = {
+			height = 0.5,
+		},
+		msg = {
+			height = 0.3,
+			timeout = 5000,
+		},
+		pager = {
+			height = 0.5,
+		},
+	},
 })

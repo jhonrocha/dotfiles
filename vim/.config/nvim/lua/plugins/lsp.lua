@@ -1,39 +1,10 @@
 local lsp = {
 	{
-		"neovim/nvim-lspconfig",
+		"mason-org/mason-lspconfig.nvim",
+		opts = {},
 		dependencies = {
-			{
-				"mason-org/mason-lspconfig.nvim",
-				dependencies = {
-					{ "mason-org/mason.nvim", opts = { ui = { border = "rounded" } } },
-				},
-				opts = { ensure_installed = {} },
-				lazy = true,
-			},
-		},
-		lazy = false,
-		config = function()
-			vim.lsp.inlay_hint.enable()
-			vim.lsp.config("lua_ls", {
-				settings = {
-					Lua = {
-						diagnostics = { globals = { "vim", "Snacks" } },
-						hint = { enable = true },
-					},
-				},
-			})
-			vim.lsp.enable("tsgo")
-			vim.lsp.enable("rust_analyzer")
-		end,
-		keys = {
-			{ "<leader>ca", vim.lsp.buf.code_action, desc = "code action" },
-			{ "<leader>cD", vim.lsp.buf.declaration, desc = "lsp declaration" },
-			{ "<leader>cd", vim.lsp.buf.definition, desc = "lsp definition" },
-			{ "K", vim.lsp.buf.hover, desc = "lsp hover" },
-			{ "<leader>ci", vim.lsp.buf.implementation, desc = "lsp implementation" },
-			{ "<leader>D", vim.lsp.buf.type_definition, desc = "lsp type" },
-			{ "<leader>cw", vim.lsp.buf.rename, desc = "lsp rename" },
-			{ "<leader>cr", vim.lsp.buf.references, desc = "lsp references" },
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
 		},
 	},
 	{
@@ -41,10 +12,7 @@ local lsp = {
 		opts = {
 			formatters_by_ft = {
 				-- lua = { "stylua", lsp_format = "first" },
-				-- Conform will run multiple formatters sequentially
 				-- python = { "isort", "black", lsp_format = "last" },
-				-- You can customize some of the format options for the filetype (:help conform.format)
-				-- Conform will run the first available formatter
 				go = { "gofmt", lsp_format = "fallback" },
 				json = { "prettier", lsp_format = "never" },
 				javascript = { "prettier", stop_after_first = false, lsp_format = "never" },
@@ -55,17 +23,11 @@ local lsp = {
 				sh = { "shfmt", lsp_format = "first" },
 				sql = { "sqfluff", lsp_format = "never" },
 			},
-			-- format_on_save = {
-			--   -- These options will be passed to conform.format()
-			--   timeout_ms = 500,
-			--   lsp_format = "fallback",
-			-- },
+			-- format_on_save = { timeout_ms = 500, lsp_format = "fallback", },
 		},
 		keys = {
-
 			{
 				"<leader>cf",
-				-- function() vim.lsp.buf.format({ timeout_ms = 10000 }) end,
 				function()
 					require("conform").format({ lsp_format = "fallback" })
 				end,
