@@ -47,6 +47,18 @@ local snacks = {
           },
         },
         sources = {
+          buffers = {
+            hidden = true,
+            layout = { preview = false }
+          },
+          files = {
+            hidden = true,
+            layout = { preview = false }
+          },
+          grep = {
+            hidden = true,
+            layout = { preset = "default", layout = { width = 0.99 } }
+          },
           explorer = {
             cmd = "fd",
             diagnostics = false,
@@ -94,10 +106,9 @@ local snacks = {
         function() Snacks.notifier.show_history() end,
         desc = "list messages",
       },
-      -- Fuzzy Find
       {
         "<leader>,",
-        function() Snacks.picker.buffers({ layout = { preview = false } }) end,
+        function() Snacks.picker.buffers() end,
         desc = "Buffers",
       },
       {
@@ -107,7 +118,7 @@ local snacks = {
       },
       {
         "<leader><space>",
-        function() Snacks.picker.files({ hidden = true, layout = { preview = false } }) end,
+        function() Snacks.picker.files() end,
         desc = "Find Files",
       },
       {
@@ -125,11 +136,10 @@ local snacks = {
         end,
         desc = "Resume",
       },
-      -- find
       {
         "<leader>ff",
         function()
-          Snacks.picker.files({ hidden = true, ignored = true, layout = { preview = false } })
+          Snacks.picker.files({ ignored = true, })
         end,
         desc = "Find Files+",
       },
@@ -182,17 +192,9 @@ local snacks = {
       },
       {
         "<leader>fw",
-        function() Snacks.picker.grep({}) end,
+        function() Snacks.picker.grep() end,
         desc = "Grep",
       },
-      {
-        "<leader>fW",
-        function()
-          Snacks.picker.grep({ hidden = true, layout = { preset = "default", layout = { width = 0.99 } } })
-        end,
-        desc = "Grep",
-      },
-      -- search
       {
         "<leader>f.",
         function() Snacks.picker.registers() end,
@@ -303,8 +305,8 @@ local snacks = {
       },
       {
         "<leader>S",
-        desc = "Scratch List",
         function() Snacks.scratch.select() end,
+        desc = "Scratch List",
       },
     },
   },
