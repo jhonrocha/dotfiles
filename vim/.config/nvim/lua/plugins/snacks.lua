@@ -57,6 +57,8 @@ local snacks = {
           },
           grep = {
             hidden = true,
+            sort = { fields = { "score:desc", "file", "lnum" } },
+            matcher = { sort_empty = true },
             layout = { preset = "default", layout = { width = 0.99 } }
           },
           explorer = {

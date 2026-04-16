@@ -126,10 +126,10 @@ vim.keymap.set("n", "<leader>R", "<Cmd>e<CR>", { desc = "file reload" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "diagnostic" })
-vim.keymap.set("n", "<leader>n", function()
+vim.keymap.set("n", "<leader>cj", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "prev diagnostic" })
-vim.keymap.set("n", "<leader>m", function()
+vim.keymap.set("n", "<leader>ck", function()
   vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "next diagnostic" })
 -- vim.keymap.set("n", "<leader>ci", vim.diagnostic.setloclist)
@@ -235,17 +235,17 @@ require("vim._core.ui2").enable({
       typed_cmd = "cmd",
     },
     cmd = {
-      height = 0.5,
+      height = 0.1,
     },
     dialog = {
-      height = 0.5,
+      height = 0.1,
     },
     msg = {
-      height = 0.3,
+      height = 0.1,
       timeout = 5000,
     },
     pager = {
-      height = 0.5,
+      height = 0.1,
     },
   },
 })
