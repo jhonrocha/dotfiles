@@ -88,11 +88,11 @@ require("snacks").setup({
     sources = {
       buffers = {
         hidden = true,
-        layout = { preview = false },
+        layout = { preset = "ivy", preview = false },
       },
       files = {
         hidden = true,
-        layout = { preview = false },
+        layout = { preset = "ivy", preview = false },
       },
       grep = {
         hidden = true,
@@ -100,26 +100,9 @@ require("snacks").setup({
         matcher = { sort_empty = true },
         layout = { preset = "default", layout = { width = 0.99 } },
       },
-      explorer = {
-        cmd = "fd",
-        diagnostics = false,
-        diagnostics_open = false,
-        hidden = true,
-        follow_file = true,
-        git_status = false,
-        git_status_open = false,
-        git_untracked = false,
-        jump = { close = false },
-        win = { input = { keys = { ["<Esc>"] = "cancel" } } },
-        layout = {
-          hidden = { "input" },
-          layout = {
-            min_width = 30,
-          },
-        },
-      },
     },
-    layout = { preset = "ivy" },
+    -- layout = { preset = "ivy" },
+    layout = { preset = "default", layout = { width = 0.99 } },
   },
   quickfile = { enabled = true },
   scratch = {
@@ -136,11 +119,11 @@ require("snacks").setup({
 })
 
 -- Snacks keymaps
-vim.keymap.set("n", "<leader>fk", function() Snacks.bufdelete() end, { desc = "file kill" })
-vim.keymap.set("n", "<leader>fm", function() Snacks.notifier.show_history() end, { desc = "list messages" })
+vim.keymap.set("n", "<leader><space>", function() Snacks.picker.files() end, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
 vim.keymap.set("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command History" })
-vim.keymap.set("n", "<leader><space>", function() Snacks.picker.files() end, { desc = "Find Files" })
+vim.keymap.set("n", "<leader>fk", function() Snacks.bufdelete() end, { desc = "file kill" })
+vim.keymap.set("n", "<leader>fm", function() Snacks.notifier.show_history() end, { desc = "list messages" })
 vim.keymap.set("n", "<leader>fr", function()
   Snacks.picker.resume({ exclude = { "lsp_definitions", "lsp_references", "lsp_implementations", "lsp_type_definitions", "lsp_symbols" } })
 end, { desc = "Resume" })
