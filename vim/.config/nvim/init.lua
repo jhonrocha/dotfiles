@@ -334,7 +334,11 @@ require("blink.cmp").setup({
       auto_show_delay_ms = 200,
     },
   },
-  signature = { enabled = true },
+  signature = {
+    enabled = true,
+    window = { show_documentation = false
+    }
+  },
   sources = {
     default = { "lsp", "path", "snippets", "buffer" },
     per_filetype = {
@@ -361,8 +365,8 @@ vim.keymap.set("n", "<leader>gH", "<Cmd>DiffviewFileHistory %<CR>", { desc = "hi
 
 -- Gitsigns
 require("gitsigns").setup()
-vim.keymap.set("n", "<leader>n", "<Cmd>Gitsigns next_hunk<CR>", { desc = "next_hunk" })
-vim.keymap.set("n", "<leader>m", "<Cmd>Gitsigns prev_hunk<CR>", { desc = "prev_hunk" })
+vim.keymap.set("n", "<leader>n", "<Cmd>Gitsigns prev_hunk<CR>", { desc = "prev_hunk" })
+vim.keymap.set("n", "<leader>m", "<Cmd>Gitsigns next_hunk<CR>", { desc = "next_hunk" })
 vim.keymap.set("n", "<leader>gp", "<Cmd>Gitsigns preview_hunk<CR>", { desc = "prev_hunk" })
 
 -- Codediff
@@ -477,14 +481,14 @@ vim.lsp.config("lua_ls", {
   },
 })
 
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0, desc = "code action" })
-vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { buffer = 0, desc = "lsp declaration" })
-vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { buffer = 0, desc = "lsp definition" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "code action" })
+vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { desc = "lsp declaration" })
+vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "lsp definition" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0, desc = "lsp hover" })
-vim.keymap.set("n", "<leader>ci", vim.lsp.buf.implementation, { buffer = 0, desc = "lsp implementation" })
-vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = 0, desc = "lsp type" })
-vim.keymap.set("n", "<leader>cw", vim.lsp.buf.rename, { buffer = 0, desc = "lsp rename" })
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { buffer = 0, desc = "lsp references" })
+vim.keymap.set("n", "<leader>ci", vim.lsp.buf.implementation, { desc = "lsp implementation" })
+vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "lsp type" })
+vim.keymap.set("n", "<leader>cw", vim.lsp.buf.rename, { desc = "lsp rename" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = "lsp references" })
 
 ----------------------------------------
 ------------------ UI ------------------
@@ -508,7 +512,7 @@ function Mode()
 end
 
 -- Experimental UI2: floating cmdline and messages
-vim.o.cmdheight = 0
+vim.o.cmdheight = 1
 require("vim._core.ui2").enable({
   enable = true,
   msg = {
@@ -540,10 +544,10 @@ require("vim._core.ui2").enable({
       wmsg = "msg",
       typed_cmd = "cmd",
     },
-    cmd = { height = 0.1 },
-    dialog = { height = 0.1 },
-    msg = { height = 0.1, timeout = 5000 },
-    pager = { height = 0.1 },
+    cmd = { height = 0.5 },
+    dialog = { height = 0.5 },
+    msg = { height = 0.5, timeout = 5000 },
+    pager = { height = 0.5 },
   },
 })
 
