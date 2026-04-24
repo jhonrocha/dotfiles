@@ -373,8 +373,8 @@ vim.keymap.set("n", "<leader>gp", "<Cmd>Gitsigns preview_hunk<CR>", { desc = "pr
 require("codediff").setup({
   keymaps = {
     view = {
-      next_hunk = "<leader>n",
-      prev_hunk = "<leader>m",
+      next_hunk = "<leader>m",
+      prev_hunk = "<leader>n",
       next_file = "<TAB>",
       prev_file = "<S-TAB>",
     },
