@@ -8,7 +8,7 @@ vim.g.maplocalleader = " "
 ----------------------------------------
 ------------ Plugin Manager ------------
 ----------------------------------------
-local gh = function(x) return "https://github.com/" .. x end
+local gh = function(repo) return "https://github.com/" .. repo end
 
 vim.pack.add({
   -- Theme
@@ -20,6 +20,7 @@ vim.pack.add({
   gh("folke/which-key.nvim"),
   gh("nvim-tree/nvim-tree.lua"),
   gh("Bekaboo/dropbar.nvim"),
+  gh("rachartier/tiny-cmdline.nvim"),
 
   -- Snacks
   gh("folke/snacks.nvim"),
@@ -224,7 +225,7 @@ require("which-key").add({
 -- Nvim-tree
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
-  view = { width = 30 },
+  view = { width = 40 },
   renderer = {
     group_empty = false,
     highlight_opened_files = "icon",
@@ -238,8 +239,8 @@ vim.keymap.set("n", "<leader>d", "<Cmd>NvimTreeFindFileToggle<CR>", { desc = "fi
 require("dropbar").setup()
 local dropbar_api = require("dropbar.api")
 vim.keymap.set("n", "<Leader>cp", dropbar_api.pick, { desc = "Pick symbols in winbar" })
-vim.keymap.set("n", "<Leader>ck", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
-vim.keymap.set("n", "<Leader>cj", dropbar_api.select_next_context, { desc = "Select next context" })
+vim.keymap.set("n", "<Leader>[", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
+vim.keymap.set("n", "<Leader>]", dropbar_api.select_next_context, { desc = "Select next context" })
 
 -- Flash
 require("flash").setup({})
@@ -423,7 +424,7 @@ vim.diagnostic.config({
   },
 })
 
-vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl")
+-- vim.cmd.highlight("DiagnosticUnderlineError gui=undercurl")
 
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
@@ -512,7 +513,7 @@ function Mode()
 end
 
 -- Experimental UI2: floating cmdline and messages
-vim.o.cmdheight = 1
+vim.o.cmdheight = 0
 require("vim._core.ui2").enable({
   enable = true,
   msg = {
