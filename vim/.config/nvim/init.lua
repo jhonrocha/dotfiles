@@ -21,6 +21,7 @@ vim.pack.add({
   gh("nvim-tree/nvim-tree.lua"),
   gh("Bekaboo/dropbar.nvim"),
   gh("rachartier/tiny-cmdline.nvim"),
+  gh("hat0uma/csvview.nvim"),
 
   -- Snacks
   gh("folke/snacks.nvim"),
@@ -241,6 +242,23 @@ local dropbar_api = require("dropbar.api")
 vim.keymap.set("n", "<Leader>cp", dropbar_api.pick, { desc = "Pick symbols in winbar" })
 vim.keymap.set("n", "<Leader>[", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
 vim.keymap.set("n", "<Leader>]", dropbar_api.select_next_context, { desc = "Select next context" })
+
+-- CsvView
+require("csvview").setup({
+  keymaps = {
+    -- Text objects for selecting fields
+    textobject_field_inner = { "if", mode = { "o", "x" } },
+    textobject_field_outer = { "af", mode = { "o", "x" } },
+    -- Excel-like navigation:
+    -- Use <Tab> and <S-Tab> to move horizontally between fields.
+    -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+    -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+    jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+    jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+    jump_next_row = { "<Enter>", mode = { "n", "v" } },
+    jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+  }
+})
 
 -- Flash
 require("flash").setup({})

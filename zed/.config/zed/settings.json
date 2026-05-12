@@ -32,7 +32,7 @@
   },
   "git_panel": {
     "dock": "right",
-    "tree_view": true,
+    "tree_view": false,
   },
   "tab_bar": {
     "show": true,
