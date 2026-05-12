@@ -82,15 +82,20 @@ require("snacks").setup({
       input = {
         keys = {
           ["<Esc>"] = { "close", mode = "i" },
-          ["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
           ["<c-p>"] = { "toggle_preview", mode = { "i", "n" } },
         },
       },
     },
     sources = {
       buffers = {
-        hidden = true,
         layout = { preset = "ivy", preview = false },
+        win = {
+          input = {
+            keys = {
+              ["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
+            },
+          },
+        },
       },
       files = {
         hidden = true,
