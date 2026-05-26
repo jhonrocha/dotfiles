@@ -475,6 +475,9 @@ vim.o.splitright = true
 vim.o.completeopt = "menuone,noselect"
 
 vim.filetype.add({
+  extension = {
+    hbs = "html",
+  },
   pattern = {
     [".*/waybar/config"] = "jsonc",
     [".*/mako/config"] = "dosini",
