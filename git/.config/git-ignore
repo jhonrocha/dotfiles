@@ -9,8 +9,8 @@ AGENTS.md
 CLAUDE.md
 .DS_Store
 bun.lock
-claude
-.claude
+# claude
+# .claude
 mise.local.toml
 .ai
 .zed

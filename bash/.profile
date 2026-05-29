@@ -99,6 +99,7 @@ export PHP_INI_SCAN_DIR="${XDG_CONFIG_HOME}/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 # HOMEBREW
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
 
 # ELECTRON
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
